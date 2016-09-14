@@ -1,0 +1,5 @@
+AuthName "Login to Admin-Area"
+AuthType Basic
+AuthUserFile /path/to/your/.htpasswd
+AuthGroupFile /dev/null
+require valid-user 
