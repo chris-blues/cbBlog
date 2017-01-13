@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function ()
      smiley[i].addEventListener("click", function () { enterSmiley( this.getAttribute("data-id") ); });
    }
 
+   document.getElementById("post_name").addEventListener("click", function() { document.getElementById("post_name").value = ''; });
    document.getElementById("smileyButton").addEventListener("click", showhideSmileys);
   });
 

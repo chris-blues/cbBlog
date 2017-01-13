@@ -3,8 +3,8 @@ $js = "FALSE";
 include('head.php');
 ?>
 <!-- begin showcomments.php -->
-<body style="margin: 0px;">
-<center><a href="showblog.php"><button onclick="window.location = 'showblog.php'">BACK</button></a></center>
+<body>
+<center><a href="showblog.php"><button>ZURÜCK</button></a></center>
 
 <?php
 $debug = "FALSE"; //set to true to see some debug information...
@@ -33,15 +33,15 @@ if ($result)
    while ($row = $result->fetch_assoc())
      {
       echo "<br>\n<div class=\"comments shadow\" id=\"{$row["number"]}\" name=\"comments\" style=\"margin: 10px 25px;\">\n";
-      echo "<a href=\"editcomments.php?job=delete&amp;number={$row["number"]}&amp;affiliation={$row["affiliation"]}\" style=\"text-decoration: none; display:inline; float: right;\">löschen</a>\n";
+      echo "<a href=\"editcomments.php?job=delete&amp;number={$row["number"]}&amp;affiliation={$row["affiliation"]}\" class=\"deleteComment\">löschen</a>\n";
       echo "<form action=\"editcomments.php?job=update\" method=\"post\" accept-charset=\"UTF-8\">\n";
       echo "<input type=\"hidden\" name=\"number\" value=\"{$row["number"]}\">\n";
       echo "<input type=\"hidden\" name=\"affiliation\" value=\"{$row["affiliation"]}\">\n";
       echo "<input type=\"text\" name=\"name\" value=\"{$row["name"]}\">\n";
       echo "<input type=\"text\" name=\"website\" value=\"{$row["website"]}\">\n";
       echo "<input type=\"hidden\" name=\"time\" value=\"{$row["time"]}\">" . date("d.M.Y H:i",$row["time"]) . "<br>\n";
-      echo "<textarea name=\"comment\" class=\"commentTextarea\">{$row["comment"]}</textarea><br>\n";
-      echo "<input type=\"submit\" value=\"  OK  \">\n";
+      echo "<textarea name=\"comment\" class=\"commentTextarea\">" . htmlspecialchars($row["comment"], ENT_COMPAT | ENT_HTML5, "UTF-8") . "</textarea><br>\n";
+      echo "<button type=\"submit\">  Speichern  </button>\n";
       echo "</form>\n</div>\n";
      }
   }

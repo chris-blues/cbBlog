@@ -160,8 +160,8 @@ if ($result)
            }
          mysqli_free_result($resultcomments);
 
-         echo "<h1>{$row["head"]}</h1>\n";
-         echo "{$row["text"]}\n";
+         echo "<article>\n<header>\n<h1>{$row["head"]}</h1>\n</header>";
+         echo "{$row["text"]}\n</article>\n";
          echo "</div>\n";
          echo "<hr>\n";
          echo "<div class=\"notes blogfulldate\">" . date("d.M.Y H:i", $row['time']);

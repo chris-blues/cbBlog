@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<?php $time = time(); ?>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="refresh" content="0;<?php echo "../../index.php?page=blog&index={$_POST["affiliation"]}{$link}#$time"; ?>">
+</head>
+
 <?php
 error_reporting(0);
 ini_set("display_errors", 0);
@@ -8,7 +15,7 @@ ini_set("error_log", "/www/admin/logs/php-error.log");
 date_default_timezone_set('Europe/Berlin');
 
 $forward = "";
-include('../phpinclude/head.php');
+
 include("../phpinclude/config.php");
 require("../phpinclude/dbconnect.php");
 
@@ -18,9 +25,9 @@ $debug = "TRUE";
 /* Connect to database */
 $con=mysqli_connect($hostname, $userdb, $passworddb, $db);
   if (mysqli_connect_errno())
-    { echo "Failed to connect to MySQL: " . mysqli_connect_error() . "<br>\n"; }
+    { echo "Failed to connect to MySQL: " . mysqli_connect_error($con) . "<br>\n"; }
   else
-    { if ($debug == "TRUE") echo "Successfully connected. " . mysqli_connect_error() . "<br>\n"; }
+    { if ($debug == "TRUE") echo "Successfully connected. " . mysqli_connect_error($con) . "<br>\n"; }
 
 /* change character set to utf8 */
 if (!mysqli_set_charset($con, "utf8"))
@@ -44,7 +51,6 @@ else
 $link = "&amp;lang={$_POST["lang"]}";
 if (isset($_POST["kartid"]) and $_POST["kartid"] != "") $link .= "&amp;kartid={$_POST["kartid"]}";
 
-$time = time();
 echo "<body style=\"margin: 0px;\" onload=\"window.location.href='../../index.php?page=blog&amp;index={$_POST["affiliation"]}{$link}#$time'\">\n";
 //echo "<body style=\"margin: 0px;\">\n<a href=\"../../{$_SERVER["PHP_SELF"]}?page=blog&amp;kartid={$_POST["kartid"]}&amp;lang={$_POST["lang"]}&amp;index={$_POST["affiliation"]}&amp;showcomments=TRUE#$time\">back</a><br>\n";
 
@@ -68,7 +74,7 @@ if ($posterror["email"] == "TRUE")
    $maildate = date(DATE_RFC2822);
    $header = "Content-Type: text/plain; charset = \"UTF-8\";\r\n";
    $header .= "Content-Transfer-Encoding: 8bit\r\n";
-   $header .= "From: blog@musicchris.de\r\n";
+   $header .= "From: blog@{$_SERVER[SERVER_NAME]}\r\n";
    $header .= "Date: $maildate\r\n";
    $header .= "\r\n";
    $subject = "possible spam from {$_SERVER['REMOTE_ADDR']} by {$_POST["name"]} ( {$_POST["email"]} )";
