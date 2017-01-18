@@ -7,7 +7,7 @@ include("blog/convertnumbers.php");
 
 if ($_GET["index"] == "0") unset($_GET["index"]);
 date_default_timezone_set('Europe/Berlin');
-require("phpinclude/dbconnect.php");
+require_once("phpinclude/dbconnect.php");
 
 //$debug = "TRUE";
 
@@ -219,7 +219,7 @@ mysqli_free_result($result);
 
 if (!isset($_GET["index"]) or $_GET["index"] == "") $_GET["index"] = "0";
 
-   echo "</div>\n<div class=\"clear\"></div>\n<div class=\"centered\" id=\"linkshowcomments\">\n";
+   echo "</div>\n<div class=\"clear\"></div>\n<div class=\"comments_wrapper\">\n<div class=\"centered\" id=\"linkshowcomments\">\n";
    if ($lang == "english") echo "<h2>Comments</h2>\n"; else echo "<h2>Kommentare</h2>\n";
    echo "</div>\n";
 
@@ -251,13 +251,21 @@ if (!isset($_GET["index"]) or $_GET["index"] == "") $_GET["index"] = "0";
    mysqli_free_result($result);
 
 
+   switch ($lang)
+     {
+      case 'deutsch': { $notify = "Benachrichtigung"; $emailusage = "um zu weiteren Kommentaren benachrichtigt zu werden<br>Geht noch nicht!"; break; }
+      case 'english': { $notify = "Notification";     $emailusage = "to be notified of new comments<br>Not working yet!"; break; }
+      default:        { $notify = "Notification";     $emailusage = "to be notified of new comments<br>Not working yet!"; break; }
+     }
    //display post form
    echo "<div class=\"shadow comments comment postform\" name=\"comment\">\n";
    echo "  <form action=\"blog/postcomment.php\" method=\"post\" accept-charset=\"UTF-8\">\n";
-   echo "  Name: (otional)<br>\n";
-   echo "  <input type=\"text\" name=\"name\" id=\"post_name\" value=\"Anonymous\" onfocus=\"this.value=''\"><br>\n";
-   echo "  Website: (optional)<br>\n";
-   echo "  <input type=\"text\" name=\"website\" id=\"post_website\"><br>\n";
+   echo "  Name: <span class=\"notes\">(otional)</span><br>\n";
+   echo "  <input type=\"text\" name=\"name\" id=\"post_name\" value=\"\" placeholder=\"Anonymous\"><br>\n";
+   echo "  $notify: <span class=\"notes\">(otional, $emailusage)</span><br>\n";
+   echo "  <input type=\"text\" name=\"notificationTo\" id=\"post_notificationTo\" value=\"\" placeholder=\"you@inter.net\"><br>\n";
+   echo "  Website: <span class=\"notes\">(otional)</span><br>\n";
+   echo "  <input type=\"text\" name=\"website\" id=\"post_website\" placeholder=\"www.example.tld\"><br>\n";
    echo "  <p class=\"notes\" id=\"email\">$leaveempty<input type=\"text\" name=\"email\" id=\"post_email\"></p>\n";
    echo "  $comment<br>\n";
    echo "  <textarea name=\"text\" id=\"post_text\" title=\"$postcomments_restricitions\"></textarea><br>\n";
@@ -281,7 +289,7 @@ if (!isset($_GET["index"]) or $_GET["index"] == "") $_GET["index"] = "0";
 <?php
    echo "  <button type=\"reset\">  &lt;&lt;&lt; $back  </button><button type=\"submit\">         OK &gt;&gt;&gt;        </button><br>\n";
    echo "  </form>\n";
-   echo "</div>\n";
+   echo "</div>\n</div>\n";
 
 ?>
 

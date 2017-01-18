@@ -3,12 +3,13 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta http-equiv="refresh" content="0;<?php echo "../../index.php?page=blog&index={$_POST["affiliation"]}{$link}#$time"; ?>">
+<meta http-equiv="refresh" content="0;<?php echo "../index.php?page=blog&index={$_POST["affiliation"]}{$link}#$time"; ?>">
 </head>
+<body>
 
 <?php
-error_reporting(0);
-ini_set("display_errors", 0);
+error_reporting(1);
+ini_set("display_errors", 1);
 ini_set("log_errors", 1);
 ini_set("error_log", "/www/admin/logs/php-error.log");
 
@@ -16,24 +17,10 @@ date_default_timezone_set('Europe/Berlin');
 
 $forward = "";
 
-include("../phpinclude/config.php");
-require("../phpinclude/dbconnect.php");
+include_once("../phpinclude/config.php");
+require_once("../phpinclude/dbconnect.php");
 
-
-$debug = "TRUE";
-
-/* Connect to database */
-$con=mysqli_connect($hostname, $userdb, $passworddb, $db);
-  if (mysqli_connect_errno())
-    { echo "Failed to connect to MySQL: " . mysqli_connect_error($con) . "<br>\n"; }
-  else
-    { if ($debug == "TRUE") echo "Successfully connected. " . mysqli_connect_error($con) . "<br>\n"; }
-
-/* change character set to utf8 */
-if (!mysqli_set_charset($con, "utf8"))
-  { printf("Error loading character set utf8: %s<br>\n", mysqli_error($con)); }
-else
-  { if ($debug == "TRUE") { printf("Current character set: %s<br>\n", mysqli_character_set_name($con)); } }
+//$debug = "TRUE";
 
 /* Connect to comments-database */
 $concom=mysqli_connect($hostname, $userdb, $passworddb, $db);
@@ -51,7 +38,7 @@ else
 $link = "&amp;lang={$_POST["lang"]}";
 if (isset($_POST["kartid"]) and $_POST["kartid"] != "") $link .= "&amp;kartid={$_POST["kartid"]}";
 
-echo "<body style=\"margin: 0px;\" onload=\"window.location.href='../../index.php?page=blog&amp;index={$_POST["affiliation"]}{$link}#$time'\">\n";
+//echo "<body style=\"margin: 0px;\" onload=\"window.location.href='../../index.php?page=blog&amp;index={$_POST["affiliation"]}{$link}#$time'\">\n";
 //echo "<body style=\"margin: 0px;\">\n<a href=\"../../{$_SERVER["PHP_SELF"]}?page=blog&amp;kartid={$_POST["kartid"]}&amp;lang={$_POST["lang"]}&amp;index={$_POST["affiliation"]}&amp;showcomments=TRUE#$time\">back</a><br>\n";
 
 // Retrieve $_POST data
@@ -136,26 +123,120 @@ if ($blog_emailnotification == "TRUE")
   }
 
 
-$name = strip_tags($_POST["name"]);
-if ($name == "") $name = "Anonym";
+$name = $_POST["name"];
+if ($name == "") $name = "Anonymous";
+$email = $_POST["notificationTo"];
+
 //$text = strip_tags($_POST["text"]);
 //$text = htmlentities($_POST["text"], ENT_QUOTES|ENT_DISALLOWED, "UTF-8");
 $search = array("<", ">", "\"", "'");
 $replace = array("&lt;", "&gt;", "&quot;", "&#39;");
 $text = str_replace($search, $replace, $_POST["text"]);
-if ($debug == "TRUE") echo "<h3>Before</h3>Name: $name<br>\nWebsite: $website<br>\nTime: $time<br>Text: $text<br>\n";
 
 $queryname = mysqli_real_escape_string($concom, $name);
+$queryemail = mysqli_real_escape_string($concom, $email);
 $querywebsite = mysqli_real_escape_string($concom, $website);
 $querytext = mysqli_real_escape_string($concom, $text);
 
-$query = "INSERT INTO `musicchris_de`.`blog-comments` (`affiliation`, `time`, `name`, `website`, `comment`) VALUES ('{$_POST["affiliation"]}', '{$time}', '{$queryname}', '{$querywebsite}', '{$querytext}');";
-if ($debug == "TRUE") echo "<h3>Query</h3>" . $query . "<br>\n";
+$query = "INSERT INTO `musicchris_de`.`blog-comments` (`affiliation`,`answerTo`, `time`, `name`, `email`, `website`, `comment`) VALUES ('{$_POST["affiliation"]}', '{$_POST["answerTo"]}', '{$time}', '{$queryname}', '{$queryemail}', '{$querywebsite}', '{$querytext}');";
 
-$result = mysqli_query($concom, $query) or die(mysql_error($concom));
+echo "<pre>$query</pre><br>\n";
+
+$result = mysqli_query($concom, $query) or die(mysqli_error($concom));
+
+echo "query done<br>\n";
 mysqli_free_result($result);
 
-//echo "<br>\nEnd of postcomment.php!<br>\n";
+
+// #################################################
+// ##  send email notifications for new comments  ##
+// #################################################
+//echo "<h2>notifications:</h2>\n";
+
+// Get concerning blog-entry for some data (header and such)
+$query_blog = "select * from `blog` WHERE (`blog`.`index` = {$_POST["affiliation"]}) ";
+if ($result = mysqli_query($concom, $query_blog))
+  {
+   while ($row = $result->fetch_assoc())
+     {
+      $blog_header = $row["head"];
+     }
+   mysqli_free_result($result);
+  }
+
+
+// Send each registered adress an email
+
+$template = file_get_contents("template_subscription.html");
+
+$query_notifications = "SELECT * FROM `blog-comments` WHERE `affiliation` = {$_POST["affiliation"]} AND `email` > '' ORDER BY `time` ASC ";
+
+if ($result = mysqli_query($concom, $query_notifications))
+  {
+   while ($row = $result->fetch_assoc())
+     {
+      // make sure, we only notify once!
+      if (isset($sentmail["{$row["email"]}"]) and $sentmail["{$row["email"]}"] == true) continue;
+      // Don't notify this poster as well!
+      if ($row["email"] == $_POST["notificationTo"]) continue;
+
+      // prepare email strings
+      //$email = urlencode($row["email"]);
+      $email = $row["email"];
+
+      $email_sanitizer = mailparse_rfc822_parse_addresses($email);
+      $email = $email_sanitizer["address"];
+      $email_name = $email_sanitizer["display"];
+
+      $link_unsubscribe_topic = htmlspecialchars_decode("https://{$_SERVER["SERVER_NAME"]}/blog/subscription.php?email=$email&amp;job=unsubscribe&amp;scope={$_POST["affiliation"]}");
+      $link_unsubscribe_site = htmlspecialchars_decode("https://{$_SERVER["SERVER_NAME"]}/blog/subscription.php?email=$email&amp;job=unsubscribe&amp;scope=0");
+
+      if (strlen($email_name) > 0) $to = "$email_name <$email>";
+      else $to = "$email";
+
+      $subject = "new comment on: $blog_header @ " . $_SERVER["SERVER_NAME"];
+      date_default_timezone_set('Europe/Berlin');
+      $maildate = date(DATE_RFC2822);
+      $header = "Content-Type: text/plain; charset = \"UTF-8\";\r\n";
+      $header .= "Content-Transfer-Encoding: 8bit\r\n";
+      $header .= "From: blog@musicchris.de\r\n";
+      $header .= "Date: $maildate\r\n";
+      $header .= "\r\n";
+
+      $search = array("\n",
+                      "<br>",
+                      "<hr>",
+                      "{name}",
+                      "{email}",
+                      "{server}",
+                      "{poster}",
+                      "{link_topic}",
+                      "{comment}",
+                      "{link_unsubscribe_topic}",
+                      "{link_unsubscribe_site}");
+      $replace = array("",
+                       "\r\n",
+                       "---------------------------------------------------\r\n",
+                       $row["name"],
+                       $email,
+                       $_SERVER["SERVER_NAME"],
+                       $_POST["name"],
+                       htmlspecialchars_decode("https://{$_SERVER["SERVER_NAME"]}/index.php?page=blog&amp;index={$_POST["affiliation"]}#$time"),
+                       wordwrap($_POST["text"], 70),
+                       $link_unsubscribe_topic,
+                       $link_unsubscribe_site);
+      $message = str_replace($search, $replace, $template);
+      //echo "<pre>TO: " . htmlspecialchars($to, ENT_QUOTES|ENT_DISALLOWED, "UTF-8") . "\n";
+      //echo "FROM: blog@{$_SERVER["SERVER_NAME"]}\n";
+      //echo "SUBJECT: $subject\n";
+      //echo "HEADER: " . nl2br($header) . "\n";
+      //echo "MESSAGE: " . nl2br($message) . "\n";
+      //echo "</pre>[Done]<br>\n";
+      if (mail($to, $subject, $message, $header)) $sentmail["{$row["email"]}"] = true;
+      else echo "<p>Email has failed!</p>\n";
+     }
+   mysqli_free_result($result);
+  }
 
 ?>
 </body>

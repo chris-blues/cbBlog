@@ -30,14 +30,14 @@ if (isset($_POST["comment"])) $comment = mysqli_real_escape_string($con, $_POST[
 
 if ($_GET["job"] == "delete")
   {
-   $query = "DELETE FROM `musicchris_de`.`blog-comments` WHERE `number` = '{$_GET["number"]}'";
+   $query = "DELETE FROM `blog-comments` WHERE `number` = '{$_GET["number"]}'";
    $number = $_GET["number"];
    $affiliation = $_GET["affiliation"];
   }
 
 if ($_GET["job"] == "update")
   {
-   $query = "UPDATE `musicchris_de`.`blog-comments` SET `affiliation` = '$affiliation',`time` = '$time',`name` = '$name', `website` = '$website',`comment` = '$comment' WHERE `number` = '$number';";
+   $query = "UPDATE `blog-comments` SET `affiliation` = '$affiliation',`time` = '$time',`name` = '$name', `website` = '$website',`comment` = '$comment' WHERE `number` = '$number';";
   }
 
 echo "<body style=\"margin: 0px; width: 100%; max-width: 100%;\" onload=\"window.location.href='showcomments.php?affiliation=$affiliation#$number'\">\n";

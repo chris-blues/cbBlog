@@ -1,0 +1,306 @@
+@charset "utf-8";
+
+.offtopic {
+  display: none;
+  color: gray;
+ }
+
+.otswitch {
+  font-size: 0.65em;
+  display: inline;
+  float: right;
+  margin: 4px 0px 0px;
+ }
+
+.clear {
+  clear: both;
+}
+
+.inline {
+  display: inline;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.center {
+  text-align: center;
+}
+
+.pics {
+  max-width: 100%;
+  padding: 0 !important;
+}
+
+.pics.left {
+  margin: 5px 25px 5px 0px;
+}
+
+.pics.right {
+  margin: 5px 0px 5px 25px;
+}
+
+.banner {
+  width: 100%;
+}
+
+.max900 {
+  max-width: 900px;
+}
+
+.command {
+  margin: 15px;
+  padding: 8px;
+  background-color: #CCCCAA;
+}
+
+.output {
+  margin: 15px;
+  padding: 8px;
+  font-size: 0.8em;
+  background-color: #999966;
+}
+
+.italic {
+  font: normal 1.0em OpenSans-Italic;
+ }
+
+.column {
+  padding: 10px 30px;
+  column-count: 2;
+  -moz-column-count: 2;
+  -webkit-column-count: 2;
+ }
+
+.column p {
+  margin: 0px;
+  padding: 0px;
+ }
+
+.shadow {
+  padding: 10px 30px;
+  border-radius: 6px;
+  box-shadow: 0px 0px 5px 1px #000;
+ }
+
+.notes {
+  font-size: 0.8em;
+ }
+
+img {
+  border: 0px none #FFF;
+  max-width: 100%;
+ }
+
+#blog {
+
+ }
+
+#feeds {
+
+ }
+
+.feeds {
+  margin: 0px;
+  text-decoration: none !important;
+ }
+
+ul#tags {
+  list-style: none;
+  padding: 0px;
+  text-align: left;
+ }
+
+#filter {
+  float: right;
+  padding: 10px;
+  margin: 0px 0px 10px 10px;
+  text-align: center;
+ }
+
+#wrapper {
+  display: flex;
+  flex-direction: column;
+ }
+
+a.tags {
+  border-radius: 6px 6px 6px 6px;
+  padding: 0px 6px;
+}
+
+.blogentryoverview {
+  margin-bottom: 15px;
+ }
+
+.blogentryoverview:hover {
+  background-color: #DDA;
+ }
+
+.bloghead {
+  margin: 0px 0px 15px;
+ }
+
+.blogdate {
+  display: inline;
+ }
+
+.blogfulldate {
+  margin: 25px;
+  display: inline;
+ }
+
+.commentslink {
+  display: inline;
+  float: right;
+ }
+
+.blogentryfull {
+  margin-bottom: 15px;
+ }
+
+#blog .quote {
+  border-radius: 6px;
+  background-color: #DDDDAA;
+  background-image: url("/pics/quote.png");
+  background-repeat: no-repeat;
+  min-height: 70px;
+ }
+@media screen and (min-width: 600px) {
+#blog .quote {
+  margin: 30px 20px;
+  padding: 20px 20px 20px 130px;
+  background-position: left top;
+ }
+}
+@media screen and (max-width: 599px) {
+#blog .quote {
+  margin: 10px -5px;
+  padding: 10px;
+ }
+}
+
+#blog .opinion {
+  border-radius: 6px;
+  background-color: #D1DED2;
+  background-image: url("/pics/opinion.png");
+  background-repeat: no-repeat;
+ }
+@media screen and (min-width: 600px) {
+#blog .opinion {
+  margin: 30px 20px;
+  padding: 20px 20px 20px 130px;
+  background-position: left top;
+ }
+}
+@media screen and (max-width: 599px) {
+#blog .opinion {
+  margin: 10px -5px;
+  padding: 10px;
+ }
+}
+
+.comments_wrapper {
+  padding: 20px;
+}
+
+.comments {
+  margin-bottom: 15px;
+  padding: 10px 30px 20px;
+ /* max-width: 500px; */
+  margin-left: auto;
+  margin-right: auto;
+ }
+
+#post_name, #post_website, #post_notificationTo {
+  width: 99%;
+ }
+
+#post_text {
+  width: 100%;
+ /* max-width: 500px; */
+  height: 10em;
+ }
+
+#email {
+  display: none;
+ }
+
+.smileywrapper {
+  text-align: center;
+}
+
+.smileys {
+  font-size: 1.3em;
+  padding: 15px;
+  background-color: lightgrey;
+  border-radius: 5px;
+  margin: 5px;
+  text-align: left;
+  display: none;
+}
+
+.smileys a {
+  text-decoration: none;
+}
+
+.green {
+  background-color: #DDDDAA;
+}
+
+.right {
+  float: right;
+}
+
+#permaLink {
+  margin-top: 2px;
+}
+
+.centered {
+  text-align: center;
+}
+
+img.cc {
+  border-width: 0;
+}
+
+#linkshowcomments {
+  padding: 0px;
+}
+
+.commentsHead {
+  margin: 10px;
+}
+
+#checkipsWrapper {
+  display: flex;
+}
+
+#checkipsText {
+  flex: 1;
+  flex-direction: column;
+  min-width: 300px;
+  border: 1px dotted black;
+  padding: 10px;
+}
+
+#checkipsTable {
+  flex-direction: column;
+  flex: 2;
+  margin-right: 20px;
+  text-align: center;
+}
+
+ul#checkipNotes {
+  list-style-type: none;
+  text-indent: -114px;
+  padding-left: 114px;
+}
+
+ul#checkipNotes li {
+  margin-bottom: 25px;
+}
