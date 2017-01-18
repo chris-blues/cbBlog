@@ -253,9 +253,9 @@ if (!isset($_GET["index"]) or $_GET["index"] == "") $_GET["index"] = "0";
 
    switch ($lang)
      {
-      case 'deutsch': { $notify = "Benachrichtigung"; $emailusage = "um zu weiteren Kommentaren benachrichtigt zu werden<br>Geht noch nicht!"; break; }
-      case 'english': { $notify = "Notification";     $emailusage = "to be notified of new comments<br>Not working yet!"; break; }
-      default:        { $notify = "Notification";     $emailusage = "to be notified of new comments<br>Not working yet!"; break; }
+      case 'deutsch': { $notify = "Benachrichtigung"; $emailusage = "um zu weiteren Kommentaren benachrichtigt zu werden"; break; }
+      case 'english': { $notify = "Notification";     $emailusage = "to be notified of new comments"; break; }
+      default:        { $notify = "Notification";     $emailusage = "to be notified of new comments"; break; }
      }
    //display post form
    echo "<div class=\"shadow comments comment postform\" name=\"comment\">\n";

@@ -118,7 +118,6 @@ if ($blog_emailnotification == "TRUE")
    $mail .= htmlspecialchars_decode("http://musicchris.de/index.php?page=blog&amp;lang={$_POST["lang"]}&amp;index={$_POST["affiliation"]}#$time");
    $mail .= "\n\n\n{$_POST["name"]} ({$_POST["website"]}) schrieb:\n\n";
    $mail .= wordwrap($_POST["text"], 70);
- //  echo "Blog notification:<br>\n<pre>To: $email_blogadmin<br>Su: $subject<br>mail: $mail<br>header: $header<br>\n";
    if (!mail($email_blogadmin, $subject, $mail, $header)) echo "<h3>ERROR!</h3>Failed to send mail to admin!<br>\n";
   }
 
@@ -127,18 +126,19 @@ $name = $_POST["name"];
 if ($name == "") $name = "Anonymous";
 $email = $_POST["notificationTo"];
 
-//$text = strip_tags($_POST["text"]);
-//$text = htmlentities($_POST["text"], ENT_QUOTES|ENT_DISALLOWED, "UTF-8");
 $search = array("<", ">", "\"", "'");
 $replace = array("&lt;", "&gt;", "&quot;", "&#39;");
 $text = str_replace($search, $replace, $_POST["text"]);
 
+$queryAffiliation = mysqli_real_escape_string($concom, $_POST["affiliation"]);
+$queryAnswerTo = mysqli_real_escape_string($concom, $_POST["answerTo"]);
+$queryTime = mysqli_real_escape_string($concom, $time);
 $queryname = mysqli_real_escape_string($concom, $name);
 $queryemail = mysqli_real_escape_string($concom, $email);
 $querywebsite = mysqli_real_escape_string($concom, $website);
 $querytext = mysqli_real_escape_string($concom, $text);
 
-$query = "INSERT INTO `musicchris_de`.`blog-comments` (`affiliation`,`answerTo`, `time`, `name`, `email`, `website`, `comment`) VALUES ('{$_POST["affiliation"]}', '{$_POST["answerTo"]}', '{$time}', '{$queryname}', '{$queryemail}', '{$querywebsite}', '{$querytext}');";
+$query = "INSERT INTO `musicchris_de`.`blog-comments` (`affiliation`,`answerTo`, `time`, `name`, `email`, `website`, `comment`) VALUES ('{$queryAffiliation}', '{$queryAnswerTo}', '{$queryTime}', '{$queryname}', '{$queryemail}', '{$querywebsite}', '{$querytext}');";
 
 echo "<pre>$query</pre><br>\n";
 
@@ -181,7 +181,6 @@ if ($result = mysqli_query($concom, $query_notifications))
       if ($row["email"] == $_POST["notificationTo"]) continue;
 
       // prepare email strings
-      //$email = urlencode($row["email"]);
       $email = $row["email"];
 
       $email_sanitizer = mailparse_rfc822_parse_addresses($email);
@@ -226,14 +225,7 @@ if ($result = mysqli_query($concom, $query_notifications))
                        $link_unsubscribe_topic,
                        $link_unsubscribe_site);
       $message = str_replace($search, $replace, $template);
-      //echo "<pre>TO: " . htmlspecialchars($to, ENT_QUOTES|ENT_DISALLOWED, "UTF-8") . "\n";
-      //echo "FROM: blog@{$_SERVER["SERVER_NAME"]}\n";
-      //echo "SUBJECT: $subject\n";
-      //echo "HEADER: " . nl2br($header) . "\n";
-      //echo "MESSAGE: " . nl2br($message) . "\n";
-      //echo "</pre>[Done]<br>\n";
       if (mail($to, $subject, $message, $header)) $sentmail["{$row["email"]}"] = true;
-      else echo "<p>Email has failed!</p>\n";
      }
    mysqli_free_result($result);
   }
