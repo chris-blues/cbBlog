@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<!--meta http-equiv="refresh" content="0;<?php echo "../index.php?page=blog&index={$_POST["affiliation"]}{$link}#$time"; ?>"-->
+<meta http-equiv="refresh" content="0;<?php echo "../index.php?page=blog&index={$_POST["affiliation"]}{$link}#$time"; ?>">
 </head>
 <body>
 
