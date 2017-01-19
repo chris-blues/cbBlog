@@ -24,6 +24,7 @@ echo "<pre>Post:"; print_r($_POST); echo "Get:"; print_r($_GET); echo "</pre>\n"
 if (isset($_POST["number"])) $number = $_POST["number"];
 if (isset($_POST["affiliation"])) $affiliation = $_POST["affiliation"];
 if (isset($_POST["name"])) $name = $_POST["name"];
+if (isset($_POST["email"])) $email = $_POST["email"];
 if (isset($_POST["website"])) $website = $_POST["website"];
 if (isset($_POST["time"])) $time = $_POST["time"];
 if (isset($_POST["comment"])) $comment = mysqli_real_escape_string($con, $_POST["comment"]);
@@ -37,7 +38,7 @@ if ($_GET["job"] == "delete")
 
 if ($_GET["job"] == "update")
   {
-   $query = "UPDATE `blog-comments` SET `affiliation` = '$affiliation',`time` = '$time',`name` = '$name', `website` = '$website',`comment` = '$comment' WHERE `number` = '$number';";
+   $query = "UPDATE `blog-comments` SET `name` = '$name', `email` = '$email', `website` = '$website',`comment` = '$comment' WHERE `number` = '$number';";
   }
 
 echo "<body style=\"margin: 0px; width: 100%; max-width: 100%;\" onload=\"window.location.href='showcomments.php?affiliation=$affiliation#$number'\">\n";
@@ -49,6 +50,7 @@ mysqli_free_result($result);
 
 ?>
 <br><a href="showcomments.php?affiliation=<?php echo $affiliation . "#" . $time; ?>">BACK!</a><br>
+<pre><?php print_r($_POST); ?></pre>
 </body>
 </html>
 <!-- end editcomments.php -->

@@ -8,6 +8,10 @@
 <body>
 
 <?php
+
+echo "<p><a href=\"../index.php?page=blog&index={$_POST["affiliation"]}{$link}#$time\">Zurück zum Blog</a></p>\n";
+
+//error_reporting(E_ALL & ~E_NOTICE);
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 ini_set("log_errors", 1);
@@ -20,6 +24,7 @@ $forward = "";
 include_once("../phpinclude/config.php");
 require_once("../phpinclude/dbconnect.php");
 
+$debug = "FALSE";
 //$debug = "TRUE";
 
 /* Connect to comments-database */
@@ -61,19 +66,19 @@ if (isset($posterror["email"]) and $posterror["email"] == "TRUE")
    $maildate = date(DATE_RFC2822);
    $header = "Content-Type: text/plain; charset = \"UTF-8\";\r\n";
    $header .= "Content-Transfer-Encoding: 8bit\r\n";
-   $header .= "From: blog@{$_SERVER[SERVER_NAME]}\r\n";
+   $header .= "From: notify@{$_SERVER["SERVER_NAME"]}\r\n";
    $header .= "Date: $maildate\r\n";
    $header .= "\r\n";
    $subject = "possible spam from {$_SERVER['REMOTE_ADDR']} by {$_POST["name"]} ( {$_POST["email"]} )";
    $mail = "Es gab einen neuen möglichen SPAM im Blog!\n\n\n========================================\n\n";
    $mail .= "Website:        {$website}\n";
    $mail .= "Email:          {$_POST["name"]} <{$_POST["email"]}>\n";
-   $mail .= "Target:         https://{$_SERVER[SERVER_NAME]}/?page=blog&amp;index={$_POST["affiliation"]}\n";
+   $mail .= "Target:         https://{$_SERVER["SERVER_NAME"]}/?page=blog&amp;index={$_POST["affiliation"]}\n";
    $mail .= "Timestamp:      $time\n";
    $mail .= "originating IP: " . $_SERVER['REMOTE_ADDR'] . "\n";
    $mail .= "content:\n";
    $mail .= wordwrap($_POST["text"], 70);
-   $mail .= "\n\n\n========================================\n\nhttps://musicchris.de/blog/checkips.php\n";
+   $mail .= "\n\n\n========================================\n\nhttps://{$_SERVER["SERVER_NAME"]}/blog/checkips.php\n";
   // echo "Spam notification:<br>\n<pre>To: $email_blogadmin<br>Su: $subject<br>mail: $mail<br>header: $header<br>\n";
    mail($email_blogadmin, $subject, $mail, $header);
 
@@ -110,12 +115,12 @@ if ($blog_emailnotification == "TRUE")
    $maildate = date(DATE_RFC2822);
    $header = "Content-Type: text/plain; charset = \"UTF-8\";\r\n";
    $header .= "Content-Transfer-Encoding: 8bit\r\n";
-   $header .= "From: blog@musicchris.de\r\n";
+   $header .= "From: notify@{$_SERVER["SERVER_NAME"]}\r\n";
    $header .= "Date: $maildate\r\n";
    $header .= "\r\n";
    $subject = "Comment by {$_POST["name"]} $time";
    $mail = "Es gibt einen neuen Kommentar im Blog!\n";
-   $mail .= htmlspecialchars_decode("http://musicchris.de/index.php?page=blog&amp;lang={$_POST["lang"]}&amp;index={$_POST["affiliation"]}#$time");
+   $mail .= htmlspecialchars_decode("http://{$_SERVER["SERVER_NAME"]}/index.php?page=blog&amp;lang={$_POST["lang"]}&amp;index={$_POST["affiliation"]}#$time");
    $mail .= "\n\n\n{$_POST["name"]} ({$_POST["website"]}) schrieb:\n\n";
    $mail .= wordwrap($_POST["text"], 70);
    if (!mail($email_blogadmin, $subject, $mail, $header)) echo "<h3>ERROR!</h3>Failed to send mail to admin!<br>\n";
@@ -157,7 +162,7 @@ $sPattern = '/([\w\s\'\"]+[\s]+)?(<)?(([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4}))?
 if (!$firstPost)
   {
    preg_match($sPattern, $email, $aMatch);
-   //echo "<h1>\$aMatch</h1>\n<pre>"; print_r($aMatch); echo "</pre>\n";
+   echo "<h1>\$aMatch</h1>\n<pre>"; print_r($aMatch); echo "</pre>\n";
    // $aMatch[0] = name - if empty it becomes $aMatch[3]
    // $aMatch[3] = email
    $email = $aMatch["3"];
@@ -179,10 +184,13 @@ $query = "INSERT INTO `musicchris_de`.`blog-comments` (`affiliation`,`answerTo`,
 
 //echo "<pre>$query</pre><br>\n";
 
-$result = mysqli_query($concom, $query) or die(mysqli_error($concom));
-
-//echo "query done<br>\n";
-mysqli_free_result($result);
+if ($result = mysqli_query($concom, $query))
+  {
+   echo "query done<br>\n";
+   mysqli_free_result($result);
+  }
+else die(mysqli_error($concom));
+echo "<br>\n";
 
 
 // #################################################
@@ -213,11 +221,15 @@ if ($result = mysqli_query($concom, $query_notifications))
    while ($row = $result->fetch_assoc())
      {
       // make sure, we only notify once!
-      if (isset($sentmail["{$row["email"]}"]) and $sentmail["{$row["email"]}"] == true) continue;
+      if (isset($sentmail["{$row["email"]}"]) and $sentmail["{$row["email"]}"] == true) { continue; }
       // Don't notify this poster as well!
-      if ($row["email"] == $_POST["notificationTo"]) continue;
+      if ($row["email"] == $_POST["notificationTo"]) { continue; }
       // and don't notify unverified addresses!
-      if (!filter_var($_POST["notificationTo"], FILTER_VALIDATE_EMAIL)) continue;
+      if (!filter_var($row["email"], FILTER_VALIDATE_EMAIL)) { continue; }
+      // and skip this, if no email is set
+      if (!isset($row["email"]) or strlen($row["email"]) < 2) { continue; }
+
+      echo "Tests passed. This address is valid and wants to be notified! (" . strlen($row["email"]) . ") <br>\n";
 
       // prepare email strings
       $email = $row["email"];
@@ -226,11 +238,12 @@ if ($result = mysqli_query($concom, $query_notifications))
       preg_match($sPattern, $email, $aMatch);
       $email = $aMatch[3];
       $email_name = $aMatch[0];
+      //echo "<pre>"; print_r($aMatch); echo "</pre>\n";
 
       $link_unsubscribe_topic = htmlspecialchars_decode("https://{$_SERVER["SERVER_NAME"]}/blog/subscription.php?email=$email&amp;job=unsubscribe&amp;scope={$_POST["affiliation"]}");
       $link_unsubscribe_site = htmlspecialchars_decode("https://{$_SERVER["SERVER_NAME"]}/blog/subscription.php?email=$email&amp;job=unsubscribe&amp;scope=0");
 
-      if (strlen($email_name) > 0) $to = "$email_name <$email>";
+      if (strlen($email_name) > 0) $to = $row["name"] . " <$email>";
       else $to = "$email";
 
       $subject = "new comment on: $blog_header @ " . $_SERVER["SERVER_NAME"];
@@ -238,7 +251,7 @@ if ($result = mysqli_query($concom, $query_notifications))
       $maildate = date(DATE_RFC2822);
       $header = "Content-Type: text/plain; charset = \"UTF-8\";\r\n";
       $header .= "Content-Transfer-Encoding: 8bit\r\n";
-      $header .= "From: blog@musicchris.de\r\n";
+      $header .= "From: notify@{$_SERVER["SERVER_NAME"]}\r\n";
       $header .= "Date: $maildate\r\n";
       $header .= "\r\n";
 
@@ -282,6 +295,7 @@ if (isset($_POST["notificationTo"]) and $_POST["notificationTo"] != "" and $firs
    preg_match($sPattern, $email, $aMatch);
    $email = $aMatch["3"];
    $email_name = $aMatch["0"];
+   echo "<pre>"; print_r($aMatch); echo "</pre>\n";
 
    $template = file_get_contents("template_subscription.html");
    $hash = hash('sha256', $_SERVER["SERVER_NAME"] . $email . $_POST["affiliation"]);
@@ -342,7 +356,7 @@ else echo "Already registered, or not registered at all...<br>\n";
 
 
 
-
+echo "<pre>"; print_r($_POST); echo "</pre>";
 
 
 ?>

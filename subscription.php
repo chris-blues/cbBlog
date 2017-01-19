@@ -74,12 +74,12 @@ if ($job == "unsubscribe")
   {
    $scope = $_GET["scope"];
    echo "Removing you from ";
-   if ($scope == "all")
+   if ($scope == "0")
      {
-      $query = "UPDATE `blog-comments` SET `email`='' WHERE `email` = '$email';";
+      $query = "UPDATE `blog-comments` SET `email`='' WHERE (`email` = '$email');";
       echo "all subscriptions on " . $_SERVER["SERVER_NAME"] . "... ";
      }
-   if ($scope != "all")
+   if ($scope != "0")
      {
       $query = "UPDATE `blog-comments` SET `email`='' WHERE (`email` = '$email' AND `affiliation`='$scope');";
       echo "blogentry number " . $scope . "... ";
@@ -87,7 +87,7 @@ if ($job == "unsubscribe")
 
    if ($result = mysqli_query($concom, $query))
      {
-      if (mysqli_num_rows($result) < 1) { echo "[Error!]<br>\nAddress was not found!<br>\n"; $errors = true; $error["processing"]["email"] = "not found"; }
+      if (mysqli_num_rows($result) == "0") { echo "[Error!]<br>\nAddress was not found!<br>\n"; $errors = true; $error["processing"]["email"] = "not found"; }
       else echo mysqli_num_rows($result) . " subscriptions removed.<br>\n";
       echo "[ done ]<br>\n";
      }

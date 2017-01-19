@@ -38,6 +38,7 @@ if ($result)
       echo "<input type=\"hidden\" name=\"number\" value=\"{$row["number"]}\">\n";
       echo "<input type=\"hidden\" name=\"affiliation\" value=\"{$row["affiliation"]}\">\n";
       echo "<input type=\"text\" name=\"name\" value=\"{$row["name"]}\">\n";
+      echo "<input type=\"text\" name=\"email\" value=\"{$row["email"]}\">\n";
       echo "<input type=\"text\" name=\"website\" value=\"{$row["website"]}\">\n";
       echo "<input type=\"hidden\" name=\"time\" value=\"{$row["time"]}\">" . date("d.M.Y H:i",$row["time"]) . "<br>\n";
       echo "<textarea name=\"comment\" class=\"commentTextarea\">" . htmlspecialchars($row["comment"], ENT_COMPAT | ENT_HTML5, "UTF-8") . "</textarea><br>\n";

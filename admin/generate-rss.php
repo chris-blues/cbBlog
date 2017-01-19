@@ -24,19 +24,19 @@ $counter = "0";
 $rss = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n";
 $rss .= "<rss version=\"2.0\" xmlns:atom=\"http://www.w3.org/2005/Atom\">\n\n";
 $rss .= "<channel>\n\n";
-$rss .= "<title>Blog musicchris.de</title>\n";
+$rss .= "<title>Blog {$_SERVER["SERVER_NAME"]}</title>\n";
 $rss .= "<description>Ein Blog über Musik, OpenSource, Software und Freiheit</description>\n";
-$rss .= "<link>https://musicchris.de/index.php?page=blog</link>\n\n";
+$rss .= "<link>https://{$_SERVER["SERVER_NAME"]}/index.php?page=blog</link>\n\n";
 $rss .= "<language>de-de</language>\n";
-$rss .= "<copyright>chris@musicchris.de (chris_blues)</copyright>\n";
-$rss .= "<webMaster>chris@musicchris.de (chris_blues)</webMaster>\n";
+$rss .= "<copyright>chris@{$_SERVER["SERVER_NAME"]} (chris_blues)</copyright>\n";
+$rss .= "<webMaster>chris@{$_SERVER["SERVER_NAME"]} (chris_blues)</webMaster>\n";
 $rss .= "<pubDate>Wed, 16 Jul 2014 20:13:00 +0100</pubDate>\n";
 $rss .= "<lastBuildDate>" . date("D, d M Y H:i:s O",time()) . "</lastBuildDate>\n\n";
-$rss .= "<atom:link href=\"https://musicchris.de/rss-feed.xml\" rel=\"self\" type=\"application/rss+xml\" />\n\n";
+$rss .= "<atom:link href=\"https://{$_SERVER["SERVER_NAME"]}/rss-feed.xml\" rel=\"self\" type=\"application/rss+xml\" />\n\n";
 $rss .= "<image>\n";
-$rss .= "<url>https://musicchris.de/pics/cover_summertime_front_300x300.jpg</url>\n";
-$rss .= "<title>Blog musicchris.de</title>\n";
-$rss .= "<link>https://musicchris.de/index.php?page=blog</link>\n";
+$rss .= "<url>https://{$_SERVER["SERVER_NAME"]}/pics/cover_summertime_front_300x300.jpg</url>\n";
+$rss .= "<title>Blog {$_SERVER["SERVER_NAME"]}</title>\n";
+$rss .= "<link>https://{$_SERVER["SERVER_NAME"]}/index.php?page=blog</link>\n";
 $rss .= "</image>\n\n";
 
 if ($result)
@@ -49,12 +49,12 @@ if ($result)
       $timehr = date("D, d M Y H:i:s O", $row["time"]);
       $rss .= "<item>\n";
       $rss .= "<title>" . $head . "</title>\n";
-      $rss .= "<link>https://musicchris.de/index.php?page=blog&amp;index={$row["index"]}</link>\n";
-      $rss .= "<guid>https://musicchris.de/index.php?page=blog&amp;index={$row["index"]}</guid>\n";
-      $rss .= "<author>chris@musicchris.de (chris_blues)</author>\n";
+      $rss .= "<link>https://{$_SERVER["SERVER_NAME"]}/index.php?page=blog&amp;index={$row["index"]}</link>\n";
+      $rss .= "<guid>https://{$_SERVER["SERVER_NAME"]}/index.php?page=blog&amp;index={$row["index"]}</guid>\n";
+      $rss .= "<author>chris@{$_SERVER["SERVER_NAME"]} (chris_blues)</author>\n";
       $rss .= "<pubDate>$timehr</pubDate>\n";
       $rss .= "<description><![CDATA[\n" . $row["text"] . "\n]]></description>\n";
-      $rss .= "<comments>https://musicchris.de/index.php?page=blog&amp;index={$row["index"]}#linkshowcomments</comments>\n";
+      $rss .= "<comments>https://{$_SERVER["SERVER_NAME"]}/index.php?page=blog&amp;index={$row["index"]}#linkshowcomments</comments>\n";
       $rss .= "</item>\n\n";
      }
   }
@@ -77,19 +77,19 @@ $counter = "0";
 $rss = "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n";
 $rss .= "<rss version=\"2.0\" xmlns:atom=\"http://www.w3.org/2005/Atom\">\n\n";
 $rss .= "<channel>\n\n";
-$rss .= "<title>Blog musicchris.de - Open Source Themen</title>\n";
+$rss .= "<title>Blog {$_SERVER["SERVER_NAME"]} - Open Source Themen</title>\n";
 $rss .= "<description>Ein Blog über Musik, OpenSource, Software und Freiheit - Abschnitt Open Source</description>\n";
-$rss .= "<link>https://musicchris.de/index.php?page=blog&amp;filter=opensource</link>\n\n";
+$rss .= "<link>https://{$_SERVER["SERVER_NAME"]}/index.php?page=blog&amp;filter=opensource</link>\n\n";
 $rss .= "<language>de-de</language>\n";
-$rss .= "<copyright>chris@musicchris.de (chris_blues)</copyright>\n";
-$rss .= "<webMaster>chris@musicchris.de (chris_blues)</webMaster>\n";
+$rss .= "<copyright>chris@{$_SERVER["SERVER_NAME"]} (chris_blues)</copyright>\n";
+$rss .= "<webMaster>chris@{$_SERVER["SERVER_NAME"]} (chris_blues)</webMaster>\n";
 $rss .= "<pubDate>Wed, 16 Jul 2014 20:13:00 +0100</pubDate>\n";
 $rss .= "<lastBuildDate>" . date("D, d M Y H:i:s O",time()) . "</lastBuildDate>\n\n";
-$rss .= "<atom:link href=\"https://musicchris.de/rss-feed-opensource.xml\" rel=\"self\" type=\"application/rss+xml\" />\n\n";
+$rss .= "<atom:link href=\"https://{$_SERVER["SERVER_NAME"]}/rss-feed-opensource.xml\" rel=\"self\" type=\"application/rss+xml\" />\n\n";
 $rss .= "<image>\n";
-$rss .= "<url>https://musicchris.de/pics/cover_summertime_front_300x300.jpg</url>\n";
-$rss .= "<title>Blog musicchris.de - Open Source Themen</title>\n";
-$rss .= "<link>https://musicchris.de/index.php?page=blog&amp;filter=opensource</link>\n";
+$rss .= "<url>https://{$_SERVER["SERVER_NAME"]}/pics/cover_summertime_front_300x300.jpg</url>\n";
+$rss .= "<title>Blog {$_SERVER["SERVER_NAME"]} - Open Source Themen</title>\n";
+$rss .= "<link>https://{$_SERVER["SERVER_NAME"]}/index.php?page=blog&amp;filter=opensource</link>\n";
 $rss .= "</image>\n\n";
 
 
@@ -103,12 +103,12 @@ if ($result)
       $timehr = date("D, d M Y H:i:s O", $row["time"]);
       $rss .= "<item>\n";
       $rss .= "<title>" . $head . "</title>\n";
-      $rss .= "<link>https://musicchris.de/index.php?page=blog&amp;index={$row["index"]}</link>\n";
-      $rss .= "<guid>https://musicchris.de/index.php?page=blog&amp;index={$row["index"]}</guid>\n";
-      $rss .= "<author>chris@musicchris.de (chris_blues)</author>\n";
+      $rss .= "<link>https://{$_SERVER["SERVER_NAME"]}/index.php?page=blog&amp;index={$row["index"]}</link>\n";
+      $rss .= "<guid>https://{$_SERVER["SERVER_NAME"]}/index.php?page=blog&amp;index={$row["index"]}</guid>\n";
+      $rss .= "<author>chris@{$_SERVER["SERVER_NAME"]} (chris_blues)</author>\n";
       $rss .= "<pubDate>$timehr</pubDate>\n";
       $rss .= "<description><![CDATA[\n" . $row["text"] . "\n]]></description>\n";
-      $rss .= "<comments>https://musicchris.de/index.php?page=blog&amp;index={$row["index"]}#linkshowcomments</comments>\n";
+      $rss .= "<comments>https://{$_SERVER["SERVER_NAME"]}/index.php?page=blog&amp;index={$row["index"]}#linkshowcomments</comments>\n";
       $rss .= "</item>\n\n";
      }
   }
