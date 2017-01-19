@@ -1,5 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
   var blogContent = document.getElementsByClassName("blogEntries");
+
+  if ( document.getElementById("buttonBack") != null ) {
+    document.getElementById("buttonBack").addEventListener("click", function() { window.location.href='showblog.php'; });
+  }
+
   var color = "#FFFFFF";
   for ( i = 0; i < blogContent.length; i++ )
     {
@@ -17,13 +22,10 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function addTag(id) {
-  //tag = document.getElementById("tag_" + id).getAttribute("data-" + id);
   if (document.getElementById('tags').value.length < 1) {
-    console.log("tag field seems empty. -> " + id);
     document.getElementById('tags').value = id;
   }
   else {
-    console.log("tag field not empty. -> " + id);
     document.getElementById('tags').value += ' ' + id;
   }
 }

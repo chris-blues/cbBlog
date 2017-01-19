@@ -4,6 +4,16 @@
 
 include("blog/convertnumbers.php");
 
+function convertBB($text)
+  {
+   // ############################
+   // ## interpret some bbCode  ##
+   // ############################
+
+   $search = array("[OT]","[ot]","[/OT]","[/ot]","[CODE]","[code]","[/CODE]","[/code]","[QUOTE]","[quote]","[/QUOTE]","[/quote]");
+   $replace = array("<span class=\"offtopic\">","<span class=\"offtopic\">","</span>","</span>","<pre><code>","<pre><code>","</code></pre>","</code></pre>","<blockquote>","<blockquote>","</blockquote>","</blockquote>",);
+   return (str_replace($search, $replace, $text));
+  }
 
 if ($_GET["index"] == "0") unset($_GET["index"]);
 date_default_timezone_set('Europe/Berlin');
@@ -253,11 +263,11 @@ if (!isset($_GET["index"]) or $_GET["index"] == "") $_GET["index"] = "0";
          else echo "{$row["name"]}";
          echo "</h3>\n  <p class=\"notes inline\">" . date("d.M.Y H:i",$row["time"]) . "</p>";
          echo "<p class=\"otswitch inline\">$switchOTon</p>\n";
-         $search = array("\\r\\n", "\r\n");
-         $replace = array("\n", "\n");
+         $search = array("\\r\\n", "\r\n", "\\0");
+         $replace = array("\n", "\n", "0");
          $post = str_replace($search, $replace, $row["comment"]);
          $post = nl2br($post, false);
-         echo "<div class=\"clear\"></div>\n" . str_replace("\r\n", "<br>", $post) . "<br>\n";
+         echo "<div class=\"clear\"></div>\n" . convertBB(str_replace("\r\n", "<br>", $post)) . "<br>\n";
          echo "</div>\n";
         }
      }

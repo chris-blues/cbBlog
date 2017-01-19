@@ -114,7 +114,7 @@ echo "<p class=\"notes\">";
 foreach ($taglist as $key => $tag)
   {
 //   echo "<script type=\"text/javascript\">var $tag = document.createTextNode(' $tag');</script>\n";
-   echo "<a id=\"tag_$tag\" class=\"linkTags\" href=\"#\" data-id=\"$tag\" onclick=\"javascript:document.getElementById('tags').value += ' $tag';\">$tag</a> \n";
+   echo "<a id=\"tag_$tag\" class=\"linkTags\" href=\"#\" data-id=\"$tag\">$tag</a> \n";
   }
 echo "</p>\n";
       if($index != "new")
@@ -153,7 +153,7 @@ Text:<br>
 <textarea name="text" id="adminEditBlogTextareaText"><?php echo htmlspecialchars($text, ENT_COMPAT | ENT_HTML5, "UTF-8"); ?></textarea><br>
 
 <input type="hidden" name="index" value="<?php echo $index; ?>">
-<input type="button" value="           Back            " onclick="window.location.href='showblog.php'" target="contentblog">
+<input type="button" value="           Back            " onclick="window.location.href='showblog.php'" target="contentblog" id="buttonBack">
 <input type="submit" value="         Add blog!         ">
 </form>
 <?  }

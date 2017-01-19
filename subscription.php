@@ -93,8 +93,16 @@ if ($job == "unsubscribe")
 
    if ($result = mysqli_query($concom, $query))
      {
-      if (mysqli_num_rows($result) == "0") { echo "[Error!]<br>\nAddress was not found!<br>\n"; $errors = true; $error["processing"]["email"] = "not found"; }
-      else echo mysqli_num_rows($result) . " subscriptions removed.<br>\n";
+      $numberSubscriptions = mysqli_num_rows($result);
+      if ($numberSubscriptions == NULL or $numberSubscriptions == "\0")
+        { $numberSubscriptions = 0; }
+      echo "<br>\nmysqli_num_rows: ";
+      var_dump(mysqli_num_rows($result));
+      echo "<br>\nnumberSubscriptions: ";
+      var_dump($numberSubscriptions);
+      echo "<br>\n";
+      if ($numberSubscriptions == 0) { echo "[Error!]<br>\nAddress was not found!<br>\n"; $errors = true; $error["processing"]["email"] = "not found"; }
+      else echo $numberSubscriptions . " subscriptions removed.<br>\n";
       echo "[ done ]<br>\n";
      }
    else { echo "[Error!]<br>\nDatabase could not be accessed!<br>\n"; $errors = true; $error["processing"]["queryDB"] = "failed"; }
@@ -111,7 +119,7 @@ if ($errors)
    echo "<h2>\$_GET array:</h2><pre>";
    print_r($_GET);
    echo "</pre>\n";
-   exit(count($error) . " errors");
+   echo count($error) . " errors";
   }
 
 echo "<p><a href=\"../index.php?page=blog&index={$_GET["scope"]}\">Back to the blog</a></p>";

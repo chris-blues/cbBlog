@@ -338,7 +338,10 @@ if (isset($_POST["notificationTo"]) and $_POST["notificationTo"] != "" and $firs
                     $link_verify);
    $message = str_replace($search, $replace, $template);
    echo "<h2>Verification mail</h2>\n<pre>$header\nTo: $email\nSubject: $subject\nbody:\n$message</pre>\n";
-   if (mail($email, $subject, $message, $header)) { // echo "Verification mail sent!<br>\n"; }
+   if (mail($email, $subject, $message, $header))
+     {
+      // echo "Verification mail sent!<br>\n";
+     }
    //else echo "Verification mail was not sent!<br>\n";
 
    // update DB entry
@@ -354,22 +357,6 @@ if (isset($_POST["notificationTo"]) and $_POST["notificationTo"] != "" and $firs
    mysqli_free_result($result);
   }
 //else echo "Already registered, or not registered at all...<br>\n";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//echo "<pre>"; print_r($_POST); echo "</pre>";
 
 
 ?>
