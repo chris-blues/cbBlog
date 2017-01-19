@@ -243,8 +243,9 @@ if (!isset($_GET["index"]) or $_GET["index"] == "") $_GET["index"] = "0";
          else echo "{$row["name"]}";
          echo "</h3>\n  <p class=\"notes inline\">" . date("d.M.Y H:i",$row["time"]) . "</p>";
          echo "<p class=\"otswitch inline\">$showot</p>\n";
-         $post = nl2br($row["comment"], false);
-         echo "<div class=\"clear\"></div>\n$post<br>\n";
+         $post = str_replace("\\r\\n", "\n", $row["comment"]);
+         $post = nl2br($post, false);
+         echo "<div class=\"clear\"></div>\n" . str_replace("\r\n", "<br>", $post) . "<br>\n";
          echo "</div>\n";
         }
      }

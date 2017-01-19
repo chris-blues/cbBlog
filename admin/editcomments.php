@@ -1,6 +1,6 @@
 <?php
 $js = "FALSE";
-$reload = true;
+//$reload = true;
 $target = "showcomments.php?affiliation=" . $_POST["affiliation"] . "#" . $_POST["number"];
 include('head.php');
 echo "<!-- begin editcomments.php -->\n";
@@ -31,14 +31,20 @@ if (isset($_POST["comment"])) $comment = mysqli_real_escape_string($con, $_POST[
 
 if ($_GET["job"] == "delete")
   {
-   $query = "DELETE FROM `blog-comments` WHERE `number` = '{$_GET["number"]}'";
+   $query = "DELETE FROM `blog-comments` WHERE `number` = '" . mysqli_real_escape_string($con, $_GET["number"]) . "'";
    $number = $_GET["number"];
    $affiliation = $_GET["affiliation"];
   }
 
 if ($_GET["job"] == "update")
   {
-   $query = "UPDATE `blog-comments` SET `name` = '$name', `email` = '$email', `website` = '$website',`comment` = '$comment' WHERE `number` = '$number';";
+   $queryName = mysqli_real_escape_string($con, $name);
+   $queryEmail = mysqli_real_escape_string($con, $email);
+   $queryWebsite = mysqli_real_escape_string($con, $website);
+   $queryComment = mysqli_real_escape_string($con, $comment);
+   $queryNumber = mysqli_real_escape_string($con, $number);
+
+   $query = "UPDATE `blog-comments` SET `name` = '$queryName', `email` = '$queryEmail', `website` = '$queryWebsite',`comment` = '" . str_replace("\\r\\n", "\r\n", $queryComment) . "' WHERE `number` = '$queryNumber';";
   }
 
 echo "<body style=\"margin: 0px; width: 100%; max-width: 100%;\" onload=\"window.location.href='showcomments.php?affiliation=$affiliation#$number'\">\n";

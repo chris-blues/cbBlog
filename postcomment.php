@@ -11,15 +11,13 @@
 
 echo "<p><a href=\"../index.php?page=blog&index={$_POST["affiliation"]}{$link}#$time\">Zurück zum Blog</a></p>\n";
 
-//error_reporting(E_ALL & ~E_NOTICE);
-error_reporting(E_ALL);
+error_reporting(E_ALL & ~E_NOTICE);
+//error_reporting(E_ALL);
 ini_set("display_errors", 1);
 ini_set("log_errors", 1);
 ini_set("error_log", "/www/admin/logs/php-error.log");
 
 date_default_timezone_set('Europe/Berlin');
-
-$forward = "";
 
 include_once("../phpinclude/config.php");
 require_once("../phpinclude/dbconnect.php");
@@ -48,7 +46,7 @@ if (isset($_POST["kartid"]) and $_POST["kartid"] != "") $link .= "&amp;kartid={$
 
 // Retrieve $_POST data
 $posterror["switch"] = "FALSE";
-if ($_POST["name"] == "") { $posterror["name"] = "TRUE"; /*$posterror["switch"] = "TRUE";*/ $_POST["name"] = "anonym"; }
+if ($_POST["name"] == "") { $posterror["name"] = "TRUE"; /*$posterror["switch"] = "TRUE";*/ $_POST["name"] = "anonymous"; }
 if ($_POST["website"] == "") { $posterror["website"] = "TRUE"; /*$posterror["switch"] = "TRUE";*/ }
 if ($_POST["email"] != "") { $posterror["email"] = "TRUE"; $posterror["switch"] = "TRUE"; }
 if ($_POST["text"] == "") { $posterror["text"] = "TRUE"; $posterror["switch"] = "TRUE"; }
@@ -137,7 +135,9 @@ $email = $_POST["notificationTo"];
 // Check, if this email is already registered
 if ($email != "")
   {
-   $query = "SELECT * FROM `blog-comments` WHERE `affiliation` = {$_POST["affiliation"]} AND `email` = '$email'";
+   $queryEmail = mysqli_real_escape_string($concom, $email);
+   $queryAffiliation = mysqli_real_escape_string($concom, $_POST["affiliation"]);
+   $query = "SELECT * FROM `blog-comments` WHERE `affiliation` = $queryAffiliation AND `email` = '$queryEmail'";
    $result = mysqli_query($concom, $query);
    if (mysqli_num_rows($result) < 1) // aka first post
      {
@@ -199,7 +199,8 @@ echo "<br>\n";
 //echo "<h2>notifications:</h2>\n";
 
 // Get concerning blog-entry for some data (header and such)
-$query_blog = "select * from `blog` WHERE (`blog`.`index` = {$_POST["affiliation"]}) ";
+$queryAffiliation = mysqli_real_escape_string($concom, $_POST["affiliation"]);
+$query_blog = "select * from `blog` WHERE (`blog`.`index` = '$queryAffiliation') ";
 if ($result = mysqli_query($concom, $query_blog))
   {
    while ($row = $result->fetch_assoc())
@@ -214,7 +215,7 @@ if ($result = mysqli_query($concom, $query_blog))
 
 $template = file_get_contents("template_notification.html");
 
-$query_notifications = "SELECT * FROM `blog-comments` WHERE `affiliation` = {$_POST["affiliation"]} AND `email` > '' ORDER BY `time` ASC ";
+$query_notifications = "SELECT * FROM `blog-comments` WHERE `affiliation` = '$queryAffiliation' AND `email` > '' ORDER BY `time` ASC ";
 
 if ($result = mysqli_query($concom, $query_notifications))
   {
@@ -335,7 +336,10 @@ if (isset($_POST["notificationTo"]) and $_POST["notificationTo"] != "" and $firs
    else echo "Verification mail was not sent!<br>\n";
 
    // update DB entry
-   $query = "UPDATE `blog-comments` SET `email`='$hash' WHERE (`email` = '$email' AND `affiliation`='{$_POST["affiliation"]}');";
+   $queryHash = mysqli_real_escape_string($concom, $hash);
+   $queryemail = mysqli_real_escape_string($concom, $email);
+   $queryAffiliation = mysqli_real_escape_string($concom, $_POST["affiliation"]);
+   $query = "UPDATE `blog-comments` SET `email`='$queryHash' WHERE (`email` = '$queryemail' AND `affiliation`='$queryAffiliation');";
    if ($result = mysqli_query($concom, $query_notifications)) echo "Hash entered into database - awaiting verification.<br>\n";
    else echo "Database entry unchanged<br>\n";
    mysqli_free_result($result);

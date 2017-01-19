@@ -13,10 +13,10 @@
 
 <script type="text/javascript" src="scripts.js"></script>
 
-<title>{$_SERVER["SERVER_NAME"]} - admin-area</title>
+<title><?php echo $_SERVER["SERVER_NAME"]; ?> - admin-area</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<meta name="page-topic" content="{$_SERVER["SERVER_NAME"]} - admin-area">
-<meta name="description" content="{$_SERVER["SERVER_NAME"]} - admin-area">
+<meta name="page-topic" content="<?php echo $_SERVER["SERVER_NAME"]; ?> - admin-area">
+<meta name="description" content="<?php echo $_SERVER["SERVER_NAME"]; ?> - admin-area">
 
 <?php if ($reload == true) { ?>
 <meta http-equiv="refresh" content="0;<?php echo $target; ?>">

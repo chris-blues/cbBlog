@@ -63,11 +63,13 @@ if ($datamissing == "TRUE" and $index != "new")
 $querytags = mysqli_real_escape_string($con, $tags);
 $queryhead = mysqli_real_escape_string($con, $head);
 $querytext = mysqli_real_escape_string($con, $text);
+$querytime = mysqli_real_escape_string($con, $time);
+$querysorttime = mysqli_real_escape_string($con, $sorttime);
 
 
 if ($_GET["job"] == "add")
   {
-   $query = "INSERT INTO `musicchris_de`.`blog` (`time`, `sorttime`,`ctime`, `index`, `tags`, `head`, `text`) VALUES ('$time', '$sorttime', '$time', NULL, '$querytags', '$queryhead', '$querytext');";
+   $query = "INSERT INTO `musicchris_de`.`blog` (`time`, `sorttime`,`ctime`, `index`, `tags`, `head`, `text`) VALUES ('$querytime', '$querysorttime', '$querytime', NULL, '$querytags', '$queryhead', '$querytext');";
    $actualtags = explode(" ", $tags);
    foreach($actualtags as $tagindex => $actualtag)
      {
@@ -87,6 +89,7 @@ if ($_GET["job"] == "add")
         }
       else
         {
+         $queryactualtag = mysqli_real_escape_string($con, $actualtag);
          $tagquery = "INSERT INTO `musicchris_de`.`blog-tags` (`index`, `tag`) VALUES (NULL, '" . $actualtag . "');";
          if (mysqli_query($con, $tagquery)) echo "Written!<br>\n"; else die(mysql_error($con));
         }
@@ -96,7 +99,7 @@ if ($_GET["job"] == "add")
 
 if ($_GET["job"] == "delete")
   {
-   $index = $_GET["index"];
+   $index = mysqli_real_escape_string($con, $_GET["index"]);
    $query = "DELETE FROM `musicchris_de`.`blog` WHERE `blog`.`index` = '$index';";
   }
 
@@ -171,7 +174,14 @@ if ($_GET["job"] == "update")
       else $tags_new[] = $value;
      }
    $querytags = implode(" ", $tags_new);
-   $query = "UPDATE `musicchris_de`.`blog` SET `time` = '$time',`sorttime` = '$sorttime',`ctime` = '$ctime',`index` = '$index',`tags` = '$querytags',`head` = '$queryhead',`text` = '$querytext' WHERE `blog`.`index` = '$index';";
+   $querytags = mysqli_real_escape_string($con, $querytags);
+   $queryindex = mysqli_real_escape_string($con, $index);
+   $queryhead = mysqli_real_escape_string($con, $head);
+   $querytext = mysqli_real_escape_string($con, $text);
+   $querytime = mysqli_real_escape_string($con, $time);
+   $queryctime = mysqli_real_escape_string($con, $ctime);
+   $querysorttime = mysqli_real_escape_string($con, $sorttime);
+   $query = "UPDATE `musicchris_de`.`blog` SET `time` = '$querytime',`sorttime` = '$querysorttime',`ctime` = '$queryctime',`index` = '$queryindex',`tags` = '$querytags',`head` = '$queryhead',`text` = '$querytext' WHERE `blog`.`index` = '$queryindex';";
    $actualtags = explode(" ", $tags);
    foreach($actualtags as $tagindex => $actualtag)
      {
@@ -191,7 +201,8 @@ if ($_GET["job"] == "update")
         }
       else
         {
-         $tagquery = "INSERT INTO `musicchris_de`.`blog-tags` (`index`, `tag`) VALUES (NULL, '" . $actualtag . "');";
+         $queryactualtags = mysqli_real_escape_string($con, $actualtags);
+         $tagquery = "INSERT INTO `musicchris_de`.`blog-tags` (`index`, `tag`) VALUES (NULL, '" . $queryactualtag . "');";
          if (mysqli_query($con, $tagquery)) echo "Written!<br>\n"; else die(mysql_error($con));
         }
      }

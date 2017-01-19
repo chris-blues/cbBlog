@@ -44,7 +44,10 @@ if ($debug == "TRUE") echo "look up blog<br>\n";
 if (!isset($_GET["filter"]) or $_GET["filter"] == "")
   { $query_blog = "SELECT * FROM `blog` ORDER BY `blog`.`sorttime`  DESC"; }
 else
-  { $query_blog = "SELECT * FROM `blog` WHERE `tags` LIKE '%{$_GET["filter"]}%' ORDER BY `blog`.`sorttime`  DESC"; }
+  {
+   $queryFilter = mysqli_real_escape_string($con, $_GET["filter"]);
+   $query_blog = "SELECT * FROM `blog` WHERE `tags` LIKE '%$queryFilter%' ORDER BY `blog`.`sorttime`  DESC";
+  }
 $result = mysqli_query($con, $query_blog);
 $totalRows_blog = mysqli_num_rows($result);
 

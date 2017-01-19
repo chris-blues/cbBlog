@@ -7,7 +7,7 @@
 <h1>Manage subscriptions</h1>
 
 <?php
-error_reporting(1);
+error_reporting(E_ALL & ~E_NOTICE);
 ini_set("display_errors", 1);
 ini_set("log_errors", 1);
 ini_set("error_log", "/www/admin/logs/php-error.log");
@@ -60,7 +60,8 @@ if ($job == "verify")
       if (strcmp($_GET["hash"], $hash_verification) == 0)
         {
          $queryEmail = mysqli_real_escape_string($concom, $email);
-         $query = "UPDATE `blog-comments` SET `email`='$queryEmail' WHERE (`email` = '$hash_verification' AND `affiliation`='{$_GET["scope"]}');";
+         $queryScope = mysqli_real_escape_string($concom, $_GET["scope"]);
+         $query = "UPDATE `blog-comments` SET `email`='$queryEmail' WHERE (`email` = '$hash_verification' AND `affiliation`='$queryScope');";
          if ($result = mysqli_query($concom, $query)) echo "<p>DB updated!</p>\n";
          else echo "<p>ERROR! DB not updated</p>\n<p>MySQLi error: " . mysqli_error($concom) . "</p>\n";
          mysqli_free_result($result);
@@ -73,16 +74,18 @@ if ($job == "verify")
 if ($job == "unsubscribe")
   {
    $scope = $_GET["scope"];
+   $queryScope = mysqli_real_escape_string($concom, $_GET["scope"]);
+   $queryEmail = mysqli_real_escape_string($concom, $email);
    echo "Removing you from ";
    if ($scope == "0")
      {
-      $query = "UPDATE `blog-comments` SET `email`='' WHERE (`email` = '$email');";
+      $query = "UPDATE `blog-comments` SET `email`='' WHERE (`email` = '$queryEmail');";
       echo "all subscriptions on " . $_SERVER["SERVER_NAME"] . "... ";
      }
    if ($scope != "0")
      {
-      $query = "UPDATE `blog-comments` SET `email`='' WHERE (`email` = '$email' AND `affiliation`='$scope');";
-      echo "blogentry number " . $scope . "... ";
+      $query = "UPDATE `blog-comments` SET `email`='' WHERE (`email` = '$queryEmail' AND `affiliation`='$queryScope');";
+      echo "blogentry number " . $queryScope . "... ";
      }
 
    if ($result = mysqli_query($concom, $query))
