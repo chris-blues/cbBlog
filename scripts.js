@@ -15,6 +15,8 @@ function enterSmiley(number)
 document.addEventListener('DOMContentLoaded', function ()
   {
    hljs.initHighlightingOnLoad();
+   OTon = document.getElementById("langOT").getAttribute("data-OTon");
+   OToff = document.getElementById("langOT").getAttribute("data-OToff");
    var OT = document.getElementsByClassName("otswitch");
    for (i = 0; i < OT.length; i++) {
      OT[i].addEventListener("click", switchofftopic);
@@ -29,14 +31,21 @@ document.addEventListener('DOMContentLoaded', function ()
    document.getElementById("smileyButton").addEventListener("click", showhideSmileys);
   });
 
-
-shown = 0;
+var shown = 0;
 function switchofftopic() {
+  switches = document.getElementsByClassName("otswitch");
+
   if (shown == "1") {
+    for (i=0; i<switches.length; i++) {
+      switches[i].innerHTML = OTon;
+     }
     $( "span.offtopic" ).fadeOut( 1000 );
     shown = 0;
    }
   else {
+    for (i=0; i<switches.length; i++) {
+      switches[i].innerHTML = OToff;
+     }
     $( "span.offtopic" ).fadeIn( 1000 );
     shown = 1;
    }

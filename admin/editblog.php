@@ -114,7 +114,7 @@ echo "<p class=\"notes\">";
 foreach ($taglist as $key => $tag)
   {
 //   echo "<script type=\"text/javascript\">var $tag = document.createTextNode(' $tag');</script>\n";
-   echo "<a onclick=\"javascript:document.getElementById('tags').value += ' $tag';\">$tag</a> \n";
+   echo "<a id=\"tag_$tag\" class=\"linkTags\" href=\"#\" data-id=\"$tag\" onclick=\"javascript:document.getElementById('tags').value += ' $tag';\">$tag</a> \n";
   }
 echo "</p>\n";
       if($index != "new")

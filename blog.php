@@ -228,6 +228,16 @@ if (!isset($_GET["index"]) or $_GET["index"] == "") $_GET["index"] = "0";
 // show comments for this entry
 // ############################
 
+   switch ($lang)
+     {
+      case "deutsch": { $switchOTon = "zeige themenfremde Beiträge"; $switchOToff = "verstecke themenfremde Beiträge"; break; }
+      case "english": { $switchOTon = "show off-topic comments"; $switchOToff = "hide off-topic comments"; break; }
+      default:        { $switchOTon = "show off-topic comments"; $switchOToff = "hide off-topic comments"; break; }
+     }
+   echo "<div id=\"langOT\" class=\"hidden\"
+              data-OTon=\"$switchOTon\"
+              data-OToff=\"$switchOToff\"></div>\n";
+
    $query_comments = "SELECT * FROM `blog-comments` WHERE `affiliation` = {$_GET["index"]} ORDER BY `time` ASC ";
    $result = mysqli_query($con, $query_comments);
    $totalRows_comments = mysqli_num_rows($result);
@@ -242,7 +252,7 @@ if (!isset($_GET["index"]) or $_GET["index"] == "") $_GET["index"] = "0";
          if ($row["website"] != "") echo "<a href=\"{$row["website"]}\" target=\"_blank\">{$row["name"]}</a>";
          else echo "{$row["name"]}";
          echo "</h3>\n  <p class=\"notes inline\">" . date("d.M.Y H:i",$row["time"]) . "</p>";
-         echo "<p class=\"otswitch inline\">$showot</p>\n";
+         echo "<p class=\"otswitch inline\">$switchOTon</p>\n";
          $search = array("\\r\\n", "\r\n");
          $replace = array("\n", "\n");
          $post = str_replace($search, $replace, $row["comment"]);

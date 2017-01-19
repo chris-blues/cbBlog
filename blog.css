@@ -3,14 +3,14 @@
 .offtopic {
   display: none;
   color: gray;
- }
+}
 
 .otswitch {
   font-size: 0.65em;
   display: inline;
   float: right;
   margin: 4px 0px 0px;
- }
+}
 
 .clear {
   clear: both;
@@ -68,65 +68,69 @@
 
 .italic {
   font: normal 1.0em OpenSans-Italic;
- }
+}
 
 .column {
   padding: 10px 30px;
   column-count: 2;
   -moz-column-count: 2;
   -webkit-column-count: 2;
- }
+}
 
 .column p {
   margin: 0px;
   padding: 0px;
- }
+}
 
 .shadow {
   padding: 10px 30px;
   border-radius: 6px;
   box-shadow: 0px 0px 5px 1px #000;
- }
+}
 
 .notes {
   font-size: 0.8em;
- }
+}
+
+.hidden {
+  display: none;
+}
 
 img {
   border: 0px none #FFF;
   max-width: 100%;
- }
+}
 
 #blog {
 
- }
+}
 
 #feeds {
 
- }
+}
 
 .feeds {
   margin: 0px;
   text-decoration: none !important;
- }
+}
 
 ul#tags {
   list-style: none;
   padding: 0px;
   text-align: left;
- }
+}
 
 #filter {
   float: right;
   padding: 10px;
   margin: 0px 0px 10px 10px;
   text-align: center;
- }
+}
 
 #wrapper {
   display: flex;
   flex-direction: column;
- }
+}
 
 a.tags {
   border-radius: 6px 6px 6px 6px;
@@ -135,33 +139,33 @@ a.tags {
 
 .blogentryoverview {
   margin-bottom: 15px;
- }
+}
 
 .blogentryoverview:hover {
   background-color: #DDA;
- }
+}
 
 .bloghead {
   margin: 0px 0px 15px;
- }
+}
 
 .blogdate {
   display: inline;
- }
+}
 
 .blogfulldate {
   margin: 25px;
   display: inline;
- }
+}
 
 .commentslink {
   display: inline;
   float: right;
- }
+}
 
 .blogentryfull {
   margin-bottom: 15px;
- }
+}
 
 #blog .quote {
   border-radius: 6px;
@@ -169,7 +173,7 @@ a.tags {
   background-image: url("/pics/quote.png");
   background-repeat: no-repeat;
   min-height: 70px;
- }
+}
 @media screen and (min-width: 600px) {
 #blog .quote {
   margin: 30px 20px;
@@ -189,7 +193,7 @@ a.tags {
   background-color: #D1DED2;
   background-image: url("/pics/opinion.png");
   background-repeat: no-repeat;
- }
+}
 @media screen and (min-width: 600px) {
 #blog .opinion {
   margin: 30px 20px;
@@ -214,21 +218,21 @@ a.tags {
  /* max-width: 500px; */
   margin-left: auto;
   margin-right: auto;
- }
+}
 
 #post_name, #post_website, #post_notificationTo {
   width: 99%;
- }
+}
 
 #post_text {
   width: 100%;
  /* max-width: 500px; */
   height: 10em;
- }
+}
 
 #email {
   display: none;
- }
+}
 
 .smileywrapper {
   text-align: center;
