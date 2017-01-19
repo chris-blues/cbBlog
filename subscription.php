@@ -2,7 +2,6 @@
 <html>
 <head>
 <meta charset="utf-8">
-<!--meta http-equiv="refresh" content="0;<?php echo "../index.php?page=blog&index={$_POST["affiliation"]}{$link}#$time"; ?>"-->
 </head>
 <body>
 <h1>Manage subscriptions</h1>
@@ -34,23 +33,46 @@ else
 
 // catch errors
 $errors = false;
-if (!isset($_GET["job"]) or $_GET["job"] == "")						{ $errors = true; $error["job"]["exists"] = "missing"; }
-if ($_GET["job"] != "unsubscribe")							{ $errors = true; $error["job"]["data"] = "faulty"; }
-if ($_GET["job"] == "unsubscribe" and !isset($_GET["scope"]) and $_GET["scope"] == "")	{ $errors = true; $error["scope"]["exists"] = "missing"; }
-if (!is_numeric($_GET["scope"]))							{ $errors = true; $error["scope"]["data"] = "faulty"; }
+if (!isset($_GET["job"]) or $_GET["job"] == "")			{ $errors = true; $error["job"]["exists"] = "missing"; }
+if ($_GET["job"] != "unsubscribe" and $_GET["job"] != "verify")	{ $errors = true; $error["job"]["data"] = "faulty"; }
+if ($_GET["job"] == "unsubscribe")
+  { if (!isset($_GET["scope"]) or $_GET["scope"] == "")		{ $errors = true; $error["scope"]["exists"] = "missing"; } }
+if (!is_numeric($_GET["scope"]))				{ $errors = true; $error["scope"]["data"] = "faulty"; }
 
-if (!isset($_GET["email"]) or $_GET["email"] == "")					{ $errors = true; $error["email"]["exists"] = "missing"; }
-if (!filter_var($_GET["email"], FILTER_VALIDATE_EMAIL))					{ $errors = true; $error["email"]["data"] = "Not a valid address"; }
+if ($_GET["job"] == "verify")
+  { if (!isset($_GET["hash"]) or $_GET["hash"] == "")		{ $errors = true; $error["hash"]["exists"] = "missing"; } }
+
+if (!isset($_GET["email"]) or $_GET["email"] == "")		{ $errors = true; $error["email"]["exists"] = "missing"; }
+if (!filter_var($_GET["email"], FILTER_VALIDATE_EMAIL))		{ $errors = true; $error["email"]["data"] = "Not a valid address"; }
 
 
 
 // lets get going!
 $job = $_GET["job"];
 $email = $_GET["email"];
-$scope = $_GET["scope"];
+
+if ($job == "verify")
+  {
+   echo "<h1>Verification</h1>\n";
+   if (!$errors)
+     {
+      $hash_verification = hash('sha256', $_SERVER["SERVER_NAME"] . $email . $_GET["scope"]);
+      if (strcmp($_GET["hash"], $hash_verification) == 0)
+        {
+         $queryEmail = mysqli_real_escape_string($concom, $email);
+         $query = "UPDATE `blog-comments` SET `email`='$queryEmail' WHERE (`email` = '$hash_verification' AND `affiliation`='{$_GET["scope"]}');";
+         if ($result = mysqli_query($concom, $query)) echo "<p>DB updated!</p>\n";
+         else echo "<p>ERROR! DB not updated</p>\n<p>MySQLi error: " . mysqli_error($concom) . "</p>\n";
+         mysqli_free_result($result);
+        }
+      else echo "<h1>Error!</h1>\n<p>You don't seem to be authorized to verify this address!</p>\n<p>Please check if the URL matches the one in your email! If the error persists, try to copy & paste the entire URL into your browser.</p>\n<p>{$_GET["hash"]}<br>$hash_verification</p>\n";
+     }
+  }
+
 
 if ($job == "unsubscribe")
   {
+   $scope = $_GET["scope"];
    echo "Removing you from ";
    if ($scope == "all")
      {
@@ -59,7 +81,7 @@ if ($job == "unsubscribe")
      }
    if ($scope != "all")
      {
-      $query = "UPDATE `blog-comments` SET `email`='' WHERE (`email` = '$email' AND `affiliation`='$number');";
+      $query = "UPDATE `blog-comments` SET `email`='' WHERE (`email` = '$email' AND `affiliation`='$scope');";
       echo "blogentry number " . $scope . "... ";
      }
 
@@ -86,7 +108,7 @@ if ($errors)
    exit(count($error) . " errors");
   }
 
-echo "<p><a href=\"../index.php?page=blog&index={$_POST["affiliation"]}\">Back to the blog</a></p>";
+echo "<p><a href=\"../index.php?page=blog&index={$_GET["scope"]}\">Back to the blog</a></p>";
 ?>
 
 

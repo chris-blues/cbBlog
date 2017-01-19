@@ -3,12 +3,12 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta http-equiv="refresh" content="0;<?php echo "../index.php?page=blog&index={$_POST["affiliation"]}{$link}#$time"; ?>">
+<!--meta http-equiv="refresh" content="0;<?php echo "../index.php?page=blog&index={$_POST["affiliation"]}{$link}#$time"; ?>"-->
 </head>
 <body>
 
 <?php
-error_reporting(1);
+error_reporting(E_ALL);
 ini_set("display_errors", 1);
 ini_set("log_errors", 1);
 ini_set("error_log", "/www/admin/logs/php-error.log");
@@ -55,7 +55,7 @@ else $website = $_POST["website"];
 if ($debug == "TRUE") { echo "<h3>\$_POST:</h3><pre>"; print_r($_POST); echo "</pre><br>\n"; }
 
 // if the hidden email-field has been filled out - most likely by a bot, they just can't resist - it's considered SPAM!
-if ($posterror["email"] == "TRUE")
+if (isset($posterror["email"]) and $posterror["email"] == "TRUE")
   {
    date_default_timezone_set('Europe/Berlin');
    $maildate = date(DATE_RFC2822);
@@ -126,12 +126,49 @@ $name = $_POST["name"];
 if ($name == "") $name = "Anonymous";
 $email = $_POST["notificationTo"];
 
+
+
+
+// Check, if this email is already registered
+if ($email != "")
+  {
+   $query = "SELECT * FROM `blog-comments` WHERE `affiliation` = {$_POST["affiliation"]} AND `email` = '$email'";
+   $result = mysqli_query($concom, $query);
+   if (mysqli_num_rows($result) < 1) // aka first post
+     {
+      echo "<p>Seems to be the first post</p>\n";
+      $firstPost = true;
+      $email = hash('sha256', $_SERVER["SERVER_NAME"] . $_POST["notificationTo"] . $_POST["affiliation"]);
+     }
+   else { echo "<p>Already registered.</p>\n"; $firstPost = false; }
+   mysqli_free_result($result);
+  }
+
+
+
+
+
 $search = array("<", ">", "\"", "'");
 $replace = array("&lt;", "&gt;", "&quot;", "&#39;");
 $text = str_replace($search, $replace, $_POST["text"]);
 
+// source: https://stackoverflow.com/questions/16685416/split-full-email-addresses-into-name-and-email
+$sPattern = '/([\w\s\'\"]+[\s]+)?(<)?(([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4}))?(>)?/';
+if (!$firstPost)
+  {
+   preg_match($sPattern, $email, $aMatch);
+   //echo "<h1>\$aMatch</h1>\n<pre>"; print_r($aMatch); echo "</pre>\n";
+   // $aMatch[0] = name - if empty it becomes $aMatch[3]
+   // $aMatch[3] = email
+   $email = $aMatch["3"];
+  }
+// source: https://stackoverflow.com/questions/16685416/split-full-email-addresses-into-name-and-email
+
+if (!isset($_POST["answerTo"]) or $_POST["answerTo"] == "") $answerTo = 0;
+else $answerTo = $_POST["answerTo"];
+
 $queryAffiliation = mysqli_real_escape_string($concom, $_POST["affiliation"]);
-$queryAnswerTo = mysqli_real_escape_string($concom, $_POST["answerTo"]);
+$queryAnswerTo = mysqli_real_escape_string($concom, $answerTo);
 $queryTime = mysqli_real_escape_string($concom, $time);
 $queryname = mysqli_real_escape_string($concom, $name);
 $queryemail = mysqli_real_escape_string($concom, $email);
@@ -140,11 +177,11 @@ $querytext = mysqli_real_escape_string($concom, $text);
 
 $query = "INSERT INTO `musicchris_de`.`blog-comments` (`affiliation`,`answerTo`, `time`, `name`, `email`, `website`, `comment`) VALUES ('{$queryAffiliation}', '{$queryAnswerTo}', '{$queryTime}', '{$queryname}', '{$queryemail}', '{$querywebsite}', '{$querytext}');";
 
-echo "<pre>$query</pre><br>\n";
+//echo "<pre>$query</pre><br>\n";
 
 $result = mysqli_query($concom, $query) or die(mysqli_error($concom));
 
-echo "query done<br>\n";
+//echo "query done<br>\n";
 mysqli_free_result($result);
 
 
@@ -167,7 +204,7 @@ if ($result = mysqli_query($concom, $query_blog))
 
 // Send each registered adress an email
 
-$template = file_get_contents("template_subscription.html");
+$template = file_get_contents("template_notification.html");
 
 $query_notifications = "SELECT * FROM `blog-comments` WHERE `affiliation` = {$_POST["affiliation"]} AND `email` > '' ORDER BY `time` ASC ";
 
@@ -179,13 +216,16 @@ if ($result = mysqli_query($concom, $query_notifications))
       if (isset($sentmail["{$row["email"]}"]) and $sentmail["{$row["email"]}"] == true) continue;
       // Don't notify this poster as well!
       if ($row["email"] == $_POST["notificationTo"]) continue;
+      // and don't notify unverified addresses!
+      if (!filter_var($_POST["notificationTo"], FILTER_VALIDATE_EMAIL)) continue;
 
       // prepare email strings
       $email = $row["email"];
 
-      $email_sanitizer = mailparse_rfc822_parse_addresses($email);
-      $email = $email_sanitizer["address"];
-      $email_name = $email_sanitizer["display"];
+      $sPattern = '/([\w\s\'\"]+[\s]+)?(<)?(([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4}))?(>)?/';
+      preg_match($sPattern, $email, $aMatch);
+      $email = $aMatch[3];
+      $email_name = $aMatch[0];
 
       $link_unsubscribe_topic = htmlspecialchars_decode("https://{$_SERVER["SERVER_NAME"]}/blog/subscription.php?email=$email&amp;job=unsubscribe&amp;scope={$_POST["affiliation"]}");
       $link_unsubscribe_site = htmlspecialchars_decode("https://{$_SERVER["SERVER_NAME"]}/blog/subscription.php?email=$email&amp;job=unsubscribe&amp;scope=0");
@@ -220,7 +260,7 @@ if ($result = mysqli_query($concom, $query_notifications))
                        $email,
                        $_SERVER["SERVER_NAME"],
                        $_POST["name"],
-                       htmlspecialchars_decode("https://{$_SERVER["SERVER_NAME"]}/index.php?page=blog&amp;index={$_POST["affiliation"]}#$time"),
+                       htmlspecialchars_decode("https://{$_SERVER["SERVER_NAME"]}/index.php?page=blog&amp;index={$_POST["affiliation"]}"),
                        wordwrap($_POST["text"], 70),
                        $link_unsubscribe_topic,
                        $link_unsubscribe_site);
@@ -229,6 +269,81 @@ if ($result = mysqli_query($concom, $query_notifications))
      }
    mysqli_free_result($result);
   }
+
+
+// ################################################
+// ##  send verification email to new subscriber ##
+// ################################################
+if (isset($_POST["notificationTo"]) and $_POST["notificationTo"] != "" and $firstPost == true)
+  {
+   echo "<p>Detected new subscriber!</p>\n";
+   $email = $_POST["notificationTo"];
+   $sPattern = '/([\w\s\'\"]+[\s]+)?(<)?(([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4}))?(>)?/';
+   preg_match($sPattern, $email, $aMatch);
+   $email = $aMatch["3"];
+   $email_name = $aMatch["0"];
+
+   $template = file_get_contents("template_subscription.html");
+   $hash = hash('sha256', $_SERVER["SERVER_NAME"] . $email . $_POST["affiliation"]);
+   $link_verify = "https://" . $_SERVER["SERVER_NAME"] . "/blog/subscription.php?job=verify&scope={$_POST["affiliation"]}&email=$email&hash=$hash";
+
+   $subject = "Verify your subscription for: $blog_header @ " . $_SERVER["SERVER_NAME"];
+
+   $link_unsubscribe_topic = htmlspecialchars_decode("https://{$_SERVER["SERVER_NAME"]}/blog/subscription.php?email=$email&job=unsubscribe&scope={$_POST["affiliation"]}");
+   $link_unsubscribe_site = htmlspecialchars_decode("https://{$_SERVER["SERVER_NAME"]}/blog/subscription.php?email=$email&job=unsubscribe&scope=0");
+
+   // $header should still be in memory!
+   $search = array("\n",
+                   "<br>",
+                   "<hr>",
+                   "{name}",
+                   "{email}",
+                   "{server}",
+                   "{link_topic}",
+                   "{comment}",
+                   "{link_unsubscribe_topic}",
+                   "{link_unsubscribe_site}",
+                   "{verificationLink}");
+   $replace = array("",
+                    "\r\n",
+                    "---------------------------------------------------\r\n",
+                    $_POST["name"],
+                    $email,
+                    $_SERVER["SERVER_NAME"],
+                    htmlspecialchars_decode("https://{$_SERVER["SERVER_NAME"]}/index.php?page=blog&amp;index={$_POST["affiliation"]}"),
+                    wordwrap($_POST["text"], 70),
+                    $link_unsubscribe_topic,
+                    $link_unsubscribe_site,
+                    $link_verify);
+   $message = str_replace($search, $replace, $template);
+   echo "<h2>Verification mail</h2>\n<pre>$header\nTo: $email\nSubject: $subject\nbody:\n$message</pre>\n";
+   if (mail($email, $subject, $message, $header)) echo "Verification mail sent!<br>\n";
+   else echo "Verification mail was not sent!<br>\n";
+
+   // update DB entry
+   $query = "UPDATE `blog-comments` SET `email`='$hash' WHERE (`email` = '$email' AND `affiliation`='{$_POST["affiliation"]}');";
+   if ($result = mysqli_query($concom, $query_notifications)) echo "Hash entered into database - awaiting verification.<br>\n";
+   else echo "Database entry unchanged<br>\n";
+   mysqli_free_result($result);
+  }
+else echo "Already registered, or not registered at all...<br>\n";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ?>
 </body>

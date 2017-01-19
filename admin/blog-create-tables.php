@@ -18,8 +18,10 @@ else
 $query["create_blog-comments"] = "CREATE TABLE IF NOT EXISTS `blog-comments` 
 (`number` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID for each comment - Auto-Indexed',
  `affiliation` int(11) NOT NULL COMMENT 'index of affiliated blog-entry',
+ `answerTo` int(11),
  `time` int(11) NOT NULL COMMENT 'time of post',
  `name` text COLLATE utf8_bin NOT NULL COMMENT 'poster''s name',
+ `email` text COLLATE utf8_bin,
  `website` text COLLATE utf8_bin NOT NULL COMMENT 'poster''s website', 
  `comment` mediumtext COLLATE utf8_bin NOT NULL COMMENT 'poster''s post',
 PRIMARY KEY (`number`)
