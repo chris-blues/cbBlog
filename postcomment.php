@@ -55,7 +55,6 @@ if ($_POST["affiliation"] == "" or !is_numeric($_POST["affiliation"])) { $poster
 if (isset($_POST["website"]) and $_POST["website"] != "" and strncmp($_POST["website"], "http", 4) != 0) $website = "http://" . $_POST["website"];
 else $website = $_POST["website"];
 
-if ($debug == "TRUE") { echo "<h3>\$_POST:</h3><pre>"; print_r($_POST); echo "</pre><br>\n"; }
 
 // if the hidden email-field has been filled out - most likely by a bot, they just can't resist - it's considered SPAM!
 if (isset($posterror["email"]) and $posterror["email"] == "TRUE")
@@ -95,13 +94,13 @@ if (isset($posterror["email"]) and $posterror["email"] == "TRUE")
 
 if ($posterror["switch"] != "FALSE")
   { // if we have some error
-   echo "Error! Some data was flawd!<br>\n";
-   echo "<pre>_POST-"; print_r($_POST); echo "<br>\nErrors:\n"; print_r($posterror); echo "</pre>\n";
+   //echo "Error! Some data was flawd!<br>\n";
+   //echo "<pre>_POST-"; print_r($_POST); echo "<br>\nErrors:\n"; print_r($posterror); echo "</pre>\n";
    exit();
   }
 else
   { // if everything is fine
-   echo "Data looks good!<br>\n";
+//   echo "Data looks good!<br>\n";
   }
 
 //echo "<pre>_POST-"; print_r($_POST); echo "<br>\nErrors:\n"; print_r($posterror); echo "</pre>\n";
@@ -121,7 +120,10 @@ if ($blog_emailnotification == "TRUE")
    $mail .= htmlspecialchars_decode("http://{$_SERVER["SERVER_NAME"]}/index.php?page=blog&amp;lang={$_POST["lang"]}&amp;index={$_POST["affiliation"]}#$time");
    $mail .= "\n\n\n{$_POST["name"]} ({$_POST["website"]}) schrieb:\n\n";
    $mail .= wordwrap($_POST["text"], 70);
-   if (!mail($email_blogadmin, $subject, $mail, $header)) echo "<h3>ERROR!</h3>Failed to send mail to admin!<br>\n";
+   if (!mail($email_blogadmin, $subject, $mail, $header))
+     {
+      //echo "<h3>ERROR!</h3>Failed to send mail to admin!<br>\n";
+     }
   }
 
 
@@ -141,11 +143,15 @@ if ($email != "")
    $result = mysqli_query($concom, $query);
    if (mysqli_num_rows($result) < 1) // aka first post
      {
-      echo "<p>Seems to be the first post</p>\n";
+      //echo "<p>Seems to be the first post</p>\n";
       $firstPost = true;
       $email = hash('sha256', $_SERVER["SERVER_NAME"] . $_POST["notificationTo"] . $_POST["affiliation"]);
      }
-   else { echo "<p>Already registered.</p>\n"; $firstPost = false; }
+   else
+     {
+      //echo "<p>Already registered.</p>\n";
+      $firstPost = false;
+     }
    mysqli_free_result($result);
   }
 
@@ -186,11 +192,11 @@ $query = "INSERT INTO `musicchris_de`.`blog-comments` (`affiliation`,`answerTo`,
 
 if ($result = mysqli_query($concom, $query))
   {
-   echo "query done<br>\n";
+   //echo "query done<br>\n";
    mysqli_free_result($result);
   }
 else die(mysqli_error($concom));
-echo "<br>\n";
+//echo "<br>\n";
 
 
 // #################################################
@@ -230,7 +236,7 @@ if ($result = mysqli_query($concom, $query_notifications))
       // and skip this, if no email is set
       if (!isset($row["email"]) or strlen($row["email"]) < 2) { continue; }
 
-      echo "Tests passed. This address is valid and wants to be notified! (" . strlen($row["email"]) . ") <br>\n";
+      //echo "Tests passed. This address is valid and wants to be notified! (" . strlen($row["email"]) . ") <br>\n";
 
       // prepare email strings
       $email = $row["email"];
@@ -290,13 +296,13 @@ if ($result = mysqli_query($concom, $query_notifications))
 // ################################################
 if (isset($_POST["notificationTo"]) and $_POST["notificationTo"] != "" and $firstPost == true)
   {
-   echo "<p>Detected new subscriber!</p>\n";
+   //echo "<p>Detected new subscriber!</p>\n";
    $email = $_POST["notificationTo"];
    $sPattern = '/([\w\s\'\"]+[\s]+)?(<)?(([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4}))?(>)?/';
    preg_match($sPattern, $email, $aMatch);
    $email = $aMatch["3"];
    $email_name = $aMatch["0"];
-   echo "<pre>"; print_r($aMatch); echo "</pre>\n";
+   //echo "<pre>"; print_r($aMatch); echo "</pre>\n";
 
    $template = file_get_contents("template_subscription.html");
    $hash = hash('sha256', $_SERVER["SERVER_NAME"] . $email . $_POST["affiliation"]);
@@ -332,19 +338,22 @@ if (isset($_POST["notificationTo"]) and $_POST["notificationTo"] != "" and $firs
                     $link_verify);
    $message = str_replace($search, $replace, $template);
    echo "<h2>Verification mail</h2>\n<pre>$header\nTo: $email\nSubject: $subject\nbody:\n$message</pre>\n";
-   if (mail($email, $subject, $message, $header)) echo "Verification mail sent!<br>\n";
-   else echo "Verification mail was not sent!<br>\n";
+   if (mail($email, $subject, $message, $header)) { // echo "Verification mail sent!<br>\n"; }
+   //else echo "Verification mail was not sent!<br>\n";
 
    // update DB entry
    $queryHash = mysqli_real_escape_string($concom, $hash);
    $queryemail = mysqli_real_escape_string($concom, $email);
    $queryAffiliation = mysqli_real_escape_string($concom, $_POST["affiliation"]);
    $query = "UPDATE `blog-comments` SET `email`='$queryHash' WHERE (`email` = '$queryemail' AND `affiliation`='$queryAffiliation');";
-   if ($result = mysqli_query($concom, $query_notifications)) echo "Hash entered into database - awaiting verification.<br>\n";
-   else echo "Database entry unchanged<br>\n";
+   if ($result = mysqli_query($concom, $query_notifications))
+     {
+      //echo "Hash entered into database - awaiting verification.<br>\n";
+     }
+   //else echo "Database entry unchanged<br>\n";
    mysqli_free_result($result);
   }
-else echo "Already registered, or not registered at all...<br>\n";
+//else echo "Already registered, or not registered at all...<br>\n";
 
 
 
@@ -360,7 +369,7 @@ else echo "Already registered, or not registered at all...<br>\n";
 
 
 
-echo "<pre>"; print_r($_POST); echo "</pre>";
+//echo "<pre>"; print_r($_POST); echo "</pre>";
 
 
 ?>
