@@ -8,7 +8,7 @@
 
 <?php
 error_reporting(E_ALL & ~E_NOTICE);
-ini_set("display_errors", 1);
+ini_set("display_errors", 0);
 ini_set("log_errors", 1);
 ini_set("error_log", "/www/admin/logs/php-error.log");
 
@@ -62,9 +62,12 @@ if ($job == "verify")
          $queryEmail = mysqli_real_escape_string($concom, $email);
          $queryScope = mysqli_real_escape_string($concom, $_GET["scope"]);
          $query = "UPDATE `blog-comments` SET `email`='$queryEmail' WHERE (`email` = '$hash_verification' AND `affiliation`='$queryScope');";
-         if ($result = mysqli_query($concom, $query)) echo "<p>DB updated!</p>\n";
+         if ($result = mysqli_query($concom, $query))
+           {
+            echo "<p>DB updated!</p>\n";
+            //mysqli_free_result($result);
+           }
          else echo "<p>ERROR! DB not updated</p>\n<p>MySQLi error: " . mysqli_error($concom) . "</p>\n";
-         mysqli_free_result($result);
         }
       else echo "<h1>Error!</h1>\n<p>You don't seem to be authorized to verify this address!</p>\n<p>Please check if the URL matches the one in your email! If the error persists, try to copy & paste the entire URL into your browser.</p>\n<p>{$_GET["hash"]}<br>$hash_verification</p>\n";
      }
@@ -95,7 +98,7 @@ if ($job == "unsubscribe")
       echo "[ done ]<br>\n";
      }
    else { echo "[Error!]<br>\nDatabase could not be accessed!<br>\n"; $errors = true; $error["processing"]["queryDB"] = "failed"; }
-   mysqli_free_result($result);
+   //mysqli_free_result($result);
   }
 
 

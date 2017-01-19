@@ -1,6 +1,6 @@
 <?php
 $js = "FALSE";
-//$reload = true;
+$reload = true;
 $target = "showcomments.php?affiliation=" . $_POST["affiliation"] . "#" . $_POST["number"];
 include('head.php');
 echo "<!-- begin editcomments.php -->\n";
