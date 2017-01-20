@@ -1,17 +1,27 @@
+<!-- begin editcomments.php -->
 <?php
+$debug = "FALSE";
 $js = "FALSE";
+
+if (isset($_POST["affiliation"]) and $_POST["affiliation"] != "") $affiliation = $_POST["affiliation"];
+if (!isset($affiliation) or $affiliation == "") { if (isset($_GET["affiliation"]) and $_GET["affiliation"] != "") { $affiliation = $_GET["affiliation"]; } }
+
 $reload = true;
-$target = "showcomments.php?affiliation=" . $_POST["affiliation"] . "#" . $_POST["number"];
+$target = "showcomments.php?affiliation=$affiliation#" . $_POST["number"];
+
 include('head.php');
-echo "<!-- begin editcomments.php -->\n";
 
 require("../../phpinclude/dbconnect.php");
 /* Connect to database */
 $con=mysqli_connect($hostname, $userdb, $passworddb, $db);
   if (mysqli_connect_errno())
-    { echo "Failed to connect to MySQL: " . mysqli_connect_error() . "<br>\n"; }
+    {
+     echo "Failed to connect to MySQL: " . mysqli_connect_error() . "<br>\n";
+    }
   else
-    { if ($debug == "TRUE") echo "Successfully connected. " . mysqli_connect_error() . "<br>\n"; }
+    {
+     if ($debug == "TRUE") echo "Successfully connected. " . mysqli_connect_error() . "<br>\n";
+    }
 
 /* change character set to utf8 */
 if (!mysqli_set_charset($con, "utf8"))
@@ -27,7 +37,7 @@ if (isset($_POST["name"])) $name = $_POST["name"];
 if (isset($_POST["email"])) $email = $_POST["email"];
 if (isset($_POST["website"])) $website = $_POST["website"];
 if (isset($_POST["time"])) $time = $_POST["time"];
-if (isset($_POST["comment"])) $comment = mysqli_real_escape_string($con, $_POST["comment"]);
+if (isset($_POST["comment"])) $comment = mysqli_real_escape_string($con, str_replace("\\", "&#92;", $_POST["comment"]));
 
 if ($_GET["job"] == "delete")
   {
@@ -47,16 +57,15 @@ if ($_GET["job"] == "update")
    $query = "UPDATE `blog-comments` SET `name` = '$queryName', `email` = '$queryEmail', `website` = '$queryWebsite',`comment` = '" . str_replace("\\r\\n", "\r\n", $queryComment) . "' WHERE `number` = '$queryNumber';";
   }
 
-echo "<body style=\"margin: 0px; width: 100%; max-width: 100%;\" onload=\"window.location.href='showcomments.php?affiliation=$affiliation#$number'\">\n";
-//echo "<body style=\"margin: 0px;\">\n";
+echo "<body>\n";
 
-echo $query . "<br>\n";
+if ($debug == "TRUE") echo $query . "<br>\n";
 $result = mysqli_query($con, $query) or die(mysql_error($result));
 mysqli_free_result($result);
 
 ?>
 <br><a href="showcomments.php?affiliation=<?php echo $affiliation . "#" . $time; ?>">BACK!</a><br>
-<pre><?php print_r($_POST); ?></pre>
+<?php if ($debug == "TRUE") { ?><pre><?php print_r($_POST); ?></pre><?php } ?>
 </body>
 </html>
 <!-- end editcomments.php -->

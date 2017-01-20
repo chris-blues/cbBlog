@@ -41,8 +41,6 @@ else
 $link = "&amp;lang={$_POST["lang"]}";
 if (isset($_POST["kartid"]) and $_POST["kartid"] != "") $link .= "&amp;kartid={$_POST["kartid"]}";
 
-//echo "<body style=\"margin: 0px;\" onload=\"window.location.href='../../index.php?page=blog&amp;index={$_POST["affiliation"]}{$link}#$time'\">\n";
-//echo "<body style=\"margin: 0px;\">\n<a href=\"../../{$_SERVER["PHP_SELF"]}?page=blog&amp;kartid={$_POST["kartid"]}&amp;lang={$_POST["lang"]}&amp;index={$_POST["affiliation"]}&amp;showcomments=TRUE#$time\">back</a><br>\n";
 
 // Retrieve $_POST data
 $posterror["switch"] = "FALSE";
@@ -76,7 +74,6 @@ if (isset($posterror["email"]) and $posterror["email"] == "TRUE")
    $mail .= "content:\n";
    $mail .= wordwrap($_POST["text"], 70);
    $mail .= "\n\n\n========================================\n\nhttps://{$_SERVER["SERVER_NAME"]}/blog/checkips.php\n";
-  // echo "Spam notification:<br>\n<pre>To: $email_blogadmin<br>Su: $subject<br>mail: $mail<br>header: $header<br>\n";
    mail($email_blogadmin, $subject, $mail, $header);
 
 // log IPs identified as Spam
@@ -85,7 +82,6 @@ if (isset($posterror["email"]) and $posterror["email"] == "TRUE")
    fwrite($handle, $_SERVER['REMOTE_ADDR'] . " " . $time . "\n");
    foreach ($ipfile as $key => $value)
      {
-//      if (!in_array($_SERVER['REMOTE_ADDR'], $ipfile)) { $ipfile[] = $_SERVER['REMOTE_ADDR']; }
       $value = trim($ipfile[$key]);
       fwrite($handle, $value . "\n");
      }
@@ -102,9 +98,6 @@ else
   { // if everything is fine
 //   echo "Data looks good!<br>\n";
   }
-
-//echo "<pre>_POST-"; print_r($_POST); echo "<br>\nErrors:\n"; print_r($posterror); echo "</pre>\n";
-
 
 if ($blog_emailnotification == "TRUE")
   {
@@ -143,13 +136,11 @@ if ($email != "")
    $result = mysqli_query($concom, $query);
    if (mysqli_num_rows($result) < 1) // aka first post
      {
-      //echo "<p>Seems to be the first post</p>\n";
       $firstPost = true;
       $email = hash('sha256', $_SERVER["SERVER_NAME"] . $_POST["notificationTo"] . $_POST["affiliation"]);
      }
    else
      {
-      //echo "<p>Already registered.</p>\n";
       $firstPost = false;
      }
    mysqli_free_result($result);
@@ -159,8 +150,8 @@ if ($email != "")
 
 
 
-$search = array("<", ">", "\"", "'");
-$replace = array("&lt;", "&gt;", "&quot;", "&#39;");
+$search = array("<", ">", "\"", "'", "\r\n", "\r", "\\");
+$replace = array("&lt;", "&gt;", "&quot;", "&#39;", "\n", "\n", "&#92;");
 $text = str_replace($search, $replace, $_POST["text"]);
 
 // source: https://stackoverflow.com/questions/16685416/split-full-email-addresses-into-name-and-email
@@ -168,10 +159,9 @@ $sPattern = '/([\w\s\'\"]+[\s]+)?(<)?(([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4}))?
 if (!$firstPost)
   {
    preg_match($sPattern, $email, $aMatch);
-   echo "<h1>\$aMatch</h1>\n<pre>"; print_r($aMatch); echo "</pre>\n";
    // $aMatch[0] = name - if empty it becomes $aMatch[3]
    // $aMatch[3] = email
-   $email = $aMatch["3"];
+   $email = $aMatch[3];
   }
 // source: https://stackoverflow.com/questions/16685416/split-full-email-addresses-into-name-and-email
 
@@ -188,21 +178,16 @@ $querytext = mysqli_real_escape_string($concom, $text);
 
 $query = "INSERT INTO `musicchris_de`.`blog-comments` (`affiliation`,`answerTo`, `time`, `name`, `email`, `website`, `comment`) VALUES ('{$queryAffiliation}', '{$queryAnswerTo}', '{$queryTime}', '{$queryname}', '{$queryemail}', '{$querywebsite}', '{$querytext}');";
 
-//echo "<pre>$query</pre><br>\n";
-
 if ($result = mysqli_query($concom, $query))
   {
-   //echo "query done<br>\n";
    mysqli_free_result($result);
   }
 else die(mysqli_error($concom));
-//echo "<br>\n";
 
 
 // #################################################
 // ##  send email notifications for new comments  ##
 // #################################################
-//echo "<h2>notifications:</h2>\n";
 
 // Get concerning blog-entry for some data (header and such)
 $queryAffiliation = mysqli_real_escape_string($concom, $_POST["affiliation"]);
@@ -236,8 +221,6 @@ if ($result = mysqli_query($concom, $query_notifications))
       // and skip this, if no email is set
       if (!isset($row["email"]) or strlen($row["email"]) < 2) { continue; }
 
-      //echo "Tests passed. This address is valid and wants to be notified! (" . strlen($row["email"]) . ") <br>\n";
-
       // prepare email strings
       $email = $row["email"];
 
@@ -245,7 +228,6 @@ if ($result = mysqli_query($concom, $query_notifications))
       preg_match($sPattern, $email, $aMatch);
       $email = $aMatch[3];
       $email_name = $aMatch[0];
-      //echo "<pre>"; print_r($aMatch); echo "</pre>\n";
 
       $link_unsubscribe_topic = htmlspecialchars_decode("https://{$_SERVER["SERVER_NAME"]}/blog/subscription.php?email=$email&amp;job=unsubscribe&amp;scope={$_POST["affiliation"]}");
       $link_unsubscribe_site = htmlspecialchars_decode("https://{$_SERVER["SERVER_NAME"]}/blog/subscription.php?email=$email&amp;job=unsubscribe&amp;scope=0");
@@ -300,9 +282,8 @@ if (isset($_POST["notificationTo"]) and $_POST["notificationTo"] != "" and $firs
    $email = $_POST["notificationTo"];
    $sPattern = '/([\w\s\'\"]+[\s]+)?(<)?(([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4}))?(>)?/';
    preg_match($sPattern, $email, $aMatch);
-   $email = $aMatch["3"];
-   $email_name = $aMatch["0"];
-   //echo "<pre>"; print_r($aMatch); echo "</pre>\n";
+   $email = $aMatch[3];
+   $email_name = $aMatch[0];
 
    $template = file_get_contents("template_subscription.html");
    $hash = hash('sha256', $_SERVER["SERVER_NAME"] . $email . $_POST["affiliation"]);
@@ -353,12 +334,8 @@ if (isset($_POST["notificationTo"]) and $_POST["notificationTo"] != "" and $firs
      {
       //echo "Hash entered into database - awaiting verification.<br>\n";
      }
-   //else echo "Database entry unchanged<br>\n";
    mysqli_free_result($result);
   }
-//else echo "Already registered, or not registered at all...<br>\n";
-
-
 ?>
 </body>
 </html>
