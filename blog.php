@@ -2,18 +2,7 @@
 
 <?php
 
-include("blog/convertnumbers.php");
-
-function convertBB($text)
-  {
-   // ############################
-   // ## interpret some bbCode  ##
-   // ############################
-
-   $search = array("[OT]","[ot]","[/OT]","[/ot]","[CODE]","[code]","[/CODE]","[/code]","[QUOTE]","[quote]","[/QUOTE]","[/quote]");
-   $replace = array("<span class=\"offtopic\">","<span class=\"offtopic\">","</span>","</span>","<pre><code>","<pre><code>","</code></pre>","</code></pre>","<blockquote>","<blockquote>","</blockquote>","</blockquote>",);
-   return (str_replace($search, $replace, $text));
-  }
+include("blog/functions.php");
 
 if ($_GET["index"] == "0") unset($_GET["index"]);
 date_default_timezone_set('Europe/Berlin');
@@ -263,11 +252,11 @@ if (!isset($_GET["index"]) or $_GET["index"] == "") $_GET["index"] = "0";
          else echo "{$row["name"]}";
          echo "</h3>\n  <p class=\"notes inline\">" . date("d.M.Y H:i",$row["time"]) . "</p>";
          echo "<p class=\"otswitch inline\">$switchOTon</p>\n";
-         $search = array("\\r\\n", "\r\n", "\\0");
-         $replace = array("\n", "\n", "0");
+         $search = array("\\r\\n", "\r\n", "\\0", "\\");
+         $replace = array("\n", "\n", "0", "");
          $post = str_replace($search, $replace, $row["comment"]);
          $post = nl2br($post, false);
-         echo "<div class=\"clear\"></div>\n" . convertBB(str_replace("\r\n", "<br>", $post)) . "<br>\n";
+         echo "<div class=\"clear\"></div>\n" . bb_parse(str_replace("\r\n", "<br>", $post)) . "<br>\n";
          echo "</div>\n";
         }
      }
@@ -276,9 +265,72 @@ if (!isset($_GET["index"]) or $_GET["index"] == "") $_GET["index"] = "0";
 
    switch ($lang)
      {
-      case 'deutsch': { $notify = "E-Mail-Adresse"; $emailusage = "um zu weiteren Kommentaren benachrichtigt zu werden"; break; }
-      case 'english': { $notify = "Email-address";     $emailusage = "to be notified of new comments"; break; }
-      default:        { $notify = "Email-address";     $emailusage = "to be notified of new comments"; break; }
+      case 'deutsch':
+        {
+         $notify = "E-Mail-Adresse";
+         $emailusage = "um zu weiteren Kommentaren benachrichtigt zu werden";
+         $postcomment_restricitions = "HTML-Tags werden gelöscht.\n";
+         $postcomment_restricitions .= "Folgende BBCodes sind verfügbar:\n";
+         $postcomment_restricitions .= "&#91;b&#93; : fetter Text\n";
+         $postcomment_restricitions .= "&#91;i&#93; : kursiver Text\n";
+         $postcomment_restricitions .= "&#91;url&#93; : Link\n";
+         $postcomment_restricitions .= "&#91;code&#93; : Programmcode\n";
+         $postcomment_restricitions .= "&#91;quote&#93; : Zitat\n";
+         $postcomment_restricitions .= "&#91;ot&#93; : Offtopic\n";
+         $comment = "Ihr Kommentar <a class=\"notes\" href=\"javascript:\" id=\"switchTagHelp\">Tags</a>";
+         $taghelp = "<h4>Erlaubte Tags:</h4><br>\n<ul>";
+         $taghelp .= "<li>&#91;b&#93; <b>Fetter Text</b></li>\n";
+         $taghelp .= "<li>&#91;i&#93; <i>Kursiver Text</i></li>\n";
+         $taghelp .= "<li>&#91;url&#93; <a href=\"#\">Link</a></li>\n";
+         $taghelp .= "<li>&#91;code&#93; <pre class=\"inline\"><code>Code(\$foo);</code></pre></li>\n";
+         $taghelp .= "<li>&#91;quote&#93; <blockquote class=\"inline\">Zitat</blockquote></li>\n";
+         $taghelp .= "<li>&#91;ot&#93; <span class=\"offtopic\">Offtopic</span></li></ul>\n";
+         break;
+        }
+      case 'english':
+        {
+         $notify = "Email-address";
+         $emailusage = "to be notified of new comments";
+         $postcomment_restricitions = "HTMLtags will be removed.\n";
+         $postcomment_restricitions .= "Folgende BBCodes sind verfügbar:\n";
+         $postcomment_restricitions .= "&#91;b&#93; : bold text\n";
+         $postcomment_restricitions .= "&#91;i&#93; : italic text\n";
+         $postcomment_restricitions .= "&#91;url&#93; : Link\n";
+         $postcomment_restricitions .= "&#91;code&#93; : Program-code\n";
+         $postcomment_restricitions .= "&#91;quote&#93; : Quote\n";
+         $postcomment_restricitions .= "&#91;ot&#93; : Offtopic\n";
+         $comment = "Your comment <a class=\"notes\" href=\"javascript:\" id=\"switchTagHelp\">tags</a>";
+         $taghelp = "<h4>Allowed tags:</h4><br>\n<ul>";
+         $taghelp .= "<li>&#91;b&#93; <b>bold text</b></li>\n";
+         $taghelp .= "<li>&#91;i&#93; <i>italic text</i></li>\n";
+         $taghelp .= "<li>&#91;url&#93; <a href=\"#\">Link</a></li>\n";
+         $taghelp .= "<li>&#91;code&#93; <pre class=\"inline\"><code>Code();</code></pre></li>\n";
+         $taghelp .= "<li>&#91;quote&#93; <blockquote class=\"inline\">quote</blockquote></li>\n";
+         $taghelp .= "<li>&#91;ot&#93; <span class=\"offtopic\">Offtopic</span></li></ul>\n";
+         break;
+        }
+      default:
+        {
+         $notify = "Email-address";
+         $emailusage = "to be notified of new comments";
+         $postcomment_restricitions = "HTMLtags will be removed.\n";
+         $postcomment_restricitions .= "Folgende BBCodes sind verfügbar:\n";
+         $postcomment_restricitions .= "&#91;b&#93; : bold text\n";
+         $postcomment_restricitions .= "&#91;i&#93; : italic text\n";
+         $postcomment_restricitions .= "&#91;url&#93; : Link\n";
+         $postcomment_restricitions .= "&#91;code&#93; : Program-code\n";
+         $postcomment_restricitions .= "&#91;quote&#93; : Quote\n";
+         $postcomment_restricitions .= "&#91;ot&#93; : Offtopic\n";
+         $comment = "Your comment <a class=\"notes\" href=\"javascript:\" id=\"switchTagHelp\">tags</a>";
+         $taghelp = "<h4>Allowed tags:</h4><br>\n<ul>";
+         $taghelp .= "<li>&#91;b&#93; <b>bold text</b></li>\n";
+         $taghelp .= "<li>&#91;i&#93; <i>italic text</i></li>\n";
+         $taghelp .= "<li>&#91;url&#93; <a href=\"#\">Link</a><br></li>\n";
+         $taghelp .= "<li>&#91;code&#93; <pre class=\"inline\"><code class=\"inline\">Code();</code></pre><br></li>\n";
+         $taghelp .= "<li>&#91;quote&#93; <blockquote class=\"inline\">quote</blockquote></li>\n";
+         $taghelp .= "<li>&#91;ot&#93; <span class=\"offtopic\">Offtopic</span></li></ul>\n";
+         break;
+        }
      }
    //display post form
    echo "<div class=\"shadow comments comment postform\" name=\"comment\">\n";
@@ -290,8 +342,8 @@ if (!isset($_GET["index"]) or $_GET["index"] == "") $_GET["index"] = "0";
    echo "  Website: <span class=\"notes\">(otional)</span><br>\n";
    echo "  <input type=\"text\" name=\"website\" id=\"post_website\" placeholder=\"www.example.tld\"><br>\n";
    echo "  <p class=\"notes\" id=\"email\">$leaveempty<input type=\"text\" name=\"email\" id=\"post_email\"></p>\n";
-   echo "  $comment<br>\n";
-   echo "  <textarea name=\"text\" id=\"post_text\" title=\"$postcomments_restricitions\"></textarea><br>\n";
+   echo "  $comment<br>\n<div class=\"hidden\" id=\"tagHelp\">$taghelp</div>\n";
+   echo "  <textarea name=\"text\" id=\"post_text\" title=\"$postcomment_restricitions\"></textarea><br>\n";
    echo "  <input type=\"hidden\" name=\"affiliation\" value=\"{$_GET["index"]}\">\n";
    echo "  <input type=\"hidden\" name=\"kartid\" value=\"$kartid\">\n";
    echo "  <input type=\"hidden\" name=\"lang\" value=\"$lang\">\n";

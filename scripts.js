@@ -1,17 +1,3 @@
-function showhideSmileys()
-      {
-       var smileys = document.getElementById('smileys');
-       if (smileys.style.display == "none" | smileys.style.display == "")
-         { smileys.style.display = "block"; }
-       else
-         { smileys.style.display = "none"; }
-      }
-function enterSmiley(number)
-      {
-       var area = document.getElementById('post_text');
-       area.value += "&#" + number + ";";
-      }
-
 document.addEventListener('DOMContentLoaded', function ()
   {
    hljs.initHighlightingOnLoad();
@@ -28,8 +14,41 @@ document.addEventListener('DOMContentLoaded', function ()
    }
 
    document.getElementById("post_name").addEventListener("click", function() { document.getElementById("post_name").value = ''; });
-   document.getElementById("smileyButton").addEventListener("click", showhideSmileys);
+   document.getElementById("switchTagHelp").addEventListener("click", showhideTagHelp );
+   document.getElementById("smileyButton").addEventListener("click", showhideSmileys );
   });
+
+
+
+var tagHelpShown = 0;
+function showhideTagHelp () {
+  if (tagHelpShown == 0) {
+    $( "#tagHelp" ).slideDown( 1000 );
+    tagHelpShown = 1;
+  }
+  else {
+    $( "#tagHelp" ).slideUp( 1000 );
+    tagHelpShown = 0;
+  }
+}
+
+var smileysShown = 0;
+function showhideSmileys() {
+  var smileys = document.getElementById('smileys');
+  if (smileysShown == 0) {
+    $( "#smileys" ).slideDown( 1000 );
+    smileysShown = 1;
+  }
+  else {
+    $( "#smileys" ).slideUp( 1000 );
+    smileysShown = 0;
+  }
+      }
+function enterSmiley(number)
+      {
+       var area = document.getElementById('post_text');
+       area.value += "&#" + number + ";";
+      }
 
 var shown = 0;
 function switchofftopic() {
@@ -39,14 +58,14 @@ function switchofftopic() {
     for (i=0; i<switches.length; i++) {
       switches[i].innerHTML = OTon;
      }
-    $( "span.offtopic" ).fadeOut( 1000 );
+    $( "span.offtopic" ).slideUp( 1000 );
     shown = 0;
    }
   else {
     for (i=0; i<switches.length; i++) {
       switches[i].innerHTML = OToff;
      }
-    $( "span.offtopic" ).fadeIn( 1000 );
+    $( "span.offtopic" ).slideDown( 1000 );
     shown = 1;
    }
 }
