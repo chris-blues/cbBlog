@@ -6,8 +6,11 @@ $js = "FALSE";
 if (isset($_POST["affiliation"]) and $_POST["affiliation"] != "") $affiliation = $_POST["affiliation"];
 if (!isset($affiliation) or $affiliation == "") { if (isset($_GET["affiliation"]) and $_GET["affiliation"] != "") { $affiliation = $_GET["affiliation"]; } }
 
+if (isset($_POST["number"]) and $_POST["number"] != "") $number = $_POST["number"];
+if (!isset($number) or $number == "") { if (isset($_GET["number"]) and $_GET["number"] != "") { $number = $_GET["number"]; } }
+
 $reload = true;
-$target = "showcomments.php?affiliation=$affiliation#" . $_POST["number"];
+$target = "showcomments.php?affiliation=$affiliation#" . $number;
 
 include('head.php');
 
