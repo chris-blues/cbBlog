@@ -8,7 +8,7 @@
 
 <?php
 error_reporting(E_ALL & ~E_NOTICE);
-ini_set("display_errors", 0);
+ini_set("display_errors", 1);
 ini_set("log_errors", 1);
 ini_set("error_log", "/www/admin/logs/php-error.log");
 
@@ -16,6 +16,9 @@ date_default_timezone_set('Europe/Berlin');
 
 include_once("../phpinclude/config.php");
 require_once("../phpinclude/dbconnect.php");
+
+$debug = "FALSE";
+//$debug = "TRUE";
 
 /* Connect to comments-database */
 $concom=mysqli_connect($hostname, $userdb, $passworddb, $db);
@@ -69,7 +72,11 @@ if ($job == "verify")
            }
          else echo "<p>ERROR! DB not updated</p>\n<p>MySQLi error: " . mysqli_error($concom) . "</p>\n";
         }
-      else echo "<h1>Error!</h1>\n<p>You don't seem to be authorized to verify this address!</p>\n<p>Please check if the URL matches the one in your email! If the error persists, try to copy & paste the entire URL into your browser.</p>\n<p>{$_GET["hash"]}<br>$hash_verification</p>\n";
+      else
+        {
+         echo "<h1>Error!</h1>\n<p>You don't seem to be authorized to verify this address!</p>\n<p>Please check if the URL matches the one in your email! If the error persists, try to copy & paste the entire URL into your browser.</p>\n";
+         //echo "<p>{$_GET["hash"]}<br>$hash_verification</p>\n";
+        }
      }
   }
 
@@ -79,46 +86,39 @@ if ($job == "unsubscribe")
    $scope = $_GET["scope"];
    $queryScope = mysqli_real_escape_string($concom, $_GET["scope"]);
    $queryEmail = mysqli_real_escape_string($concom, $email);
-   echo "Removing you from ";
+   echo "<p>Removing you from ";
    if ($scope == "0")
      {
       $query = "UPDATE `blog-comments` SET `email`='' WHERE (`email` = '$queryEmail');";
-      echo "all subscriptions on " . $_SERVER["SERVER_NAME"] . "... ";
+      echo "all subscriptions on " . $_SERVER["SERVER_NAME"] . "... </p>";
      }
    if ($scope != "0")
      {
       $query = "UPDATE `blog-comments` SET `email`='' WHERE (`email` = '$queryEmail' AND `affiliation`='$queryScope');";
-      echo "blogentry number " . $queryScope . "... ";
+      echo "blogentry number " . $queryScope . "... </p>";
      }
 
-   if ($result = mysqli_query($concom, $query))
+   if (!$errors)
      {
-      $numberSubscriptions = mysqli_num_rows($result);
-      if ($numberSubscriptions == NULL or $numberSubscriptions == "\0")
-        { $numberSubscriptions = 0; }
-      echo "<br>\nmysqli_num_rows: ";
-      var_dump(mysqli_num_rows($result));
-      echo "<br>\nnumberSubscriptions: ";
-      var_dump($numberSubscriptions);
-      echo "<br>\n";
-      if ($numberSubscriptions == 0) { echo "[Error!]<br>\nAddress was not found!<br>\n"; $errors = true; $error["processing"]["email"] = "not found"; }
-      else echo $numberSubscriptions . " subscriptions removed.<br>\n";
-      echo "[ done ]<br>\n";
+      if ($result = mysqli_query($concom, $query))
+        {
+         echo "Subscriptions for $email removed.<br>\n";
+        }
+      else { echo "[Error!]<br>\n<p>Database could not be accessed!</p>\n"; $errors = true; $error["processing"]["queryDB"] = "failed"; }
      }
-   else { echo "[Error!]<br>\nDatabase could not be accessed!<br>\n"; $errors = true; $error["processing"]["queryDB"] = "failed"; }
-   //mysqli_free_result($result);
+   else echo "<p>\nCancelled the request due to errors! See:</p>\n";
   }
 
 
 // display errors
 if ($errors)
   {
-   echo "<h1>Errors occured!</h1>\n<pre>";
+   echo "<h2>Errors occured!</h2>\n<pre>";
    print_r($error);
    echo "</pre>\n";
-   echo "<h2>\$_GET array:</h2><pre>";
-   print_r($_GET);
-   echo "</pre>\n";
+//   echo "<h2>\$_GET array:</h2><pre>";
+//   print_r($_GET);
+//   echo "</pre>\n";
    echo count($error) . " errors";
   }
 

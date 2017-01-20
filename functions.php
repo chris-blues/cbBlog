@@ -27,7 +27,7 @@ function convertnumbers($number, $lang)
 
 // https://secure.php.net/manual/en/function.bbcode-create.php#93349
 function bb_parse($string) {
-        $tags = 'b|i|quote|url|code';
+        $tags = 'b|i|quote|url|code|ot';
         while (preg_match_all('`\[('.$tags.')=?(.*?)\](.+?)\[/\1\]`', $string, $matches)) foreach ($matches[0] as $key => $match) {
             list($tag, $param, $innertext) = array($matches[1][$key], $matches[2][$key], $matches[3][$key]);
             switch ($tag) {
@@ -36,6 +36,7 @@ function bb_parse($string) {
                 case 'quote': $replacement = "<div class=\"quote\"><blockquote>$innertext</blockquote></div>"; break;
                 case 'url': $replacement = '<a href="' . ($param? $param : $innertext) . "\">$innertext</a>"; break;
                 case 'code': $replacement = "<pre><code>$innertext</code></pre>"; break;
+                case 'ot': $replacement = "<span class=\"offtopic\">$innertext</span>"; break;
             }
          $string = str_replace($match, $replacement, $string);
         }

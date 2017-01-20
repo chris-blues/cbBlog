@@ -1,6 +1,10 @@
 <!-- begin blog.php -->
 
 <?php
+error_reporting(E_ALL & ~E_NOTICE);
+ini_set("display_errors", 1);
+ini_set("log_errors", 1);
+ini_set("error_log", "/www/admin/logs/php-error.log");
 
 include("blog/functions.php");
 
@@ -278,13 +282,13 @@ if (!isset($_GET["index"]) or $_GET["index"] == "") $_GET["index"] = "0";
          $postcomment_restricitions .= "&#91;quote&#93; : Zitat\n";
          $postcomment_restricitions .= "&#91;ot&#93; : Offtopic\n";
          $comment = "Ihr Kommentar <a class=\"notes\" href=\"javascript:\" id=\"switchTagHelp\">Tags</a>";
-         $taghelp = "<h4>Erlaubte Tags:</h4><br>\n<ul>";
-         $taghelp .= "<li>&#91;b&#93; <b>Fetter Text</b></li>\n";
-         $taghelp .= "<li>&#91;i&#93; <i>Kursiver Text</i></li>\n";
-         $taghelp .= "<li>&#91;url&#93; <a href=\"#\">Link</a></li>\n";
-         $taghelp .= "<li>&#91;code&#93; <pre class=\"inline\"><code>Code(\$foo);</code></pre></li>\n";
-         $taghelp .= "<li>&#91;quote&#93; <blockquote class=\"inline\">Zitat</blockquote></li>\n";
-         $taghelp .= "<li>&#91;ot&#93; <span class=\"offtopic\">Offtopic</span></li></ul>\n";
+         $taghelp = "<h4>Erlaubte Tags:</h4><br>\n<table width=\"100%\">";
+         $taghelp .= "<tr><td width=\"30%\">&#91;b&#93;Fetter Text&#91;/b&#93;</td><td><b>Fetter Text</b></td></tr>\n";
+         $taghelp .= "<tr><td>&#91;i&#93;Kursiver Text&#91;/i&#93;</td><td><i>Kursiver Text</i></td></tr>\n";
+         $taghelp .= "<tr><td>&#91;url&#93;Link&#91;/url&#93;</td><td><a href=\"#\">Link</a></td></tr>\n";
+         $taghelp .= "<tr><td>&#91;code&#93;Code(\$foo);&#91;/code&#93;</td><td><pre><code>Code(\$foo);</code></pre></td></tr>\n";
+         $taghelp .= "<tr><td>&#91;quote&#93;Quote&#91;/quote&#93;</td><td><div class=\"quote\"><blockquote class=\"inline\">Zitat</blockquote></div></td></tr>\n";
+         $taghelp .= "<tr><td>&#91;ot&#93;Offtopic&#91;/ot&#93;</td><td><span class=\"offtopic\">Offtopic</span></td></tr></table>\n";
          break;
         }
       case 'english':
@@ -300,13 +304,13 @@ if (!isset($_GET["index"]) or $_GET["index"] == "") $_GET["index"] = "0";
          $postcomment_restricitions .= "&#91;quote&#93; : Quote\n";
          $postcomment_restricitions .= "&#91;ot&#93; : Offtopic\n";
          $comment = "Your comment <a class=\"notes\" href=\"javascript:\" id=\"switchTagHelp\">tags</a>";
-         $taghelp = "<h4>Allowed tags:</h4><br>\n<ul>";
-         $taghelp .= "<li>&#91;b&#93; <b>bold text</b></li>\n";
-         $taghelp .= "<li>&#91;i&#93; <i>italic text</i></li>\n";
-         $taghelp .= "<li>&#91;url&#93; <a href=\"#\">Link</a></li>\n";
-         $taghelp .= "<li>&#91;code&#93; <pre class=\"inline\"><code>Code();</code></pre></li>\n";
-         $taghelp .= "<li>&#91;quote&#93; <blockquote class=\"inline\">quote</blockquote></li>\n";
-         $taghelp .= "<li>&#91;ot&#93; <span class=\"offtopic\">Offtopic</span></li></ul>\n";
+         $taghelp = "<h4>Erlaubte Tags:</h4><br>\n<table width=\"100%\">";
+         $taghelp .= "<tr><td width=\"30%\">&#91;b&#93;bold text&#91;/b&#93;</td><td><b>bold text</b></td></tr>\n";
+         $taghelp .= "<tr><td>&#91;i&#93;italic text&#91;/i&#93;</td><td><i>italic text</i></td></tr>\n";
+         $taghelp .= "<tr><td>&#91;url&#93;Link&#91;/url&#93;</td><td><a href=\"#\">Link</a></td></tr>\n";
+         $taghelp .= "<tr><td>&#91;code&#93;Code(\$foo);&#91;/code&#93;</td><td><pre><code>Code(\$foo);</code></pre></td></tr>\n";
+         $taghelp .= "<tr><td>&#91;quote&#93;Quote&#91;/quote&#93;</td><td><div class=\"quote\"><blockquote class=\"inline\">Quote</blockquote></div></td></tr>\n";
+         $taghelp .= "<tr><td>&#91;ot&#93;Offtopic&#91;/ot&#93;</td><td><span class=\"offtopic\">Offtopic</span></td></tr></table>\n";
          break;
         }
       default:
@@ -322,13 +326,13 @@ if (!isset($_GET["index"]) or $_GET["index"] == "") $_GET["index"] = "0";
          $postcomment_restricitions .= "&#91;quote&#93; : Quote\n";
          $postcomment_restricitions .= "&#91;ot&#93; : Offtopic\n";
          $comment = "Your comment <a class=\"notes\" href=\"javascript:\" id=\"switchTagHelp\">tags</a>";
-         $taghelp = "<h4>Allowed tags:</h4><br>\n<ul>";
-         $taghelp .= "<li>&#91;b&#93; <b>bold text</b></li>\n";
-         $taghelp .= "<li>&#91;i&#93; <i>italic text</i></li>\n";
-         $taghelp .= "<li>&#91;url&#93; <a href=\"#\">Link</a><br></li>\n";
-         $taghelp .= "<li>&#91;code&#93; <pre class=\"inline\"><code class=\"inline\">Code();</code></pre><br></li>\n";
-         $taghelp .= "<li>&#91;quote&#93; <blockquote class=\"inline\">quote</blockquote></li>\n";
-         $taghelp .= "<li>&#91;ot&#93; <span class=\"offtopic\">Offtopic</span></li></ul>\n";
+         $taghelp = "<h4>Erlaubte Tags:</h4><br>\n<table width=\"100%\">";
+         $taghelp .= "<tr><td width=\"30%\">&#91;b&#93;bold text&#91;/b&#93;</td><td><b>bold text</b></td></tr>\n";
+         $taghelp .= "<tr><td>&#91;i&#93;italic text&#91;/i&#93;</td><td><i>italic text</i></td></tr>\n";
+         $taghelp .= "<tr><td>&#91;url&#93;Link&#91;/url&#93;</td><td><a href=\"#\">Link</a></td></tr>\n";
+         $taghelp .= "<tr><td>&#91;code&#93;Code(\$foo);&#91;/code&#93;</td><td><pre><code>Code(\$foo);</code></pre></td></tr>\n";
+         $taghelp .= "<tr><td>&#91;quote&#93;Quote&#91;/quote&#93;</td><td><div class=\"quote\"><blockquote class=\"inline\">Quote</blockquote></div></td></tr>\n";
+         $taghelp .= "<tr><td>&#91;ot&#93;Offtopic&#91;/ot&#93;</td><td><span class=\"offtopic\">Offtopic</span></td></tr></table>\n";
          break;
         }
      }
