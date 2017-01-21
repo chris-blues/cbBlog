@@ -15,7 +15,7 @@ error_reporting(E_ALL & ~E_NOTICE);
 //error_reporting(E_ALL);
 ini_set("display_errors", 0);
 ini_set("log_errors", 1);
-ini_set("error_log", "/www/admin/logs/php-error.log");
+ini_set("error_log", "../admin/logs/php-error.log");
 
 date_default_timezone_set('Europe/Berlin');
 
@@ -318,7 +318,7 @@ if (isset($_POST["notificationTo"]) and $_POST["notificationTo"] != "" and $firs
                     $link_unsubscribe_site,
                     $link_verify);
    $message = str_replace($search, $replace, $template);
-   echo "<h2>Verification mail</h2>\n<pre>$header\nTo: $email\nSubject: $subject\nbody:\n$message</pre>\n";
+   //echo "<h2>Verification mail</h2>\n<pre>$header\nTo: $email\nSubject: $subject\nbody:\n$message</pre>\n";
    if (mail($email, $subject, $message, $header))
      {
       // echo "Verification mail sent!<br>\n";

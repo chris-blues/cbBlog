@@ -1,4 +1,4 @@
-# cbBlog
+# cbBlog v0.12
 A simple blog written in php using MySQL for storage.
 
 (c) chris_blues https://musicchris.de
