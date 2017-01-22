@@ -2,9 +2,9 @@
 
 <?php
 error_reporting(E_ALL & ~E_NOTICE);
-ini_set("display_errors", 0);
+ini_set("display_errors", 1);
 ini_set("log_errors", 1);
-ini_set("error_log", "/www/admin/logs/php-error.log");
+ini_set("error_log", "admin/logs/php-error.log");
 
 include("blog/functions.php");
 
@@ -251,18 +251,33 @@ if (!isset($_GET["index"]) or $_GET["index"] == "") $_GET["index"] = "0";
         {
          $counter++;
          echo "<div class=\"comments shadow\" id=\"{$row["time"]}\">\n";
-         echo "<h3 class=\"commentsHead inline\">$counter) ";
+         echo "<h3 class=\"commentsHead inline\"><a href=\"{$_SERVER["PHP_SELF"]}?{$querystring}#{$row["time"]}\">$counter</a>) ";
          if ($row["website"] != "") echo "<a href=\"{$row["website"]}\" target=\"_blank\">{$row["name"]}</a>";
          else echo "{$row["name"]}";
          echo "</h3>\n  <p class=\"notes inline\">" . date("d.M.Y H:i",$row["time"]) . "</p>";
          echo "<p class=\"otswitch inline\">$switchOTon</p>\n";
+
          $search = array("\\r\\n", "\r\n", "\\0", "\\");
          $replace = array("\n", "\n", "0", "");
          $post = str_replace($search, $replace, $row["comment"]);
-         $post = nl2br($post, false);
-         echo "<div class=\"clear\"></div>\n" . bb_parse(str_replace("\r\n", "<br>", $post)) . "<br>\n";
+         $post = htmlspecialchars($post, ENT_QUOTES | ENT_HTML5, "UTF-8", false);
+         echo "<div class=\"clear\"></div>\n" . bb_parse(nl2br($post, false)) . "<br>\n";
          echo "</div>\n";
+
+
+
+
+
+
+
+//          $search = array("\\r\\n", "\r\n", "\\0", "\\");
+//          $replace = array("\n", "\n", "0", "");
+//          $post = str_replace($search, $replace, $row["comment"]);
+//          $post = nl2br($post, false);
+//          echo "<div class=\"clear\"></div>\n" . bb_parse(str_replace("\r\n", "<br>", $post)) . "<br>\n";
+//          echo "</div>\n";
         }
+      unset($post);
      }
    mysqli_free_result($result);
 
@@ -272,101 +287,162 @@ if (!isset($_GET["index"]) or $_GET["index"] == "") $_GET["index"] = "0";
       case 'deutsch':
         {
          $notify = "E-Mail-Adresse";
+         $previewString = "Vorschau";
          $emailusage = "um zu weiteren Kommentaren benachrichtigt zu werden";
-         $postcomment_restricitions = "HTML-Tags werden gelöscht.\n";
-         $postcomment_restricitions .= "Folgende BBCodes sind verfügbar:\n";
+         $postcomment_restricitions = "Folgende BBCodes sind verfügbar:\n";
          $postcomment_restricitions .= "&#91;b&#93; : fetter Text\n";
+         $postcomment_restricitions .= "&#91;u&#93; : unterstrichener Text\n";
+         $postcomment_restricitions .= "&#91;s&#93; : durchgestrichener Text\n";
          $postcomment_restricitions .= "&#91;i&#93; : kursiver Text\n";
          $postcomment_restricitions .= "&#91;url&#93; : Link\n";
          $postcomment_restricitions .= "&#91;code&#93; : Programmcode\n";
+         $postcomment_restricitions .= "&#91;tt&#93; : Inline-Programmcode\n";
          $postcomment_restricitions .= "&#91;quote&#93; : Zitat\n";
          $postcomment_restricitions .= "&#91;ot&#93; : Offtopic\n";
-         $comment = "Ihr Kommentar <a class=\"notes\" href=\"javascript:\" id=\"switchTagHelp\">Tags</a>";
+         $postcomment_restricitions .= "&#91;done&#93; : &#10004;\n";
+         $comment = "Ihr Kommentar <button type=\"button\" class=\"notes\" id=\"switchTagHelp\">Hinweise für Formatierung</button>";
          $taghelp = "<h4>Erlaubte Tags:</h4><br>\n<table width=\"100%\">";
          $taghelp .= "<tr><td width=\"30%\">&#91;b&#93;Fetter Text&#91;/b&#93;</td><td><b>Fetter Text</b></td></tr>\n";
+         $taghelp .= "<tr><td>&#91;u&#93;unterstrichener Text&#91;/u&#93;</td><td><u>unterstrichener Text</u></td></tr>\n";
+         $taghelp .= "<tr><td>&#91;s&#93;durchgestrichener Text&#91;/s&#93;</td><td><s>durchgestrichener Text</s></td></tr>\n";
          $taghelp .= "<tr><td>&#91;i&#93;Kursiver Text&#91;/i&#93;</td><td><i>Kursiver Text</i></td></tr>\n";
          $taghelp .= "<tr><td>&#91;url&#93;Link&#91;/url&#93;</td><td><a href=\"#\">Link</a></td></tr>\n";
          $taghelp .= "<tr><td>&#91;code&#93;Code(\$foo);&#91;/code&#93;</td><td><pre><code>Code(\$foo);</code></pre></td></tr>\n";
+         $taghelp .= "<tr><td>Text &#91;tt&#93;Code(\$foo);&#91;/code&#93; etc</td><td>Text <code>Code(\$foo);</code> etc</td></tr>\n";
          $taghelp .= "<tr><td>&#91;quote&#93;Quote&#91;/quote&#93;</td><td><div class=\"quote\"><blockquote class=\"inline\">Zitat</blockquote></div></td></tr>\n";
-         $taghelp .= "<tr><td>&#91;ot&#93;Offtopic&#91;/ot&#93;</td><td><span class=\"offtopic\">Offtopic</span></td></tr></table>\n";
+         $taghelp .= "<tr><td>&#91;ot&#93;Offtopic&#91;/ot&#93;</td><td><span class=\"offtopic\">Offtopic</span></td></tr>\n";
+         $taghelp .= "<tr><td>&#91;done&#93;</td><td><span class=\"checkmark\">&#10004;</span></td></tr></table>\n";
+         $back = "Zurück";
+         $send = "Abschicken";
          break;
         }
       case 'english':
         {
          $notify = "Email-address";
+         $previewString = "Preview";
          $emailusage = "to be notified of new comments";
-         $postcomment_restricitions = "HTMLtags will be removed.\n";
-         $postcomment_restricitions .= "Folgende BBCodes sind verfügbar:\n";
+         $postcomment_restricitions = "These BBCodes are available:\n";
          $postcomment_restricitions .= "&#91;b&#93; : bold text\n";
+         $postcomment_restricitions .= "&#91;u&#93; : underlined text\n";
+         $postcomment_restricitions .= "&#91;s&#93; : stroke text\n";
          $postcomment_restricitions .= "&#91;i&#93; : italic text\n";
          $postcomment_restricitions .= "&#91;url&#93; : Link\n";
          $postcomment_restricitions .= "&#91;code&#93; : Program-code\n";
+         $postcomment_restricitions .= "&#91;tt&#93; : Inline Program-code\n";
          $postcomment_restricitions .= "&#91;quote&#93; : Quote\n";
          $postcomment_restricitions .= "&#91;ot&#93; : Offtopic\n";
-         $comment = "Your comment <a class=\"notes\" href=\"javascript:\" id=\"switchTagHelp\">tags</a>";
-         $taghelp = "<h4>Erlaubte Tags:</h4><br>\n<table width=\"100%\">";
+         $postcomment_restricitions .= "&#91;done&#93; : &#10004;\n";
+         $comment = "Your comment <button type=\"button\" class=\"notes\" id=\"switchTagHelp\">Notes for formatting</button>";
+         $taghelp = "<h4>Allowed Tags:</h4><br>\n<table width=\"100%\">";
          $taghelp .= "<tr><td width=\"30%\">&#91;b&#93;bold text&#91;/b&#93;</td><td><b>bold text</b></td></tr>\n";
+         $taghelp .= "<tr><td>&#91;u&#93;underlined text&#91;/u&#93;</td><td><u>underlined text</u></td></tr>\n";
+         $taghelp .= "<tr><td>&#91;s&#93;stroke text&#91;/s&#93;</td><td><s>stroke text</s></td></tr>\n";
          $taghelp .= "<tr><td>&#91;i&#93;italic text&#91;/i&#93;</td><td><i>italic text</i></td></tr>\n";
          $taghelp .= "<tr><td>&#91;url&#93;Link&#91;/url&#93;</td><td><a href=\"#\">Link</a></td></tr>\n";
          $taghelp .= "<tr><td>&#91;code&#93;Code(\$foo);&#91;/code&#93;</td><td><pre><code>Code(\$foo);</code></pre></td></tr>\n";
+         $taghelp .= "<tr><td>Text &#91;tt&#93;Code(\$foo);&#91;/tt&#93; etc</td><td>Text <code>Code(\$foo);</code> etc</td></tr>\n";
          $taghelp .= "<tr><td>&#91;quote&#93;Quote&#91;/quote&#93;</td><td><div class=\"quote\"><blockquote class=\"inline\">Quote</blockquote></div></td></tr>\n";
-         $taghelp .= "<tr><td>&#91;ot&#93;Offtopic&#91;/ot&#93;</td><td><span class=\"offtopic\">Offtopic</span></td></tr></table>\n";
+         $taghelp .= "<tr><td>&#91;ot&#93;Offtopic&#91;/ot&#93;</td><td><span class=\"offtopic\">Offtopic</span></td></tr>\n";
+         $taghelp .= "<tr><td>&#91;done&#93;</td><td><span class=\"checkmark\">&#10004;</span></td></tr></table>\n";
+         $back = "Back";
+         $send = "Send";
          break;
         }
       default:
         {
          $notify = "Email-address";
+         $previewString = "Preview";
          $emailusage = "to be notified of new comments";
-         $postcomment_restricitions = "HTMLtags will be removed.\n";
-         $postcomment_restricitions .= "Folgende BBCodes sind verfügbar:\n";
+         $postcomment_restricitions = "These BBCodes are available:\n";
          $postcomment_restricitions .= "&#91;b&#93; : bold text\n";
+         $postcomment_restricitions .= "&#91;u&#93; : underlined text\n";
+         $postcomment_restricitions .= "&#91;s&#93; : stroke text\n";
          $postcomment_restricitions .= "&#91;i&#93; : italic text\n";
          $postcomment_restricitions .= "&#91;url&#93; : Link\n";
          $postcomment_restricitions .= "&#91;code&#93; : Program-code\n";
+         $postcomment_restricitions .= "&#91;tt&#93; : Inline Program-code\n";
          $postcomment_restricitions .= "&#91;quote&#93; : Quote\n";
          $postcomment_restricitions .= "&#91;ot&#93; : Offtopic\n";
-         $comment = "Your comment <a class=\"notes\" href=\"javascript:\" id=\"switchTagHelp\">tags</a>";
-         $taghelp = "<h4>Erlaubte Tags:</h4><br>\n<table width=\"100%\">";
+         $postcomment_restricitions .= "&#91;done&#93; : &#10004;\n";
+         $comment = "Your comment <button type=\"button\" class=\"notes\" id=\"switchTagHelp\">Notes for formatting</button>";
+         $taghelp = "<h4>Allowed Tags:</h4><br>\n<table width=\"100%\">";
          $taghelp .= "<tr><td width=\"30%\">&#91;b&#93;bold text&#91;/b&#93;</td><td><b>bold text</b></td></tr>\n";
+         $taghelp .= "<tr><td>&#91;u&#93;underlined text&#91;/u&#93;</td><td><u>underlined text</u></td></tr>\n";
+         $taghelp .= "<tr><td>&#91;s&#93;stroke text&#91;/s&#93;</td><td><s>stroke text</s></td></tr>\n";
          $taghelp .= "<tr><td>&#91;i&#93;italic text&#91;/i&#93;</td><td><i>italic text</i></td></tr>\n";
          $taghelp .= "<tr><td>&#91;url&#93;Link&#91;/url&#93;</td><td><a href=\"#\">Link</a></td></tr>\n";
          $taghelp .= "<tr><td>&#91;code&#93;Code(\$foo);&#91;/code&#93;</td><td><pre><code>Code(\$foo);</code></pre></td></tr>\n";
+         $taghelp .= "<tr><td>Text &#91;tt&#93;Code(\$foo);&#91;/tt&#93; etc</td><td>Text <code>Code(\$foo);</code> etc</td></tr>\n";
          $taghelp .= "<tr><td>&#91;quote&#93;Quote&#91;/quote&#93;</td><td><div class=\"quote\"><blockquote class=\"inline\">Quote</blockquote></div></td></tr>\n";
-         $taghelp .= "<tr><td>&#91;ot&#93;Offtopic&#91;/ot&#93;</td><td><span class=\"offtopic\">Offtopic</span></td></tr></table>\n";
+         $taghelp .= "<tr><td>&#91;ot&#93;Offtopic&#91;/ot&#93;</td><td><span class=\"offtopic\">Offtopic</span></td></tr>\n";
+         $taghelp .= "<tr><td>&#91;done&#93;</td><td><span class=\"checkmark\">&#10004;</span></td></tr></table>\n";
+         $back = "Back";
+         $send = "Send";
          break;
         }
      }
    //display post form
-   echo "<div class=\"shadow comments comment postform\" name=\"comment\">\n";
-   echo "  <form action=\"blog/postcomment.php\" method=\"post\" accept-charset=\"UTF-8\">\n";
-   echo "  Name: <span class=\"notes\">(otional)</span><br>\n";
-   echo "  <input type=\"text\" name=\"name\" id=\"post_name\" value=\"\" placeholder=\"Anonymous\"><br>\n";
-   echo "  $notify: <span class=\"notes\">(otional, $emailusage)</span><br>\n";
-   echo "  <input type=\"text\" name=\"notificationTo\" id=\"post_notificationTo\" value=\"\" placeholder=\"you@inter.net\"><br>\n";
-   echo "  Website: <span class=\"notes\">(otional)</span><br>\n";
-   echo "  <input type=\"text\" name=\"website\" id=\"post_website\" placeholder=\"www.example.tld\"><br>\n";
-   echo "  <p class=\"notes\" id=\"email\">$leaveempty<input type=\"text\" name=\"email\" id=\"post_email\"></p>\n";
-   echo "  $comment<br>\n<div class=\"hidden\" id=\"tagHelp\">$taghelp</div>\n";
-   echo "  <textarea name=\"text\" id=\"post_text\" title=\"$postcomment_restricitions\"></textarea><br>\n";
-   echo "  <input type=\"hidden\" name=\"affiliation\" value=\"{$_GET["index"]}\">\n";
-   echo "  <input type=\"hidden\" name=\"kartid\" value=\"$kartid\">\n";
-   echo "  <input type=\"hidden\" name=\"lang\" value=\"$lang\">\n";
-
-   echo "  <div class=\"smileywrapper\">\n";
-   echo "    <h4 id=\"smileyButton\">Smileys</h4>\n";
-   echo "    <div class=\"smileys\" id=\"smileys\">\n";
-   for ($counter = 128512; $counter <= 128576; $counter++)
+   if (isset($_GET["index"]) and $_GET["index"] != "" and $_GET["index"] != "0")
      {
-      if ($counter != 128548 and $counter != 128556)
+      if (isset($_POST["name"]) and $_POST["name"] != "") $previewName = htmlspecialchars_decode($_POST["name"], ENT_QUOTES | ENT_HTML5); else $previewName = "";
+      if (isset($_POST["notificationTo"]) and $_POST["notificationTo"] != "") $previewNotificationTo = htmlspecialchars_decode($_POST["notificationTo"], ENT_QUOTES | ENT_HTML5); else $previewNotificationTo = "";
+      if (isset($_POST["website"]) and $_POST["website"] != "") $previewWebsite = htmlspecialchars_decode($_POST["website"], ENT_QUOTES | ENT_HTML5); else $previewWebsite = "";
+      if (isset($_POST["text"]) and $_POST["text"] != "") $previewText = htmlspecialchars_decode($_POST["text"], ENT_QUOTES | ENT_HTML5); else $previewText = "";
+
+      echo "<div class=\"shadow comments comment postform\" name=\"comment\" id=\"commentForm\">\n";
+
+      if (isset($_POST["previewRequested"]) and $_POST["previewRequested"] == "1")
         {
-         echo " <span class=\"smiley\" data-id=\"$counter\">&#$counter;</span>";
+         $time = time();
+         echo "<div class=\"comments preview\" id=\"preview\">\n";
+         echo "<h3 class=\"commentsHead inline\">$previewString) ";
+         if ($previewWebsite != "") echo "<a href=\"$previewWebsite\" target=\"_blank\">$previewName</a>";
+         else echo "$previewName";
+         echo "</h3>\n  <p class=\"notes inline\">" . date("d.M.Y H:i", $time) . "</p>";
+         echo "<p class=\"otswitch inline\">$switchOTon</p>\n";
+
+//          $search = array("\\\\", "\\r\\n", "\r\n", "\\0", "\\n");
+//          $replace = array("\\", "\n", "\n", "0", "\n");
+
+//          $search = array("\r\n", "\r", "\\n");
+//          $replace = array("\n", "\n", "\n");
+//          $post = str_replace($search, $replace, $previewText);
+         $post = htmlspecialchars(stripcslashes($previewText), ENT_QUOTES | ENT_HTML5, "UTF-8", false);
+         echo "<div class=\"clear\"></div>\n" . bb_parse(nl2br($post, false)) . "<br>\n";
+         echo "</div>\n<hr>";
         }
+
+      echo "  <form action=\"blog/postcomment.php\" method=\"post\" accept-charset=\"UTF-8\">\n";
+      echo "  Name: <span class=\"notes\">(otional)</span><br>\n";
+      echo "  <input type=\"text\" name=\"name\" id=\"post_name\" value=\"$previewName\" placeholder=\"Anonymous\"><br>\n";
+      echo "  <p class=\"notes\" id=\"email\">$leaveempty<input type=\"email\" name=\"email\" id=\"post_email\"></p>\n";
+      echo "  $notify: <span class=\"notes\">(otional, $emailusage)</span><br>\n";
+      echo "  <input type=\"email\" name=\"notificationTo\" id=\"post_notificationTo\" value=\"$previewNotificationTo\" placeholder=\"you@inter.net\"><br>\n";
+      echo "  Website: <span class=\"notes\">(otional)</span><br>\n";
+      echo "  <input type=\"url\" name=\"website\" id=\"post_website\" value=\"$previewWebsite\" placeholder=\"www.example.tld\"><br>\n";
+      echo "  $comment<br>\n<div class=\"hidden\" id=\"tagHelp\">$taghelp</div>\n";
+      echo "  <textarea name=\"text\" id=\"post_text\" title=\"$postcomment_restricitions\">$post</textarea><br>\n";
+      echo "  <input type=\"hidden\" name=\"affiliation\" value=\"{$_GET["index"]}\">\n";
+      echo "  <input type=\"hidden\" name=\"kartid\" value=\"$kartid\">\n";
+      echo "  <input type=\"hidden\" name=\"lang\" value=\"$lang\">\n";
+      echo "  <input type=\"hidden\" name=\"preview\" value=\"0\" id=\"switchPreview\">\n";
+
+      echo "  <div class=\"smileywrapper\">\n";
+      echo "    <button type=\"button\" id=\"smileyButton\">Smileys</button>\n";
+      echo "    <div class=\"smileys\" id=\"smileys\">\n";
+      for ($counter = 128512; $counter <= 128576; $counter++)
+        {
+         if ($counter != 128548 and $counter != 128556)
+           {
+            echo " <span class=\"smiley\" data-id=\"$counter\">&#$counter;</span>";
+           }
+        }
+      echo "    </div>\n  </div>\n";
      }
-   echo "    </div>\n  </div>\n";
 ?>
 
 <?php
-   echo "  <button type=\"reset\">  &lt;&lt;&lt; $back  </button><button type=\"submit\">         OK &gt;&gt;&gt;        </button><br>\n";
+   echo "  <button type=\"reset\"> &lt;&lt;&lt; $back </button> <button type=\"button\" id=\"buttonPreview\"> $previewString </button> <button type=\"submit\"> $send &gt;&gt;&gt; </button><br>\n";
    echo "  </form>\n";
    echo "</div>\n</div>\n";
 

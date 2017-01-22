@@ -1,23 +1,31 @@
 <!DOCTYPE html>
-<?php $time = time(); ?>
+<?php
+error_reporting(E_ALL & ~E_NOTICE);
+//error_reporting(E_ALL);
+ini_set("display_errors", 1);
+ini_set("log_errors", 1);
+ini_set("error_log", "../admin/logs/php-error.log");
+
+date_default_timezone_set('Europe/Berlin');
+
+$time = time();
+if (isset($_POST["preview"]) and $_POST["preview"] == "1") $preview = true;
+else $preview = false;
+if (!isset($link)) $link = "";
+?>
 <html>
 <head>
 <meta charset="utf-8">
-<meta http-equiv="refresh" content="0;<?php echo "../index.php?page=blog&index={$_POST["affiliation"]}{$link}#$time"; ?>">
+<?php if (!$preview) { ?><meta http-equiv="refresh" content="0;<?php echo "../index.php?page=blog&index={$_POST["affiliation"]}{$link}#$time"; ?>"><?php }
+else { ?><script type="text/javascript" src="preview.js"></script><?php } ?>
 </head>
 <body>
 
 <?php
 
-echo "<p><a href=\"../index.php?page=blog&index={$_POST["affiliation"]}{$link}#$time\">Zurück zum Blog</a></p>\n";
+if (!$preview) echo "<p><a href=\"../index.php?page=blog&index={$_POST["affiliation"]}{$link}#$time\">Zurück zum Blog</a></p>\n";
 
-error_reporting(E_ALL & ~E_NOTICE);
-//error_reporting(E_ALL);
-ini_set("display_errors", 0);
-ini_set("log_errors", 1);
-ini_set("error_log", "../admin/logs/php-error.log");
-
-date_default_timezone_set('Europe/Berlin');
+//echo "<pre>"; print_r($_POST); echo "</pre>\n";
 
 include_once("../phpinclude/config.php");
 require_once("../phpinclude/dbconnect.php");
@@ -99,25 +107,6 @@ else
 //   echo "Data looks good!<br>\n";
   }
 
-if ($blog_emailnotification == "TRUE")
-  {
-   date_default_timezone_set('Europe/Berlin');
-   $maildate = date(DATE_RFC2822);
-   $header = "Content-Type: text/plain; charset = \"UTF-8\";\r\n";
-   $header .= "Content-Transfer-Encoding: 8bit\r\n";
-   $header .= "From: notify@{$_SERVER["SERVER_NAME"]}\r\n";
-   $header .= "Date: $maildate\r\n";
-   $header .= "\r\n";
-   $subject = "Comment by {$_POST["name"]} $time";
-   $mail = "Es gibt einen neuen Kommentar im Blog!\n";
-   $mail .= htmlspecialchars_decode("http://{$_SERVER["SERVER_NAME"]}/index.php?page=blog&amp;lang={$_POST["lang"]}&amp;index={$_POST["affiliation"]}#$time");
-   $mail .= "\n\n\n{$_POST["name"]} ({$_POST["website"]}) schrieb:\n\n";
-   $mail .= wordwrap($_POST["text"], 70);
-   if (!mail($email_blogadmin, $subject, $mail, $header))
-     {
-      //echo "<h3>ERROR!</h3>Failed to send mail to admin!<br>\n";
-     }
-  }
 
 
 $name = $_POST["name"];
@@ -128,7 +117,7 @@ $email = $_POST["notificationTo"];
 
 
 // Check, if this email is already registered
-if ($email != "")
+if ($email != "" and !$preview)
   {
    $queryEmail = mysqli_real_escape_string($concom, $email);
    $queryAffiliation = mysqli_real_escape_string($concom, $_POST["affiliation"]);
@@ -149,14 +138,23 @@ if ($email != "")
 
 
 
+//$text = htmlentities($_POST["text"], ENT_QUOTES | ENT_HTML5, "UTF-8");
+// $search = array("<", ">", "\"", "'", "\r\n", "\r", "\\");
+// $replace = array("&lt;", "&gt;", "&quot;", "&#39;", "\n", "\n", "&#92;");
+// $text = str_replace($search, $replace, $_POST["text"]);
 
-$search = array("<", ">", "\"", "'", "\r\n", "\r", "\\");
-$replace = array("&lt;", "&gt;", "&quot;", "&#39;", "\n", "\n", "&#92;");
+
+$search = array("\r\n", "\r");
+$replace = array("\n", "\n");
 $text = str_replace($search, $replace, $_POST["text"]);
+
+
+
+
 
 // source: https://stackoverflow.com/questions/16685416/split-full-email-addresses-into-name-and-email
 $sPattern = '/([\w\s\'\"]+[\s]+)?(<)?(([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4}))?(>)?/';
-if (!$firstPost)
+if (!$firstPost and !$preview)
   {
    preg_match($sPattern, $email, $aMatch);
    // $aMatch[0] = name - if empty it becomes $aMatch[3]
@@ -176,13 +174,55 @@ $queryemail = mysqli_real_escape_string($concom, $email);
 $querywebsite = mysqli_real_escape_string($concom, $website);
 $querytext = mysqli_real_escape_string($concom, $text);
 
-$query = "INSERT INTO `musicchris_de`.`blog-comments` (`affiliation`,`answerTo`, `time`, `name`, `email`, `website`, `comment`) VALUES ('{$queryAffiliation}', '{$queryAnswerTo}', '{$queryTime}', '{$queryname}', '{$queryemail}', '{$querywebsite}', '{$querytext}');";
-
-if ($result = mysqli_query($concom, $query))
+if (!$preview)
   {
-   mysqli_free_result($result);
+   $query = "INSERT INTO `musicchris_de`.`blog-comments` (`affiliation`,`answerTo`, `time`, `name`, `email`, `website`, `comment`) VALUES ('{$queryAffiliation}', '{$queryAnswerTo}', '{$queryTime}', '{$queryname}', '{$queryemail}', '{$querywebsite}', '{$querytext}');";
+
+   if ($result = mysqli_query($concom, $query))
+     {
+      //mysqli_free_result($result);
+     }
+   else die(mysqli_error($concom));
   }
-else die(mysqli_error($concom));
+
+if ($preview)
+  { ?>
+   <form action="../index.php?page=blog&amp;index=<?php echo $_POST["affiliation"] . $link . "#commentForm"; ?>" accept-charset="UTF-8" method="POST" id="previewForwarder">
+     <input type="hidden" name="name" value="<?php echo htmlspecialchars($queryname, ENT_QUOTES | ENT_HTML5, "UTF-8"); ?>">
+     <input type="hidden" name="notificationTo" value="<?php echo htmlspecialchars($queryemail, ENT_QUOTES | ENT_HTML5, "UTF-8"); ?>">
+     <input type="hidden" name="website" value="<?php echo htmlspecialchars($querywebsite, ENT_QUOTES | ENT_HTML5, "UTF-8"); ?>">
+     <input type="hidden" name="answerTo" value="<?php echo htmlspecialchars($queryAnswerTo, ENT_QUOTES | ENT_HTML5, "UTF-8"); ?>">
+     <input type="hidden" name="text" value="<?php echo htmlspecialchars($querytext, ENT_QUOTES | ENT_HTML5, "UTF-8"); ?>">
+     <input type="hidden" name="previewRequested" value="1">
+   </form>
+  </body>
+</html><?php
+   exit;
+  }
+
+
+// send email to admin!
+if ($blog_emailnotification == "TRUE" and !$preview)
+  {
+   date_default_timezone_set('Europe/Berlin');
+   $maildate = date(DATE_RFC2822);
+   $header = "Content-Type: text/plain; charset = \"UTF-8\";\r\n";
+   $header .= "Content-Transfer-Encoding: 8bit\r\n";
+   $header .= "From: notify@{$_SERVER["SERVER_NAME"]}\r\n";
+   $header .= "Date: $maildate\r\n";
+   $header .= "\r\n";
+   $subject = "Comment by {$_POST["name"]} <{$_POST["notificationTo"]}> $time";
+   $mail = "Es gibt einen neuen Kommentar im Blog!\r\n";
+   $mail .= "\r\n";
+   $mail .= htmlspecialchars_decode("http://{$_SERVER["SERVER_NAME"]}/index.php?page=blog&amp;lang={$_POST["lang"]}&amp;index={$_POST["affiliation"]}#$time");
+   $mail .= "\r\n\r\n\r\nHash: $email\r\n\r\n{$_POST["name"]} <{$_POST["notificationTo"]}> ({$_POST["website"]}) schrieb:\n\n";
+   $mail .= wordwrap($_POST["text"], 70);
+   if (!mail($email_blogadmin, $subject, $mail, $header))
+     {
+      //echo "<h3>ERROR!</h3>Failed to send mail to admin!<br>\n";
+     }
+  }
+
 
 
 // #################################################
@@ -192,13 +232,13 @@ else die(mysqli_error($concom));
 // Get concerning blog-entry for some data (header and such)
 $queryAffiliation = mysqli_real_escape_string($concom, $_POST["affiliation"]);
 $query_blog = "select * from `blog` WHERE (`blog`.`index` = '$queryAffiliation') ";
-if ($result = mysqli_query($concom, $query_blog))
+if ($result = mysqli_query($concom, $query_blog) and !$preview)
   {
    while ($row = $result->fetch_assoc())
      {
       $blog_header = $row["head"];
      }
-   mysqli_free_result($result);
+   //mysqli_free_result($result);
   }
 
 
@@ -208,7 +248,7 @@ $template = file_get_contents("template_notification.html");
 
 $query_notifications = "SELECT * FROM `blog-comments` WHERE `affiliation` = '$queryAffiliation' AND `email` > '' ORDER BY `time` ASC ";
 
-if ($result = mysqli_query($concom, $query_notifications))
+if ($result = mysqli_query($concom, $query_notifications) and !$preview)
   {
    while ($row = $result->fetch_assoc())
      {
@@ -268,6 +308,11 @@ if ($result = mysqli_query($concom, $query_notifications))
                        $link_unsubscribe_site);
       $message = str_replace($search, $replace, $template);
       if (mail($to, $subject, $message, $header)) $sentmail["{$row["email"]}"] = true;
+      else
+        {
+         $mailbody = str_replace("\r\n", "\n", $header . "\r\nSubject: " . $subject . "\r\nTo: " . $email . "\r\n\r\n" . $message);
+         logMailError($row["name"], $row["email"], $_POST["affiliation"], $email, $mailbody);
+        }
      }
    mysqli_free_result($result);
   }
@@ -276,7 +321,7 @@ if ($result = mysqli_query($concom, $query_notifications))
 // ################################################
 // ##  send verification email to new subscriber ##
 // ################################################
-if (isset($_POST["notificationTo"]) and $_POST["notificationTo"] != "" and $firstPost == true)
+if (isset($_POST["notificationTo"]) and $_POST["notificationTo"] != "" and $firstPost and !$preview)
   {
    //echo "<p>Detected new subscriber!</p>\n";
    $email = $_POST["notificationTo"];
@@ -323,7 +368,11 @@ if (isset($_POST["notificationTo"]) and $_POST["notificationTo"] != "" and $firs
      {
       // echo "Verification mail sent!<br>\n";
      }
-   //else echo "Verification mail was not sent!<br>\n";
+   else 
+     {
+      $mailbody = str_replace("\r\n", "\n", $header . "\r\nSubject: " . $subject . "\r\nTo: " . $email . "\r\n\r\n" . $message);
+      logMailError($name, $email, $_POST["affiliation"], $hash, $mailbody);
+     }
 
    // update DB entry
    $queryHash = mysqli_real_escape_string($concom, $hash);

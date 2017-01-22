@@ -2,7 +2,7 @@
 
 .offtopic {
   display: none;
-  color: gray;
+  color: #333;
 }
 
 .otswitch {
@@ -51,6 +51,10 @@
 
 .max900 {
   max-width: 900px;
+}
+
+.pics.half-width {
+  max-width: 50%;
 }
 
 .command {
@@ -183,14 +187,6 @@ blockquote {
   padding: 0px;
 }
 
-#blog .quote {
-  border-radius: 6px;
-  background-color: #DDDDAA;
-  background-image: url("/pics/quote.png");
-  background-repeat: no-repeat;
-  min-height: 70px;
-}
-
 #blog .opinion {
   border-radius: 6px;
   background-color: #D1DED2;
@@ -203,11 +199,11 @@ blockquote {
   width: 99.5%;
 }
 blockquote {
-  margin: 0px 0px 0px 40px;
+  margin: 0px;
  }
 #blog .quote {
   margin: 0px 20px;
-  padding: 20px 20px 20px 90px;
+  padding: 20px 20px 20px 130px;
   background-position: left top;
  }
 #blog .opinion {
@@ -248,6 +244,23 @@ blockquote {
  /* max-width: 500px; */
   margin-left: auto;
   margin-right: auto;
+}
+
+#blog .quote, .quote.comments {
+  border: 1px solid black;
+  border-radius: 6px;
+  background-color: #DDDDAA;
+  background-image: url("/pics/quote.png");
+  background-repeat: no-repeat;
+  min-height: 70px;
+}
+
+.quote.comments {
+  padding: 20px 20px 20px 90px;
+}
+
+.quote.comments .quote.comments {
+  margin: 0px !important;
 }
 
 #post_name, #post_website, #post_notificationTo {
@@ -331,4 +344,8 @@ ul#checkipNotes {
 
 ul#checkipNotes li {
   margin-bottom: 25px;
+}
+
+.checkmark {
+  color: green;
 }
