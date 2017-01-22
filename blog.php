@@ -387,7 +387,8 @@ if (!isset($_GET["index"]) or $_GET["index"] == "") $_GET["index"] = "0";
       if (isset($_POST["name"]) and $_POST["name"] != "") $previewName = htmlspecialchars_decode($_POST["name"], ENT_QUOTES | ENT_HTML5); else $previewName = "";
       if (isset($_POST["notificationTo"]) and $_POST["notificationTo"] != "") $previewNotificationTo = htmlspecialchars_decode($_POST["notificationTo"], ENT_QUOTES | ENT_HTML5); else $previewNotificationTo = "";
       if (isset($_POST["website"]) and $_POST["website"] != "") $previewWebsite = htmlspecialchars_decode($_POST["website"], ENT_QUOTES | ENT_HTML5); else $previewWebsite = "";
-      if (isset($_POST["text"]) and $_POST["text"] != "") $previewText = htmlspecialchars_decode($_POST["text"], ENT_QUOTES | ENT_HTML5); else $previewText = "";
+//       if (isset($_POST["text"]) and $_POST["text"] != "") $previewText = htmlspecialchars_decode($_POST["text"], ENT_QUOTES | ENT_HTML5); else $previewText = "";
+      if (isset($_POST["text"]) and $_POST["text"] != "") $previewText = $_POST["text"]; else $previewText = "";
 
       echo "<div class=\"shadow comments comment postform\" name=\"comment\" id=\"commentForm\">\n";
 
