@@ -21,36 +21,36 @@ function convertnumbers($number, $lang)
       $search = array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
       $replace = $words;
      }
-   $word = str_replace($search, $replace, $number);
+   if ($number < 13) $word = str_replace($search, $replace, $number);
    return $word;
   }
 
-// https://secure.php.net/manual/en/function.bbcode-create.php#93349
-function bb_parse($string) {
-        $tags = 'b|u|s|i|quote|url|code|tt|ot|done';
-        while (preg_match_all('`\[('.$tags.')=?(.*?)\](.+?)\[/\1\]`s', $string, $matches)) foreach ($matches[0] as $key => $match) {
-            list($tag, $param, $innertext) = array($matches[1][$key], $matches[2][$key], $matches[3][$key]);
-            switch ($tag) {
-                case 'b': $replacement = "<b>$innertext</b>"; break;
-                case 'u': $replacement = "<u>$innertext</u>"; break;
-                case 's': $replacement = "<s>$innertext</s>"; break;
-                case 'i': $replacement = "<i>$innertext</i>"; break;
-                case 'quote': $replacement = "<div class=\"quote comments\"><blockquote>$innertext</blockquote></div>"; break;
-                case 'url': $replacement = '<a href="' . ($param? $param : $innertext) . "\">$innertext</a>"; break;
-                case 'code': $replacement = "<pre><code>$innertext</code></pre>"; break;
-                case 'tt': $replacement = "<code>$innertext</code>"; break;
-                case 'ot': $replacement = "<span class=\"offtopic\">$innertext</span>"; break;
-            }
-         $string = str_replace($match, $replacement, $string);
-        }
-     // additional "custom" tags
-     $search = array("[done]");
-     $replace = array("<span class=\"checkmark\">&#10004;</span>");
-     $string = str_replace($search, $replace, $string);
 
-     return $string;
-    }
+function bb_parse($string) {
 // https://secure.php.net/manual/en/function.bbcode-create.php#93349
+  $tags = 'b|u|s|i|quote|url|code|tt|ot|done';
+  while (preg_match_all('`\[('.$tags.')=?(.*?)\](.+?)\[/\1\]`s', $string, $matches)) foreach ($matches[0] as $key => $match) {
+    list($tag, $param, $innertext) = array($matches[1][$key], $matches[2][$key], $matches[3][$key]);
+    switch ($tag) {
+      case 'b': $replacement = "<b>$innertext</b>"; break;
+      case 'u': $replacement = "<u>$innertext</u>"; break;
+      case 's': $replacement = "<s>$innertext</s>"; break;
+      case 'i': $replacement = "<i>$innertext</i>"; break;
+      case 'quote': $replacement = "<div class=\"quote comments\"><blockquote>$innertext</blockquote></div>"; break;
+      case 'url': $replacement = '<a href="' . ($param? $param : $innertext) . "\">$innertext</a>"; break;
+      case 'code': $replacement = "<pre><code>$innertext</code></pre>"; break;
+      case 'tt': $replacement = "<code>$innertext</code>"; break;
+      case 'ot': $replacement = "<span class=\"offtopic\">$innertext</span>"; break;
+     }
+    $string = str_replace($match, $replacement, $string);
+   }
+// additional "custom" tags
+  $search = array("[done]");
+  $replace = array("<span class=\"checkmark\">&#10004;</span>");
+  $string = str_replace($search, $replace, $string);
+
+  return $string;
+ }
 
 function logMailError($name, $email, $index, $hash, $mailbody)
   {
@@ -61,4 +61,13 @@ function logMailError($name, $email, $index, $hash, $mailbody)
    fclose($handle);
   }
 
+function logErrors($error)
+  {
+   foreach ($error as $key => $value)
+     {
+      $handle = fopen("logs/error.log","a");
+        fwrite ($handle, date("Y-m-d H:i:s") . " - $key\n");
+      fclose ($handle);
+     }
+  }
 ?>

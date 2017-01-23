@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function ()
    document.getElementById("post_notificationTo").addEventListener("blur", function() { saveLocalStorage("email", document.getElementById("post_notificationTo").value); });
    document.getElementById("post_website").addEventListener("blur", function() { saveLocalStorage("website", document.getElementById("post_website").value); });
    document.getElementById("buttonPreview").addEventListener("click", function() { document.getElementById("switchPreview").value = "1"; this.form.submit(); });
+   document.getElementById("buttonSend").addEventListener("click", function() { document.getElementById("switchPreview").value = "0"; this.form.submit(); });
   });
 
 

@@ -6,12 +6,26 @@ ini_set("display_errors", 1);
 ini_set("log_errors", 1);
 ini_set("error_log", "../admin/logs/php-error.log");
 
+$debug = "FALSE";
+//$debug = "TRUE";
+
 date_default_timezone_set('Europe/Berlin');
 
 $time = time();
 if (isset($_POST["preview"]) and $_POST["preview"] == "1") $preview = true;
 else $preview = false;
-if (!isset($link)) $link = "";
+
+// These are useful for my site. If you don't need these value, feel free to remove them.
+$link = "&amp;lang={$_POST["lang"]}";
+if (isset($_POST["kartid"]) and $_POST["kartid"] != "") $link .= "&amp;kartid=" .$_POST["kartid"];
+// These are useful for my site. If you don't need these value, feel free to remove them.
+
+switch ($_POST["lang"])
+  {
+   case "deutsch": $backToBlog = "Zurück zum Blog"; break;
+   case "english": $backToBlog = "Back to the blog"; break;
+   default:        $backToBlog = "Back to the blog"; break;
+  }
 ?>
 <html>
 <head>
@@ -21,42 +35,34 @@ else { ?><script type="text/javascript" src="preview.js"></script><?php } ?>
 </head>
 <body>
 
+  <p><a href="../index.php?page=blog&amp;index=<?php echo $_POST["affiliation"] . "$link#$time"; ?>"><?php echo $backToBlog; ?></a></p>
 <?php
-
-if (!$preview) echo "<p><a href=\"../index.php?page=blog&index={$_POST["affiliation"]}{$link}#$time\">Zurück zum Blog</a></p>\n";
-
-//echo "<pre>"; print_r($_POST); echo "</pre>\n";
 
 include_once("../phpinclude/config.php");
 require_once("../phpinclude/dbconnect.php");
+include_once("functions.php");
 
-$debug = "FALSE";
-//$debug = "TRUE";
-
-/* Connect to comments-database */
+/* Connect to database */
 $concom=mysqli_connect($hostname, $userdb, $passworddb, $db);
   if (mysqli_connect_errno())
     { echo "Failed to connect to MySQL: " . mysqli_connect_error() . "<br>\n"; }
   else
     { if ($debug == "TRUE") echo "Successfully connected. " . mysqli_connect_error() . "<br>\n"; }
 
-if (!mysqli_set_charset($concom, "utf8"))
-  { printf("Error loading character set utf8: %s<br>\n", mysqli_error($concom)); }
+if (!mysqli_set_charset($concom, "utf8mb4"))
+  { printf("Error loading character set utf8mb4: %s<br>\n", mysqli_error($concom)); }
 else
   { if ($debug == "TRUE") { printf("Current character set: %s<br>\n", mysqli_character_set_name($concom)); } }
 
 
-$link = "&amp;lang={$_POST["lang"]}";
-if (isset($_POST["kartid"]) and $_POST["kartid"] != "") $link .= "&amp;kartid={$_POST["kartid"]}";
-
-
 // Retrieve $_POST data
 $posterror["switch"] = "FALSE";
-if ($_POST["name"] == "") { $posterror["name"] = "TRUE"; /*$posterror["switch"] = "TRUE";*/ $_POST["name"] = "anonymous"; }
+if ($_POST["name"] == "")    { $posterror["name"] = "TRUE"; /*$posterror["switch"] = "TRUE";*/ $_POST["name"] = "anonymous"; }
 if ($_POST["website"] == "") { $posterror["website"] = "TRUE"; /*$posterror["switch"] = "TRUE";*/ }
-if ($_POST["email"] != "") { $posterror["email"] = "TRUE"; $posterror["switch"] = "TRUE"; }
-if ($_POST["text"] == "") { $posterror["text"] = "TRUE"; $posterror["switch"] = "TRUE"; }
-if ($_POST["affiliation"] == "" or !is_numeric($_POST["affiliation"])) { $posterror["affiliation"] = "TRUE"; $posterror["switch"] = "TRUE"; }
+if ($_POST["email"] != "")   { $posterror["email"] = "TRUE"; $posterror["switch"] = "TRUE"; }
+if ($_POST["text"] == "")    { $posterror["text"] = "TRUE"; $posterror["switch"] = "TRUE"; }
+if ($_POST["affiliation"] == "" or !is_numeric($_POST["affiliation"]))
+                             { $posterror["affiliation"] = "TRUE"; $posterror["switch"] = "TRUE"; }
 
 if (isset($_POST["website"]) and $_POST["website"] != "" and strncmp($_POST["website"], "http", 4) != 0) $website = "http://" . $_POST["website"];
 else $website = $_POST["website"];
@@ -135,23 +141,6 @@ if ($email != "" and !$preview)
    mysqli_free_result($result);
   }
 
-
-
-
-//$text = htmlentities($_POST["text"], ENT_QUOTES | ENT_HTML5, "UTF-8");
-// $search = array("<", ">", "\"", "'", "\r\n", "\r", "\\");
-// $replace = array("&lt;", "&gt;", "&quot;", "&#39;", "\n", "\n", "&#92;");
-// $text = str_replace($search, $replace, $_POST["text"]);
-
-
-$search = array("\r\n", "\r");
-$replace = array("\n", "\n");
-$text = str_replace($search, $replace, $_POST["text"]);
-
-
-
-
-
 // source: https://stackoverflow.com/questions/16685416/split-full-email-addresses-into-name-and-email
 $sPattern = '/([\w\s\'\"]+[\s]+)?(<)?(([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4}))?(>)?/';
 if (!$firstPost and !$preview)
@@ -163,18 +152,44 @@ if (!$firstPost and !$preview)
   }
 // source: https://stackoverflow.com/questions/16685416/split-full-email-addresses-into-name-and-email
 
-if (!isset($_POST["answerTo"]) or $_POST["answerTo"] == "") $answerTo = 0;
+
+
+//$text = htmlentities($_POST["text"], ENT_QUOTES | ENT_HTML5, "UTF-8");
+// $search = array("<", ">", "\"", "'", "\r\n", "\r", "\\");
+// $replace = array("&lt;", "&gt;", "&quot;", "&#39;", "\n", "\n", "&#92;");
+// $text = str_replace($search, $replace, $_POST["text"]);
+
+
+// normalize linebreaks!
+$search = array("\r\n", "\r");
+$replace = array("\n", "\n");
+$text = str_replace($search, $replace, $_POST["text"]);
+
+
+
+if (!isset($_POST["answerTo"]) or $_POST["answerTo"] == "") $answerTo = "";
 else $answerTo = $_POST["answerTo"];
 
-$queryAffiliation = mysqli_real_escape_string($concom, $_POST["affiliation"]);
-$queryAnswerTo = mysqli_real_escape_string($concom, $answerTo);
-$queryTime = mysqli_real_escape_string($concom, $time);
-$queryname = mysqli_real_escape_string($concom, $name);
-$queryemail = mysqli_real_escape_string($concom, $email);
-$querywebsite = mysqli_real_escape_string($concom, $website);
-$querytext = mysqli_real_escape_string($concom, $text);
+// escape html tags and then escape mysql
+$queryAffiliation = mysqli_real_escape_string($concom, htmlspecialchars($_POST["affiliation"], ENT_QUOTES | ENT_HTML5, "UTF-8"));
+$queryAnswerTo = mysqli_real_escape_string($concom, htmlspecialchars($answerTo, ENT_QUOTES | ENT_HTML5, "UTF-8"));
+$queryTime = mysqli_real_escape_string($concom, htmlspecialchars($time, ENT_QUOTES | ENT_HTML5, "UTF-8"));
+$queryname = mysqli_real_escape_string($concom, htmlspecialchars($name, ENT_QUOTES | ENT_HTML5, "UTF-8"));
+$queryemail = mysqli_real_escape_string($concom, htmlspecialchars($email, ENT_QUOTES | ENT_HTML5, "UTF-8"));
+$querywebsite = mysqli_real_escape_string($concom, htmlspecialchars($website, ENT_QUOTES | ENT_HTML5, "UTF-8"));
+$querytext = mysqli_real_escape_string($concom, htmlspecialchars($text, ENT_QUOTES | ENT_HTML5, "UTF-8"));
 
-if (!$preview)
+// if ($debug == "TRUE")
+//   {
+//    echo "Original:<pre>$text</pre><br>\n";
+//    $escapedText = htmlspecialchars($text, ENT_QUOTES | ENT_HTML5, "UTF-8");
+//    echo "htmlspecialchars():<pre>$escapedText</pre><br>\n";
+//    $querytext = mysqli_real_escape_string($concom, $escapedText);
+//    echo "mysqli_real_escape_string():<pre>$querytext</pre><br>\n";
+//   }
+
+// action for post or preview
+if (!$preview) // Enter post into DB
   {
    $query = "INSERT INTO `musicchris_de`.`blog-comments` (`affiliation`,`answerTo`, `time`, `name`, `email`, `website`, `comment`) VALUES ('{$queryAffiliation}', '{$queryAnswerTo}', '{$queryTime}', '{$queryname}', '{$queryemail}', '{$querywebsite}', '{$querytext}');";
 
@@ -182,22 +197,25 @@ if (!$preview)
      {
       //mysqli_free_result($result);
      }
-   else die(mysqli_error($concom));
+   else
+     {
+      $error["insert_comment"] = true;
+      die(mysqli_error($concom));
+     }
   }
-
-if ($preview)
+else // or return the data for preview
   { ?>
    <form action="../index.php?page=blog&amp;index=<?php echo $_POST["affiliation"] . $link . "#commentForm"; ?>" accept-charset="UTF-8" method="POST" id="previewForwarder">
-     <input type="hidden" name="name" value="<?php echo htmlspecialchars($queryname, ENT_QUOTES | ENT_HTML5, "UTF-8"); ?>">
-     <input type="hidden" name="notificationTo" value="<?php echo htmlspecialchars($queryemail, ENT_QUOTES | ENT_HTML5, "UTF-8"); ?>">
-     <input type="hidden" name="website" value="<?php echo htmlspecialchars($querywebsite, ENT_QUOTES | ENT_HTML5, "UTF-8"); ?>">
-     <input type="hidden" name="answerTo" value="<?php echo htmlspecialchars($queryAnswerTo, ENT_QUOTES | ENT_HTML5, "UTF-8"); ?>">
-     <input type="hidden" name="text" value="<?php echo htmlspecialchars($querytext, ENT_QUOTES | ENT_HTML5, "UTF-8"); ?>">
+     <input type="hidden" name="name" value="<?php echo $queryname; ?>">
+     <input type="hidden" name="notificationTo" value="<?php echo $queryemail; ?>">
+     <input type="hidden" name="website" value="<?php echo $querywebsite; ?>">
+     <input type="hidden" name="answerTo" value="<?php echo $queryAnswerTo; ?>">
+     <input type="hidden" name="text" value="<?php echo $querytext; ?>">
      <input type="hidden" name="previewRequested" value="1">
    </form>
   </body>
 </html><?php
-   exit;
+   exit; // no further processing needed for preview
   }
 
 
@@ -216,10 +234,12 @@ if ($blog_emailnotification == "TRUE" and !$preview)
    $mail .= "\r\n";
    $mail .= htmlspecialchars_decode("http://{$_SERVER["SERVER_NAME"]}/index.php?page=blog&amp;lang={$_POST["lang"]}&amp;index={$_POST["affiliation"]}#$time");
    $mail .= "\r\n\r\n\r\nHash: $email\r\n\r\n{$_POST["name"]} <{$_POST["notificationTo"]}> ({$_POST["website"]}) schrieb:\n\n";
-   $mail .= wordwrap($_POST["text"], 70);
+   $mail .= wordwrap($_POST["text"], 70) . "\r\n";
    if (!mail($email_blogadmin, $subject, $mail, $header))
      {
-      //echo "<h3>ERROR!</h3>Failed to send mail to admin!<br>\n";
+      $error["mail_admin"] = true;
+      $mailbody = $header . "To: " . $email_blogadmin . "\r\nSubject: " . $subject . "\r\n\r\n" . $mail;
+      logMailError($_POST["name"], $_POST["notificationTo"], $_POST["affiliation"], $email, $mailbody);
      }
   }
 
@@ -310,6 +330,7 @@ if ($result = mysqli_query($concom, $query_notifications) and !$preview)
       if (mail($to, $subject, $message, $header)) $sentmail["{$row["email"]}"] = true;
       else
         {
+         $error["mail_notification"] = true;
          $mailbody = str_replace("\r\n", "\n", $header . "\r\nSubject: " . $subject . "\r\nTo: " . $email . "\r\n\r\n" . $message);
          logMailError($row["name"], $row["email"], $_POST["affiliation"], $email, $mailbody);
         }
@@ -370,6 +391,7 @@ if (isset($_POST["notificationTo"]) and $_POST["notificationTo"] != "" and $firs
      }
    else 
      {
+      $error["mail_verification"] = true;
       $mailbody = str_replace("\r\n", "\n", $header . "\r\nSubject: " . $subject . "\r\nTo: " . $email . "\r\n\r\n" . $message);
       logMailError($name, $email, $_POST["affiliation"], $hash, $mailbody);
      }
@@ -379,12 +401,13 @@ if (isset($_POST["notificationTo"]) and $_POST["notificationTo"] != "" and $firs
    $queryemail = mysqli_real_escape_string($concom, $email);
    $queryAffiliation = mysqli_real_escape_string($concom, $_POST["affiliation"]);
    $query = "UPDATE `blog-comments` SET `email`='$queryHash' WHERE (`email` = '$queryemail' AND `affiliation`='$queryAffiliation');";
-   if ($result = mysqli_query($concom, $query_notifications))
+   if (!$result = mysqli_query($concom, $query_notifications))
      {
-      //echo "Hash entered into database - awaiting verification.<br>\n";
+      $error["enter_verificationHashIntoDB"] = true;
      }
-   mysqli_free_result($result);
+   //mysqli_free_result($result);
   }
+if (isset($error)) logErrors($error);
 ?>
 </body>
 </html>

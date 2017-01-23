@@ -27,8 +27,8 @@ $concom=mysqli_connect($hostname, $userdb, $passworddb, $db);
   else
     { if ($debug == "TRUE") echo "Successfully connected. " . mysqli_connect_error() . "<br>\n"; }
 
-if (!mysqli_set_charset($concom, "utf8"))
-  { printf("Error loading character set utf8: %s<br>\n", mysqli_error($concom)); }
+if (!mysqli_set_charset($concom, "utf8mb4"))
+  { printf("Error loading character set utf8mb4: %s<br>\n", mysqli_error($concom)); }
 else
   { if ($debug == "TRUE") { printf("Current character set: %s<br>\n", mysqli_character_set_name($concom)); } }
 
@@ -67,7 +67,8 @@ if ($job == "verify")
          $query = "UPDATE `blog-comments` SET `email`='$queryEmail' WHERE (`email` = '$hash_verification' AND `affiliation`='$queryScope');";
          if ($result = mysqli_query($concom, $query))
            {
-            echo "<p>DB updated!</p>\n";
+            $numRows = mysqli_affected_rows($concom);
+            echo "<p>DB updated! $numRows comments were affected.</p>\n";
             //mysqli_free_result($result);
            }
          else echo "<p>ERROR! DB not updated</p>\n<p>MySQLi error: " . mysqli_error($concom) . "</p>\n";
@@ -102,7 +103,9 @@ if ($job == "unsubscribe")
      {
       if ($result = mysqli_query($concom, $query))
         {
-         echo "Subscriptions for $email removed.<br>\n";
+         $numRows = mysqli_affected_rows($concom);
+         if ($numRows > 0) echo  "$numRows subscriptions for $email removed.<br>\n";
+         else echo "No subscriptions found. You seem to be already out of our database, or your link seems damaged.<br>\n";
         }
       else { echo "[Error!]<br>\n<p>Database could not be accessed!</p>\n"; $errors = true; $error["processing"]["queryDB"] = "failed"; }
      }

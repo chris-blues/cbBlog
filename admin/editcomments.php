@@ -2,6 +2,7 @@
 <?php
 $debug = "FALSE";
 $js = "FALSE";
+$reload = true;
 
 if (isset($_POST["affiliation"]) and $_POST["affiliation"] != "") $affiliation = $_POST["affiliation"];
 if (!isset($affiliation) or $affiliation == "") { if (isset($_GET["affiliation"]) and $_GET["affiliation"] != "") { $affiliation = $_GET["affiliation"]; } }
@@ -9,7 +10,6 @@ if (!isset($affiliation) or $affiliation == "") { if (isset($_GET["affiliation"]
 if (isset($_POST["number"]) and $_POST["number"] != "") $number = $_POST["number"];
 if (!isset($number) or $number == "") { if (isset($_GET["number"]) and $_GET["number"] != "") { $number = $_GET["number"]; } }
 
-$reload = true;
 $target = "showcomments.php?affiliation=$affiliation#" . $number;
 
 include('head.php');
@@ -26,14 +26,14 @@ $con=mysqli_connect($hostname, $userdb, $passworddb, $db);
      if ($debug == "TRUE") echo "Successfully connected. " . mysqli_connect_error() . "<br>\n";
     }
 
-/* change character set to utf8 */
-if (!mysqli_set_charset($con, "utf8"))
-  { printf("Error loading character set utf8: %s<br>\n", mysqli_error($con)); }
+/* change character set to utf8mb4 */
+if (!mysqli_set_charset($con, "utf8mb4"))
+  { printf("Error loading character set utf8mb4: %s<br>\n", mysqli_error($con)); }
 else
   { if ($debug == "TRUE") { printf("Current character set: %s<br>\n", mysqli_character_set_name($con)); } }
 
 // get $_POST data
-echo "<pre>Post:"; print_r($_POST); echo "Get:"; print_r($_GET); echo "</pre>\n";
+if ($debug == "TRUE") { echo "Post: <pre>"; print_r($_POST); echo "</pre>Get: <pre>"; print_r($_GET); echo "</pre>\n"; }
 if (isset($_POST["number"])) $number = $_POST["number"];
 if (isset($_POST["affiliation"])) $affiliation = $_POST["affiliation"];
 if (isset($_POST["name"])) $name = $_POST["name"];
@@ -64,7 +64,7 @@ echo "<body>\n";
 
 if ($debug == "TRUE") echo $query . "<br>\n";
 $result = mysqli_query($con, $query) or die(mysql_error($result));
-mysqli_free_result($result);
+//mysqli_free_result($result);
 
 ?>
 <br><a href="showcomments.php?affiliation=<?php echo $affiliation . "#" . $time; ?>">BACK!</a><br>
