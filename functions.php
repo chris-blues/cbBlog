@@ -22,6 +22,7 @@ function convertnumbers($number, $lang)
       $replace = $words;
      }
    if ($number < 13) $word = str_replace($search, $replace, $number);
+   else $word = $number;
    return $word;
   }
 
