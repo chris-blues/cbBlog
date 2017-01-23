@@ -261,7 +261,7 @@ if (!isset($_GET["index"]) or $_GET["index"] == "") $_GET["index"] = "0";
          $replace = array("\n", "\n", "0", "");
          $post = str_replace($search, $replace, $row["comment"]);
          $post = htmlspecialchars($post, ENT_QUOTES | ENT_HTML5, "UTF-8", false);
-         echo "<div class=\"clear\"></div>\n" . bb_parse(nl2br($post, false)) . "<br>\n";
+         echo "<div class=\"clear\"></div>\n" . parse(nl2br($post, false)) . "<br>\n";
          echo "</div>\n";
 
 
@@ -274,7 +274,7 @@ if (!isset($_GET["index"]) or $_GET["index"] == "") $_GET["index"] = "0";
 //          $replace = array("\n", "\n", "0", "");
 //          $post = str_replace($search, $replace, $row["comment"]);
 //          $post = nl2br($post, false);
-//          echo "<div class=\"clear\"></div>\n" . bb_parse(str_replace("\r\n", "<br>", $post)) . "<br>\n";
+//          echo "<div class=\"clear\"></div>\n" . parse(str_replace("\r\n", "<br>", $post)) . "<br>\n";
 //          echo "</div>\n";
         }
       unset($post);
@@ -409,7 +409,7 @@ if (!isset($_GET["index"]) or $_GET["index"] == "") $_GET["index"] = "0";
 //          $replace = array("\n", "\n", "\n");
 //          $post = str_replace($search, $replace, $previewText);
          $post = htmlspecialchars(stripcslashes($_POST["text"]), ENT_QUOTES | ENT_HTML5, "UTF-8", false);
-         echo "<div class=\"clear\"></div>\n" . bb_parse(nl2br($post, false)) . "<br>\n";
+         echo "<div class=\"clear\"></div>\n" . parse(nl2br($post, false)) . "<br>\n";
          echo "</div>\n<hr>";
         }
 

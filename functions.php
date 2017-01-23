@@ -25,6 +25,10 @@ function convertnumbers($number, $lang)
    return $word;
   }
 
+function parse($string) {
+  $string = bb_parse($string);
+  return($string);
+ }
 
 function bb_parse($string) {
 // https://secure.php.net/manual/en/function.bbcode-create.php#93349
@@ -37,10 +41,15 @@ function bb_parse($string) {
       case 's': $replacement = "<s>$innertext</s>"; break;
       case 'i': $replacement = "<i>$innertext</i>"; break;
       case 'quote': $replacement = "<div class=\"quote comments\"><blockquote>$innertext</blockquote></div>"; break;
-      case 'url': $replacement = '<a href="' . ($param? $param : $innertext) . "\">$innertext</a>"; break;
       case 'code': $replacement = "<pre><code>$innertext</code></pre>"; break;
       case 'tt': $replacement = "<code>$innertext</code>"; break;
       case 'ot': $replacement = "<span class=\"offtopic\">$innertext</span>"; break;
+      case 'url': 
+        {
+         if (stristr($param, "javascript:", true)) $param = "##";
+         $replacement = '<a href="' . ($param? $param : $innertext) . "\">$innertext</a>";
+         break;
+        }
      }
     $string = str_replace($match, $replacement, $string);
    }

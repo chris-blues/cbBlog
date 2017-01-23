@@ -67,8 +67,8 @@ $result = mysqli_query($con, $query) or die(mysql_error($result));
 //mysqli_free_result($result);
 
 ?>
-<br><a href="showcomments.php?affiliation=<?php echo $affiliation . "#" . $time; ?>">BACK!</a><br>
-<?php if ($debug == "TRUE") { ?><pre><?php print_r($_POST); ?></pre><?php } ?>
+<p><a href="showcomments.php?affiliation=<?php echo $affiliation . "#" . $time; ?>">BACK!</a></p>
+
 </body>
 </html>
 <!-- end editcomments.php -->

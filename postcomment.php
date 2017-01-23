@@ -170,23 +170,14 @@ $text = str_replace($search, $replace, $_POST["text"]);
 if (!isset($_POST["answerTo"]) or $_POST["answerTo"] == "") $answerTo = "";
 else $answerTo = $_POST["answerTo"];
 
-// escape html tags and then escape mysql
-$queryAffiliation = mysqli_real_escape_string($concom, htmlspecialchars($_POST["affiliation"], ENT_QUOTES | ENT_HTML5, "UTF-8"));
-$queryAnswerTo = mysqli_real_escape_string($concom, htmlspecialchars($answerTo, ENT_QUOTES | ENT_HTML5, "UTF-8"));
-$queryTime = mysqli_real_escape_string($concom, htmlspecialchars($time, ENT_QUOTES | ENT_HTML5, "UTF-8"));
-$queryname = mysqli_real_escape_string($concom, htmlspecialchars($name, ENT_QUOTES | ENT_HTML5, "UTF-8"));
-$queryemail = mysqli_real_escape_string($concom, htmlspecialchars($email, ENT_QUOTES | ENT_HTML5, "UTF-8"));
-$querywebsite = mysqli_real_escape_string($concom, htmlspecialchars($website, ENT_QUOTES | ENT_HTML5, "UTF-8"));
-$querytext = mysqli_real_escape_string($concom, htmlspecialchars($text, ENT_QUOTES | ENT_HTML5, "UTF-8"));
+$queryAffiliation = mysqli_real_escape_string($concom, $_POST["affiliation"]);
+$queryAnswerTo = mysqli_real_escape_string($concom, $answerTo);
+$queryTime = mysqli_real_escape_string($concom, $time);
+$queryname = mysqli_real_escape_string($concom, $name);
+$queryemail = mysqli_real_escape_string($concom, $email);
+$querywebsite = mysqli_real_escape_string($concom, $website);
+$querytext = mysqli_real_escape_string($concom, $text);
 
-// if ($debug == "TRUE")
-//   {
-//    echo "Original:<pre>$text</pre><br>\n";
-//    $escapedText = htmlspecialchars($text, ENT_QUOTES | ENT_HTML5, "UTF-8");
-//    echo "htmlspecialchars():<pre>$escapedText</pre><br>\n";
-//    $querytext = mysqli_real_escape_string($concom, $escapedText);
-//    echo "mysqli_real_escape_string():<pre>$querytext</pre><br>\n";
-//   }
 
 // action for post or preview
 if (!$preview) // Enter post into DB
