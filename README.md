@@ -1,7 +1,4 @@
-# cbBlog v0.12
-
-## v0.12 is vulnerable to XSS! Don't use it!
-v0.13 will be coming soon!
+# cbBlog v0.13
 
 ### Description
 
