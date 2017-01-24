@@ -11,6 +11,11 @@ $debug = "FALSE";
 
 date_default_timezone_set('Europe/Berlin');
 
+include_once("../phpinclude/config.php");
+require_once("../phpinclude/dbconnect.php");
+include_once("functions.php");
+include_once("lang.php");
+
 $time = time();
 if (isset($_POST["preview"]) and $_POST["preview"] == "1") $preview = true;
 else $preview = false;
@@ -19,13 +24,6 @@ else $preview = false;
 $link = "&amp;lang={$_POST["lang"]}";
 if (isset($_POST["kartid"]) and $_POST["kartid"] != "") $link .= "&amp;kartid=" .$_POST["kartid"];
 // These are useful for my site. If you don't need these value, feel free to remove them.
-
-switch ($_POST["lang"])
-  {
-   case "deutsch": $backToBlog = "Zurück zum Blog"; break;
-   case "english": $backToBlog = "Back to the blog"; break;
-   default:        $backToBlog = "Back to the blog"; break;
-  }
 ?>
 <html>
 <head>
@@ -34,14 +32,11 @@ switch ($_POST["lang"])
 else { ?><script type="text/javascript" src="preview.js"></script><?php } ?>
 </head>
 <body>
-
+<?php if (!$preview) { ?>
   <p><a href="../index.php?page=blog&amp;index=<?php echo $_POST["affiliation"] . "$link#$time"; ?>"><?php echo $backToBlog; ?></a></p>
+<?php } ?>
+
 <?php
-
-include_once("../phpinclude/config.php");
-require_once("../phpinclude/dbconnect.php");
-include_once("functions.php");
-
 /* Connect to database */
 $concom=mysqli_connect($hostname, $userdb, $passworddb, $db);
   if (mysqli_connect_errno())
@@ -197,12 +192,13 @@ if (!$preview) // Enter post into DB
 else // or return the data for preview
   { ?>
    <form action="../index.php?page=blog&amp;index=<?php echo $_POST["affiliation"] . $link . "#commentForm"; ?>" accept-charset="UTF-8" method="POST" id="previewForwarder">
-     <input type="hidden" name="name" value="<?php echo $queryname; ?>">
-     <input type="hidden" name="notificationTo" value="<?php echo $queryemail; ?>">
-     <input type="hidden" name="website" value="<?php echo $querywebsite; ?>">
-     <input type="hidden" name="answerTo" value="<?php echo $queryAnswerTo; ?>">
-     <input type="hidden" name="text" value="<?php echo $querytext; ?>">
+     <input type="hidden" name="name" value="<?php echo htmlspecialchars($queryname, ENT_QUOTES | ENT_HTML5); ?>">
+     <input type="hidden" name="notificationTo" value="<?php echo htmlspecialchars($queryemail, ENT_QUOTES | ENT_HTML5); ?>">
+     <input type="hidden" name="website" value="<?php echo htmlspecialchars($querywebsite, ENT_QUOTES | ENT_HTML5); ?>">
+     <input type="hidden" name="answerTo" value="<?php echo htmlspecialchars($queryAnswerTo, ENT_QUOTES | ENT_HTML5); ?>">
+     <input type="hidden" name="text" value="<?php echo htmlspecialchars($querytext, ENT_QUOTES | ENT_HTML5); ?>">
      <input type="hidden" name="previewRequested" value="1">
+     <button type="submit"><?php echo $backToBlog; ?></button>
    </form>
   </body>
 </html><?php

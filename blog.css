@@ -180,7 +180,7 @@ a.tags {
 }
 
 #post_text {
-  height: 10em;
+  height: 20em;
 }
 
 blockquote {
@@ -265,6 +265,10 @@ blockquote {
 
 #post_name, #post_website, #post_notificationTo {
   width: 99%;
+}
+
+#post_text, #post_name, #post_website, #post_notificationTo {
+  font: normal 0.99em OpenSans;
 }
 
 #email {

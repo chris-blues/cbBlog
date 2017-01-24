@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function ()
 
    var smiley = document.getElementsByClassName("smiley");
    for (i=0; i < smiley.length; i++) {
-     smiley[i].addEventListener("click", function () { enterSmiley( this.getAttribute("data-id") ); });
+     smiley[i].addEventListener("click", function () { insertAtCursor( this.getAttribute("data-id") ); });
    }
 
    document.getElementById("switchTagHelp").addEventListener("click", showhideTagHelp );
@@ -61,12 +61,46 @@ function showhideSmileys() {
     $( "#smileys" ).slideUp( 1000 );
     smileysShown = 0;
   }
-      }
-function enterSmiley(number)
-      {
-       var area = document.getElementById('post_text');
-       area.value += "&#" + number + ";";
-      }
+}
+
+function insertAtCursor(myValue) {
+  var myField = document.getElementById("post_text");
+  //IE support
+  if (document.selection) {
+    myField.focus();
+    sel = document.selection.createRange();
+    sel.text = myValue;
+   }
+  //MOZILLA and others
+  else if (myField.selectionStart || myField.selectionStart == '0') {
+    var startPos = myField.selectionStart;
+    var endPos = myField.selectionEnd;
+    myField.value = myField.value.substring(0, startPos)
+        + myValue
+        + myField.value.substring(endPos, myField.value.length);
+   }
+  else {
+    myField.value += myValue;
+   }
+  myField.focus();
+  startPos = startPos + 2;
+  setCaretPosition(startPos);
+}
+
+function setCaretPosition(pos){
+  var myField = document.getElementById("post_text");
+  if(myField.setSelectionRange) {
+    myField.focus();
+    myField.setSelectionRange(pos,pos);
+   }
+  else if (myField.createTextRange) {
+    var range = myField.createTextRange();
+    range.collapse(true);
+    range.moveEnd('character', pos);
+    range.moveStart('character', pos);
+    range.select();
+   }
+}
 
 var shown = 0;
 function switchofftopic() {
