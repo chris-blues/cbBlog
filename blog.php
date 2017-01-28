@@ -2,7 +2,7 @@
 
 <?php
 error_reporting(E_ALL & ~E_NOTICE);
-ini_set("display_errors", 0);
+ini_set("display_errors", 1);
 ini_set("log_errors", 1);
 ini_set("error_log", "admin/logs/php-error.log");
 
@@ -47,7 +47,7 @@ $result = mysqli_query($con, $query_tags);
 $totalRows_blogtags = mysqli_num_rows($result);
    while ($row = $result->fetch_assoc())
      {
-      $taglist[] = trim($row["tag"]);
+      if ($row["tag"] != "saved") $taglist[] = trim($row["tag"]);
      }
    mysqli_free_result($result);
 
@@ -78,11 +78,11 @@ if (!isset($_GET["index"]) or $_GET["index"] == "")
 
    if (!isset($_GET["filter"]) or $_GET["filter"] == "")
      {
-      $query_blog = "SELECT * FROM `blog` ORDER BY `blog`.`sorttime` DESC ";
+      $query_blog = "SELECT * FROM `blog` WHERE `tags` NOT LIKE '%saved%' ORDER BY `blog`.`sorttime` DESC ";
      }
    else
      {
-      $query_blog = "SELECT * FROM `blog` WHERE `tags` LIKE '%{$_GET["filter"]}%' ORDER BY `sorttime` DESC";
+      $query_blog = "SELECT * FROM `blog` WHERE `tags` LIKE '%{$_GET["filter"]}%' AND NOT LIKE '%saved%' ORDER BY `sorttime` DESC";
      }
   }
 

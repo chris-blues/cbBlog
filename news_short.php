@@ -35,7 +35,7 @@ else
 
 
 
-$query_blog = "SELECT * FROM `blog` WHERE `tags` LIKE '%news%' ORDER BY `time` DESC LIMIT 0, 8 ";
+$query_blog = "SELECT * FROM `blog` WHERE `tags` LIKE '%news%' AND `tags` NOT LIKE '%saved%' ORDER BY `time` DESC LIMIT 0, 8 ";
 $result = mysqli_query($con, $query_blog);
 
 if ($result)

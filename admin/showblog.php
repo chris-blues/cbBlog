@@ -99,7 +99,8 @@ if ($result)
       echo "<tr class=\"blogEntries\">";
       echo "<td>$counter/$totalRows_blog</td><td>" . $row['index'] . "</td>";
       echo "<td>" . date("Y-m-d H:i",$row['time']) . "</td>";
-      echo "<td class=\"notes\">" . $row['tags'] . "</td>";
+      $tags = str_replace("saved", "<span class=\"saved\">saved</span>", $row["tags"]);
+      echo "<td class=\"notes\">$tags</td>";
       echo "<td title=\"{$row['head']}\">"; if (strlen($row['head']) > 70) { echo substr($row['head'],0,70) . "...</td>"; } else echo $row['head'];
       echo "<td>";
       echo "<a href=\"editblog.php?job=edit&amp;index={$row['index']}\" target=\"contentblog\">ändern</a> \n";

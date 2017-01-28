@@ -17,7 +17,7 @@ else
 /*##########################################################
 ####################  General RSS Feed  ####################
 ##########################################################*/
-$query_blog = "SELECT * FROM `blog` ORDER BY `sorttime`  DESC";
+$query_blog = "SELECT * FROM `blog` WHERE `tags` NOT LIKE '%saved%' ORDER BY `sorttime`  DESC";
 $result = mysqli_query($con, $query_blog);
 $counter = "0";
 
@@ -70,7 +70,7 @@ file_put_contents("../../rss-feed.xml", $rss);
 /*##########################################################
 ##################  Open Source RSS Feed  ##################
 ##########################################################*/
-$query_blog = "SELECT * FROM `blog` WHERE `tags` LIKE '%opensource%' ORDER BY `sorttime`  DESC";
+$query_blog = "SELECT * FROM `blog` WHERE `tags` LIKE '%opensource%' AND `tags` NOT LIKE '%saved%' ORDER BY `sorttime`  DESC";
 $result = mysqli_query($con, $query_blog);
 $counter = "0";
 

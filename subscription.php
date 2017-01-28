@@ -59,7 +59,7 @@ if ($job == "verify")
    echo "<h1>Verification</h1>\n";
    if (!$errors)
      {
-      $hash_verification = hash('sha256', $_SERVER["SERVER_NAME"] . $email . $_GET["scope"]);
+      $hash_verification = hash('sha256', $_SERVER["SERVER_NAME"] . $email);
       if (strcmp($_GET["hash"], $hash_verification) == 0)
         {
          $queryEmail = mysqli_real_escape_string($concom, $email);

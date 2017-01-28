@@ -187,11 +187,21 @@ blockquote {
   padding: 0px;
 }
 
-#blog .opinion {
+/*#blog .quote, #blog .opinion. #blog .remark {
   border-radius: 6px;
-  background-color: #D1DED2;
-  background-image: url("/pics/opinion.png");
   background-repeat: no-repeat;
+  min-height: 80px;
+  margin: 10px 20px;
+}*/
+
+#blog .remark {
+  background-color: #D5D1DE;
+  background-image: url("/blog/pics/remark.png");
+}
+
+#blog .opinion {
+  background-color: #D1DED2;
+  background-image: url("/blog/pics/opinion.png");
 }
 
 @media screen and (min-width: 600px) {
@@ -201,14 +211,12 @@ blockquote {
 blockquote {
   margin: 0px;
  }
-#blog .quote {
-  margin: 0px 20px;
+#blog .quote, #blog .opinion, #blog .remark {
+  border-radius: 6px;
+  min-height: 80px;
+  margin: 10px 20px;
   padding: 20px 20px 20px 130px;
-  background-position: left top;
- }
-#blog .opinion {
-  margin: 30px 20px;
-  padding: 20px 20px 20px 130px;
+  background-repeat: no-repeat;
   background-position: left top;
  }
 .comments_wrapper {
@@ -225,11 +233,11 @@ blockquote {
 blockquote {
   margin: 0px;
 }
-#blog .quote {
-  margin: 10px -5px;
-  padding: 10px;
- }
-#blog .opinion {
+#blog .quote, #blog .opinion #blog .remark {
+  border-radius: 6px;
+  min-height: 80px;
+  background-repeat: no-repeat;
+  background-position: left top;
   margin: 10px -5px;
   padding: 10px;
  }
@@ -248,10 +256,8 @@ blockquote {
 
 #blog .quote, .quote.comments {
   border: 1px solid black;
-  border-radius: 6px;
   background-color: #DDDDAA;
-  background-image: url("/pics/quote.png");
-  background-repeat: no-repeat;
+  background-image: url("/blog/pics/quote.png");
   min-height: 70px;
 }
 

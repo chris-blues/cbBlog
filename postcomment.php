@@ -339,7 +339,7 @@ if (isset($_POST["notificationTo"]) and $_POST["notificationTo"] != "" and $firs
    $email_name = $aMatch[0];
 
    $template = file_get_contents("template_subscription.html");
-   $hash = hash('sha256', $_SERVER["SERVER_NAME"] . $email . $_POST["affiliation"]);
+   $hash = hash('sha256', $_SERVER["SERVER_NAME"] . $email);
    $link_verify = "https://" . $_SERVER["SERVER_NAME"] . "/blog/subscription.php?job=verify&scope={$_POST["affiliation"]}&email=$email&hash=$hash";
 
    $subject = "Verify your subscription for: $blog_header @ " . $_SERVER["SERVER_NAME"];
