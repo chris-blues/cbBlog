@@ -8,9 +8,14 @@ document.addEventListener('DOMContentLoaded', function ()
      OT[i].addEventListener("click", switchofftopic);
    }
 
+   var tagButtons = document.getElementsByClassName("tagButton");
+   for (i=0; i<tagButtons.length; i++) {
+     tagButtons[i].addEventListener("click", function() { insertAtCursor( this.getAttribute("data-valueOpen"), this.getAttribute("data-valueClose") ); });
+   }
+
    var smiley = document.getElementsByClassName("smiley");
    for (i=0; i < smiley.length; i++) {
-     smiley[i].addEventListener("click", function () { insertAtCursor( this.getAttribute("data-id") ); });
+     smiley[i].addEventListener("click", function () { insertAtCursor( this.getAttribute("data-id"), "" ); });
    }
 
    document.getElementById("switchTagHelp").addEventListener("click", showhideTagHelp );
@@ -63,27 +68,28 @@ function showhideSmileys() {
   }
 }
 
-function insertAtCursor(myValue) {
+function insertAtCursor(open, close) {
   var myField = document.getElementById("post_text");
   //IE support
   if (document.selection) {
     myField.focus();
     sel = document.selection.createRange();
-    sel.text = myValue;
+    sel.text = " " + open + close + " ";
    }
   //MOZILLA and others
   else if (myField.selectionStart || myField.selectionStart == '0') {
     var startPos = myField.selectionStart;
     var endPos = myField.selectionEnd;
-    myField.value = myField.value.substring(0, startPos)
-        + myValue
-        + myField.value.substring(endPos, myField.value.length);
+    var stringBefore = myField.value.substring(0, startPos);
+    var stringSelected = myField.value.substring(startPos, endPos);
+    var stringAfter = myField.value.substring(endPos, myField.value.length);
+    myField.value = stringBefore + " " + open + stringSelected + close + " " + stringAfter;
    }
   else {
-    myField.value += myValue;
+    myField.value += " " + open + close + " ";
    }
   myField.focus();
-  startPos = startPos + 2;
+  startPos = startPos + open.length + close.length + 2;
   setCaretPosition(startPos);
 }
 

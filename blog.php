@@ -271,6 +271,28 @@ if (!isset($_GET["index"]) or $_GET["index"] == "") $_GET["index"] = "0";
 
 
 
+   $insertTags["b"]["open"]      = "[b]";
+   $insertTags["b"]["close"]     = "[/b]";
+   $insertTags["u"]["open"]      = "[u]";
+   $insertTags["u"]["close"]     = "[/u]";
+   $insertTags["s"]["open"]      = "[s]";
+   $insertTags["s"]["close"]     = "[/s]";
+   $insertTags["i"]["open"]      = "[i]";
+   $insertTags["i"]["close"]     = "[/i]";
+   $insertTags["url"]["open"]    = "[url]";
+   $insertTags["url"]["close"]   = "[/url]";
+   $insertTags["code"]["open"]   = "[code]";
+   $insertTags["code"]["close"]  = "[/code]";
+   $insertTags["tt"]["open"]     = "[tt]";
+   $insertTags["tt"]["close"]    = "[/tt]";
+   $insertTags["quote"]["open"]  = "[quote]";
+   $insertTags["quote"]["close"] = "[/quote]";
+   $insertTags["ot"]["open"]     = "[ot]";
+   $insertTags["ot"]["close"]    = "[/ot]";
+   $insertTags["done"]["open"]   = "[done]";
+   $insertTags["done"]["close"]  = "";
+
+
    //display post form
    if (isset($_GET["index"]) and $_GET["index"] != "" and $_GET["index"] != "0")
      {
@@ -280,7 +302,7 @@ if (!isset($_GET["index"]) or $_GET["index"] == "") $_GET["index"] = "0";
           $previewNotificationTo = htmlspecialchars_decode($_POST["notificationTo"], ENT_QUOTES | ENT_HTML5); else $previewNotificationTo = "";
       if (isset($_POST["website"]) and $_POST["website"] != "")
           $previewWebsite = htmlspecialchars_decode($_POST["website"], ENT_QUOTES | ENT_HTML5); else $previewWebsite = "";
-          $post = htmlspecialchars(stripcslashes($_POST["text"]), ENT_QUOTES | ENT_HTML5, "UTF-8", false);
+      $post = htmlspecialchars(stripcslashes($_POST["text"]), ENT_QUOTES | ENT_HTML5, "UTF-8", false);
 
       echo "<div class=\"shadow comments comment postform\" name=\"comment\" id=\"commentForm\">\n";
 
@@ -312,8 +334,12 @@ if (!isset($_GET["index"]) or $_GET["index"] == "") $_GET["index"] = "0";
       echo "  <input type=\"hidden\" name=\"lang\" value=\"$lang\">\n";
       echo "  <input type=\"hidden\" name=\"preview\" value=\"0\" id=\"switchPreview\">\n";
 
-      echo "  <div class=\"smileywrapper\">\n";
-      echo "    <button type=\"button\" id=\"smileyButton\">Smileys</button>\n";
+      echo "  <div class=\"button_wrapper\">\n";
+      foreach ($insertTags as $tag => $value)
+        {
+         echo "<button type=\"button\" class=\"tagButton\" data-valueOpen=\"{$insertTags[$tag]["open"]}\" data-valueClose=\"{$insertTags[$tag]["close"]}\">{$insertTags[$tag]["open"]}</button>\n";
+        }
+      echo "    <button type=\"button\" id=\"smileyButton\">Smileys ☺</button>\n";
       echo "    <div class=\"smileys\" id=\"smileys\">\n";
 
       // add Smileys
