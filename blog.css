@@ -187,13 +187,6 @@ blockquote {
   padding: 0px;
 }
 
-/*#blog .quote, #blog .opinion. #blog .remark {
-  border-radius: 6px;
-  background-repeat: no-repeat;
-  min-height: 80px;
-  margin: 10px 20px;
-}*/
-
 #blog .remark {
   background-color: #D5D1DE;
   background-image: url("/blog/pics/remark.png");

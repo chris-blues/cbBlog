@@ -127,7 +127,7 @@ if ($email != "" and !$preview)
    if (mysqli_num_rows($result) < 1) // aka first post
      {
       $firstPost = true;
-      $email = hash('sha256', $_SERVER["SERVER_NAME"] . $_POST["notificationTo"] . $_POST["affiliation"]);
+      $email = hash('sha256', $_SERVER["SERVER_NAME"] . $email);
      }
    else
      {
