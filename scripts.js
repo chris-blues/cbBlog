@@ -89,8 +89,8 @@ function insertAtCursor(open, close) {
     myField.value += " " + open + close + " ";
    }
   myField.focus();
-  startPos = startPos + open.length + close.length + 2;
-  setCaretPosition(startPos);
+  var finalEndPos = startPos + 1 + open.length + stringSelected.length + close.length + 1;
+  setCaretPosition(finalEndPos);
 }
 
 function setCaretPosition(pos){

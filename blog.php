@@ -82,7 +82,7 @@ if (!isset($_GET["index"]) or $_GET["index"] == "")
      }
    else
      {
-      $query_blog = "SELECT * FROM `blog` WHERE `tags` LIKE '%{$_GET["filter"]}%' AND NOT LIKE '%saved%' ORDER BY `sorttime` DESC";
+      $query_blog = "SELECT * FROM `blog` WHERE `tags` LIKE '%{$_GET["filter"]}%' AND `tags` NOT LIKE '%saved%' ORDER BY `sorttime` DESC";
      }
   }
 
@@ -219,7 +219,7 @@ else
   {
    echo "ERROR! No data retrieved.";
   }
-mysqli_free_result($result);
+//mysqli_free_result($result);
 
 if (!isset($_GET["index"]) or $_GET["index"] == "") $_GET["index"] = "0";
 
@@ -326,7 +326,7 @@ if (!isset($_GET["index"]) or $_GET["index"] == "") $_GET["index"] = "0";
       echo "  $notify: <span class=\"notes\">(otional, $emailusage)</span><br>\n";
       echo "  <input type=\"email\" name=\"notificationTo\" id=\"post_notificationTo\" value=\"$previewNotificationTo\" placeholder=\"you@inter.net\"><br>\n";
       echo "  Website: <span class=\"notes\">(otional)</span><br>\n";
-      echo "  <input type=\"url\" name=\"website\" id=\"post_website\" value=\"$previewWebsite\" placeholder=\"www.example.tld\"><br>\n";
+      echo "  <input type=\"url\" name=\"website\" id=\"post_website\" value=\"$previewWebsite\" placeholder=\"https://www.example.tld\"><br>\n";
       echo "  $comment<br>\n<div class=\"hidden\" id=\"tagHelp\">$taghelp</div>\n";
       echo "  <textarea name=\"text\" id=\"post_text\">$post</textarea><br>\n";
       echo "  <input type=\"hidden\" name=\"affiliation\" value=\"{$_GET["index"]}\">\n";
@@ -347,13 +347,15 @@ if (!isset($_GET["index"]) or $_GET["index"] == "") $_GET["index"] = "0";
       foreach ($smileyFile as $key => $value) { $smiley = trim($value); echo " <span class=\"smiley\" data-id=\"$smiley\">$smiley</span>"; }
 
       echo "\n    </div>\n  </div>\n";
+      echo "  <button type=\"reset\"> &lt;&lt;&lt; $back </button> <button type=\"button\" id=\"buttonPreview\"> $previewString </button> <button type=\"submit\" id=\"buttonSend\"> $send &gt;&gt;&gt; </button><br>\n";
+      echo "  </form>\n";
+      echo "</div>\n";
      }
 ?>
 
 <?php
-   echo "  <button type=\"reset\"> &lt;&lt;&lt; $back </button> <button type=\"button\" id=\"buttonPreview\"> $previewString </button> <button type=\"submit\" id=\"buttonSend\"> $send &gt;&gt;&gt; </button><br>\n";
-   echo "  </form>\n";
-   echo "</div>\n</div>\n";
+   
+   echo "</div>\n";
 ?>
 
 <!-- end blog.php -->

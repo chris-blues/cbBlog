@@ -48,6 +48,8 @@ function bb_parse($string) {
       case 'url': 
         {
          if (stristr($param, "javascript:", true)) $param = "##";
+         if (!isset($param) or $param == "") { if (strncmp($innertext, "http", 4) != 0) $innertext = "http://" . $innertext; }
+         else { if (strncmp($param, "http", 4) != 0) $param = "http://" . $param; }
          $replacement = '<a href="' . ($param? $param : $innertext) . "\">$innertext</a>";
          break;
         }
