@@ -77,7 +77,7 @@ if (isset($posterror["email"]) and $posterror["email"] == "TRUE")
    $mail = "Es gab einen neuen möglichen SPAM im Blog!\n\n\n========================================\n\n";
    $mail .= "Website:        {$website}\n";
    $mail .= "Email:          {$_POST["name"]} <{$_POST["email"]}>\n";
-   $mail .= "Target:         https://{$_SERVER["SERVER_NAME"]}/?page=blog&amp;index={$_POST["affiliation"]}\n";
+   $mail .= "Target:         https://{$_SERVER["SERVER_NAME"]}/?page=blog&index={$_POST["affiliation"]}\n";
    $mail .= "Timestamp:      $time\n";
    $mail .= "originating IP: " . $_SERVER['REMOTE_ADDR'] . "\n";
    $mail .= "content:\n";

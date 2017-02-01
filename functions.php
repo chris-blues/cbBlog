@@ -1,7 +1,7 @@
 <?php
 function convertnumbers($number, $lang)
   {
-   if ($lang == "english")
+   if ($lang == "en")
      {
       $words = array("no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine");
       $words_ten = array("ten", "eleven", "twelve");

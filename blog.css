@@ -3,6 +3,9 @@
 .offtopic {
   display: none;
   color: #333;
+  box-shadow: 0px 0px 5px 1px #EEE inset;
+  background-color: rgba(250,240,240,0.9);
+  padding: 5px;
 }
 
 .otswitch {
@@ -10,6 +13,7 @@
   display: inline;
   float: right;
   margin: 4px 0px 0px;
+  cursor: pointer;
 }
 
 .clear {
@@ -183,6 +187,14 @@ a.tags {
   height: 20em;
 }
 
+.commentText {
+  border-radius:6px;
+  background-color: rgba(250,250,250,0.9);
+  box-shadow: 0px 0px 5px 1px #EEE inset;
+  padding: 10px;
+  margin-top: 10px;
+}
+
 blockquote {
   padding: 0px;
 }
@@ -286,6 +298,7 @@ blockquote {
   margin: 5px;
   text-align: left;
   display: none;
+  cursor: pointer;
 }
 
 .smileys a {

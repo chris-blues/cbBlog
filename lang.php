@@ -2,8 +2,9 @@
 
 switch ($lang)
      {
-      case 'deutsch':
+      case 'de':
         {
+         $all = "alle";
          $backToBlog = "Zurück zum Blog";
          $notify = "E-Mail-Adresse";
          $previewString = "Vorschau";
@@ -33,10 +34,13 @@ switch ($lang)
          $taghelp .= "<tr><td>&#91;done&#93;</td><td><span class=\"checkmark\">&#10004;</span></td></tr></table>\n";
          $back = "Zurück";
          $send = "Abschicken";
+         $lang_comment = "Kommentar";
+         $lang_comments = "Kommentare";
          break;
         }
-      case 'english':
+      case 'en':
         {
+         $all = "all";
          $backToBlog = "Back to the blog";
          $notify = "Email-address";
          $previewString = "Preview";
@@ -66,10 +70,13 @@ switch ($lang)
          $taghelp .= "<tr><td>&#91;done&#93;</td><td><span class=\"checkmark\">&#10004;</span></td></tr></table>\n";
          $back = "Back";
          $send = "Send";
+         $lang_comment = "comment";
+         $lang_comments = "comments";
          break;
         }
       default:
         {
+         $all = "all";
          $backToBlog = "Back to the blog";
          $notify = "Email-address";
          $previewString = "Preview";
@@ -99,6 +106,8 @@ switch ($lang)
          $taghelp .= "<tr><td>&#91;done&#93;</td><td><span class=\"checkmark\">&#10004;</span></td></tr></table>\n";
          $back = "Back";
          $send = "Send";
+         $lang_comment = "comment";
+         $lang_comments = "comments";
          break;
         }
      }
