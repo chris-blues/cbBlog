@@ -21,9 +21,9 @@ $query["create_blog"] = "CREATE TABLE IF NOT EXISTS `blog` (
   `sorttime` bigint(11) NOT NULL,
   `ctime` int(11) NOT NULL COMMENT 'last modified time',
   `index` int(11) NOT NULL AUTO_INCREMENT,
-  `tags` text COLLATE utf8mb4_bin NOT NULL,
-  `head` text COLLATE utf8mb4_bin NOT NULL,
-  `text` longtext COLLATE utf8mb4_bin NOT NULL,
+  `tags` text COLLATE utf8mb4_general_ci NOT NULL,
+  `head` text COLLATE utf8mb4_general_ci NOT NULL,
+  `text` longtext COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`index`),
   UNIQUE KEY `index_3` (`index`),
   UNIQUE KEY `index_6` (`index`),
@@ -37,7 +37,7 @@ $query["create_blog"] = "CREATE TABLE IF NOT EXISTS `blog` (
 
 $query["create_blog-tags"] = "CREATE TABLE IF NOT EXISTS `blog-tags` (
   `index` int(11) NOT NULL AUTO_INCREMENT,
-  `tag` text COLLATE utf8mb4_bin NOT NULL COMMENT 'tags for news',
+  `tag` text COLLATE utf8mb4_general_ci NOT NULL COMMENT 'tags for news',
   PRIMARY KEY (`index`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='tags for news' AUTO_INCREMENT=1 ;";
 
@@ -46,10 +46,10 @@ $query["create_blog-comments"] = "CREATE TABLE IF NOT EXISTS `blog-comments` (
   `affiliation` int(11) NOT NULL COMMENT 'index of affiliated blog-entry',
   `answerTo` int(11) NOT NULL COMMENT 'Which comment this refers to',
   `time` int(11) NOT NULL COMMENT 'time of post',
-  `name` text COLLATE utf8mb4_bin NOT NULL COMMENT 'poster''s name',
-  `email` text COLLATE utf8mb4_bin NOT NULL 'poster's email for notifications',
-  `website` text COLLATE utf8mb4_bin NOT NULL COMMENT 'poster''s website',
-  `comment` mediumtext COLLATE utf8mb4_bin NOT NULL COMMENT 'poster''s post',
+  `name` text COLLATE utf8mb4_general_ci NOT NULL COMMENT 'poster''s name',
+  `email` text COLLATE utf8mb4_general_ci NOT NULL 'poster's email for notifications',
+  `website` text COLLATE utf8mb4_general_ci NOT NULL COMMENT 'poster''s website',
+  `comment` mediumtext COLLATE utf8mb4_general_ci NOT NULL COMMENT 'poster''s post',
   PRIMARY KEY (`number`),
   UNIQUE KEY `number` (`number`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='comments for blog entries' AUTO_INCREMENT=1 ;";
