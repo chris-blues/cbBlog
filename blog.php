@@ -329,12 +329,12 @@ if (isset($_GET["index"]) and $_GET["index"] != "" and $_GET["index"] != "0")
      }
 
    echo "  <form action=\"blog/postcomment.php\" method=\"post\" accept-charset=\"UTF-8\">\n";
-   echo "  Name: <span class=\"notes\">(otional)</span><br>\n";
+   echo "  Name: <span class=\"notes\">(optional)</span><br>\n";
    echo "  <input type=\"text\" name=\"name\" id=\"post_name\" value=\"$previewName\" placeholder=\"Anonymous\"><br>\n";
    echo "  <p class=\"notes\" id=\"email\">$leaveempty<input type=\"email\" name=\"email\" id=\"post_email\"></p>\n";
-   echo "  $notify: <span class=\"notes\">(otional, $emailusage)</span><br>\n";
+   echo "  $notify: <span class=\"notes\">(optional, $emailusage)</span><br>\n";
    echo "  <input type=\"email\" name=\"notificationTo\" id=\"post_notificationTo\" value=\"$previewNotificationTo\" placeholder=\"you@inter.net\"><br>\n";
-   echo "  Website: <span class=\"notes\">(otional)</span><br>\n";
+   echo "  Website: <span class=\"notes\">(optional)</span><br>\n";
    echo "  <input type=\"url\" name=\"website\" id=\"post_website\" value=\"$previewWebsite\" placeholder=\"https://www.example.tld\"><br>\n";
    echo "  $comment<br>\n<div class=\"hidden\" id=\"tagHelp\">$taghelp</div>\n";
    echo "  <textarea name=\"text\" id=\"post_text\">$post</textarea><br>\n";
