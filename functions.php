@@ -45,12 +45,24 @@ function bb_parse($string) {
       case 'code': $replacement = "<pre><code>$innertext</code></pre>"; break;
       case 'tt': $replacement = "<code>$innertext</code>"; break;
       case 'ot': $replacement = "<span class=\"offtopic\">$innertext</span>"; break;
-      case 'url': 
+      case 'url':
         {
          if (stristr($param, "javascript:", true)) $param = "##";
+
+         // add http:// if missing
          if (!isset($param) or $param == "") { if (strncmp($innertext, "http", 4) != 0) $innertext = "http://" . $innertext; }
          else { if (strncmp($param, "http", 4) != 0) $param = "http://" . $param; }
-         $replacement = '<a href="' . ($param? $param : $innertext) . "\">$innertext</a>";
+
+         // add target="_blank" to external URLs
+         $externalUrl = true;
+         if (strncmp($param, 'http://' . $_SERVER["HTTP_HOST"], strlen('http://' . $_SERVER["HTTP_HOST"])) == 0) $externalUrl = false;
+         if (strncmp($param, 'https://' . $_SERVER["HTTP_HOST"], strlen('https://' . $_SERVER["HTTP_HOST"])) == 0) $externalUrl = false;
+         if (strncmp($innertext, 'http://' . $_SERVER["HTTP_HOST"], strlen('http://' . $_SERVER["HTTP_HOST"])) == 0) $externalUrl = false;
+         if (strncmp($innertext, 'https://' . $_SERVER["HTTP_HOST"], strlen('https://' . $_SERVER["HTTP_HOST"])) == 0) $externalUrl = false;
+         if ($externalUrl)
+              { $replacement = '<a href="' . ($param? $param : $innertext) . '" target="_blank">' . $innertext . '</a>'; }
+         else { $replacement = '<a href="' . ($param? $param : $innertext) . '">' . $innertext . '</a>'; }
+         unset($externalUrl);
          break;
         }
      }
