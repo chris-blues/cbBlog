@@ -201,7 +201,7 @@ if ($result)
            }
          else
            {
-            echo "<p class=\"notes commentslink\">$zero_totalRows_comments $lang_comments</p>\n";
+            echo "<p class=\"notes commentslink\">$lang_no_comments</p>\n";
            }
          mysqli_free_result($resultcomments);
 
@@ -246,7 +246,7 @@ if (isset($_GET["index"]) and $_GET["index"] != "" and $_GET["index"] != "0")
    switch ($lang)
      {
       case "de": { $switchOTon = "zeige themenfremde Beiträge"; $switchOToff = "verstecke themenfremde Beiträge"; break; }
-      case "en": { $switchOTon = "show off-topic comments"; $switchOToff = "hide off-topic comments"; break; }
+      case "en":
       default:        { $switchOTon = "show off-topic comments"; $switchOToff = "hide off-topic comments"; break; }
      }
    echo "<div id=\"langOT\" class=\"hidden\"
