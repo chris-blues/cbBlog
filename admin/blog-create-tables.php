@@ -1,6 +1,6 @@
 <!-- begin blog-create-tables.php -->
 <?php
-$DBconf = require_once("../config/db.php")
+$DBconf = require_once("../config/db.php");
 if ($debug == "TRUE") echo "<h1>Start blog-create-tables...</h1>\n";
 
 /* Connect to database */
@@ -42,10 +42,10 @@ $query["create_blog_comments"] = "CREATE TABLE IF NOT EXISTS `blog_comments` (
   `affiliation` int(11) NOT NULL COMMENT 'index of affiliated blog-entry',
   `answerTo` int(11) NOT NULL COMMENT 'Which comment this refers to',
   `time` int(11) NOT NULL COMMENT 'time of post',
-  `name` text COLLATE utf8mb4_general_ci NOT NULL COMMENT 'poster''s name',
-  `email` text COLLATE utf8mb4_general_ci NOT NULL 'poster's email for notifications',
-  `website` text COLLATE utf8mb4_general_ci NOT NULL COMMENT 'poster''s website',
-  `comment` mediumtext COLLATE utf8mb4_general_ci NOT NULL COMMENT 'poster''s post',
+  `name` text COLLATE utf8mb4_general_ci NOT NULL COMMENT 'poster\'s name',
+  `email` text COLLATE utf8mb4_general_ci NOT NULL COMMENT 'poster\'s email for notifications',
+  `website` text COLLATE utf8mb4_general_ci NOT NULL COMMENT 'poster\'s website',
+  `comment` mediumtext COLLATE utf8mb4_general_ci NOT NULL COMMENT 'poster\'s post',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='comments for blog entries' AUTO_INCREMENT=1 ;";

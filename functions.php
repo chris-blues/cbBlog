@@ -1,4 +1,29 @@
 <?php
+function dump_var($var) {
+  global $debug;
+  if ($debug) {
+    echo "<pre>";
+    var_dump($var);
+    echo "</pre>\n";
+  }
+}
+
+function dump_array($var) {
+  global $debug;
+  if ($debug) {
+    echo "<pre>";
+    print_r($var);
+    echo "</pre>\n";
+  }
+}
+
+function procTime($startTime, $endTime) {
+  return round($endTime - $startTime, 3) . " seconds";
+}
+
+
+
+
 function convertnumbers($number, $lang)
   {
    if ($lang == "en")

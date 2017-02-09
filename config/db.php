@@ -8,7 +8,7 @@ return [
     "user"    => "musicchris_de_baustelle",
     "pass"    => "BHFApVhBBv5I20sKjU8c",
     "options" => [
-      PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+      PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING
     ]
   ]
 ];
