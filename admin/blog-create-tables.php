@@ -1,6 +1,6 @@
 <!-- begin blog-create-tables.php -->
 <?php
-$DBconf = require_once("../config/db.php")
+$DBconf = require_once("../config/db.php");
 if ($debug == "TRUE") echo "<h1>Start blog-create-tables...</h1>\n";
 
 /* Connect to database */
