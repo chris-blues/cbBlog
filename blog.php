@@ -82,11 +82,11 @@ if (!isset($_GET["index"]) or $_GET["index"] == "")
 
    if (!isset($_GET["filter"]) or $_GET["filter"] == "")
      {
-      $query_blog = "SELECT * FROM `blog` WHERE `tags` NOT LIKE '%saved%' ORDER BY `blog`.`sorttime` DESC ";
+      $query_blog = "SELECT * FROM `blog` WHERE `tags` NOT LIKE '%saved%' ORDER BY `blog`.`time` DESC ";
      }
    else
      {
-      $query_blog = "SELECT * FROM `blog` WHERE `tags` LIKE '%{$_GET["filter"]}%' AND `tags` NOT LIKE '%saved%' ORDER BY `sorttime` DESC";
+      $query_blog = "SELECT * FROM `blog` WHERE `tags` LIKE '%{$_GET["filter"]}%' AND `tags` NOT LIKE '%saved%' ORDER BY `time` DESC";
      }
   }
 

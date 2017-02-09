@@ -216,11 +216,11 @@ if ($blog_emailnotification == "TRUE" and !$preview)
    $header .= "From: notify@{$_SERVER["SERVER_NAME"]}\r\n";
    $header .= "Date: $maildate\r\n";
    $header .= "\r\n";
-   $subject = "Comment by {$_POST["name"]} <{$_POST["notificationTo"]}> $time";
+   $subject = "Comment by {$_POST["name"]} $time";
    $mail = "Es gibt einen neuen Kommentar im Blog!\r\n";
    $mail .= "\r\n";
    $mail .= htmlspecialchars_decode("http://{$_SERVER["SERVER_NAME"]}/index.php?page=blog&amp;lang={$_POST["lang"]}&amp;index={$_POST["affiliation"]}#$time");
-   $mail .= "\r\n\r\n\r\nHash: $email\r\n\r\n{$_POST["name"]} <{$_POST["notificationTo"]}> ({$_POST["website"]}) schrieb:\n\n";
+   $mail .= "\r\n\r\n\r\n{$_POST["name"]} ({$_POST["website"]}) schrieb:\nHash: $email\n\n";
    $mail .= wordwrap($_POST["text"], 70) . "\r\n";
    if (!mail($email_blogadmin, $subject, $mail, $header))
      {
@@ -376,7 +376,7 @@ if (isset($_POST["notificationTo"]) and $_POST["notificationTo"] != "" and $firs
      {
       // echo "Verification mail sent!<br>\n";
      }
-   else 
+   else
      {
       $error["mail_verification"] = true;
       $mailbody = str_replace("\r\n", "\n", $header . "\r\nSubject: " . $subject . "\r\nTo: " . $email . "\r\n\r\n" . $message);

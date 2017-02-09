@@ -67,7 +67,7 @@ foreach ($tables as $key => $value)
 
    $totalRows_tables = mysqli_num_rows($tablelookup);
    if ($debug == "TRUE") echo "MySQL query has returned $totalRows_tables results.<br>\n";
-   
+
    if ($totalRows_tables == 1)
      {
       $tables[$key] = "exists";
@@ -78,9 +78,9 @@ foreach ($tables as $key => $value)
       $tables[$key] = "does not exist";
       echo "<b>$key</b> " . $tables[$key] . ". Creating...<br>\n";
       if ($debug == "TRUE") echo "1 != $totalRows_tables<br>\nCreating new table!<br>\n";
-      
+
       $querycreate = $query["create_$key"];
-      
+
       if (mysqli_real_query($con,$querycreate))
         { if ($debug == "TRUE") echo "Table $key created successfully " . mysqli_error($con) . "<br><br>\n"; }
       else
