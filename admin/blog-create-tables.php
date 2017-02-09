@@ -1,5 +1,6 @@
 <!-- begin blog-create-tables.php -->
 <?php
+$DBconf = require_once("../config/db.php")
 if ($debug == "TRUE") echo "<h1>Start blog-create-tables...</h1>\n";
 
 /* Connect to database */
@@ -17,32 +18,27 @@ else
 
 
 $query["create_blog"] = "CREATE TABLE IF NOT EXISTS `blog` (
-  `time` int(11) NOT NULL,
-  `sorttime` bigint(11) NOT NULL,
-  `ctime` int(11) NOT NULL COMMENT 'last modified time',
-  `index` int(11) NOT NULL AUTO_INCREMENT,
-  `tags` text COLLATE utf8mb4_general_ci NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ctime` int(11) NOT NULL COMMENT 'creation time',
+  `mtime` int(11) NOT NULL COMMENT 'last modified time',
   `head` text COLLATE utf8mb4_general_ci NOT NULL,
   `text` longtext COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`index`),
-  UNIQUE KEY `index_3` (`index`),
-  UNIQUE KEY `index_6` (`index`),
-  KEY `index` (`index`),
-  KEY `index_2` (`index`),
-  KEY `sorttime` (`sorttime`),
-  KEY `index_4` (`index`),
-  KEY `index_5` (`index`),
-  FULLTEXT KEY `tags` (`tags`)
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci AUTO_INCREMENT=1 ;";
 
-$query["create_blog-tags"] = "CREATE TABLE IF NOT EXISTS `blog-tags` (
-  `index` int(11) NOT NULL AUTO_INCREMENT,
-  `tag` text COLLATE utf8mb4_general_ci NOT NULL COMMENT 'tags for news',
-  PRIMARY KEY (`index`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='tags for news' AUTO_INCREMENT=1 ;";
+$query["create_blog_tags"] = "CREATE TABLE IF NOT EXISTS `blog_tags` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tag` text COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci AUTO_INCREMENT=1;";
 
-$query["create_blog-comments"] = "CREATE TABLE IF NOT EXISTS `blog-comments` (
-  `number` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID for each comment - Auto-Indexed',
+$query["create_blog_tags_relations"] = "CREATE TABLE IF NOT EXISTS `blog_tags_relations` (
+  `blog` int(11) NOT NULL,
+  `tag` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Which tag belongs to which blogpost';";
+
+$query["create_blog_comments"] = "CREATE TABLE IF NOT EXISTS `blog_comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID for each comment - Auto-Indexed',
   `affiliation` int(11) NOT NULL COMMENT 'index of affiliated blog-entry',
   `answerTo` int(11) NOT NULL COMMENT 'Which comment this refers to',
   `time` int(11) NOT NULL COMMENT 'time of post',
@@ -50,16 +46,16 @@ $query["create_blog-comments"] = "CREATE TABLE IF NOT EXISTS `blog-comments` (
   `email` text COLLATE utf8mb4_general_ci NOT NULL 'poster's email for notifications',
   `website` text COLLATE utf8mb4_general_ci NOT NULL COMMENT 'poster''s website',
   `comment` mediumtext COLLATE utf8mb4_general_ci NOT NULL COMMENT 'poster''s post',
-  PRIMARY KEY (`number`),
-  UNIQUE KEY `number` (`number`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='comments for blog entries' AUTO_INCREMENT=1 ;";
 
 
-$tables = array("blog" => "", "blog-comments" => "", "blog-tags" => "");
+$tables = array("blog" => "", "blog_comments" => "", "blog_tags" => "", "blog_tags_relations" => "");
 
 foreach ($tables as $key => $value)
   {
-   $querytables = "show tables from `musicchris_de` like '$key'";
+   $querytables = "show tables from `" . $DBconf["name"] . "` like '$key'";
    if ($debug == "TRUE") echo "query set to: $querytables<br>\n";
 
    $tablelookup = mysqli_query($con,$querytables) or die(mysqli_error($con));

@@ -251,7 +251,7 @@ if ($result = mysqli_query($concom, $query_blog) and !$preview)
 
 // Send each registered adress an email
 
-$template = file_get_contents("template_notification.html");
+$template = file_get_contents("templates/email_notification.html");
 
 $query_notifications = "SELECT * FROM `blog-comments` WHERE `affiliation` = '$queryAffiliation' AND `email` > '' ORDER BY `time` ASC ";
 
@@ -338,7 +338,7 @@ if (isset($_POST["notificationTo"]) and $_POST["notificationTo"] != "" and $firs
    $email = $aMatch[3];
    $email_name = $aMatch[0];
 
-   $template = file_get_contents("template_subscription.html");
+   $template = file_get_contents("templates/email_subscription.html");
    $hash = hash('sha256', $_SERVER["SERVER_NAME"] . $email);
    $link_verify = "https://" . $_SERVER["SERVER_NAME"] . "/blog/subscription.php?job=verify&scope={$_POST["affiliation"]}&email=$email&hash=$hash";
 
