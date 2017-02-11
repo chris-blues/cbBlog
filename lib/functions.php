@@ -21,6 +21,24 @@ function procTime($startTime, $endTime) {
   return round($endTime - $startTime, 3) . " seconds";
 }
 
+function assembleGetString($newVars) {
+  if (isset($_GET)) {
+    $counter = 0;
+    foreach ($_GET as $key => $value) {
+      if ($counter == 0) $GETString = "?{$key}={$value}";
+      else               $GETString .= "&amp;{$key}={$value}";
+      $counter++;
+    }
+  }
+  if (isset($newVars)) {
+    foreach ($newVars as $key => $value) {
+      if ($counter == 0) $GETString = "?{$key}={$value}";
+      else               $GETString .= "&amp;{$key}={$value}";
+    }
+  }
+  return $GETString;
+}
+
 
 
 

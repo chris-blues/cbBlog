@@ -1,12 +1,12 @@
 <?php
 
-class Connection {
+class Connection { // returns database object
 
   public static function make($config) {
 
     try {
       return new PDO(
-        $config["driver"].":host=".$config["host"].";dbname=".$config["name"].";charset=UTF8",
+        $config["driver"] . ":host=" . $config["host"] . ";dbname=" . $config["name"] . ";charset=UTF8",
         $config["user"],
         $config["pass"],
         $config["options"]

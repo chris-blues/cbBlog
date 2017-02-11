@@ -1,7 +1,7 @@
 <!-- begin news_short.php -->
 <?php
 include_once("blog/lang.php");
-include_once("blog/functions.php");
+include_once("lib/functions.php");
 
 date_default_timezone_set('Europe/Berlin');
 require("phpinclude/dbconnect.php");

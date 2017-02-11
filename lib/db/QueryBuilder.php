@@ -2,21 +2,20 @@
 
 class QueryBuilder {
 
-  protected $DB;
+  protected $Database;
 
-  public function __construct($DB) {
-    $this->DB = $DB;
+  public function __construct($Database) {
+    $this->Database = $Database;
   }
 
-  public function selectAllBlogposts($table, $intoClass) {
-    //$statement = $this->DB->prepare($query);
-    $statement = $this->DB->prepare("SELECT * FROM `{$table}` ;");
+  public function selectAll($table, $intoClass) {
+    $statement = $this->Database->prepare("SELECT * FROM `{$table}` ;");
     $statement->execute();
     return $statement->fetchAll(PDO::FETCH_CLASS, $intoClass);
   }
 
-  public function selectBlogpost($table, $id, $intoClass) {
-    $statement = $this->DB->prepare("SELECT * FROM `{$table}` WHERE `id`='{$id}' ;");
+  public function selectById($table, $id, $intoClass) {
+    $statement = $this->Database->prepare("SELECT * FROM `{$table}` WHERE `id`='{$id}' ;");
     $statement->execute();
     $statement->setFetchMode(PDO::FETCH_CLASS, $intoClass);
     return $statement->fetch();
