@@ -130,8 +130,8 @@ function bb_parse($string) {
          if (stristr($param, "javascript:", true)) $param = "##";
 
          // add http:// if missing
-         if (!isset($param) or $param == "") { if (strncmp($innertext, "http", 4) != 0) $innertext = "http://" . $innertext; }
-         else { if (strncmp($param, "http", 4) != 0) $param = "http://" . $param; }
+         if (!isset($param) or $param == "") { if (strncmp($innertext, "http", 4) != 0 and strncmp($param, "#", 1) != 0) $innertext = "http://" . $innertext; }
+         else { if (strncmp($param, "http", 4) != 0 and strncmp($param, "#", 1) != 0) $param = "http://" . $param; }
 
          // add target="_blank" to external URLs
          $externalUrl = true;
@@ -139,7 +139,7 @@ function bb_parse($string) {
          if (strncmp($param, 'https://' . $_SERVER["HTTP_HOST"], strlen('https://' . $_SERVER["HTTP_HOST"])) == 0) $externalUrl = false;
          if (strncmp($innertext, 'http://' . $_SERVER["HTTP_HOST"], strlen('http://' . $_SERVER["HTTP_HOST"])) == 0) $externalUrl = false;
          if (strncmp($innertext, 'https://' . $_SERVER["HTTP_HOST"], strlen('https://' . $_SERVER["HTTP_HOST"])) == 0) $externalUrl = false;
-         if ($externalUrl)
+         if ($externalUrl and strncmp($param, "#", 1) != 0)
               { $replacement = '<a href="' . ($param? $param : $innertext) . '" target="_blank">' . $innertext . '</a>'; }
          else { $replacement = '<a href="' . ($param? $param : $innertext) . '">' . $innertext . '</a>'; }
          unset($externalUrl);

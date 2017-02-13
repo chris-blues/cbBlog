@@ -1,0 +1,17 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+
+Files: *
+Copyright: 2016, chris_blues <chris@musicchris.de>
+Comment: https://github.com/chris-blues/cbBlog
+License: GPL-3
+
+Files: css/fonts/open_sans/*
+Copyright: 2010 Steve Matteson
+Comment: https://en.wikipedia.org/wiki/Steve_Matteson
+License: Apache License 2.0
+
+Files: css/fonts/hack/*
+Copyright: Hack Copyright 2015, Christopher Simpkins with Reserved Font Name "Hack".
+Comment: https://sourcefoundry.org/hack/
+License: Fonts: Hack Open Font License + Bitstream Vera license
+License: CSS: MIT License

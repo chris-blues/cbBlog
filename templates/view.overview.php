@@ -1,7 +1,7 @@
 
   <div class="shadow blogentryoverview">
     <p class="notes blogdate">
-      <?php echo date("d.M.Y H:i",$row['ctime']); ?> -  updated: <?php echo date("d.M.Y H:i",$row['mtime']); ?>
+      <?php echo date("d.M.Y H:i",$row['ctime']); ?> - <?php echo gettext("last update"); ?>: <?php echo date("d.M.Y H:i",$row['mtime']); ?>
     </p>
 
     <?php $num_comments = convertnumbers($row["num_comments"], $lang); ?>

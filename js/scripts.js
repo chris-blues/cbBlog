@@ -1,35 +1,61 @@
-document.addEventListener('DOMContentLoaded', function ()
-  {
-   hljs.initHighlightingOnLoad();
-   OTon = document.getElementById("langOT").getAttribute("data-OTon");
-   OToff = document.getElementById("langOT").getAttribute("data-OToff");
-   var OT = document.getElementsByClassName("otswitch");
-   for (i = 0; i < OT.length; i++) {
-     OT[i].addEventListener("click", switchofftopic);
-   }
+document.addEventListener('DOMContentLoaded', function () {
+  hljs.initHighlightingOnLoad();
 
-   var tagButtons = document.getElementsByClassName("tagButton");
-   for (i=0; i<tagButtons.length; i++) {
-     tagButtons[i].addEventListener("click", function() { insertAtCursor( this.getAttribute("data-valueOpen"), this.getAttribute("data-valueClose") ); });
-   }
+  if (document.getElementById("langOT") != null) {
+    OTon = document.getElementById("langOT").getAttribute("data-OTon");
+    OToff = document.getElementById("langOT").getAttribute("data-OToff");
+    var OT = document.getElementsByClassName("otswitch");
+    for (i = 0; i < OT.length; i++) {
+      OT[i].addEventListener("click", switchofftopic);
+    }
+  }
 
-   var smiley = document.getElementsByClassName("smiley");
-   for (i=0; i < smiley.length; i++) {
-     smiley[i].addEventListener("click", function () { insertAtCursor( this.getAttribute("data-id"), "" ); });
-   }
+  var tagButtons = document.getElementsByClassName("tagButton");
+  for (i=0; i<tagButtons.length; i++) {
+    tagButtons[i].addEventListener("click", function() { insertAtCursor( this.getAttribute("data-valueOpen"), this.getAttribute("data-valueClose") ); });
+  }
 
-   document.getElementById("switchTagHelp").addEventListener("click", showhideTagHelp );
-   document.getElementById("smileyButton").addEventListener("click", showhideSmileys );
+  var smiley = document.getElementsByClassName("smiley");
+  for (i=0; i < smiley.length; i++) {
+    smiley[i].addEventListener("click", function () { insertAtCursor( this.getAttribute("data-id"), "" ); });
+  }
 
-   if (typeof(Storage) !== "undefined") {
-      loadLocalStorage();
-     }
-   document.getElementById("post_name").addEventListener("blur", function() { saveLocalStorage("name", document.getElementById("post_name").value); });
-   document.getElementById("post_notificationTo").addEventListener("blur", function() { saveLocalStorage("email", document.getElementById("post_notificationTo").value); });
-   document.getElementById("post_website").addEventListener("blur", function() { saveLocalStorage("website", document.getElementById("post_website").value); });
-   document.getElementById("buttonPreview").addEventListener("click", function() { document.getElementById("switchPreview").value = "1"; this.form.submit(); });
-   document.getElementById("buttonSend").addEventListener("click", function() { document.getElementById("switchPreview").value = "0"; this.form.submit(); });
-  });
+  if (document.getElementById("switchTagHelp") != null) {
+    document.getElementById("switchTagHelp").addEventListener("click", showhideTagHelp );
+  }
+  if (document.getElementById("smileyButton") != null) {
+    document.getElementById("smileyButton").addEventListener("click", showhideSmileys );
+  }
+
+  if (typeof(Storage) !== "undefined" && document.getElementById("post_name") != null) {
+    loadLocalStorage();
+  }
+  if (document.getElementById("post_name") != null) {
+    document.getElementById("post_name").addEventListener("blur", function() {
+      saveLocalStorage("name", document.getElementById("post_name").value);
+    });
+  }
+  if (document.getElementById("post_notificationTo") != null) {
+    document.getElementById("post_notificationTo").addEventListener("blur", function() {
+      saveLocalStorage("email", document.getElementById("post_notificationTo").value);
+    });
+  }
+  if (document.getElementById("post_website") != null) {
+    document.getElementById("post_website").addEventListener("blur", function() {
+      saveLocalStorage("website", document.getElementById("post_website").value);
+    });
+  }
+  if (document.getElementById("buttonPreview") != null) {
+    document.getElementById("buttonPreview").addEventListener("click", function() {
+      document.getElementById("switchPreview").value = "1"; this.form.submit();
+    });
+  }
+  if (document.getElementById("buttonSend") != null) {
+    document.getElementById("buttonSend").addEventListener("click", function() {
+      document.getElementById("switchPreview").value = "0"; this.form.submit();
+    });
+  }
+});
 
 
 function loadLocalStorage() {
@@ -48,8 +74,7 @@ function showhideTagHelp () {
   if (tagHelpShown == 0) {
     $( "#tagHelp" ).slideDown( 1000 );
     tagHelpShown = 1;
-  }
-  else {
+  } else {
     $( "#tagHelp" ).slideUp( 1000 );
     tagHelpShown = 0;
   }
@@ -61,8 +86,7 @@ function showhideSmileys() {
   if (smileysShown == 0) {
     $( "#smileys" ).slideDown( 1000 );
     smileysShown = 1;
-  }
-  else {
+  } else {
     $( "#smileys" ).slideUp( 1000 );
     smileysShown = 0;
   }
@@ -84,8 +108,7 @@ function insertAtCursor(open, close) {
     var stringSelected = myField.value.substring(startPos, endPos);
     var stringAfter = myField.value.substring(endPos, myField.value.length);
     myField.value = stringBefore + " " + open + stringSelected + close + " " + stringAfter;
-   }
-  else {
+   } else {
     myField.value += " " + open + close + " ";
    }
   myField.focus();
@@ -98,8 +121,7 @@ function setCaretPosition(pos){
   if(myField.setSelectionRange) {
     myField.focus();
     myField.setSelectionRange(pos,pos);
-   }
-  else if (myField.createTextRange) {
+   } else if (myField.createTextRange) {
     var range = myField.createTextRange();
     range.collapse(true);
     range.moveEnd('character', pos);
@@ -115,15 +137,14 @@ function switchofftopic() {
   if (OTshown == "1") {
     for (i=0; i<switches.length; i++) {
       switches[i].innerHTML = OTon;
-     }
+    }
     $( "span.offtopic" ).slideUp( 1000 );
     OTshown = 0;
-   }
-  else {
+  } else {
     for (i=0; i<switches.length; i++) {
       switches[i].innerHTML = OToff;
-     }
+    }
     $( "span.offtopic" ).slideDown( 1000 );
     OTshown = 1;
-   }
+  }
 }
