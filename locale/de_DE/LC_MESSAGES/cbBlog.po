@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cbBlog\n"
-"POT-Creation-Date: 2017-02-13 00:44+0100\n"
-"PO-Revision-Date: 2017-02-13 00:44+0100\n"
+"POT-Creation-Date: 2017-02-13 13:59+0100\n"
+"PO-Revision-Date: 2017-02-13 13:59+0100\n"
 "Last-Translator: chris_blues <chris@musicchris.de>\n"
 "Language-Team: cbBlog Translations <chris@musicchris.de>\n"
 "Language: de_DE\n"
@@ -15,18 +15,6 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: blog.php:117
-msgid "comments"
-msgstr "Kommentare"
-
-#: blog.php:121 templates/view.comment.php:19
-msgid "show off-topic comments"
-msgstr "zeige themenfremde Beiträge"
-
-#: blog.php:122
-msgid "hide off-topic comments"
-msgstr "verstecke themenfremde Beiträge"
-
 #: lib/Filters.php:8 lib/Filters.php:10
 msgid "all"
 msgstr "alle"
@@ -38,3 +26,109 @@ msgstr "Verarbeitung brauchte"
 #: templates/view.blogpost.php:8
 msgid "back"
 msgstr "Zurück"
+
+#: templates/view.blogpost.php:31
+msgid "last update"
+msgstr "zuletzt aktualisiert"
+
+#: templates/view.blogpost.php:37 templates/view.overview.php:13
+msgid "comment"
+msgstr "Kommentar"
+
+#: templates/view.blogpost.php:38 templates/view.comments-section.php:5
+#: templates/view.overview.php:14
+msgid "comments"
+msgstr "Kommentare"
+
+#: templates/view.blogpost.php:44 templates/view.overview.php:17
+msgid "no comments"
+msgstr "Keine Kommentare"
+
+#: templates/view.comment.php:19 templates/view.comments-section.php:9
+msgid "show off-topic comments"
+msgstr "zeige themenfremde Beiträge"
+
+#: templates/view.comments-section.php:10
+msgid "hide off-topic comments"
+msgstr "verstecke themenfremde Beiträge"
+
+#: templates/view.postform.php:35
+msgid "name"
+msgstr "Name"
+
+#: templates/view.postform.php:35 templates/view.postform.php:41
+#: templates/view.postform.php:43
+msgid "optional"
+msgstr "optional"
+
+#: templates/view.postform.php:36
+msgid "Anonymous"
+msgstr "Anonym"
+
+#: templates/view.postform.php:38
+msgid "leave empty"
+msgstr "leer lassen"
+
+#: templates/view.postform.php:41
+msgid "notify"
+msgstr "Benachrichtigen"
+
+#: templates/view.postform.php:41
+msgid "to be notified of new comments"
+msgstr "um zu neuen Kommentaren benachrichtigt zu werden"
+
+#: templates/view.postform.php:43
+msgid "Website"
+msgstr "Website"
+
+#: templates/view.postform.php:46
+msgid "Your comment"
+msgstr "Ihr Kommentar"
+
+#: templates/view.postform.php:48
+msgid "Notes for formatting"
+msgstr "Hinweise zur Formatierung"
+
+#: templates/view.postform.php:51
+msgid "Allowed Tags"
+msgstr "Erlaubte Tags"
+
+#: templates/view.postform.php:54 templates/view.postform.php:55
+msgid "bold text"
+msgstr "fetter Text"
+
+#: templates/view.postform.php:58 templates/view.postform.php:59
+msgid "underlined text"
+msgstr "unterstrichener Text"
+
+#: templates/view.postform.php:62 templates/view.postform.php:63
+msgid "stroke text"
+msgstr "durchgestrichener Text"
+
+#: templates/view.postform.php:66 templates/view.postform.php:67
+msgid "italic text"
+msgstr "kursiver Text"
+
+#: templates/view.postform.php:70 templates/view.postform.php:71
+msgid "link"
+msgstr "Verweis"
+
+#: templates/view.postform.php:82 templates/view.postform.php:83
+msgid "quote"
+msgstr "Zitat"
+
+#: templates/view.postform.php:86 templates/view.postform.php:87
+msgid "off-topic"
+msgstr "themenfremd"
+
+#: templates/view.postform.php:124
+msgid "Back"
+msgstr "Zurück"
+
+#: templates/view.postform.php:125
+msgid "Preview"
+msgstr "Vorschau"
+
+#: templates/view.postform.php:126
+msgid "Send"
+msgstr "Abschicken"

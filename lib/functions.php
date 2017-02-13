@@ -88,7 +88,7 @@ function convertnumbers($number, $lang)
      }
    else
      {
-      $words = array("kein", "ein", "zwei", "drei", "vier", "fünf", "sechs", "sieben", "acht", "neun");
+      $words = array("keine", "ein", "zwei", "drei", "vier", "fünf", "sechs", "sieben", "acht", "neun");
       $words_ten = array("zehn", "elf", "zwölf");
      }
    if ($number > 9)

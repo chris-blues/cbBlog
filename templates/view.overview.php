@@ -4,6 +4,22 @@
       <?php echo date("d.M.Y H:i",$row['ctime']); ?> -  updated: <?php echo date("d.M.Y H:i",$row['mtime']); ?>
     </p>
 
+    <?php $num_comments = convertnumbers($row["num_comments"], $lang); ?>
+    <p class="notes commentslink">
+      <a href="<?php echo $_SERVER["PHP_SELF"] . assembleGetString(array("id" => $row["id"], "filter" => $filter)); ?>#linkshowcomments">
+        <?php
+          if ($row["num_comments"] > 0) {
+            echo $num_comments . " ";
+            if ($row["num_comments"] == 1) echo gettext("comment");
+            else echo gettext("comments");
+          }
+          else {
+            echo gettext("no comments");
+          }
+        ?>
+      </a>
+    </p>
+
     <?php $head = strip_tags($row["head"]); ?>
     <h1 class="bloghead">
       <a href="<?php echo $_SERVER["PHP_SELF"] . assembleGetString(array("id" => $row["id"], "filter" => $filter)); ?>">

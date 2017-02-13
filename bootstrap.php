@@ -22,7 +22,9 @@ if ($config["blog"]["standalone"]) require_once("templates/view.head.php");
 // ######################
 // ##  Init gettext()  ##
 // ######################
-switch($_GET["lang"])
+$lang = $_GET["lang"];
+if (!isset($lang) or $lang == "") $lang = "de";
+switch($lang)
   {
    case 'de': { $locale = "de_DE"; break; }
    case 'en': { $locale = "en_GB"; break; }

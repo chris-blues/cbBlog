@@ -1,7 +1,8 @@
 <?php
 
 return [
-  "standalone" => true
+  "standalone" => true,
+  "showProcessingTime" => true
 ];
 
 ?>

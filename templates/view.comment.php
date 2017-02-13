@@ -1,7 +1,7 @@
 
   <div class="comments shadow" id="<?php echo $row["time"]; ?>">
     <h3 class="commentsHead">
-      <a href="<?php echo $_SERVER["PHP_SELF"] . assembleGetString(array("filter" => $tag)) . "#" . $row["time"] ?>"><?php echo $counter; ?></a>)&nbsp;
+      <a href="<?php echo "#" . $row["time"] ?>"><?php echo $counter; ?></a>)
         <?php
         if ($row["website"] != "") {
           $externalUrl = true;

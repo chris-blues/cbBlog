@@ -24,12 +24,26 @@
           https://<?php echo $_SERVER["HTTP_HOST"] . $_SERVER["PHP_SELF"] . "?" . $querystring; ?>
         </a>
       </p>
+
       <hr class="clear">
       <div class="notes blogfulldate">
         <?php echo date("d.M.Y H:i", $row['ctime']);
-              if ($row["ctime"] != $row["mtime"]) echo " - last update: " . date("d.M.Y H:i", $row["mtime"]);
+              if ($row["ctime"] != $row["mtime"]) echo " - " . gettext("last update") . ": " . date("d.M.Y H:i", $row["mtime"]);
         ?>
       </div>
+
+      <?php
+        if ($row["num_comments"] > 0) {
+          if ($row["num_comments"] == "1") $comments = gettext("comment");
+          else                             $comments = gettext("comments");
+
+          $num_comments = convertnumbers($row["num_comments"], $lang);
+          echo "<p class=\"notes commentslink\"><a href=\"#linkshowcomments\">$num_comments $comments</a></p>\n";
+        }
+        else {
+          echo "<p class=\"notes commentslink\">" . gettext("no comments") . "</p>\n";
+        }
+      ?>
 
       <article>
         <header>
