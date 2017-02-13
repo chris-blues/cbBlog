@@ -1,6 +1,5 @@
-<!-- begin blog.php -->
 <?php
-
+$startTime = microtime(true);
 require_once("bootstrap.php");
 
 include_once("lang.php");
@@ -8,48 +7,33 @@ include_once("lang.php");
 if ($_GET["id"] == "0") unset($_GET["id"]);
 date_default_timezone_set('Europe/Berlin');
 
-if (isset($_GET["id"])) $blogposts = $query->selectById("blog", $_GET["id"], "Blogpost");
-else                    $blogposts = $query->selectAll("blog", "Blogpost");
-
-$tags = $query->selectAll("blog_tags", "Tags");
-Filters::display($tags);
-
-foreach ($tags as $key => $Tag) { $tagname = $Tag->getdata(); $taglist[$key] = $tagname["tag"]; }
-require_once("lib/Filters.php");
-
+// fall back to overview if $_GET["id"] is missing or empty
+if (isset($_GET["id"]) and $_GET["id"] != "") {
+  $blogposts[$_GET["id"]] = $query->selectById("blog", $_GET["id"], "Blogpost");
+}
+else {
+  $blogposts = $query->selectAll("blog", "Blogpost");
+}
 
 
+if (!isset($_GET["id"]) or $_GET["id"] == "" or $_GET["id"] == "0") {
+  $tags = $query->selectAllTags("blog_tags", "Tags");
+  Filters::display($tags);
+  foreach ($tags as $key => $Tag) { $tagname = $Tag->getdata(); $taglist[$key] = $tagname["tag"]; }
+  echo "<div id=\"wrapper\">\n";
+}
 
 
-// ################
-// ##  tag list  ##
-// ################
-
-if (!isset($_GET["id"]) or $_GET["id"] == "")
-  {
 
 
-   echo "<div id=\"wrapper\">\n";
 
-   if (!isset($_GET["filter"]) or $_GET["filter"] == "")
-     {
-      $query_blog = "SELECT * FROM `blog` WHERE `tags` NOT LIKE '%saved%' ORDER BY `blog`.`time` DESC ";
-     }
-   else
-     {
-      $query_blog = "SELECT * FROM `blog` WHERE `tags` LIKE '%{$_GET["filter"]}%' AND `tags` NOT LIKE '%saved%' ORDER BY `time` DESC";
-     }
-  }
 
-else
-  {
-   $query_blog = "select * from `blog` WHERE (`blog`.`index` = {$_GET['index']}) ";
-  }
+
 
 
 
 if (!isset($_GET["filter"]) or $_GET["filter"] == "") $filter = "";
-else $filter = "&amp;filter=" . $_GET["filter"];
+else $filter = $_GET["filter"];
 
 if ($blogposts)
   {
@@ -61,83 +45,38 @@ if ($blogposts)
 // #####################
 // ##  Blogpost mode  ##
 // #####################
-      if (isset($_GET["id"]) or $_GET["id"] != "")
+      if (isset($_GET["id"]) and $_GET["id"] != "")
         {
-         echo "<div class=\"shadow blogentryfull\">\n";
-         echo "<form action=\"{$_SERVER["PHP_SELF"]}?page={$current_page}{$link}{$filter}\" method=\"post\" accept-charset=\"UTF-8\" class=\"inline\">\n";
-         echo "<input type=\"submit\" value=\" &lt;&lt;&lt; $back \">\n</form>\n";
-         echo "<div id=\"{$row["id"]}\" class=\"clear\">\n";
-         echo "<p class=\"notes inline\">tags: ";
-         $actualtags = explode(" ", $row["tags"]);
-         foreach ($actualtags as $key => $tag)
-           {
-            if (strcmp($tag,"copypaste") == 0) $cptitle = " title=\"copied and pasted\"";
-            else $cptitle = "";
-            echo "<a href=\"{$_SERVER["PHP_SELF"]}?page={$current_page}$link&amp;filter=$tag\"$cptitle>$tag</a> ";
-           }
-         echo "</p>\n";
-         // create permalink (without kartid, lang and accessibility)
-         $search = explode("&",$_SERVER["QUERY_STRING"]);
-         $switch = "0";
-         foreach ($search as $key => $value)
-           { // _GET-Variables not to show in Permalink
-            if (strncmp($value, "kartid", 6) == 0) continue 1;
-            if (strncmp($value, "lang", 4) == 0) continue 1;
-            if (strncmp($value, "accessibility", 13) == 0) continue 1;
-            if (strncmp($value, "showcomments", 12) == 0) continue 1;
-            if (strncmp($value, "filter", 6) == 0) continue 1;
-            if ($switch == "0")
-              {
-               $querystring = "$value";
-               $switch = "1";
-              }
-            else
-              {
-               $querystring .= "&amp;$value";
-              }
-           }
-         echo "<p class=\"notes right\" id=\"permaLink\">Permalink: <a href=\"https://{$_SERVER["HTTP_HOST"]}{$_SERVER["PHP_SELF"]}?$querystring\">https://{$_SERVER["HTTP_HOST"]}{$_SERVER["PHP_SELF"]}?$querystring</a></p>\n";
-         echo "<hr class=\"clear\">\n";
-         echo "<div class=\"notes blogfulldate\">" . date("d.M.Y H:i", $row['time']);
-           if ($row["time"] != $row["ctime"]) echo " - last update: " . date("d.M.Y H:i", $row["ctime"]);
-         echo "</div>\n";
+         require("templates/view.blogpost.php");
 
-         $query_comments = "SELECT * FROM `musicchris_de`.`blog-comments` WHERE `affiliation` = {$row["id"]} ORDER BY `time` ASC ";
-         $resultcomments = mysqli_query($concom, $query_comments);
-         $totalRows_comments = mysqli_num_rows($resultcomments);
-         if ($totalRows_comments)
-           {
-            if ($totalRows_comments == "1") $comments = $lang_comment;
-              else $comments = $lang_comments;
-            $total_comments = convertnumbers($totalRows_comments, $lang);
-            echo "<p class=\"notes commentslink\"><a href=\"#linkshowcomments\">$total_comments $comments</a></p>\n";
-           }
-         else
-           {
-            echo "<p class=\"notes commentslink\">$zero_totalRows_comments $lang_comments</p>\n";
-           }
-         mysqli_free_result($resultcomments);
 
-         echo "<article>\n<header>\n<h1>{$row["head"]}</h1>\n</header>";
-         echo "{$row["text"]}\n</article>\n";
-         echo "</div>\n";
-         echo "<hr>\n";
-         echo "<div class=\"notes blogfulldate\">" . date("d.M.Y H:i", $row['time']);
-           if ($row["time"] != $row["ctime"]) echo " - last update: " . date("d.M.Y H:i", $row["ctime"]); ?></div>
-         <div class="notes centered">
-           <a rel="license" href="https://creativecommons.org/licenses/by/4.0/" target="_blank"><img alt="Creative Commons Lizenzvertrag" id="cc" src="pics/cc-by.png"></a><br>
-           Dieses Werk ist lizenziert unter einer<br>
-           <a rel="license" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons Namensnennung 4.0 International Lizenz</a>.
-         </div>
-   <?php
+
+
+
+//          $query_comments = "SELECT * FROM `musicchris_de`.`blog-comments` WHERE `affiliation` = {$row["id"]} ORDER BY `time` ASC ";
+//          $resultcomments = mysqli_query($concom, $query_comments);
+//          $totalRows_comments = mysqli_num_rows($resultcomments);
+//          if ($totalRows_comments)
+//            {
+//             if ($totalRows_comments == "1") $comments = $lang_comment;
+//               else $comments = $lang_comments;
+//             $total_comments = convertnumbers($totalRows_comments, $lang);
+//             echo "<p class=\"notes commentslink\"><a href=\"#linkshowcomments\">$total_comments $comments</a></p>\n";
+//            }
+//          else
+//            {
+//             echo "<p class=\"notes commentslink\">$zero_totalRows_comments $lang_comments</p>\n";
+//            }
+//          mysqli_free_result($resultcomments);
+//
+
         }
 // ##############################
 // or we want to see the overview
 // ##############################
       else
         {
-         echo "<div class=\"shadow blogentryoverview\">\n";
-         echo "<p class=\"notes blogdate\">" . date("d.M.Y H:i",$row['ctime']) . " -  updated: " . date("d.M.Y H:i",$row['mtime']) . "</p>\n";
+         require("templates/view.overview.php");
 
 //          $query_comments = "SELECT * FROM `musicchris_de`.`blog-comments` WHERE `affiliation` = {$row["id"]} ORDER BY `time` ASC ";
 //          $resultcomments = mysqli_query($concom, $query_comments);
@@ -155,25 +94,17 @@ if ($blogposts)
 //            }
 //          mysqli_free_result($resultcomments);
 
-         $head = strip_tags($row["head"]);
-         echo "<h1 class=\"bloghead\"><a href=\"{$_SERVER["PHP_SELF"]}?page={$current_page}$link&amp;id={$row["id"]}{$filter}\">$head</a></h1>\n";
-         if ($row["text"] != "" or !isset($row["text"]))
-           {
-            $text = preg_replace('/\s+/', ' ', strip_tags($row["text"], '<p>'));
-            if (strlen($text) > 250) { $shorttext = substr($text,0,250) . "..."; }
-            else { $shorttext = $text; }
-            echo "<p class=\"clear blogshorttext\">" . $shorttext . "</p>\n";
-            echo "<p class=\"notes inline\">{$row["tags"]}</p>\n";
-           }
-         echo "</div>\n";
+//
+//
         }
      }
+  echo "</div>\n";
   }
 else
   {
    echo "ERROR! No data retrieved.";
   }
-//mysqli_free_result($result);
+
 
 if (!isset($_GET["id"]) or $_GET["id"] == "") $_GET["id"] = "0";
 
@@ -182,87 +113,32 @@ if (!isset($_GET["id"]) or $_GET["id"] == "") $_GET["id"] = "0";
 // ##  only show comments section if not inoverview  ##
 //  ##################################################
 if (isset($_GET["id"]) and $_GET["id"] != "" and $_GET["id"] != "0")
-  {
-   echo "</div>\n<div class=\"clear\"></div>\n";
-   echo "<div class=\"comments_wrapper\">\n<div class=\"centered\" id=\"linkshowcomments\">\n";
-   if ($lang == "en") echo "<h2>Comments</h2>\n"; else echo "<h2>Kommentare</h2>\n";
-   echo "</div>\n";
+  { ?>
+  <div class="clear"></div>
+  <div class="comments_wrapper">
+    <div class="centered" id="linkshowcomments">
+      <h2><?php echo gettext("comments"); ?></h2>
+    </div>
 
+    <div id="langOT" class="hidden"
+         data-OTon="<?php echo gettext("show off-topic comments"); ?>"
+         data-OToff="<?php echo gettext("hide off-topic comments"); ?>">
+    </div>
 
-// ############################
-// show comments for this entry
-// ############################
-
-   switch ($lang)
-     {
-      case "de": { $switchOTon = "zeige themenfremde Beiträge"; $switchOToff = "verstecke themenfremde Beiträge"; break; }
-      case "en":
-      default:        { $switchOTon = "show off-topic comments"; $switchOToff = "hide off-topic comments"; break; }
-     }
-   echo "<div id=\"langOT\" class=\"hidden\"
-              data-OTon=\"$switchOTon\"
-              data-OToff=\"$switchOToff\"></div>\n";
-
-   $query_comments = "SELECT * FROM `blog-comments` WHERE `affiliation` = {$_GET["id"]} ORDER BY `time` ASC ";
-   $result = mysqli_query($con, $query_comments);
-   $totalRows_comments = mysqli_num_rows($result);
-   if ($result)
-     {
-      $counter = "0";
-      while ($row = $result->fetch_assoc())
-        {
-         $counter++;
-         echo "<div class=\"comments shadow\" id=\"{$row["time"]}\">\n";
-         echo "<h3 class=\"commentsHead\"><a href=\"{$_SERVER["PHP_SELF"]}?{$_SERVER["QUERY_STRING"]}#{$row["time"]}\">$counter</a>) ";
-
-         if ($row["website"] != "")
-           {
-            $externalUrl = true;
-            if (strncmp($row["website"], "http://" . $_SERVER["HTTP_HOST"], strlen("http://" . $_SERVER["HTTP_HOST"])) == 0) $externalUrl = false;
-            if (strncmp($row["website"], "https://" . $_SERVER["HTTP_HOST"], strlen("https://" . $_SERVER["HTTP_HOST"])) == 0) $externalUrl = false;
-
-            if ($externalUrl) $linkWebsite = "<a href=\"{$row["website"]}\" target=\"_blank\">{$row["name"]}</a>";
-            else              $linkWebsite = "<a href=\"{$row["website"]}\">{$row["name"]}</a>";
-            echo $linkWebsite;
-           }
-         else echo $row["name"];
-
-         echo "</h3>\n  <p class=\"notes inline\">" . date("d.M.Y H:i",$row["time"]) . "</p>";
-         echo "<button type=\"button\" class=\"otswitch inline\">$switchOTon</button>\n";
-
-         $search = array("\\r\\n", "\r\n", "\\0", "\\");
-         $replace = array("\n", "\n", "0", "");
-         $post = str_replace($search, $replace, $row["comment"]);
-         $post = htmlspecialchars($post, ENT_QUOTES | ENT_HTML5, "UTF-8", false);
-         echo "<div class=\"clear\"></div>\n<div class=\"commentText\">" . parse(nl2br($post, false)) . "</div>\n";
-         echo "</div>\n";
-        }
-      unset($post);
-     }
-   mysqli_free_result($result);
+  <?php
+  $comments = $query->selectComments($_GET["id"], "Comment");
+  $counter = 0;
+  foreach ($comments as $Comment) {
+    $counter++;
+    $row = $Comment->getdata();
+    require("templates/view.comment.php");
+  }
 
 
 
-   $insertTags["b"]["open"]      = "[b]";
-   $insertTags["b"]["close"]     = "[/b]";
-   $insertTags["u"]["open"]      = "[u]";
-   $insertTags["u"]["close"]     = "[/u]";
-   $insertTags["s"]["open"]      = "[s]";
-   $insertTags["s"]["close"]     = "[/s]";
-   $insertTags["i"]["open"]      = "[i]";
-   $insertTags["i"]["close"]     = "[/i]";
-   $insertTags["url"]["open"]    = "[url]";
-   $insertTags["url"]["close"]   = "[/url]";
-   $insertTags["code"]["open"]   = "[code]";
-   $insertTags["code"]["close"]  = "[/code]";
-   $insertTags["tt"]["open"]     = "[tt]";
-   $insertTags["tt"]["close"]    = "[/tt]";
-   $insertTags["quote"]["open"]  = "[quote]";
-   $insertTags["quote"]["close"] = "[/quote]";
-   $insertTags["ot"]["open"]     = "[ot]";
-   $insertTags["ot"]["close"]    = "[/ot]";
-   $insertTags["done"]["open"]   = "[done]";
-   $insertTags["done"]["close"]  = "";
+
+
+
 
 
    //display post form
@@ -313,7 +189,7 @@ if (isset($_GET["id"]) and $_GET["id"] != "" and $_GET["id"] != "0")
    echo "    <div class=\"smileys\" id=\"smileys\">\n";
 
    // add Smileys
-   $smileyFile = file("blog/smileys.txt", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+   $smileyFile = file("smileys.txt", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
    foreach ($smileyFile as $key => $value) { $smiley = trim($value); echo " <span class=\"smiley\" data-id=\"$smiley\">$smiley</span>"; }
 
    echo "\n    </div>\n  </div>\n";
@@ -328,4 +204,4 @@ if (isset($_GET["id"]) and $_GET["id"] != "" and $_GET["id"] != "0")
    echo "</div>\n";
 ?>
 
-<!-- end blog.php -->
+<?php require_once("templates/view.foot.php"); ?>

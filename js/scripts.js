@@ -108,22 +108,22 @@ function setCaretPosition(pos){
    }
 }
 
-var shown = 0;
+var OTshown = 0;
 function switchofftopic() {
   switches = document.getElementsByClassName("otswitch");
 
-  if (shown == "1") {
+  if (OTshown == "1") {
     for (i=0; i<switches.length; i++) {
       switches[i].innerHTML = OTon;
      }
     $( "span.offtopic" ).slideUp( 1000 );
-    shown = 0;
+    OTshown = 0;
    }
   else {
     for (i=0; i<switches.length; i++) {
       switches[i].innerHTML = OToff;
      }
     $( "span.offtopic" ).slideDown( 1000 );
-    shown = 1;
+    OTshown = 1;
    }
 }

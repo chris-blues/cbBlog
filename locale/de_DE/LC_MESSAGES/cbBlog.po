@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cbBlog\n"
-"POT-Creation-Date: 2017-02-11 15:56+0100\n"
-"PO-Revision-Date: 2017-02-11 15:56+0100\n"
+"POT-Creation-Date: 2017-02-13 00:44+0100\n"
+"PO-Revision-Date: 2017-02-13 00:44+0100\n"
 "Last-Translator: chris_blues <chris@musicchris.de>\n"
 "Language-Team: cbBlog Translations <chris@musicchris.de>\n"
 "Language: de_DE\n"
@@ -15,6 +15,26 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
+#: blog.php:117
+msgid "comments"
+msgstr "Kommentare"
+
+#: blog.php:121 templates/view.comment.php:19
+msgid "show off-topic comments"
+msgstr "zeige themenfremde Beiträge"
+
+#: blog.php:122
+msgid "hide off-topic comments"
+msgstr "verstecke themenfremde Beiträge"
+
 #: lib/Filters.php:8 lib/Filters.php:10
 msgid "all"
 msgstr "alle"
+
+#: lib/functions.php:33
+msgid "Processing needed"
+msgstr "Verarbeitung brauchte"
+
+#: templates/view.blogpost.php:8
+msgid "back"
+msgstr "Zurück"

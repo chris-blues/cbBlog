@@ -17,29 +17,66 @@ function dump_array($var) {
   }
 }
 
-function procTime($startTime, $endTime) {
-  return round($endTime - $startTime, 3) . " seconds";
+function prettyTime($proctime) {
+  $proctime = $proctime * 1000;
+  return ($proctime);
 }
 
-function assembleGetString($newVars) {
+function procTime($startTime, $endTime) {
+  $proctime = $endTime - $startTime;
+  $timeUnits = array("s", "ms", "µs");
+  $t = 0;
+  while ($proctime < 1) {
+    $proctime = prettyTime($proctime);
+    $t++;
+  }
+  return gettext("Processing needed") . " " . round($proctime, 3) . " " . $timeUnits[$t];
+}
+
+function assembleGetString($newVars = array()) {
   if (isset($_GET)) {
     $counter = 0;
     foreach ($_GET as $key => $value) {
+      if ($value == "") continue;
+      $tmpArray[$key] = $value;
+    }
+  }
+  if (isset($newVars)) {
+    foreach ($newVars as $key => $value) {
+      if ($value == "") continue;
+      $tmpArray[$key] = $value;
+      }
+    }
+  if (count($tmpArray) > 0) {
+    foreach ($tmpArray as $key => $value) {
       if ($counter == 0) $GETString = "?{$key}={$value}";
       else               $GETString .= "&amp;{$key}={$value}";
       $counter++;
     }
   }
-  if (isset($newVars)) {
-    foreach ($newVars as $key => $value) {
-      if ($counter == 0) $GETString = "?{$key}={$value}";
-      else               $GETString .= "&amp;{$key}={$value}";
-    }
-  }
+
   return $GETString;
 }
 
-
+function assemblePermaLink () {
+  // create permalink (without kartid, lang and accessibility)
+  $search = explode("&",$_SERVER["QUERY_STRING"]);
+  $switch = "0";
+  foreach ($search as $key => $value) { // _GET-Variables not to show in Permalink
+    if (strncmp($value, "kartid", 6) == 0) continue 1;
+    if (strncmp($value, "lang", 4) == 0) continue 1;
+    if (strncmp($value, "accessibility", 13) == 0) continue 1;
+    if (strncmp($value, "showcomments", 12) == 0) continue 1;
+    if (strncmp($value, "filter", 6) == 0) continue 1;
+    if ($switch == "0") {
+      $querystring = "$value";
+      $switch = "1";
+    } else {
+      $querystring .= "&amp;$value";
+    }
+  }
+  return $querystring;
+}
 
 
 function convertnumbers($number, $lang)

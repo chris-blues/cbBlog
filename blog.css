@@ -75,7 +75,7 @@
 }
 
 .italic {
-  font: normal 1.0em OpenSans-Italic;
+  font-style: italic;
 }
 
 .column {
@@ -124,6 +124,13 @@ pre {
 .feeds {
   margin: 0px;
   text-decoration: none !important;
+}
+
+a.blogpost_taglist {
+  margin: 5px;
+  padding: 5px;
+  border-radius: 6px;
+  border: 1px solid #888;
 }
 
 ul#tags {
@@ -199,12 +206,12 @@ blockquote {
   padding: 0px;
 }
 
-#blog .remark {
+.remark {
   background-color: #D5D1DE;
   background-image: url("/blog/pics/remark.png");
 }
 
-#blog .opinion {
+.opinion {
   background-color: #D1DED2;
   background-image: url("/blog/pics/opinion.png");
 }
@@ -216,7 +223,7 @@ blockquote {
 blockquote {
   margin: 0px;
  }
-#blog .quote, #blog .opinion, #blog .remark {
+.quote, .opinion, .remark {
   border-radius: 6px;
   min-height: 80px;
   margin: 10px 20px;
@@ -238,7 +245,7 @@ blockquote {
 blockquote {
   margin: 0px;
 }
-#blog .quote, #blog .opinion #blog .remark {
+.quote, .opinion, .remark {
   border-radius: 6px;
   min-height: 80px;
   background-repeat: no-repeat;
@@ -259,7 +266,7 @@ blockquote {
   margin-right: auto;
 }
 
-#blog .quote, .quote.comments {
+.quote, .quote.comments {
   border: 1px solid black;
   background-color: #DDDDAA;
   background-image: url("/blog/pics/quote.png");

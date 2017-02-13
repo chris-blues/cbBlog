@@ -18,7 +18,7 @@ class Filters {
       if (strcmp($_GET["filter"],$tagname["tag"]) == 0) {
         $filter[$tagname["id"]] = "<li><a class=\"notes italic tags green\">" . $tagname["tag"] . "</a></li>\n";
       } else {
-        $filter[$tagname["id"]] = "<li><a href=\"{$_SERVER["PHP_SELF"]}{$link}&amp;filter={$tagname["tag"]}\" class=\"notes tags\">" . $tagname["tag"] . "</a></li>\n";
+        $filter[$tagname["id"]] = "<li><a href=\"{$_SERVER["PHP_SELF"]}" . assembleGetString(array("filter" => $tagname["tag"])) . "\" class=\"notes tags\">" . $tagname["tag"] . "</a></li>\n";
       }
     }
   require("templates/filterlist.php");

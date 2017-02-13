@@ -1,3 +1,3 @@
-<div><?php echo procTime($startTime, $endTime); ?></div>
+<div><?php echo procTime($startTime, microtime(true)); ?></div>
 </body>
 </html>

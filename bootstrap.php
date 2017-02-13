@@ -10,10 +10,19 @@ ini_set("log_errors", 1);
 ini_set("error_log", "admin/logs/php-error.log");
 $debug = true;
 
+// ###############
+// ##  Configs  ##
+// ###############
+$config["database"] = require_once("config/db.php");
+$config["blog"] = require_once("config/blog.php");
+$insertTags = require_once("config/bbtags.php");
+
+if ($config["blog"]["standalone"]) require_once("templates/view.head.php");
+
 // ######################
 // ##  Init gettext()  ##
 // ######################
-switch($lang)
+switch($_GET["lang"])
   {
    case 'de': { $locale = "de_DE"; break; }
    case 'en': { $locale = "en_GB"; break; }
@@ -39,12 +48,6 @@ echo "<!-- locale: " . $localeString . " -->\n";
 require_once("lib/db/Connection.php");
 require_once("lib/db/QueryBuilder.php");
 
-$config["database"] = require_once("config/db.php");
-$config["blog"] = require_once("config/blog.php");
-
-if ($config["blog"]["standalone"]) require_once("templates/view.head.php");
-
-
 $query = new QueryBuilder(
   Connection::make($config["database"])
 );
@@ -56,4 +59,5 @@ $query = new QueryBuilder(
 require_once("lib/Blogpost.php");
 require_once("lib/Tags.php");
 require_once("lib/Filters.php");
+require_once("lib/Comment.php");
 ?>
