@@ -43,7 +43,10 @@ function assembleGetString($newVars = array()) {
   }
   if (isset($newVars)) {
     foreach ($newVars as $key => $value) {
-      if ($value == "") continue;
+      if ($value == "") {
+        unset($tmpArray[$key]);
+        continue;
+      }
       $tmpArray[$key] = $value;
       }
     }

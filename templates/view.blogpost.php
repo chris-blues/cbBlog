@@ -1,6 +1,6 @@
 
   <div class="shadow blogentryfull">
-    <form action="<?php echo $_SERVER["PHP_SELF"] . assembleGetString(array("id" => "0")); ?>"
+    <form action="<?php echo $_SERVER["PHP_SELF"] . assembleGetString(array("id" => "")); ?>"
           method="post"
           accept-charset="UTF-8"
           class="inline"

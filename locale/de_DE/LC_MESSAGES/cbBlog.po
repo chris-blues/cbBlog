@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cbBlog\n"
-"POT-Creation-Date: 2017-02-13 13:59+0100\n"
-"PO-Revision-Date: 2017-02-13 13:59+0100\n"
+"POT-Creation-Date: 2017-02-13 18:58+0100\n"
+"PO-Revision-Date: 2017-02-13 18:58+0100\n"
 "Last-Translator: chris_blues <chris@musicchris.de>\n"
 "Language-Team: cbBlog Translations <chris@musicchris.de>\n"
 "Language: de_DE\n"
@@ -15,19 +15,19 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
+#: admin/functions.php:34 lib/functions.php:33
+msgid "Processing needed"
+msgstr "Verarbeitung brauchte"
+
 #: lib/Filters.php:8 lib/Filters.php:10
 msgid "all"
 msgstr "alle"
-
-#: lib/functions.php:33
-msgid "Processing needed"
-msgstr "Verarbeitung brauchte"
 
 #: templates/view.blogpost.php:8
 msgid "back"
 msgstr "Zurück"
 
-#: templates/view.blogpost.php:31
+#: templates/view.blogpost.php:31 templates/view.overview.php:4
 msgid "last update"
 msgstr "zuletzt aktualisiert"
 
