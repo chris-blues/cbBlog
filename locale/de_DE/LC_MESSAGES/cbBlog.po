@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cbBlog\n"
-"POT-Creation-Date: 2017-02-13 18:58+0100\n"
-"PO-Revision-Date: 2017-02-13 18:58+0100\n"
+"POT-Creation-Date: 2017-02-14 01:08+0100\n"
+"PO-Revision-Date: 2017-02-14 01:08+0100\n"
 "Last-Translator: chris_blues <chris@musicchris.de>\n"
 "Language-Team: cbBlog Translations <chris@musicchris.de>\n"
 "Language: de_DE\n"
@@ -23,24 +23,28 @@ msgstr "Verarbeitung brauchte"
 msgid "all"
 msgstr "alle"
 
-#: templates/view.blogpost.php:8
+#: templates/filterlist.php:7
+msgid "by"
+msgstr "von"
+
+#: templates/view.blogpost.php:13
 msgid "back"
 msgstr "Zurück"
 
-#: templates/view.blogpost.php:31 templates/view.overview.php:4
+#: templates/view.blogpost.php:36 templates/view.overview.php:4
 msgid "last update"
 msgstr "zuletzt aktualisiert"
 
-#: templates/view.blogpost.php:37 templates/view.overview.php:13
+#: templates/view.blogpost.php:42 templates/view.overview.php:13
 msgid "comment"
 msgstr "Kommentar"
 
-#: templates/view.blogpost.php:38 templates/view.comments-section.php:5
+#: templates/view.blogpost.php:43 templates/view.comments-section.php:5
 #: templates/view.overview.php:14
 msgid "comments"
 msgstr "Kommentare"
 
-#: templates/view.blogpost.php:44 templates/view.overview.php:17
+#: templates/view.blogpost.php:49 templates/view.overview.php:17
 msgid "no comments"
 msgstr "Keine Kommentare"
 

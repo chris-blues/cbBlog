@@ -2,7 +2,14 @@
 
 return [
   "standalone" => true,
-  "showProcessingTime" => true
+  "showProcessingTime" => true,
+  "permalinkIgnore" => [
+    "kartid",
+    "lang",
+    "accessibility",
+    "filter",
+    "index"
+  ]
 ];
 
 ?>

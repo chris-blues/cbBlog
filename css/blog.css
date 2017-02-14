@@ -1,5 +1,23 @@
 @charset "utf-8";
 
+a:link { color: #332211; text-decoration: underline; }
+a:visited { color: #112233; text-decoration: underline; }
+a:hover { color: #666633; text-decoration: none; }
+
+[target=_blank] {
+  margin-right: 5px;
+  padding-right: 20px;
+  background-image: url('../pics/ext-link.png');
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
+a.feeds {
+  background-image: none;
+  padding: 0px;
+  margin: 0px;
+}
+
 .offtopic {
   display: none;
   color: #333;
@@ -127,9 +145,10 @@ pre {
 
 a.blogpost_taglist {
   margin: 5px;
-  padding: 5px;
+  padding: 0px 5px 2px;
   border-radius: 6px;
   border: 1px solid #888;
+  background-color: #F6F6F6;
 }
 
 ul#tags {
@@ -148,6 +167,10 @@ ul#tags {
 #wrapper {
   display: flex;
   flex-direction: column;
+}
+
+form#backForm {
+  margin-bottom: 15px;
 }
 
 a.tags {
@@ -314,10 +337,6 @@ blockquote {
 
 .green {
   background-color: #DDDDAA;
-}
-
-.right {
-  float: right;
 }
 
 #permaLink {

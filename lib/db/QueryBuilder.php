@@ -8,7 +8,7 @@ class QueryBuilder {
     $this->Database = $Database;
   }
 
-  public function selectAllBlogposts($filter, $intoClass) {
+  public function selectAllBlogposts($filter) {
     if (!isset($filter) or $filter == "") {
       $statement = $this->Database->prepare(
         "SELECT * FROM `blog` ORDER BY `blog`.`ctime` DESC ;"
@@ -23,30 +23,39 @@ class QueryBuilder {
       );
     }
     $statement->execute();
-    return $statement->fetchAll(PDO::FETCH_CLASS, $intoClass);
+    return $statement->fetchAll(PDO::FETCH_CLASS, "Blogpost");
   }
 
-  public function selectBlogpostsById($filter, $id, $intoClass) {
+  public function selectBlogpostsById($id) {
     $statement = $this->Database->prepare("SELECT * FROM `blog` WHERE `id`='{$id}' ;");
     $statement->execute();
-    $statement->setFetchMode(PDO::FETCH_CLASS, $intoClass);
+    $statement->setFetchMode(PDO::FETCH_CLASS, "Blogpost");
     return $statement->fetch();
   }
 
-//   SELECT blog.blog, blog.title FROM blog, tag, blog_tag WHERE tag.text = "foo" AND blog_tag.tag = tag.tag AND blog.blog = blog_tag.blog
-
-
-
-  public function selectAllTags($intoClass) {
-    $statement = $this->Database->prepare("SELECT * FROM `blog_tags` ;");
+  public function getTagsOfBlogpost($id) {
+    $statement = $this->Database->prepare(
+      "SELECT blog_tags.* FROM blog, blog_tags, blog_tags_relations
+        WHERE blog_tags_relations.blog = '{$id}'
+          AND blog.id = '{$id}'
+          AND blog_tags.id = blog_tags_relations.tag
+     ORDER BY blog_tags_relations.tag ASC ; "
+    );
     $statement->execute();
-    return $statement->fetchAll(PDO::FETCH_CLASS, $intoClass);
+    return $statement->fetchAll(PDO::FETCH_CLASS, "Tags");
   }
 
-  public function selectComments($affiliation, $intoClass) {
+
+  public function selectAllTags() {
+    $statement = $this->Database->prepare("SELECT * FROM `blog_tags` ;");
+    $statement->execute();
+    return $statement->fetchAll(PDO::FETCH_CLASS, "Tags");
+  }
+
+  public function selectComments($affiliation) {
     $statement = $this->Database->prepare("SELECT * FROM `blog_comments` WHERE `affiliation`='{$affiliation}' ORDER BY `blog_comments`.`time` ASC ;");
     $statement->execute();
-    return $statement->fetchAll(PDO::FETCH_CLASS, $intoClass);
+    return $statement->fetchAll(PDO::FETCH_CLASS, "Comment");
   }
 }
 

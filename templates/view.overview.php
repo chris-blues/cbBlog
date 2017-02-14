@@ -6,7 +6,7 @@
 
     <?php $num_comments = convertnumbers($row["num_comments"], $lang); ?>
     <p class="notes commentslink">
-      <a href="<?php echo $_SERVER["PHP_SELF"] . assembleGetString(array("id" => $row["id"], "filter" => $filter)); ?>#linkshowcomments">
+      <a href="<?php echo $_SERVER["PHP_SELF"] . assembleGetString("string", array("id" => $row["id"], "filter" => $filter)); ?>#linkshowcomments">
         <?php
           if ($row["num_comments"] > 0) {
             echo $num_comments . " ";
@@ -22,7 +22,7 @@
 
     <?php $head = strip_tags($row["head"]); ?>
     <h1 class="bloghead">
-      <a href="<?php echo $_SERVER["PHP_SELF"] . assembleGetString(array("id" => $row["id"], "filter" => $filter)); ?>">
+      <a href="<?php echo $_SERVER["PHP_SELF"] . assembleGetString("string", array("id" => $row["id"], "filter" => $filter)); ?>">
         <?php echo $head; ?>
       </a>
     </h1>
@@ -37,7 +37,12 @@
       <?php echo $shorttext; ?>
     </p>
     <p class="notes inline">
-      <?php echo $row["tags"] ?>
+      <?php foreach ($row["tags"] as $Tag) {
+          $tempArray = $Tag->getdata();
+          if ($tempArray["tag"] == "") continue;
+          echo "<a class=\"blogpost_taglist\" href=\"{$_SERVER["PHP_SELF"]}" . assembleGetString("string", array("filter" => $tempArray["tag"])) . "\">" . $tempArray["tag"] . "</a> ";
+        }
+      ?>
     </p>
     <?php } ?>
   </div>

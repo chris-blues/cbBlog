@@ -33,7 +33,7 @@ function procTime($startTime, $endTime) {
   return gettext("Processing needed") . " " . round($proctime, 3) . " " . $timeUnits[$t];
 }
 
-function assembleGetString($newVars = array()) {
+function assembleGetString($method = "", $newVars = array()) {
   if (isset($_GET)) {
     $counter = 0;
     foreach ($_GET as $key => $value) {
@@ -50,32 +50,32 @@ function assembleGetString($newVars = array()) {
       $tmpArray[$key] = $value;
       }
     }
-  if (count($tmpArray) > 0) {
-    foreach ($tmpArray as $key => $value) {
-      if ($counter == 0) $GETString = "?{$key}={$value}";
-      else               $GETString .= "&amp;{$key}={$value}";
-      $counter++;
+
+  if ($method == "array") return $tmpArray;
+
+  if ($method == "" or $method == "string") {
+    if (count($tmpArray) > 0) {
+      foreach ($tmpArray as $key => $value) {
+        if ($counter == 0) $GETString = "?{$key}={$value}";
+        else               $GETString .= "&amp;{$key}={$value}";
+        $counter++;
+      }
     }
   }
 
   return $GETString;
 }
 
-function assemblePermaLink () {
-  // create permalink (without kartid, lang and accessibility)
-  $search = explode("&",$_SERVER["QUERY_STRING"]);
+function assemblePermaLink ($ignore) {
+  // create permalink (without contents of $config["blog"]["permalinkIgnore"] found in /config/blog.php)
   $switch = "0";
-  foreach ($search as $key => $value) { // _GET-Variables not to show in Permalink
-    if (strncmp($value, "kartid", 6) == 0) continue 1;
-    if (strncmp($value, "lang", 4) == 0) continue 1;
-    if (strncmp($value, "accessibility", 13) == 0) continue 1;
-    if (strncmp($value, "showcomments", 12) == 0) continue 1;
-    if (strncmp($value, "filter", 6) == 0) continue 1;
+  foreach ($_GET as $key => $value) {
+    if (in_array($key, $ignore)) continue;
     if ($switch == "0") {
-      $querystring = "$value";
+      $querystring = "{$key}={$value}";
       $switch = "1";
     } else {
-      $querystring .= "&amp;$value";
+      $querystring .= "&amp;{$key}={$value}";
     }
   }
   return $querystring;

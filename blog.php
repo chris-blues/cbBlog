@@ -1,5 +1,6 @@
 <?php
-
+// Ugly workaround for old cbBlog databases
+if (!isset($_GET["id"]) and isset($_GET["index"]) and $_GET["index"] != "") { $_GET["id"] = $_GET["index"]; unset($_GET["index"]); }
 require_once("bootstrap.php");
 if ($config["blog"]["showProcessingTime"]) $startTime = microtime(true);
 
@@ -12,15 +13,15 @@ else $filter = $_GET["filter"];
 
 // ====================[ select query ]====================
 if (isset($_GET["id"]) and $_GET["id"] != "") {
-  $blogposts[$_GET["id"]] = $query->selectBlogpostsById($filter, $_GET["id"], "Blogpost");
+  $blogposts[$_GET["id"]] = $query->selectBlogpostsById($_GET["id"]);
 }
 else {
-  $blogposts = $query->selectAllBlogposts($filter, "Blogpost");
+  $blogposts = $query->selectAllBlogposts($filter);
 }
 
 // ====================[ print taglist ]====================
 if (!isset($_GET["id"]) or $_GET["id"] == "" or $_GET["id"] == "0") {
-  $tags = $query->selectAllTags("Tags");
+  $tags = $query->selectAllTags();
   Filters::display($tags);
   foreach ($tags as $key => $Tag) {
     $tagname = $Tag->getdata();
@@ -37,8 +38,9 @@ if ($blogposts)
       $row = $Post->getdata();
       $row["head"] = str_replace('$link', $link, $row["head"]);
       $row["text"] = str_replace('$link', $link, $row["text"]);
+      $row["tags"] = $query->getTagsOfBlogpost($row["id"]);
 
-      $comments = $query->selectComments($row["id"], "Comment");
+      $comments = $query->selectComments($row["id"]);
       $row["num_comments"] = count($comments);
 
       if (isset($_GET["id"]) and $_GET["id"] != "")

@@ -1,6 +1,6 @@
 <?php
 require_once("lib/functions.php");
-$link = assembleGetString();
+$link = assembleGetString("string");
 // ##########################
 // ##  Debugging settings  ##
 // ##########################

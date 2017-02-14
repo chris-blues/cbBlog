@@ -1,25 +1,30 @@
 
   <div class="shadow blogentryfull">
-    <form action="<?php echo $_SERVER["PHP_SELF"] . assembleGetString(array("id" => "")); ?>"
-          method="post"
+    <form action="<?php echo $_SERVER["PHP_SELF"];?>"
+          method="get"
           accept-charset="UTF-8"
-          class="inline"
+          id="backForm"
           >
+      <?php
+        $getVars = assembleGetString("array", array("id" => "", "index" => ""));
+        foreach ($getVars as $key => $value) { ?>
+          <input type="hidden" name="<?php echo $key; ?>" value="<?php echo $value; ?>">
+      <?php } ?>
       <button type="submit"> &lt;&lt;&lt; <?php echo gettext("back"); ?> </button>
     </form>
 
     <div id="<?php echo $row["id"]; ?>" class="clear">
       <p class="notes inline">tags:
         <?php
-        $actualtags = explode(" ", $row["tags"]);
-        foreach ($actualtags as $key => $tag) {
-          if ($value == "") continue;
-          echo "<a class=\"blogpost_taglist\" href=\"{$_SERVER["PHP_SELF"]}" . assembleGetString(array("filter" => $tag)) . "\">$tag</a> ";
+        foreach ($row["tags"] as $Tag) {
+          $tempArray = $Tag->getdata();
+          if ($tempArray["tag"] == "") continue;
+          echo "<a class=\"blogpost_taglist\" href=\"{$_SERVER["PHP_SELF"]}" . assembleGetString("string", array("filter" => $tempArray["tag"])) . "\">" . $tempArray["tag"] . "</a> ";
         }
         ?>
       </p>
 
-      <p class="notes right" id="permaLink">Permalink: <?php $querystring = assemblePermaLink(); ?>
+      <p class="notes right" id="permaLink">Permalink: <?php $querystring = assemblePermaLink($config["blog"]["permalinkIgnore"]); ?>
         <a href="https://<?php echo $_SERVER["HTTP_HOST"] . $_SERVER["PHP_SELF"] . "?" . $querystring; ?>">
           https://<?php echo $_SERVER["HTTP_HOST"] . $_SERVER["PHP_SELF"] . "?" . $querystring; ?>
         </a>
