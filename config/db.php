@@ -3,10 +3,10 @@
 return [
   "database" => [
     "driver"  => "mysql",
-    "host"    => "musicchris.de.mysql",
-    "name"    => "musicchris_de_baustelle",
-    "user"    => "musicchris_de_baustelle",
-    "pass"    => "BHFApVhBBv5I20sKjU8c",
+    "host"    => "mysqlHost",
+    "name"    => "databaseName",
+    "user"    => "userName",
+    "pass"    => "secretPassword",
     "options" => [
       PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
     ]
