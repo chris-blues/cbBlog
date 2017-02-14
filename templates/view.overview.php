@@ -40,7 +40,7 @@
       <?php foreach ($row["tags"] as $Tag) {
           $tempArray = $Tag->getdata();
           if ($tempArray["tag"] == "") continue;
-          echo "<a class=\"blogpost_taglist\" href=\"{$_SERVER["PHP_SELF"]}" . assembleGetString("string", array("filter" => $tempArray["tag"])) . "\">" . $tempArray["tag"] . "</a> ";
+          echo "<a class=\"blogpost_taglist shadow\" href=\"{$_SERVER["PHP_SELF"]}" . assembleGetString("string", array("filter" => $tempArray["tag"])) . "\">" . $tempArray["tag"] . "</a> ";
         }
       ?>
     </p>
