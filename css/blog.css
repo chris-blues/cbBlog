@@ -303,6 +303,10 @@ blockquote {
   margin: 0px !important;
 }
 
+.preview {
+  padding: 10px 0px 20px !important;
+}
+
 #post_name, #post_website, #post_notificationTo {
   width: 99%;
 }

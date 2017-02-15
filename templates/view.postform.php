@@ -8,17 +8,17 @@
     $previewWebsite = htmlspecialchars_decode($_POST["website"], ENT_QUOTES | ENT_HTML5); else $previewWebsite = "";
   if (isset($_POST["job"]) and $_POST["job"] == "showPreview")
     $post = htmlspecialchars(stripcslashes($_POST["text"]), ENT_QUOTES | ENT_HTML5, "UTF-8", false);
-
+  $counter++;
 ?>
 
   <div class="shadow comments comment postform" name="comment" id="commentForm">
 
 <?php
-  if (isset($_POST["previewRequested"]) and $_POST["previewRequested"] == "1") {
+  if (isset($_POST["job"]) and $_POST["job"] == "showPreview") {
     $time = time();
     ?>
     <div class="comments preview" id="preview">
-      <h3 class="commentsHead inline"><?php echo $previewString; ?>)
+      <h3 class="commentsHead inline"><?php echo $counter; ?>)
         <?php
         if ($previewWebsite != "") { ?><a href="<?php echo $previewWebsite; ?>" target="_blank"><?php echo $previewName; ?></a><?php }
         else { echo "$previewName"; }
@@ -27,7 +27,7 @@
       <p class="notes inline"><?php echo date("d.M.Y H:i", $time); ?></p>
       <p class="otswitch inline"><?php echo $switchOTon; ?></p>
       <div class="clear"></div>
-      <?php echo parse(nl2br($post, false)); ?><br>
+      <div class="commentText"><?php echo parse(nl2br($post, false)); ?></div>
     </div>
     <hr>
 <?php } ?>
@@ -128,7 +128,7 @@
       <div class="centered">
         <button type="reset"> &lt;&lt;&lt; <?php echo gettext("Back"); ?> </button>
         <button type="button" id="buttonPreview"> <?php echo gettext("Preview"); ?> </button>
-        <button type="submit" id="buttonSend"> <?php echo gettext("Send"); ?> &gt;&gt;&gt; </button>
+        <?php if ($_POST["job"] == "showPreview") { ?><button type="submit" id="buttonSend"> <?php echo gettext("Send"); ?> &gt;&gt;&gt; </button><?php } ?>
       </div>
     </form>
   </div>

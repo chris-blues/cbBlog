@@ -47,7 +47,9 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   if (document.getElementById("buttonPreview") != null) {
     document.getElementById("buttonPreview").addEventListener("click", function() {
-      document.getElementById("job").value = "showPreview"; this.form.submit();
+      document.getElementById("job").value = "showPreview";
+      document.getElementById("postCommentForm").action += "#postCommentForm";
+      this.form.submit();
     });
   }
   if (document.getElementById("buttonSend") != null) {
@@ -56,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
       document.getElementById("postCommentForm").action += "#" + time;
       document.getElementById("post_time").value = time;
       document.getElementById("job").value = "addComment";
-      this.form.submit();
+//       this.form.submit();
     });
   }
 });

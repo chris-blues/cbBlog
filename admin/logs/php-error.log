@@ -2,3 +2,229 @@
 [14-Feb-2017 22:55:35 Europe/Berlin] PHP Warning:  require_once(lib/addComment.php): failed to open stream: Datei oder Verzeichnis nicht gefunden in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/index.php on line 6
 [14-Feb-2017 22:55:35 Europe/Berlin] PHP Fatal error:  require_once(): Failed opening required 'lib/addComment.php' (include_path='.:/usr/share/php') in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/index.php on line 6
 [15-Feb-2017 01:17:23 Europe/Berlin] PHP Parse error:  syntax error, unexpected '!' in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/prepareComment.php on line 36
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:05:57 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::__construct() in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 13
+[15-Feb-2017 15:27:24 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function putdata() on null in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/prepareComment.php:70
+Stack trace:
+#0 /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/index.php(6): require_once()
+#1 {main}
+  thrown in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/prepareComment.php on line 70
+[15-Feb-2017 15:31:07 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class name must be a valid object or a string in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/prepareComment.php:70
+Stack trace:
+#0 /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/index.php(6): require_once()
+#1 {main}
+  thrown in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/prepareComment.php on line 70
+[15-Feb-2017 15:31:42 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function putdata() on null in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/prepareComment.php:70
+Stack trace:
+#0 /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/index.php(6): require_once()
+#1 {main}
+  thrown in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/prepareComment.php on line 70
+[15-Feb-2017 16:08:05 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function insertComment() on null in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php:36
+Stack trace:
+#0 /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/prepareComment.php(80): Comment->addComment(Array)
+#1 /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/index.php(6): require_once('/customers/e/7/...')
+#2 {main}
+  thrown in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 36
+[15-Feb-2017 16:10:43 Europe/Berlin] PHP Fatal error:  Uncaught Error: Call to a member function insertComment() on null in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php:36
+Stack trace:
+#0 /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/prepareComment.php(80): Comment->addComment(Array)
+#1 /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/index.php(6): require_once('/customers/e/7/...')
+#2 {main}
+  thrown in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 36
+[15-Feb-2017 16:31:43 Europe/Berlin] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/prepareComment.php on line 60
+[15-Feb-2017 16:33:25 Europe/Berlin] PHP Parse error:  syntax error, unexpected ')' in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/prepareComment.php on line 59
+[15-Feb-2017 17:25:31 Europe/Berlin] PHP Warning:  PDOStatement::execute(): SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '; DROP TABLE `blog_comments` ; ' 
+ ⚠'
+              )' at line 8 in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/db/QueryBuilder.php on line 74
+[15-Feb-2017 17:31:46 Europe/Berlin] PHP Warning:  PDOStatement::execute(): SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'Hallo Welt!');]XSS[/url]
+
+' ; DROP TABLE `blog_comments` ; ' 
+ ⚠'
+         ' at line 8 in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/db/QueryBuilder.php on line 74
+[15-Feb-2017 17:33:18 Europe/Berlin] PHP Warning:  PDOStatement::execute(): SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'Hallo Welt!');]XSS[/url]
+
+' ; DROP TABLE `blog_comments` ; ' 
+ ⚠'
+         ' at line 8 in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/db/QueryBuilder.php on line 74

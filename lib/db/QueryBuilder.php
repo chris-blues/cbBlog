@@ -57,6 +57,33 @@ class QueryBuilder {
     $statement->execute();
     return $statement->fetchAll(PDO::FETCH_CLASS, "Comment");
   }
+
+  public function insertComment($Comment) {
+    $comment = $Comment->getdata();
+
+    $statement = $this->Database->prepare("INSERT INTO `blog_comments` (affiliation, answerTo, time, name, email, website, comment)
+       VALUES (:affiliation, :answerTo, :time, :name, :email, :website, :comment);"
+      );
+    $statement->bindParam(':affiliation', $comment["affiliation"]);
+    $statement->bindParam(':answerTo', $comment["answerTo"]);
+    $statement->bindParam(':time', $comment["time"]);
+    $statement->bindParam(':name', $comment["name"]);
+    $statement->bindParam(':email', $comment["email"]);
+    $statement->bindParam(':website', $comment["website"]);
+    $statement->bindParam(':comment', $comment["comment"]);
+
+//     $statement = $this->Database->prepare("INSERT INTO `blog_comments` (`affiliation`, `answerTo`, `time`, `name`, `email`, `website`, `comment` )
+//        VALUES ( '" . $comment["affiliation"] . "',
+//                 '" . $comment["answerTo"] . "',
+//                 '" . $comment["time"] . "',
+//                 '" . $comment["name"] . "',
+//                 '" . $comment["email"] . "',
+//                 '" . $comment["website"] . "',
+//                 '" . $comment["comment"] . "'
+//               );"
+//       );
+    return $statement->execute();
+  }
 }
 
 ?>

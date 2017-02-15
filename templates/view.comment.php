@@ -27,3 +27,4 @@
     <div class="clear"></div>
     <div class="commentText"><?php echo parse(nl2br($post, false)); ?></div>
   </div>
+  <?php unset($post); ?>
