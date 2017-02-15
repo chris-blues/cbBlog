@@ -6,7 +6,8 @@
     $previewNotificationTo = htmlspecialchars_decode($_POST["notificationTo"], ENT_QUOTES | ENT_HTML5); else $previewNotificationTo = "";
   if (isset($_POST["website"]) and $_POST["website"] != "")
     $previewWebsite = htmlspecialchars_decode($_POST["website"], ENT_QUOTES | ENT_HTML5); else $previewWebsite = "";
-  $post = htmlspecialchars(stripcslashes($_POST["text"]), ENT_QUOTES | ENT_HTML5, "UTF-8", false);
+  if (isset($_POST["job"]) and $_POST["job"] == "showPreview")
+    $post = htmlspecialchars(stripcslashes($_POST["text"]), ENT_QUOTES | ENT_HTML5, "UTF-8", false);
 
 ?>
 
@@ -31,7 +32,15 @@
     <hr>
 <?php } ?>
 
-    <form action="blog/postcomment.php" method="post" accept-charset="UTF-8">
+    <form action="index.php<?php echo assembleGetString("string"); ?>"
+          method="post"
+          accept-charset="UTF-8"
+          id="postCommentForm">
+      <input type="hidden" name="job" value="addComment" id="job">
+      <input type="hidden" name="affiliation" value="<?php echo $_GET["id"]; ?>">
+      <input type="hidden" name="post_time" value="" id="post_time">
+      <input type="hidden" name="answerTo" value="0" id="post_answerTo">
+
       <?php echo gettext("name"); ?>: <span class="notes">(<?php echo gettext("optional"); ?>)</span><br>
       <input type="text" name="name" id="post_name" value="<?php echo $previewName; ?>" placeholder="<?php echo gettext("Anonymous");?>"><br>
       <p class="notes" id="email">
@@ -67,8 +76,12 @@
             <td><i><?php echo gettext("italic text"); ?></i></td>
           </tr>
           <tr>
-            <td>&#91;url&#93;<?php echo gettext("link"); ?>&#91;/url&#93;</td>
-            <td><a href="##"><?php echo gettext("link"); ?></a></td>
+            <td>&#91;url&#93;https://example.org&#91;/url&#93;</td>
+            <td><a href="https://example.org">https://example.org</a></td>
+          </tr>
+          <tr>
+            <td>&#91;url=https://example.org&#93;<?php echo gettext("link"); ?>&#91;/url&#93;</td>
+            <td><a href="https://example.org"><?php echo gettext("link"); ?></a></td>
           </tr>
           <tr>
             <td>&#91;code&#93;Code(\$foo);&#91;/code&#93;</td>
@@ -93,16 +106,8 @@
         </table>
       </div>
       <textarea name="text" id="post_text"><?php echo $post; ?></textarea>
-        <input type="hidden" name="affiliation" value="<?php echo $_GET["id"]; ?>">
-        <?php
-        foreach ($_GET as $key => $value) {
-          if ($key == "id") continue;
-        ?>
-        <input type="hidden" name="<?php echo $key; ?>" value="<?php echo $value; ?>">
-  <?php } ?>
-        <input type="hidden" name="preview" value="0" id="switchPreview">
 
-        <div class="button_wrapper">
+      <div class="button_wrapper">
         <?php
         foreach ($insertTags as $tag => $value) { ?>
           <button type="button" class="tagButton"

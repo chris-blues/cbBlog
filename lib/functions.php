@@ -1,4 +1,5 @@
 <?php
+
 function dump_var($var) {
   global $debug;
   if ($debug) {
@@ -33,6 +34,7 @@ function procTime($startTime, $endTime) {
   return gettext("Processing needed") . " " . round($proctime, 3) . " " . $timeUnits[$t];
 }
 
+// accepted $methos is either "array" or "string". An emtpy string defaults to "string"
 function assembleGetString($method = "", $newVars = array()) {
   if (isset($_GET)) {
     $counter = 0;
@@ -82,37 +84,36 @@ function assemblePermaLink ($ignore) {
 }
 
 
-function convertnumbers($number, $lang)
-  {
-   if ($lang == "en")
-     {
-      $words = array("no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine");
-      $words_ten = array("ten", "eleven", "twelve");
-     }
-   else
-     {
-      $words = array("keine", "ein", "zwei", "drei", "vier", "fünf", "sechs", "sieben", "acht", "neun");
-      $words_ten = array("zehn", "elf", "zwölf");
-     }
-   if ($number > 9)
-     {
-      $search = array("10", "11", "12");
-      $replace = $words_ten;
-     }
-   else
-     {
-      $search = array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
-      $replace = $words;
-     }
-   if ($number < 13) $word = str_replace($search, $replace, $number);
-   else $word = $number;
-   return $word;
+function convertnumbers($number, $lang) {
+  $words = array(gettext("no"),
+                 gettext("one"),
+                 gettext("two"),
+                 gettext("three"),
+                 gettext("four"),
+                 gettext("five"),
+                 gettext("six"),
+                 gettext("seven"),
+                 gettext("eight"),
+                 gettext("nine"));
+  $words_ten = array(gettext("ten"), gettext("eleven"), gettext("twelve"));
+
+  if ($number > 9) {
+    $search = array("10", "11", "12");
+    $replace = $words_ten;
   }
+  else {
+    $search = array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
+    $replace = $words;
+  }
+  if ($number < 13) $word = str_replace($search, $replace, $number);
+  else $word = $number;
+  return $word;
+}
 
 function parse($string) {
   $string = bb_parse($string);
   return($string);
- }
+}
 
 function bb_parse($string) {
 // https://secure.php.net/manual/en/function.bbcode-create.php#93349
@@ -157,24 +158,21 @@ function bb_parse($string) {
   $string = str_replace($search, $replace, $string);
 
   return $string;
- }
+}
 
-function logMailError($name, $email, $index, $hash, $mailbody)
-  {
-   $handle = fopen("logs/mailerror.log","a");
-     fwrite ($handle, date("Y-m-d H:i:s") . " - error sending notification mail to " . trim($name) . " <" . trim($email) . ">\n");
-     fwrite ($handle, date("Y-m-d H:i:s") . " - index: " . trim($index) . " . Hash: " . trim($hash) . "\n");
-     fwrite ($handle, "Mailbody:\n" . $mailbody . "\n__________END OF LOG " . date("Y-m-d H:i:s") . "__________\n");
-   fclose($handle);
-  }
+function logMailError($name, $email, $index, $hash, $mailbody) {
+  $handle = fopen("logs/mailerror.log","a");
+    fwrite ($handle, date("Y-m-d H:i:s") . " - error sending notification mail to " . trim($name) . " <" . trim($email) . ">\n");
+    fwrite ($handle, date("Y-m-d H:i:s") . " - index: " . trim($index) . " . Hash: " . trim($hash) . "\n");
+    fwrite ($handle, "Mailbody:\n" . $mailbody . "\n__________END OF LOG " . date("Y-m-d H:i:s") . "__________\n");
+  fclose($handle);
+}
 
-function logErrors($error)
-  {
-   foreach ($error as $key => $value)
-     {
-      $handle = fopen("logs/error.log","a");
-        fwrite ($handle, date("Y-m-d H:i:s") . " - $key\n");
-      fclose ($handle);
-     }
+function logErrors($error) {
+  foreach ($error as $key => $value) {
+    $handle = fopen("logs/error.log","a");
+      fwrite ($handle, date("Y-m-d H:i:s") . " - $key\n");
+    fclose ($handle);
   }
+}
 ?>

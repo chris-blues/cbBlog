@@ -3,6 +3,7 @@
 return [
   "standalone" => true,
   "showProcessingTime" => true,
+  "language" => "",
   "permalinkIgnore" => [
     "kartid",
     "lang",

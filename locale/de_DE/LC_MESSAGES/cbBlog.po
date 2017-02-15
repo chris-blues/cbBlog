@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cbBlog\n"
-"POT-Creation-Date: 2017-02-14 01:08+0100\n"
-"PO-Revision-Date: 2017-02-14 01:08+0100\n"
+"POT-Creation-Date: 2017-02-15 01:24+0100\n"
+"PO-Revision-Date: 2017-02-15 01:24+0100\n"
 "Last-Translator: chris_blues <chris@musicchris.de>\n"
 "Language-Team: cbBlog Translations <chris@musicchris.de>\n"
 "Language: de_DE\n"
@@ -15,13 +15,69 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin/functions.php:34 lib/functions.php:33
-msgid "Processing needed"
-msgstr "Verarbeitung brauchte"
-
 #: lib/Filters.php:8 lib/Filters.php:10
 msgid "all"
 msgstr "alle"
+
+#: lib/functions.php:34
+msgid "Processing needed"
+msgstr "Verarbeitung brauchte"
+
+#: lib/functions.php:88
+msgid "no"
+msgstr "kein"
+
+#: lib/functions.php:89
+msgid "one"
+msgstr "ein"
+
+#: lib/functions.php:90
+msgid "two"
+msgstr "zwei"
+
+#: lib/functions.php:91
+msgid "three"
+msgstr "drei"
+
+#: lib/functions.php:92
+msgid "four"
+msgstr "vier"
+
+#: lib/functions.php:93
+msgid "five"
+msgstr "fünf"
+
+#: lib/functions.php:94
+msgid "six"
+msgstr "sechs"
+
+#: lib/functions.php:95
+msgid "seven"
+msgstr "sieben"
+
+#: lib/functions.php:96
+msgid "eight"
+msgstr "acht"
+
+#: lib/functions.php:97
+msgid "nine"
+msgstr "neun"
+
+#: lib/functions.php:98
+msgid "ten"
+msgstr "zehn"
+
+#: lib/functions.php:98
+msgid "eleven"
+msgstr "elf"
+
+#: lib/functions.php:98
+msgid "twelve"
+msgstr "zwölf"
+
+#: lib/prepareComment.php:36 templates/view.postform.php:45
+msgid "Anonymous"
+msgstr "Anonym"
 
 #: templates/filterlist.php:7
 msgid "by"
@@ -56,83 +112,79 @@ msgstr "zeige themenfremde Beiträge"
 msgid "hide off-topic comments"
 msgstr "verstecke themenfremde Beiträge"
 
-#: templates/view.postform.php:35
+#: templates/view.postform.php:44
 msgid "name"
 msgstr "Name"
 
-#: templates/view.postform.php:35 templates/view.postform.php:41
-#: templates/view.postform.php:43
+#: templates/view.postform.php:44 templates/view.postform.php:50
+#: templates/view.postform.php:52
 msgid "optional"
 msgstr "optional"
 
-#: templates/view.postform.php:36
-msgid "Anonymous"
-msgstr "Anonym"
-
-#: templates/view.postform.php:38
+#: templates/view.postform.php:47
 msgid "leave empty"
 msgstr "leer lassen"
 
-#: templates/view.postform.php:41
+#: templates/view.postform.php:50
 msgid "notify"
 msgstr "Benachrichtigen"
 
-#: templates/view.postform.php:41
+#: templates/view.postform.php:50
 msgid "to be notified of new comments"
 msgstr "um zu neuen Kommentaren benachrichtigt zu werden"
 
-#: templates/view.postform.php:43
+#: templates/view.postform.php:52
 msgid "Website"
 msgstr "Website"
 
-#: templates/view.postform.php:46
+#: templates/view.postform.php:55
 msgid "Your comment"
 msgstr "Ihr Kommentar"
 
-#: templates/view.postform.php:48
+#: templates/view.postform.php:57
 msgid "Notes for formatting"
 msgstr "Hinweise zur Formatierung"
 
-#: templates/view.postform.php:51
+#: templates/view.postform.php:60
 msgid "Allowed Tags"
 msgstr "Erlaubte Tags"
 
-#: templates/view.postform.php:54 templates/view.postform.php:55
+#: templates/view.postform.php:63 templates/view.postform.php:64
 msgid "bold text"
 msgstr "fetter Text"
 
-#: templates/view.postform.php:58 templates/view.postform.php:59
+#: templates/view.postform.php:67 templates/view.postform.php:68
 msgid "underlined text"
 msgstr "unterstrichener Text"
 
-#: templates/view.postform.php:62 templates/view.postform.php:63
+#: templates/view.postform.php:71 templates/view.postform.php:72
 msgid "stroke text"
 msgstr "durchgestrichener Text"
 
-#: templates/view.postform.php:66 templates/view.postform.php:67
+#: templates/view.postform.php:75 templates/view.postform.php:76
 msgid "italic text"
 msgstr "kursiver Text"
 
-#: templates/view.postform.php:70 templates/view.postform.php:71
+#: templates/view.postform.php:83 templates/view.postform.php:84
 msgid "link"
 msgstr "Verweis"
 
-#: templates/view.postform.php:82 templates/view.postform.php:83
+#: templates/view.postform.php:95 templates/view.postform.php:96
 msgid "quote"
 msgstr "Zitat"
 
-#: templates/view.postform.php:86 templates/view.postform.php:87
+#: templates/view.postform.php:99 templates/view.postform.php:100
 msgid "off-topic"
 msgstr "themenfremd"
 
-#: templates/view.postform.php:124
+#: templates/view.postform.php:129
 msgid "Back"
 msgstr "Zurück"
 
-#: templates/view.postform.php:125
+#: templates/view.postform.php:130
 msgid "Preview"
 msgstr "Vorschau"
 
-#: templates/view.postform.php:126
+#: templates/view.postform.php:131
 msgid "Send"
 msgstr "Abschicken"

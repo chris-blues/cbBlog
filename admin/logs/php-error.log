@@ -1,0 +1,4 @@
+[14-Feb-2017 22:38:41 Europe/Berlin] PHP Warning:  Missing argument 1 for Comment::addComment(), called in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/addComment.php on line 15 and defined in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/Comment.php on line 37
+[14-Feb-2017 22:55:35 Europe/Berlin] PHP Warning:  require_once(lib/addComment.php): failed to open stream: Datei oder Verzeichnis nicht gefunden in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/index.php on line 6
+[14-Feb-2017 22:55:35 Europe/Berlin] PHP Fatal error:  require_once(): Failed opening required 'lib/addComment.php' (include_path='.:/usr/share/php') in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/index.php on line 6
+[15-Feb-2017 01:17:23 Europe/Berlin] PHP Parse error:  syntax error, unexpected '!' in /customers/e/7/c/musicchris.de/httpd.www/baustelle/cbBlog/lib/prepareComment.php on line 36

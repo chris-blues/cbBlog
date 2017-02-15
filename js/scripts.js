@@ -47,16 +47,24 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   if (document.getElementById("buttonPreview") != null) {
     document.getElementById("buttonPreview").addEventListener("click", function() {
-      document.getElementById("switchPreview").value = "1"; this.form.submit();
+      document.getElementById("job").value = "showPreview"; this.form.submit();
     });
   }
   if (document.getElementById("buttonSend") != null) {
     document.getElementById("buttonSend").addEventListener("click", function() {
-      document.getElementById("switchPreview").value = "0"; this.form.submit();
+      var time = Math.floor(Date.now() / 1000);
+      document.getElementById("postCommentForm").action += "#" + time;
+      document.getElementById("post_time").value = time;
+      document.getElementById("job").value = "addComment";
+      this.form.submit();
     });
   }
 });
 
+
+if (!Date.now) {
+  Date.now = function() { return new Date().getTime(); }
+}
 
 function loadLocalStorage() {
   document.getElementById("post_name").value = localStorage.getItem("name");

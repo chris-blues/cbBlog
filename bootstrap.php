@@ -1,6 +1,16 @@
 <?php
+$startTime = microtime(true);
+// ====================[ some default settings ]====================
+if ($_GET["id"] == "0") unset($_GET["id"]);
+date_default_timezone_set('Europe/Berlin');
+
+// Ugly workaround for old cbBlog databases
+if (!isset($_GET["id"]) and isset($_GET["index"]) and $_GET["index"] != "") { $_GET["id"] = $_GET["index"]; unset($_GET["index"]); }
+
 require_once("lib/functions.php");
 $link = assembleGetString("string");
+
+
 // ##########################
 // ##  Debugging settings  ##
 // ##########################
@@ -9,6 +19,7 @@ ini_set("display_errors", 1);
 ini_set("log_errors", 1);
 ini_set("error_log", "admin/logs/php-error.log");
 $debug = true;
+
 
 // ###############
 // ##  Configs  ##
@@ -19,30 +30,12 @@ $insertTags = require_once("config/bbtags.php");
 
 if ($config["blog"]["standalone"]) require_once("templates/view.head.php");
 
+
 // ######################
 // ##  Init gettext()  ##
 // ######################
-$lang = $_GET["lang"];
-if (!isset($lang) or $lang == "") $lang = "de";
-switch($lang)
-  {
-   case 'de': { $locale = "de_DE"; break; }
-   case 'en': { $locale = "en_GB"; break; }
-   case 'fr': { $locale = "fr_FR"; break; }
-   case 'pt': { $locale = "pt_PT"; break; }
-   default:   { $locale = "de_DE"; break; }
-  }
-$directory = "locale";
-$textdomain = "cbBlog";
-$locale .= ".utf8";
+require_once("lib/initGettext.php");
 
-$localeString = setlocale(LC_MESSAGES, $locale);
-bindtextdomain($textdomain, $directory);
-textdomain($textdomain);
-$localeString .= " ";
-$localeString .= bind_textdomain_codeset($textdomain, 'UTF-8');
-
-echo "<!-- locale: " . $localeString . " -->\n";
 
 // ###########################
 // ##  Connect to database  ##
@@ -62,4 +55,18 @@ require_once("lib/Blogpost.php");
 require_once("lib/Tags.php");
 require_once("lib/Filters.php");
 require_once("lib/Comment.php");
+
+
+// ====================[ cleanup $_GET["filter"] ]====================
+if (!isset($_GET["filter"]) or $_GET["filter"] == "") $filter = "";
+else $filter = $_GET["filter"];
+
+// ====================[ select query ]====================
+if (isset($_GET["id"]) and $_GET["id"] != "") {
+  $blogposts[$_GET["id"]] = $query->selectBlogpostsById($_GET["id"]);
+}
+else {
+  $blogposts = $query->selectAllBlogposts($filter);
+}
+
 ?>
