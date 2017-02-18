@@ -4,7 +4,7 @@ class QueryBuilder {
 
   protected $Database;
 
-  public function __construct($Database) {
+  public function __construct(PDO $Database) {
     $this->Database = $Database;
   }
 
@@ -16,18 +16,20 @@ class QueryBuilder {
     } else {
       $statement = $this->Database->prepare(
         "SELECT blog.* FROM blog, blog_tags, blog_tags_relations
-         WHERE blog_tags.tag = '{$filter}'
+         WHERE blog_tags.tag = :filter
            AND blog.id = blog_tags_relations.blog
            AND blog_tags_relations.tag = blog_tags.id
          ORDER BY blog.ctime DESC ; "
       );
+      $statement->bindParam(':filter', $filter);
     }
     $statement->execute();
     return $statement->fetchAll(PDO::FETCH_CLASS, "Blogpost");
   }
 
   public function selectBlogpostsById($id) {
-    $statement = $this->Database->prepare("SELECT * FROM `blog` WHERE `id`='{$id}' ;");
+    $statement = $this->Database->prepare("SELECT * FROM `blog` WHERE `id`=:id ;");
+    $statement->bindParam(':id', $id);
     $statement->execute();
     $statement->setFetchMode(PDO::FETCH_CLASS, "Blogpost");
     return $statement->fetch();
@@ -36,24 +38,26 @@ class QueryBuilder {
   public function getTagsOfBlogpost($id) {
     $statement = $this->Database->prepare(
       "SELECT blog_tags.* FROM blog, blog_tags, blog_tags_relations
-        WHERE blog_tags_relations.blog = '{$id}'
-          AND blog.id = '{$id}'
+        WHERE blog_tags_relations.blog = :id
+          AND blog.id = :id
           AND blog_tags.id = blog_tags_relations.tag
      ORDER BY blog_tags_relations.tag ASC ; "
     );
+    $statement->bindParam(':id', $id);
     $statement->execute();
     return $statement->fetchAll(PDO::FETCH_CLASS, "Tags");
   }
 
 
   public function selectAllTags() {
-    $statement = $this->Database->prepare("SELECT * FROM `blog_tags` ;");
+    $statement = $this->Database->prepare("SELECT * FROM `blog_tags` ORDER BY `tag` ;");
     $statement->execute();
     return $statement->fetchAll(PDO::FETCH_CLASS, "Tags");
   }
 
   public function selectComments($affiliation) {
-    $statement = $this->Database->prepare("SELECT * FROM `blog_comments` WHERE `affiliation`='{$affiliation}' ORDER BY `blog_comments`.`time` ASC ;");
+    $statement = $this->Database->prepare("SELECT * FROM `blog_comments` WHERE `affiliation`=:affiliation ORDER BY `blog_comments`.`time` ASC ;");
+    $statement->bindParam(':affiliation', $affiliation);
     $statement->execute();
     return $statement->fetchAll(PDO::FETCH_CLASS, "Comment");
   }
@@ -71,17 +75,6 @@ class QueryBuilder {
     $statement->bindParam(':email', $comment["email"]);
     $statement->bindParam(':website', $comment["website"]);
     $statement->bindParam(':comment', $comment["comment"]);
-
-//     $statement = $this->Database->prepare("INSERT INTO `blog_comments` (`affiliation`, `answerTo`, `time`, `name`, `email`, `website`, `comment` )
-//        VALUES ( '" . $comment["affiliation"] . "',
-//                 '" . $comment["answerTo"] . "',
-//                 '" . $comment["time"] . "',
-//                 '" . $comment["name"] . "',
-//                 '" . $comment["email"] . "',
-//                 '" . $comment["website"] . "',
-//                 '" . $comment["comment"] . "'
-//               );"
-//       );
     return $statement->execute();
   }
 }

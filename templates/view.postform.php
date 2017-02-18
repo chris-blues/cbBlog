@@ -56,7 +56,7 @@
       <button type="button" class="notes" id="switchTagHelp">
         <?php echo gettext("Notes for formatting"); ?>
       </button><br>
-      <div class="hidden" id="tagHelp">
+      <div class="hidden notes" id="tagHelp">
         <h4><?php echo gettext("Allowed Tags"); ?>:</h4><br>
         <table width="100%">
           <tr>

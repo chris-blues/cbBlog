@@ -15,7 +15,7 @@ $link = assembleGetString("string");
 // ##  Debugging settings  ##
 // ##########################
 error_reporting(E_ALL & ~E_NOTICE);
-ini_set("display_errors", 0);
+ini_set("display_errors", 1);
 ini_set("log_errors", 1);
 ini_set("error_log", "admin/logs/php-error.log");
 $debug = true;
@@ -26,6 +26,7 @@ $debug = true;
 // ###############
 $config["database"] = require_once("config/db.php");
 $config["blog"] = require_once("config/blog.php");
+$config["email"] = require_once("config/email.php");
 $insertTags = require_once("config/bbtags.php");
 
 if ($config["blog"]["standalone"]) require_once("templates/view.head.php");
@@ -55,6 +56,7 @@ require_once("lib/Blogpost.php");
 require_once("lib/Tags.php");
 require_once("lib/Filters.php");
 require_once("lib/Comment.php");
+require_once("lib/Email.php");
 
 
 // ====================[ cleanup $_GET["filter"] ]====================

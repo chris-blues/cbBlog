@@ -99,6 +99,10 @@ if (count($errors) > 0) {
     dump_array($errors);
   }
 
+  // send email to admin
+  $Email = new Email("Admin", $config["email"]["admin"], $comment["name"], $config["email"]["email"], $comment["time"], $comment["comment"]);
+  $Email->send();
+
 }
 
 ?>

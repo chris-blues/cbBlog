@@ -142,18 +142,12 @@ function setCaretPosition(pos){
 
 var OTshown = 0;
 function switchofftopic() {
-  switches = document.getElementsByClassName("otswitch");
-
   if (OTshown == "1") {
-    for (i=0; i<switches.length; i++) {
-      switches[i].innerHTML = OTon;
-    }
+    $( ".otswitch" ).innerHTML = OTon;
     $( "span.offtopic" ).slideUp( 1000 );
     OTshown = 0;
   } else {
-    for (i=0; i<switches.length; i++) {
-      switches[i].innerHTML = OToff;
-    }
+    $( ".otswitch" ).innerHTML = OToff;
     $( "span.offtopic" ).slideDown( 1000 );
     OTshown = 1;
   }
