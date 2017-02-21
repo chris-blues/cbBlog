@@ -77,6 +77,50 @@ class QueryBuilder {
     $statement->bindParam(':comment', $comment["comment"]);
     return $statement->execute();
   }
+
+  public function selectSubscribers($affiliation) {
+    $statement = $this->Database->prepare("SELECT name, email FROM `blog_comments` WHERE `affiliation`=:affiliation AND `email` > \"\" ;");
+    $statement->bindParam(':affiliation', $affiliation);
+    $statement->execute();
+    return $statement->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function selectThisEmail($affiliation, $email) {
+    $statement = $this->Database->prepare("SELECT email FROM `blog_comments` WHERE `affiliation`=:affiliation AND `email`=:email ;");
+    $statement->bindParam(':affiliation', $affiliation);
+    $statement->bindParam(':email', $email);
+    $statement->execute();
+    return $statement->fetchAll(PDO::FETCH_COLUMN);
+  }
+
+  public function selectThisHash($affiliation, $hash) {
+    $statement = $this->Database->prepare("SELECT affiliation, email FROM `blog_comments` WHERE `affiliation`=:affiliation AND `email`=:hash ;");
+    $statement->bindParam(':affiliation', $affiliation);
+    $statement->bindParam(':hash', $hash);
+    $statement->execute();
+    return $statement->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function verifyEmail($affiliation, $email, $hash) {
+    $statement = $this->Database->prepare("UPDATE `blog_comments` SET `email`=:email WHERE (`email` = :hash AND `affiliation` = :affiliation);");
+    $statement->bindParam(':affiliation', $affiliation);
+    $statement->bindParam(':email', $email);
+    $statement->bindParam(':hash', $hash);
+    return $statement->execute();
+  }
+
+  public function deleteThisSubscription($affiliation, $email) {
+    $statement = $this->Database->prepare("UPDATE `blog_comments` SET `email`='' WHERE (`email` = :email AND `affiliation` = :affiliation);");
+    $statement->bindParam(':affiliation', $affiliation);
+    $statement->bindParam(':email', $email);
+    return $statement->execute();
+  }
+
+  public function deleteAllSubscriptions($email) {
+    $statement = $this->Database->prepare("UPDATE `blog_comments` SET `email`='' WHERE (`email` = :email);");
+    $statement->bindParam(':email', $email);
+    return $statement->execute();
+  }
 }
 
 ?>

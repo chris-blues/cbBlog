@@ -2,7 +2,7 @@
 
 $locales = scandir("locale");
 foreach ($locales as $key => $language) {
-  if ($language == "." or $language == "..") unset($locales[$key]);
+  if ($language == "." or $language == ".." or !is_dir($language)) unset($locales[$key]);
 }
 
 if ($config["blog"]["language"] != "") $locale = $config["blog"]["language"]; // $config["blog"]["language"] overrides everything

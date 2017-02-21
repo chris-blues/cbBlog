@@ -14,11 +14,10 @@ else {
 
 // ====================[ get all tags ]====================
 $tags = $query->selectAllTags();
-if ($blogposts)
-  {
-   foreach ($blogposts as $id => $Post)
-     {
-      $row = $Post->getdata();
+if ($blogposts) {
+  foreach ($blogposts as $id => $Post) {
+    $row = $Post->getdata();
+  }
 }
 
 ?>
@@ -30,5 +29,6 @@ if ($blogposts)
 dump_array($tags);
 dump_array($blogposts);
 
+require("templates/foot.php");
+
 ?>
-<?php require("templates/foot.php"); ?>

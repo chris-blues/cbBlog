@@ -19,4 +19,11 @@ foreach ($row["comments"] as $Comment) {
   require("templates/view.comment.php");
 }
 
+if (isset($_GET["job"]) and $_GET["job"] == "verify" and $verified === true) { ?>
+    <div class="notice shadow">
+      <?php echo $verificationMessage; ?>
+    </div>
+<?php
+}
+
 require_once("templates/view.postform.php");

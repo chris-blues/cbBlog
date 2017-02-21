@@ -29,9 +29,14 @@ class Comment {
     $this->answerTo    = $comment["answerTo"];
     $this->time        = $comment["time"];
     $this->name        = $comment["name"];
-    $this->email       = $comment["email"];
     $this->website     = $comment["website"];
     $this->comment     = $comment["comment"];
+
+    if (!isset($comment["hash"])) {
+      $this->email     = $comment["email"];
+    } else {
+      $this->email     = $comment["hash"];
+    }
   }
 }
 

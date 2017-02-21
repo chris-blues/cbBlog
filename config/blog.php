@@ -9,7 +9,8 @@ return [
     "lang",
     "accessibility",
     "filter",
-    "index"
+    "index",
+    "job"
   ]
 ];
 

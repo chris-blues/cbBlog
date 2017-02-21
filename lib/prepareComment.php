@@ -52,6 +52,12 @@ if (!filter_var($tmp, FILTER_VALIDATE_EMAIL) and strlen($tmp) < 0) {
     $errors["email"] = true;
   }
 } else { $comment["email"] = $tmp; }
+// Lets check if this email is already verified, if not put hash into DB!
+$verified = $query->selectThisEmail($comment["affiliation"], $tmp);
+if (count($verified) == 0) {
+  $comment["hash"] = hash('sha256', $_SERVER["SERVER_NAME"] . $comment["email"]);
+  $firstpost = true;
+}
 
 
 
@@ -99,10 +105,33 @@ if (count($errors) > 0) {
     dump_array($errors);
   }
 
-  // send email to admin
-  $Email = new Email("Admin", $config["email"]["admin"], $comment["name"], $config["email"]["email"], $comment["time"], $comment["comment"]);
-  $Email->send();
 
+// ====================[ send verification mail ]====================
+if ($firstpost) {
+  $Verification = new Email("verification", $comment["name"], $comment["email"], $comment["name"], $config["email"]["email"], $comment["time"], $comment["hash"]);
+  $Verification->send();
+}
+
+// ====================[ send email to subscribed commentors ]====================
+  $subscriptions = $query->selectSubscribers($comment["affiliation"]);
+  // add Admin as well!
+  $newKey = count($subscriptions);
+  $subscriptions[$newKey]["email"] = $config["email"]["admin"];
+  $subscriptions[$newKey]["name"] = "Admin";
+
+  foreach ($subscriptions as $key => $value) {
+    $email = $value["email"];
+    $name = $value["name"];
+    // make sure, we only notify once!
+    if (isset($sentmail[$email]) and $sentmail[$email] == true) { continue; }
+    // Don't notify this poster as well!
+    if ($email == $comment["email"]) { continue; }
+
+    $Notification = new Email("notification", $name, $email, $comment["name"], $config["email"]["email"], $comment["time"], $comment["comment"]);
+
+    if ($Notification->send() === true) { $sentmail[$email] = true; }
+    unset($email, $name);
+  }
 }
 
 ?>

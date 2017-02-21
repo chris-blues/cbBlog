@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cbBlog\n"
-"POT-Creation-Date: 2017-02-18 19:06+0100\n"
-"PO-Revision-Date: 2017-02-18 19:06+0100\n"
+"POT-Creation-Date: 2017-02-22 00:15+0100\n"
+"PO-Revision-Date: 2017-02-22 00:15+0100\n"
 "Last-Translator: chris_blues <chris@musicchris.de>\n"
 "Language-Team: cbBlog Translations <chris@musicchris.de>\n"
 "Language: de_DE\n"
@@ -15,9 +15,67 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: lib/Email.php:47
+#: lib/Email.php:45
 msgid "New comment by"
 msgstr "Neuer Kommentar von"
+
+#: lib/Email.php:48
+msgid "Verify your subscription to {server}"
+msgstr "Bestätigen Sie, daß sie von {server} benachrichtigt werden wollen"
+
+#: lib/Email.php:52 lib/Email.php:62
+msgid "Hi"
+msgstr "Hallo"
+
+#: lib/Email.php:53
+msgid ""
+"you wanted to be notified via {email} of new comments on {server}. {poster} "
+"has just commented"
+msgstr ""
+"Du wolltest via {email} über neue Kommentare auf {server} benachrichtigt "
+"werden. {poster} hat gerade geschrieben"
+
+#: lib/Email.php:55
+msgid "To unsubscribe from this topic click here"
+msgstr "Um nicht mehr benachrichtigt zu werden klicke hier"
+
+#: lib/Email.php:56
+msgid "To entirely unsubscribe from {server} click here"
+msgstr ""
+"Um von {server} gar keine Benachrichtigungen mehr zu erhalten klicke hier"
+
+#: lib/Email.php:57 lib/Email.php:70
+msgid "Best regards"
+msgstr "Mit besten Grüßen"
+
+#: lib/Email.php:63
+msgid "you wanted to be notified via {email} of new comments on {link_topic}."
+msgstr ""
+"Sie wollten via {email} über neue Kommentare zu {link_topic} benachrichtigt "
+"werden."
+
+#: lib/Email.php:64
+msgid ""
+"To verify your wish, to receive notifications to this topic, please click "
+"here"
+msgstr ""
+"Wenn Sie wirklich Benachrichtigungen zu diesem Thema empfangen wollen "
+"klicken Sie bitte hier"
+
+#: lib/Email.php:66
+msgid ""
+"If you don't want to receive notifications, or you haven't subscribed "
+"yourself, click here"
+msgstr ""
+"Falls Sie keine Benachrichtigungen erhalten wollen, oder sich nicht selbst "
+"eingetragen haben klicken Sie hier"
+
+#: lib/Email.php:68
+msgid ""
+"To entirely unsubscribe from {server} (never receive any notifications from "
+"{server} again) click here"
+msgstr ""
+"Um von {server} gar keine Benachrichtigungen mehr zu erhalten klicke hier"
 
 #: lib/Filters.php:8 lib/Filters.php:10
 msgid "all"
@@ -82,6 +140,27 @@ msgstr "zwölf"
 #: lib/prepareComment.php:40 templates/view.postform.php:45
 msgid "Anonymous"
 msgstr "Anonym"
+
+#: lib/unsubscribe.php:42
+msgid ""
+"You'll receive no further notifications for new comments on this entire blog."
+msgstr ""
+"Sie werden nun keine Benachrichtigungen mehr zu neuen Kommentaren in diesem "
+"gesamten Blog bekommen."
+
+#: lib/unsubscribe.php:47
+msgid "You'll receive no further notifications for new comments on this topic."
+msgstr ""
+"Sie werden nun keine Benachrichtigungen mehr zu neuen Kommentaren in diesem "
+"Thema bekommen."
+
+#: lib/unsubscribe.php:52
+msgid "Your request could not be handled."
+msgstr "Ihre Anfrage konnte nicht bearbeitet werden."
+
+#: lib/verifyEmail.php:41
+msgid "You'll now receive notifications for new comments."
+msgstr "Sie werden nun zu neuen Kommentaren benachrichtigt."
 
 #: templates/filterlist.php:7
 msgid "by"
@@ -192,3 +271,6 @@ msgstr "Vorschau"
 #: templates/view.postform.php:131
 msgid "Send"
 msgstr "Abschicken"
+
+#~ msgid "Hi {name}"
+#~ msgstr "Hallo {name}"

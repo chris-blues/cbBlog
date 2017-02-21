@@ -25,8 +25,8 @@
       </p>
 
       <p class="notes right" id="permaLink">Permalink: <?php $querystring = assemblePermaLink($config["blog"]["permalinkIgnore"]); ?>
-        <a href="https://<?php echo $_SERVER["HTTP_HOST"] . $_SERVER["PHP_SELF"] . "?" . $querystring; ?>">
-          https://<?php echo $_SERVER["HTTP_HOST"] . $_SERVER["PHP_SELF"] . "?" . $querystring; ?>
+        <a href="<?php echo $_SERVER["HTTP_X_FORWARDED_PROTO"]; ?>://<?php echo $_SERVER["HTTP_HOST"] . $_SERVER["PHP_SELF"] . "?" . $querystring; ?>">
+          <?php echo $_SERVER["HTTP_X_FORWARDED_PROTO"]; ?>://<?php echo $_SERVER["HTTP_HOST"] . $_SERVER["PHP_SELF"] . "?" . $querystring; ?>
         </a>
       </p>
 

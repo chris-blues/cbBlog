@@ -2,9 +2,16 @@
 
 require_once("bootstrap.php");
 
-if (isset($_POST["job"]) and $_POST["job"] == "addComment") {
-  require_once("lib/prepareComment.php");
+if (isset($_POST["job"])) {
+  if ($_POST["job"] == "addComment") require_once("lib/prepareComment.php");
 }
+if (isset($_GET["job"])) {
+  switch($_GET["job"]) {
+    case "verify": require_once("lib/verifyEmail.php"); break;
+    case "unsubscribe": require_once("lib/unsubscribe.php"); break;
+  }
+}
+
 
 // ====================[ print taglist ]====================
 if (!isset($_GET["id"]) or $_GET["id"] == "" or $_GET["id"] == "0") {
@@ -35,7 +42,6 @@ if ($blogposts) {
       require("templates/view.overview.php");
     }
   }
-//   echo "</div>\n";
 }
 else {
   echo "ERROR! No data retrieved.";

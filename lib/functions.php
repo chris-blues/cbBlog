@@ -68,7 +68,7 @@ function assembleGetString($method = "", $newVars = array()) {
   return $GETString;
 }
 
-function assemblePermaLink ($ignore) {
+function assemblePermaLink($ignore) {
   // create permalink (without contents of $config["blog"]["permalinkIgnore"] found in /config/blog.php)
   $switch = "0";
   foreach ($_GET as $key => $value) {
@@ -160,8 +160,16 @@ function bb_parse($string) {
   return $string;
 }
 
+function showErrors($error) {
+  echo "<pre>";
+  foreach ($error as $key => $value) {
+    echo "<b>$key</b>: $value\n";
+  }
+  echo "</pre>\n";
+}
+
 function logMailError($name, $email, $index, $hash, $mailbody) {
-  $handle = fopen("logs/mailerror.log","a");
+  $handle = fopen("admin/logs/mailerror.log","a");
     fwrite ($handle, date("Y-m-d H:i:s") . " - error sending notification mail to " . trim($name) . " <" . trim($email) . ">\n");
     fwrite ($handle, date("Y-m-d H:i:s") . " - index: " . trim($index) . " . Hash: " . trim($hash) . "\n");
     fwrite ($handle, "Mailbody:\n" . $mailbody . "\n__________END OF LOG " . date("Y-m-d H:i:s") . "__________\n");
@@ -170,7 +178,7 @@ function logMailError($name, $email, $index, $hash, $mailbody) {
 
 function logErrors($error) {
   foreach ($error as $key => $value) {
-    $handle = fopen("logs/error.log","a");
+    $handle = fopen("admin/logs/error.log","a");
       fwrite ($handle, date("Y-m-d H:i:s") . " - $key\n");
     fclose ($handle);
   }
