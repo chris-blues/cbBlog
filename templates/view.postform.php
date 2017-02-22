@@ -84,12 +84,12 @@
             <td><a href="https://example.org"><?php echo gettext("link"); ?></a></td>
           </tr>
           <tr>
-            <td>&#91;code&#93;Code(\$foo);&#91;/code&#93;</td>
+            <td>&#91;code&#93;Code($foo);&#91;/code&#93;</td>
             <td><pre><code>Code($foo);</code></pre></td>
           </tr>
           <tr>
-            <td>Text &#91;tt&#93;Code(\$foo);&#91;/tt&#93; etc</td>
-            <td>Text <code>Code(\$foo);</code> etc</td>
+            <td>Text &#91;tt&#93;Code($foo);&#91;/tt&#93; etc</td>
+            <td>Text <code>Code($foo);</code> etc</td>
           </tr>
           <tr>
             <td>&#91;quote&#93;<?php echo gettext("quote"); ?>&#91;/quote&#93;</td>

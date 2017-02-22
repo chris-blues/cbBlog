@@ -8,6 +8,12 @@ document.addEventListener('DOMContentLoaded', function () {
     for (i = 0; i < OT.length; i++) {
       OT[i].addEventListener("click", switchofftopic);
     }
+    var offtopicSpans = document.getElementsByClassName("offtopic");
+    if (offtopicSpans != null) {
+      for (i = 0; i < offtopicSpans.length; i++) {
+        offtopicSpans[i].style.display = "none";
+      }
+    }
   }
 
   var tagButtons = document.getElementsByClassName("tagButton");

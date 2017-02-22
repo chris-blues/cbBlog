@@ -29,7 +29,7 @@
 
     <?php
     if ($row["text"] != "" or !isset($row["text"])) {
-      $text = preg_replace('/\s+/', ' ', strip_tags($row["text"], '<p>'));
+      $text = preg_replace('/\s+/', ' ', strip_tags($row["text"]));
       if (strlen($text) > 250) { $shorttext = substr($text,0,250) . "..."; }
       else { $shorttext = $text; }
     ?>

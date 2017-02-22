@@ -1,5 +1,9 @@
 @charset "utf-8";
 
+body {
+  background-color: #E3E9EF;
+}
+
 a:link { color: #332211; text-decoration: underline; }
 a:visited { color: #112233; text-decoration: underline; }
 a:hover { color: #666633; text-decoration: none; }
@@ -163,6 +167,7 @@ ul#tags {
   padding: 10px;
   margin: 0px 0px 10px 10px;
   text-align: center;
+  background-color: #FFF;
 }
 
 #wrapper {
@@ -181,6 +186,7 @@ a.tags {
 
 .blogentryoverview {
   margin-bottom: 15px;
+  background-color: #FFF;
 }
 
 .blogentryoverview:hover {
@@ -208,6 +214,7 @@ a.tags {
 
 .blogentryfull {
   margin-bottom: 15px;
+  background-color: #FFF;
 }
 
 .postform {
@@ -288,6 +295,7 @@ blockquote {
  /* max-width: 500px; */
   margin-left: auto;
   margin-right: auto;
+  background-color: #FFF;
 }
 
 .quote, .quote.comments {

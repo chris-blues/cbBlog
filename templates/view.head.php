@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="css/blog.css" type="text/css">
   <link rel="stylesheet" href="css/blog_fonts.css" type="text/css">
 
-  <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+  <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
   <link rel="stylesheet" href="js/styles/androidstudio.css">
   <script src="js/highlight.pack.js"></script>
   <script type="text/javascript" src="js/scripts.js"></script>
