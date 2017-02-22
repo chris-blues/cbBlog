@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cbBlog\n"
-"POT-Creation-Date: 2017-02-22 18:49+0100\n"
-"PO-Revision-Date: 2017-02-22 18:49+0100\n"
+"POT-Creation-Date: 2017-02-22 21:46+0100\n"
+"PO-Revision-Date: 2017-02-22 21:46+0100\n"
 "Last-Translator: chris_blues <chris@musicchris.de>\n"
 "Language-Team: cbBlog Translations <chris@musicchris.de>\n"
 "Language: de_DE\n"
@@ -31,19 +31,39 @@ msgstr "Zurücksetzen"
 msgid "save"
 msgstr "Speichern"
 
-#: admin/templates/view.overview.php:24 templates/view.blogpost.php:42
+#: admin/templates/view.editblog.php:17
+msgid "created on"
+msgstr "Erstellt am"
+
+#: admin/templates/view.editblog.php:18
+msgid "modified on"
+msgstr "Verändert am"
+
+#: admin/templates/view.editblog.php:19
+msgid "heading"
+msgstr "Überschrift"
+
+#: admin/templates/view.editblog.php:22
+msgid "article"
+msgstr "Artikel"
+
+#: admin/templates/view.overview.php:32 templates/view.blogpost.php:42
 #: templates/view.overview.php:13
 msgid "comment"
 msgstr "Kommentar"
 
-#: admin/templates/view.overview.php:25 templates/view.blogpost.php:43
+#: admin/templates/view.overview.php:33 templates/view.blogpost.php:43
 #: templates/view.comments-section.php:5 templates/view.overview.php:14
 msgid "comments"
 msgstr "Kommentare"
 
-#: admin/templates/view.overview.php:28
+#: admin/templates/view.overview.php:37
 msgid "show comments"
 msgstr "Zeige Kommentare"
+
+#: admin/templates/view.overview.php:40
+msgid "edit post"
+msgstr "Artikel bearbeiten"
 
 #: lib/Email.php:45
 msgid "New comment by"

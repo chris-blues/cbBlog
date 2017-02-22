@@ -21,11 +21,13 @@ else {
 // ====================[ get the comments for each blogpost ]====================
 
 // ====================[ get all tags ]====================
-$tags = $query->selectAllTags();
-Filters::display($tags, "../templates");
-foreach ($tags as $key => $Tag) {
-  $tagname = $Tag->getdata();
-  $taglist[$key] = $tagname["tag"];
+if ($_GET["job"] == "overview") {
+  $tags = $query->selectAllTags();
+  Filters::display($tags, "../templates");
+  foreach ($tags as $key => $Tag) {
+    $tagname = $Tag->getdata();
+    $taglist[$key] = $tagname["tag"];
+  }
 }
 
 if ($blogposts) {
@@ -36,6 +38,7 @@ if ($blogposts) {
 
 switch($_GET["job"]) {
   case "showComments": require_once("templates/view.comments.php"); break;
+  case "editBlog":     require_once("templates/view.editblog.php"); break;
   default:             require_once("templates/view.overview.php"); break;
 }
 

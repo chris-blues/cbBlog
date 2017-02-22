@@ -1,13 +1,6 @@
 var lastId = 0;
 
 document.addEventListener('DOMContentLoaded', function () {
-  var posts = document.getElementsByClassName("blogentryfull");
-  if (posts != null) {
-    for (i = 0; i < posts.length; i++) {
-      posts[i].style.display = "none";
-      posts[i].parentNode.addEventListener("click", function() { toggleBlogPost(this.getAttribute("data-id")); });
-    }
-  }
 
   var buttonComments = document.getElementsByClassName("buttonComments");
   if (buttonComments != null) {
@@ -15,6 +8,16 @@ document.addEventListener('DOMContentLoaded', function () {
       buttonComments[i].addEventListener("click", function() {
         document.getElementById("formCommentsId").value = this.getAttribute("data-id");
         document.getElementById("formComments").submit();
+      });
+    }
+  }
+
+  var buttonEditBlog = document.getElementsByClassName("editBlog");
+  if (buttonEditBlog != null) {
+    for (i = 0; i < buttonEditBlog.length; i++) {
+      buttonEditBlog[i].addEventListener("click", function() {
+        document.getElementById("formBlogId").value = this.getAttribute("data-id");
+        document.getElementById("formEditBlog").submit();
       });
     }
   }
@@ -103,6 +106,7 @@ function saveComment(id) {
     console.log(oldText + " != " + newText);
     ID.value = id;
     text.value = newText;
+    form.action += "#" + id;
     form.submit();
   } else {
     console.log(oldText + " == " + newText);
