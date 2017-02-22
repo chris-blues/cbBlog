@@ -116,14 +116,7 @@
             <?php echo $insertTags[$tag]["open"]; ?>
           </button>
   <?php } ?>
-          <button type="button" id="smileyButton">Smileys ☺</button>
-          <div class="smileys" id="smileys">
-            <?php
-              require_once("config/smileys.php");
-              foreach ($smileyFile as $key => $value) {
-                $smiley = trim($value);
-            ?><span class="smiley" data-id="<?php echo $smiley; ?>"><?php echo $smiley; ?></span><?php } ?>
-        </div>
+          <?php require("templates/view.smileys.php"); ?>
       </div>
       <div class="centered">
         <button type="reset"> &lt;&lt;&lt; <?php echo gettext("Back"); ?> </button>

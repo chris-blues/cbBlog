@@ -1,4 +1,4 @@
 <?php
 // add Smileys
-$smileyFile = file("config/smileys.txt", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+$smileyFile = file($path . "config/smileys.txt", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 ?>

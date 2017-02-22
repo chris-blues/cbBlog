@@ -20,6 +20,7 @@ $debug = true;
 // ###############
 $config["database"] = require_once("../config/db.php");
 $config["blog"]     = require_once("../config/blog.php");
+$insertTags = require_once("../config/bbtags.php");
 
 if ($config["blog"]["showProcessingTime"]) $startTime = microtime(true);
 
@@ -32,9 +33,15 @@ require_once('templates/head.php');
 if ($config["blog"]["language"] != "") $locale = $config["blog"]["language"]; // $config["blog"]["language"] overrides everything
 else {
   if (isset($_GET["lang"])) $locale = $_GET["lang"];                          // if we have some user-setting from the URI then use this
-  else $locale = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);              // if still nothing, try browser preference
+  else {
+    $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);                   // if still nothing, try browser preference
+    switch ($lang) {
+      case "de": $locale = "de_DE"; break;
+      case "en": $locale = "en_GB"; break;
+    }
+  }
 }
-if (!isset($locale) or $locale == "") $locale = "en_GB";                      // if all fails, use "en_GB"! (actually use inline gettext strings)
+if (!isset($locale) or $locale == "") $locale = "de_DE";                      // if all fails, use "en_GB"! (actually use inline gettext strings)
 
 $directory = "../locale";
 $textdomain = "cbBlog";
@@ -45,7 +52,7 @@ bindtextdomain($textdomain, $directory);
 textdomain($textdomain);
 $localeString .= bind_textdomain_codeset($textdomain, 'UTF-8');
 
-echo "<!-- locale: " . $localeString . " -->\n";
+echo "<!-- locale: $locale -> " . $localeString . " -->\n";
 
 
 // ###########################

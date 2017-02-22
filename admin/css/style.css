@@ -14,7 +14,7 @@ a:hover { color: #666633; text-decoration: none;}
   padding: 10px 30px;
   background-color: #FFF;
   border-radius: 6px;
-  box-shadow: 0px 0px 5px 1px #000;
+  box-shadow: 0px 0px 5px 1px #777;
 }
 
 * {
@@ -49,6 +49,39 @@ a:hover { color: #666633; text-decoration: none;}
 
 .clear {
   clear: both;
+}
+
+div.overview {
+  border-radius: 6px 6px 0px 0px;
+}
+
+div.overview .button_wrapper {
+  float: right;
+}
+
+div.tags {
+  margin: 15px 0px;
+}
+
+.comments {
+  margin: 10px;
+}
+
+span.offtopic {
+  display: inline;
+}
+
+.commentTextArea {
+  width: 100%;
+}
+
+
+
+
+a.blogpost_taglist.active {
+  background-color: #DDA;
+  font-weight: bold;
+  box-shadow: 0px 0px 5px 1px #AA4;
 }
 
 #adminEditBlogTextareaHead {

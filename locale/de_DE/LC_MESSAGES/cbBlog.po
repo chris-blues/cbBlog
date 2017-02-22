@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cbBlog\n"
-"POT-Creation-Date: 2017-02-22 00:15+0100\n"
-"PO-Revision-Date: 2017-02-22 00:15+0100\n"
+"POT-Creation-Date: 2017-02-22 15:05+0100\n"
+"PO-Revision-Date: 2017-02-22 15:05+0100\n"
 "Last-Translator: chris_blues <chris@musicchris.de>\n"
 "Language-Team: cbBlog Translations <chris@musicchris.de>\n"
 "Language: de_DE\n"
@@ -14,6 +14,22 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: admin/templates/filterlist.php:3
+msgid "Filter"
+msgstr "Filter"
+
+#: admin/templates/view.comment.php:32
+msgid "reset"
+msgstr "Zurücksetzen"
+
+#: admin/templates/view.comment.php:33
+msgid "save"
+msgstr "Speichern"
+
+#: admin/templates/view.overview.php:21
+msgid "show comments"
+msgstr "Zeige Kommentare"
 
 #: lib/Email.php:45
 msgid "New comment by"

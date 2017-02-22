@@ -1,6 +1,14 @@
 <?php
 
+if (!isset($_GET["job"]) or $_GET["job"] == "") $_GET["job"] = "overview";
+
 require_once("bootstrap.php");
+
+?>
+
+  <body>
+
+<?php
 
 // ====================[ get blogpost(s) ]====================
 if (isset($_GET["id"]) and $_GET["id"] != "") {
@@ -14,20 +22,22 @@ else {
 
 // ====================[ get all tags ]====================
 $tags = $query->selectAllTags();
+Filters::display($tags, "../templates");
+foreach ($tags as $key => $Tag) {
+  $tagname = $Tag->getdata();
+  $taglist[$key] = $tagname["tag"];
+}
+
 if ($blogposts) {
   foreach ($blogposts as $id => $Post) {
     $row = $Post->getdata();
   }
 }
 
-?>
-
-  <body>
-
-<?php
-
-dump_array($tags);
-dump_array($blogposts);
+switch($_GET["job"]) {
+  case "showComments": require_once("templates/view.comments.php"); break;
+  default:             require_once("templates/view.overview.php"); break;
+}
 
 require("templates/foot.php");
 
