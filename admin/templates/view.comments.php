@@ -5,7 +5,8 @@ if ($_POST["job"] == "editComment") {
 }
 
 ?>
-
+  <button type="button" id="buttonBack"><?php echo gettext("back"); ?></button>
+  <div id="backLink" data-backLink="<?php echo assembleGetString("string", array("job"=>"overview", "id"=>"")); ?>"></div>
 
   <form id="formEditComment" action="index.php<?php echo assembleGetString("string"); ?>" method="post" accept-charset="UTF-8">
     <input type="hidden" name="job" value="editComment">

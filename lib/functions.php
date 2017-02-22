@@ -84,7 +84,7 @@ function assemblePermaLink($ignore) {
 }
 
 
-function convertnumbers($number, $lang) {
+function convertnumbers($number) {
   $words = array(gettext("no"),
                  gettext("one"),
                  gettext("two"),

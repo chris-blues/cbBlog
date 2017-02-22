@@ -55,7 +55,7 @@ if ($result)
         {
          if ($totalRows_comments == "1") $comments = $lang_comment;
            else $comments = $lang_comments;
-         $total_comments = convertnumbers($totalRows_comments, $lang);
+         $total_comments = convertnumbers($totalRows_comments);
          echo "<p class=\"notes\">(<a href=\"index.php?page=blog&amp;index={$row["index"]}{$link}#linkshowcomments\">$total_comments $comments</a>)</p>\n";
         }
       mysqli_free_result($resultcomments);

@@ -19,11 +19,19 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  var buttonSaveComments = document.getElementById("buttonSave");
-  if (buttonSaveComments != null) {
-    buttonSaveComments.addEventListener("click", function() {
+  var buttonSaveComment = document.getElementById("buttonSave");
+  if (buttonSaveComment != null) {
+    buttonSaveComment.addEventListener("click", function() {
       id = document.getElementById("data").getAttribute("data-id");
       saveComment(id);
+    });
+  }
+
+  var buttonResetComment = document.getElementById("buttonReset");
+  if (buttonResetComment != null) {
+    buttonResetComment.addEventListener("click", function() {
+      id = document.getElementById("data").getAttribute("data-id");
+      resetComment(id);
     });
   }
 
@@ -49,7 +57,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   if ( document.getElementById("buttonBack") != null ) {
-    document.getElementById("buttonBack").addEventListener("click", function() { window.location.href='showblog.php'; });
+    var backLink = document.getElementById("backLink").getAttribute("data-backLink");
+    document.getElementById("buttonBack").addEventListener("click", function() { window.location.href = backLink; });
   }
 
   var tags = document.getElementsByClassName("linkTags");
@@ -103,8 +112,8 @@ function saveComment(id) {
 }
 
 function resetComment(id) {
-  oldText = document.getElementById("wrapper_" + id).getAttribute("data-text");
-  document.getElementById("text_" + id).value = oldText;
+  oldText = document.getElementById("data").getAttribute("data-text");
+  document.getElementById("post_text").value = oldText;
 }
 
 function toggleCommentEditor(id) {

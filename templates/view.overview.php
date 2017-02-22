@@ -4,7 +4,7 @@
       <?php echo date("d.M.Y H:i",$row['ctime']); ?> - <?php echo gettext("last update"); ?>: <?php echo date("d.M.Y H:i",$row['mtime']); ?>
     </p>
 
-    <?php $num_comments = convertnumbers($row["num_comments"], $lang); ?>
+    <?php $num_comments = convertnumbers($row["num_comments"]); ?>
     <p class="notes commentslink">
       <a href="<?php echo $_SERVER["PHP_SELF"] . assembleGetString("string", array("id" => $row["id"], "filter" => $filter)); ?>#linkshowcomments">
         <?php

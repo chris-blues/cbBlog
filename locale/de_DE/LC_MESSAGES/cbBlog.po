@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cbBlog\n"
-"POT-Creation-Date: 2017-02-22 15:05+0100\n"
-"PO-Revision-Date: 2017-02-22 15:05+0100\n"
+"POT-Creation-Date: 2017-02-22 18:49+0100\n"
+"PO-Revision-Date: 2017-02-22 18:49+0100\n"
 "Last-Translator: chris_blues <chris@musicchris.de>\n"
 "Language-Team: cbBlog Translations <chris@musicchris.de>\n"
 "Language: de_DE\n"
@@ -19,15 +19,29 @@ msgstr ""
 msgid "Filter"
 msgstr "Filter"
 
-#: admin/templates/view.comment.php:32
+#: admin/templates/view.comments.php:8 templates/view.blogpost.php:13
+msgid "back"
+msgstr "Zurück"
+
+#: admin/templates/view.comments.php:30
 msgid "reset"
 msgstr "Zurücksetzen"
 
-#: admin/templates/view.comment.php:33
+#: admin/templates/view.comments.php:31
 msgid "save"
 msgstr "Speichern"
 
-#: admin/templates/view.overview.php:21
+#: admin/templates/view.overview.php:24 templates/view.blogpost.php:42
+#: templates/view.overview.php:13
+msgid "comment"
+msgstr "Kommentar"
+
+#: admin/templates/view.overview.php:25 templates/view.blogpost.php:43
+#: templates/view.comments-section.php:5 templates/view.overview.php:14
+msgid "comments"
+msgstr "Kommentare"
+
+#: admin/templates/view.overview.php:28
 msgid "show comments"
 msgstr "Zeige Kommentare"
 
@@ -182,22 +196,9 @@ msgstr "Sie werden nun zu neuen Kommentaren benachrichtigt."
 msgid "by"
 msgstr "von"
 
-#: templates/view.blogpost.php:13
-msgid "back"
-msgstr "Zurück"
-
 #: templates/view.blogpost.php:36 templates/view.overview.php:4
 msgid "last update"
 msgstr "zuletzt aktualisiert"
-
-#: templates/view.blogpost.php:42 templates/view.overview.php:13
-msgid "comment"
-msgstr "Kommentar"
-
-#: templates/view.blogpost.php:43 templates/view.comments-section.php:5
-#: templates/view.overview.php:14
-msgid "comments"
-msgstr "Kommentare"
 
 #: templates/view.blogpost.php:49 templates/view.overview.php:17
 msgid "no comments"
@@ -276,15 +277,15 @@ msgstr "Zitat"
 msgid "off-topic"
 msgstr "themenfremd"
 
-#: templates/view.postform.php:129
+#: templates/view.postform.php:122
 msgid "Back"
 msgstr "Zurück"
 
-#: templates/view.postform.php:130
+#: templates/view.postform.php:123
 msgid "Preview"
 msgstr "Vorschau"
 
-#: templates/view.postform.php:131
+#: templates/view.postform.php:124
 msgid "Send"
 msgstr "Abschicken"
 

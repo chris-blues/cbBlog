@@ -42,7 +42,7 @@
           if ($row["num_comments"] == "1") $comments = gettext("comment");
           else                             $comments = gettext("comments");
 
-          $num_comments = convertnumbers($row["num_comments"], $lang);
+          $num_comments = convertnumbers($row["num_comments"]);
           echo "<p class=\"notes commentslink\"><a href=\"#linkshowcomments\">$num_comments $comments</a></p>\n";
         }
         else {

@@ -12,18 +12,27 @@
     <div id="wrapper">
   <?php
     foreach($blogposts as $key => $Post) {
-      $data = $Post->getdata();
+      $row = $Post->getdata();
+      $comments = $query->selectComments($row["id"]);
+      $row["num_comments"] = count($comments);
       ?>
 
-      <div class="shadow overview" data-id="<?php echo $data["id"]; ?>">
-        <?php echo $data["id"] . ") " . date("Y-m-d H:i:s", $data["ctime"]) . " " . $data["head"] . "\n"; ?>
+      <div class="shadow overview" data-id="<?php echo $row["id"]; ?>">
+        <?php echo $row["id"] . ") " .
+                   "<b>" . $row["head"] . "</b><br>" .
+                   date("Y-m-d H:i:s", $row["ctime"]) . " " .
+                   "<span class=\"notes\">(" . date("Y-m-d H:i:s", $row["mtime"]) . ") " .
+                   convertnumbers($row["num_comments"]) . " ";
+              if ($row["num_comments"] <= 1) echo gettext("comment");
+              else echo gettext("comments");
+              echo "</span>\n"; ?>
         <div class="button_wrapper notes">
-          <button type="button" class="buttonComments" data-id="<?php echo $data["id"]; ?>"><?php echo gettext("show comments"); ?></button>
+          <button type="button" class="buttonComments" data-id="<?php echo $row["id"]; ?>"><?php echo gettext("show comments"); ?></button>
         </div>
-        <div class="blogentryfull" id="<?php echo $data["id"]; ?>">
+        <div class="blogentryfull" id="<?php echo $row["id"]; ?>">
           <div class="notes tags">
             <?php
-              $tags = $query->getTagsOfBlogpost($data["id"]);
+              $tags = $query->getTagsOfBlogpost($row["id"]);
               foreach ($tags as $key => $value) {
               $tag = $value->getdata();
             ?>
@@ -36,8 +45,8 @@
             ?>
           </div>
           <hr>
-          <h1><?php echo $data["head"]; ?></h1>
-          <?php echo $data["text"]; ?>
+          <h1><?php echo $row["head"]; ?></h1>
+          <?php echo $row["text"]; ?>
         </div>
       </div>
 
