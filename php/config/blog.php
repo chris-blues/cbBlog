@@ -10,7 +10,8 @@ return [
     "accessibility",
     "filter",
     "index",
-    "job"
+    "job",
+    "operation"
   ]
 ];
 

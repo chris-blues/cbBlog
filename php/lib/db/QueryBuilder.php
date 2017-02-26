@@ -185,6 +185,19 @@ class QueryBuilder {
     }
     return $result;
   }
+
+  public function updateBlog($post) {
+    $statement = $this->Database->prepare("UPDATE `blog` SET `head` = :head, `text` = :text WHERE `blog`.`id` = :id;");
+    $statement->bindParam(':head', $post["head"]);
+    $statement->bindParam(':text', $post["text"]);
+    $statement->bindParam(':id', $post["id"]);
+    try {
+      $result = $statement->execute();
+    } catch(PDOException $e) {
+      die($e->getMessage());
+    }
+    return $result;
+  }
 }
 
 ?>

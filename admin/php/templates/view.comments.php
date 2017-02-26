@@ -11,6 +11,7 @@ if ($_POST["job"] == "editComment") {
     <input type="hidden" id="commentId" name="id" value="">
     <input type="hidden" id="commentText" name="text" value="">
   </form>
+  <div id="smileyTarget" data-target="post_text"></div>
 
   <div id="editor_wrapper" class="hidden">
     <div id="editor">
@@ -31,6 +32,7 @@ if ($_POST["job"] == "editComment") {
   </div>
 
   <div class="comments_wrapper">
+    <div id="linkshowcomments"></div>
 
 <?php
 $blogpost = $query->selectBlogpostsById($_GET["id"]);

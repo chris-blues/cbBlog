@@ -11,7 +11,7 @@ $text = parse(nl2br($post, false));
 <div id="wrapper">
   <div class="comments shadow" id="<?php echo $row["id"]; ?>" data-text="<?php echo $post; ?>">
     <h3 class="commentsHead">
-      <a href="<?php echo "#" . $row["time"] ?>"><?php echo $counter; ?></a>)
+      <a href="<?php echo "#" . $row["id"] ?>"><?php echo $counter; ?></a>)
         <?php
         if ($row["website"] != "") {
           $externalUrl = true;

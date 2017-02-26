@@ -18,12 +18,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var tagButtons = document.getElementsByClassName("tagButton");
   for (i=0; i<tagButtons.length; i++) {
-    tagButtons[i].addEventListener("click", function() { insertAtCursor( this.getAttribute("data-valueOpen"), this.getAttribute("data-valueClose") ); });
+    tagButtons[i].addEventListener("click", function() {
+      insertAtCursor( this.getAttribute("data-valueOpen"), this.getAttribute("data-valueClose"), "post_text" );
+    });
   }
 
   var smiley = document.getElementsByClassName("smiley");
   for (i=0; i < smiley.length; i++) {
-    smiley[i].addEventListener("click", function () { insertAtCursor( this.getAttribute("data-id"), "" ); });
+    smiley[i].addEventListener("click", function () {
+      insertAtCursor( this.getAttribute("data-id"), "" ,"post_text");
+    });
   }
 
   if (document.getElementById("switchTagHelp") != null) {

@@ -11,7 +11,6 @@ function loadLocalStorage() {
 
 function saveLocalStorage(field, value) {
   localStorage.setItem(field, value);
-  console.log("field " + field + " = " + value);
 }
 
 var tagHelpShown = 0;
@@ -37,8 +36,8 @@ function showhideSmileys() {
   }
 }
 
-function insertAtCursor(open, close) {
-  var myField = document.getElementById("post_text");
+function insertAtCursor(open, close, target) {
+  var myField = document.getElementById(target);
   //IE support
   if (document.selection) {
     myField.focus();
@@ -58,11 +57,11 @@ function insertAtCursor(open, close) {
   }
   myField.focus();
   var finalEndPos = startPos + 1 + open.length + stringSelected.length + close.length + 1;
-  setCaretPosition(finalEndPos);
+  setCaretPosition(finalEndPos, target);
 }
 
-function setCaretPosition(pos){
-  var myField = document.getElementById("post_text");
+function setCaretPosition(pos, target){
+  var myField = document.getElementById(target);
   if(myField.setSelectionRange) {
     myField.focus();
     myField.setSelectionRange(pos,pos);

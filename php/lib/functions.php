@@ -128,7 +128,7 @@ function bb_parse($string) {
       case 'quote': $replacement = "<div class=\"quote comments\"><blockquote>$innertext</blockquote></div>"; break;
       case 'code': $replacement = "<pre><code>$innertext</code></pre>"; break;
       case 'tt': $replacement = "<code>$innertext</code>"; break;
-      case 'ot': $replacement = "<span class=\"offtopic\">$innertext</span>"; break;
+      case 'ot': $replacement = "<span class=\"offtopic\">$innertext</span>"; $GLOBALS["ot"] = true; break;
       case 'url':
         {
          if (stristr($param, "javascript:", true)) $param = "##";

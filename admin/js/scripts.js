@@ -22,6 +22,25 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  var buttonsTags = document.getElementsByClassName("blogpost_taglist");
+  if (buttonsTags != null) {
+    for (i=0; i<buttonsTags.length; i++) {
+      buttonsTags[i].addEventListener("click", function() {
+        removeTag(this.id);
+        this.remove();
+      })
+    }
+  }
+
+  var buttonsAvailableTags = document.getElementsByClassName("blogpost_availableTags");
+  if (buttonsAvailableTags != null) {
+    for (i=0; i<buttonsAvailableTags.length; i++) {
+      buttonsAvailableTags[i].addEventListener("click", function() {
+        addTag(this.id);
+      });
+    }
+  }
+
   var buttonSaveComment = document.getElementById("buttonSave");
   if (buttonSaveComment != null) {
     buttonSaveComment.addEventListener("click", function() {
@@ -40,7 +59,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var tagButtons = document.getElementsByClassName("tagButton");
   for (i=0; i<tagButtons.length; i++) {
-    tagButtons[i].addEventListener("click", function() { insertAtCursor( this.getAttribute("data-valueOpen"), this.getAttribute("data-valueClose") ); });
+    tagButtons[i].addEventListener("click", function() {
+      insertAtCursor( this.getAttribute("data-valueOpen"), this.getAttribute("data-valueClose"), "post_text" );
+    });
   }
 
   if (document.getElementById("smileyButton") != null) {
@@ -48,8 +69,11 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   var smiley = document.getElementsByClassName("smiley");
+  if (document.getElementById("smileyTarget") != null) {
+    var target = document.getElementById("smileyTarget").getAttribute("data-target");
+  }
   for (i=0; i < smiley.length; i++) {
-    smiley[i].addEventListener("click", function () { insertAtCursor( this.getAttribute("data-id"), "" ); });
+    smiley[i].addEventListener("click", function () { insertAtCursor( this.getAttribute("data-id"), "", target ); });
   }
 
   var commentText = document.getElementsByClassName("commentText");
@@ -104,7 +128,6 @@ function toggleBlogPost(id) {
 }
 
 function saveComment(id) {
-  console.log("saveComment(" + id + ") has fired");
   oldText = document.getElementById("data").getAttribute("data-text");
   newText = document.getElementById("post_text").value;
 
@@ -113,13 +136,11 @@ function saveComment(id) {
   text = document.getElementById("commentText");
 
   if (oldText != newText) {
-    console.log(oldText + " != " + newText);
     ID.value = id;
     text.value = newText;
     form.action += "#" + id;
     form.submit();
   } else {
-    console.log(oldText + " == " + newText);
     ID.value = "";
     text.value = "";
   }
@@ -128,6 +149,10 @@ function saveComment(id) {
 function resetComment(id) {
   oldText = document.getElementById("data").getAttribute("data-text");
   document.getElementById("post_text").value = oldText;
+  // put editor back to its parking lot
+  document.getElementById("editor_wrapper").appendChild(document.getElementById("editor"));
+  // clean up the comment field
+  document.getElementById("post_text").value="";
 }
 
 function toggleCommentEditor(id) {
@@ -140,8 +165,38 @@ function toggleCommentEditor(id) {
   data.setAttribute("data-text", text);
 }
 
+function removeTag(tag) {
+  var inputs = document.getElementsByClassName("tagFields");
+  for (i=0; i<inputs.length; i++) {
+    if (inputs[i].value == tag) {
+      inputs[i].remove();
+    }
+  }
+}
 
+function addTag(tag) {
+  var alreadyThere = false;
+  var tags = document.getElementsByClassName("tagFields");
+  for (i=0; i<tags.length; i++) {
+    if (tags[i].value == tag) { alreadyThere = true; }
+  }
 
+  if (alreadyThere != true) {
+    var newTag = document.createElement("INPUT");
+    newTag.type="hidden";
+    newTag.className = "tagFields";
+    newTag.name = "tags[]";
+    newTag.value = tag;
+    document.getElementById("tags").appendChild(newTag);
+
+    var newAnchor = document.createElement("A");
+    var text = document.createTextNode(tag);
+    newAnchor.appendChild(text);
+    newAnchor.id = tag;
+    newAnchor.className = "blogpost_taglist editor notes";
+    document.getElementById("tags").appendChild(newAnchor);
+  }
+}
 
 
 

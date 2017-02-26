@@ -2,9 +2,6 @@ Hi {name},<br>
 <br>
 you wanted to be notified via {email} of new comments on {server}. {poster} has just commented:<br>
 <br>
-{link_topic}<br>
-<br>
-<br>
 <hr>
 <br>
 <br>
@@ -13,6 +10,9 @@ you wanted to be notified via {email} of new comments on {server}. {poster} has 
 <br>
 <hr>
 <br>
+<br>
+Click here to see this comment on {server}:<br>
+{link_topic}<br>
 <br>
 To unsubscribe from this topic click here:<br>
 <br>

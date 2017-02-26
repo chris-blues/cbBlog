@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cbBlog\n"
-"POT-Creation-Date: 2017-02-24 17:48+0100\n"
-"PO-Revision-Date: 2017-02-24 17:48+0100\n"
+"POT-Creation-Date: 2017-02-26 22:27+0100\n"
+"PO-Revision-Date: 2017-02-26 22:27+0100\n"
 "Last-Translator: chris_blues <chris@musicchris.de>\n"
 "Language-Team: cbBlog Translations <chris@musicchris.de>\n"
 "Language: de_DE\n"
@@ -15,45 +15,57 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin/index.php:21 php/templates/view.blogpost.php:13
-msgid "back"
-msgstr "Zurück"
+#: admin/index.php:38
+msgid "new blogpost"
+msgstr "Neuer Artikel"
 
-#: admin/index.php:24 admin/php/templates/view.overview.php:40
+#: admin/index.php:41 admin/php/templates/view.overview.php:40
 msgid "edit blogpost"
 msgstr "Artikel bearbeiten"
 
-#: admin/index.php:27
+#: admin/index.php:44
 msgid "view blogpost"
 msgstr "Artikel ansehen"
+
+#: admin/index.php:57 php/templates/view.blogpost.php:13
+msgid "back"
+msgstr "Zurück"
 
 #: admin/php/templates/filterlist.php:3
 msgid "Filter"
 msgstr "Filter"
 
-#: admin/php/templates/view.comments.php:28
-#: admin/php/templates/view.editblog.php:37
+#: admin/php/templates/foot.php:8
+msgid "The following errors have occured"
+msgstr "Folgende Fehler sind aufgetreten"
+
+#: admin/php/templates/view.comments.php:29
+#: admin/php/templates/view.editblog.php:61
 msgid "reset"
 msgstr "Zurücksetzen"
 
-#: admin/php/templates/view.comments.php:29
-#: admin/php/templates/view.editblog.php:38
+#: admin/php/templates/view.comments.php:30
+#: admin/php/templates/view.editblog.php:62
 msgid "save"
 msgstr "Speichern"
 
-#: admin/php/templates/view.editblog.php:18
+#: admin/php/templates/view.editblog.php:20
+msgid "available tags"
+msgstr "verfügbare Tags"
+
+#: admin/php/templates/view.editblog.php:36
 msgid "created on"
 msgstr "Erstellt am"
 
-#: admin/php/templates/view.editblog.php:19
+#: admin/php/templates/view.editblog.php:37
 msgid "modified on"
 msgstr "Verändert am"
 
-#: admin/php/templates/view.editblog.php:30
+#: admin/php/templates/view.editblog.php:51
 msgid "heading"
 msgstr "Überschrift"
 
-#: admin/php/templates/view.editblog.php:33
+#: admin/php/templates/view.editblog.php:54
 msgid "article"
 msgstr "Artikel"
 
@@ -230,7 +242,7 @@ msgstr "zuletzt aktualisiert"
 msgid "no comments"
 msgstr "Keine Kommentare"
 
-#: php/templates/view.comment.php:19 php/templates/view.comments-section.php:9
+#: php/templates/view.comment.php:28 php/templates/view.comments-section.php:9
 msgid "show off-topic comments"
 msgstr "zeige themenfremde Beiträge"
 
