@@ -1,14 +1,14 @@
 <?php
 
-require_once("bootstrap.php");
+require_once("php/bootstrap.php");
 
 if (isset($_POST["job"])) {
-  if ($_POST["job"] == "addComment") require_once("lib/prepareComment.php");
+  if ($_POST["job"] == "addComment") require_once("php/lib/prepareComment.php");
 }
 if (isset($_GET["job"])) {
   switch($_GET["job"]) {
-    case "verify": require_once("lib/verifyEmail.php"); break;
-    case "unsubscribe": require_once("lib/unsubscribe.php"); break;
+    case "verify": require_once("php/lib/verifyEmail.php"); break;
+    case "unsubscribe": require_once("php/lib/unsubscribe.php"); break;
   }
 }
 
@@ -37,9 +37,9 @@ if ($blogposts) {
 
     if (isset($_GET["id"]) and $_GET["id"] != "") {
       $row["comments"] = $comments;
-      require("templates/view.blogpost.php");
+      require("php/templates/view.blogpost.php");
     } else {
-      require("templates/view.overview.php");
+      require("php/templates/view.overview.php");
     }
   }
 }
@@ -49,10 +49,10 @@ else {
 
 // ====================[ display comments ]====================
 if (isset($_GET["id"]) and $_GET["id"] != "") {
-  require_once("templates/view.comments-section.php");
+  require_once("php/templates/view.comments-section.php");
 }
 ?>
 
 </div>
 
-<?php require_once("templates/view.foot.php"); ?>
+<?php require_once("php/templates/view.foot.php"); ?>

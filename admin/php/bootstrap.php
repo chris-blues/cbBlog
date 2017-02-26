@@ -1,6 +1,6 @@
 <?php
 
-require_once("../lib/functions.php");
+require_once("../php/lib/functions.php");
 $link = assembleGetString("string");
 require_once("lib/functions.php");
 
@@ -18,9 +18,9 @@ $debug = true;
 // ###############
 // ##  Configs  ##
 // ###############
-$config["database"] = require_once("../config/db.php");
-$config["blog"]     = require_once("../config/blog.php");
-$insertTags = require_once("../config/bbtags.php");
+$config["database"] = require_once("../php/config/db.php");
+$config["blog"]     = require_once("../php/config/blog.php");
+$insertTags = require_once("../php/config/bbtags.php");
 
 if ($config["blog"]["showProcessingTime"]) $startTime = microtime(true);
 
@@ -58,8 +58,8 @@ echo "<!-- locale: $locale -> " . $localeString . " -->\n";
 // ###########################
 // ##  Connect to database  ##
 // ###########################
-require_once("../lib/db/Connection.php");
-require_once("../lib/db/QueryBuilder.php");
+require_once("../php/lib/db/Connection.php");
+require_once("../php/lib/db/QueryBuilder.php");
 
 $query = new QueryBuilder(
   Connection::make($config["database"])
@@ -69,10 +69,10 @@ $query = new QueryBuilder(
 // ########################
 // ##  Blog dataclasses  ##
 // ########################
-require_once("../lib/Blogpost.php");
-require_once("../lib/Tags.php");
-require_once("../lib/Filters.php");
-require_once("../lib/Comment.php");
+require_once("../php/lib/Blogpost.php");
+require_once("../php/lib/Tags.php");
+require_once("../php/lib/Filters.php");
+require_once("../php/lib/Comment.php");
 
 
 // ====================[ cleanup/get $_GET["filter"] ]====================

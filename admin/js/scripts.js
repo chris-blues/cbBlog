@@ -60,8 +60,18 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   if ( document.getElementById("buttonBack") != null ) {
-    var backLink = document.getElementById("backLink").getAttribute("data-backLink");
+    var backLink = document.getElementById("navLinks").getAttribute("data-backLink");
     document.getElementById("buttonBack").addEventListener("click", function() { window.location.href = backLink; });
+  }
+
+  if (document.getElementById("buttonEditBlogpost") != null) {
+    var editLink = document.getElementById("navLinks").getAttribute("data-editLink");
+    document.getElementById("buttonEditBlogpost").addEventListener("click", function() { window.location.href = editLink; });
+  }
+
+  if (document.getElementById("buttonViewBlogpost") != null) {
+    var viewLink = document.getElementById("navLinks").getAttribute("data-viewLink");
+    document.getElementById("buttonViewBlogpost").addEventListener("click", function() { window.location.href = viewLink; });
   }
 
   var tags = document.getElementsByClassName("linkTags");

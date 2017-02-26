@@ -69,7 +69,7 @@ function assembleGetString($method = "", $newVars = array()) {
 }
 
 function assemblePermaLink($ignore) {
-  // create permalink (without contents of $config["blog"]["permalinkIgnore"] found in /config/blog.php)
+  // create permalink (without contents of $config["blog"]["permalinkIgnore"] found in /php/config/blog.php)
   $switch = "0";
   foreach ($_GET as $key => $value) {
     if (in_array($key, $ignore)) continue;

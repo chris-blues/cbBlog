@@ -1,7 +1,7 @@
 
   <div class="clear"></div>
   <div class="comments_wrapper">
-    <div class="centered" id="linkshowcomments">
+    <div class="center" id="linkshowcomments">
       <h2><?php echo gettext("comments"); ?></h2>
     </div>
 
@@ -16,7 +16,7 @@ $counter = 0;
 foreach ($row["comments"] as $Comment) {
   $counter++;
   $row = $Comment->getdata();
-  require("templates/view.comment.php");
+  require("php/templates/view.comment.php");
 }
 
 if (isset($_GET["job"]) and $_GET["job"] == "verify" and $verified === true) { ?>
@@ -26,4 +26,4 @@ if (isset($_GET["job"]) and $_GET["job"] == "verify" and $verified === true) { ?
 <?php
 }
 
-require_once("templates/view.postform.php");
+require_once("php/templates/view.postform.php");

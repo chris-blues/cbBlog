@@ -37,14 +37,16 @@
           <button type="button" class="buttonComments" data-id="<?php echo $row["id"]; ?>"><?php echo gettext("show comments"); ?></button>
             <?php } ?>
           <br>
-          <button type="button" class="editBlog" data-id="<?php echo $row["id"]; ?>"><?php echo gettext("edit post"); ?></button>
+          <button type="button" class="editBlog" data-id="<?php echo $row["id"]; ?>"><?php echo gettext("edit blogpost"); ?></button>
         </div>
         <div class="blogHeader">
-        <?php echo $row["id"] . ") " .
-                   "<b>" . $row["head"] . "</b><br>" .
-                   date("Y-m-d H:i:s", $row["ctime"]) . " " .
-                   "<span class=\"notes\">(" . date("Y-m-d H:i:s", $row["mtime"]) . ")</span>\n";
-
+          <?php echo $row["id"]; ?>)
+          <a href="index.php<?php echo assembleGetString("string", array("job" => "viewBlog", "id" => $row["id"])); ?>">
+            <b><?php echo $row["head"]; ?></b><br>
+          </a>
+          <?php echo date("Y-m-d H:i:s", $row["ctime"]); ?>
+          <span class="notes">(<?php echo date("Y-m-d H:i:s", $row["mtime"]); ?>)</span>
+            <?php
               $tags = $query->getTagsOfBlogpost($row["id"]);
               foreach ($tags as $key => $value) {
               $tag = $value->getdata();

@@ -5,8 +5,6 @@ if ($_POST["job"] == "editComment") {
 }
 
 ?>
-  <button type="button" id="buttonBack"><?php echo gettext("back"); ?></button>
-  <div id="backLink" data-backLink="<?php echo assembleGetString("string", array("job"=>"overview", "id"=>"")); ?>"></div>
 
   <form id="formEditComment" action="index.php<?php echo assembleGetString("string"); ?>" method="post" accept-charset="UTF-8">
     <input type="hidden" name="job" value="editComment">
@@ -26,7 +24,7 @@ if ($_POST["job"] == "editComment") {
         <?php echo $insertTags[$tag]["open"]; ?>
         </button>
       <?php } ?>
-      <?php $path = "../"; require("../templates/view.smileys.php"); ?><br>
+      <?php $path = "../"; require("../php/templates/view.smileys.php"); ?><br>
       <button type="reset" id="buttonReset"><?php echo gettext("reset"); ?></button>
       <button type="button" id="buttonSave"><?php echo gettext("save"); ?></button>
     </div>
@@ -45,7 +43,7 @@ $counter = 0;
 foreach ($comments as $Comment) {
   $counter++;
   $row = $Comment->getdata();
-  require("templates/view.comment.php");
+  require("php/templates/view.comment.php");
 }
 
 ?>

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cbBlog\n"
-"POT-Creation-Date: 2017-02-22 21:46+0100\n"
-"PO-Revision-Date: 2017-02-22 21:46+0100\n"
+"POT-Creation-Date: 2017-02-24 17:48+0100\n"
+"PO-Revision-Date: 2017-02-24 17:48+0100\n"
 "Last-Translator: chris_blues <chris@musicchris.de>\n"
 "Language-Team: cbBlog Translations <chris@musicchris.de>\n"
 "Language: de_DE\n"
@@ -15,69 +15,75 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin/templates/filterlist.php:3
-msgid "Filter"
-msgstr "Filter"
-
-#: admin/templates/view.comments.php:8 templates/view.blogpost.php:13
+#: admin/index.php:21 php/templates/view.blogpost.php:13
 msgid "back"
 msgstr "Zurück"
 
-#: admin/templates/view.comments.php:30
+#: admin/index.php:24 admin/php/templates/view.overview.php:40
+msgid "edit blogpost"
+msgstr "Artikel bearbeiten"
+
+#: admin/index.php:27
+msgid "view blogpost"
+msgstr "Artikel ansehen"
+
+#: admin/php/templates/filterlist.php:3
+msgid "Filter"
+msgstr "Filter"
+
+#: admin/php/templates/view.comments.php:28
+#: admin/php/templates/view.editblog.php:37
 msgid "reset"
 msgstr "Zurücksetzen"
 
-#: admin/templates/view.comments.php:31
+#: admin/php/templates/view.comments.php:29
+#: admin/php/templates/view.editblog.php:38
 msgid "save"
 msgstr "Speichern"
 
-#: admin/templates/view.editblog.php:17
+#: admin/php/templates/view.editblog.php:18
 msgid "created on"
 msgstr "Erstellt am"
 
-#: admin/templates/view.editblog.php:18
+#: admin/php/templates/view.editblog.php:19
 msgid "modified on"
 msgstr "Verändert am"
 
-#: admin/templates/view.editblog.php:19
+#: admin/php/templates/view.editblog.php:30
 msgid "heading"
 msgstr "Überschrift"
 
-#: admin/templates/view.editblog.php:22
+#: admin/php/templates/view.editblog.php:33
 msgid "article"
 msgstr "Artikel"
 
-#: admin/templates/view.overview.php:32 templates/view.blogpost.php:42
-#: templates/view.overview.php:13
+#: admin/php/templates/view.overview.php:32 php/templates/view.blogpost.php:42
+#: php/templates/view.overview.php:13
 msgid "comment"
 msgstr "Kommentar"
 
-#: admin/templates/view.overview.php:33 templates/view.blogpost.php:43
-#: templates/view.comments-section.php:5 templates/view.overview.php:14
+#: admin/php/templates/view.overview.php:33 php/templates/view.blogpost.php:43
+#: php/templates/view.comments-section.php:5 php/templates/view.overview.php:14
 msgid "comments"
 msgstr "Kommentare"
 
-#: admin/templates/view.overview.php:37
+#: admin/php/templates/view.overview.php:37
 msgid "show comments"
 msgstr "Zeige Kommentare"
 
-#: admin/templates/view.overview.php:40
-msgid "edit post"
-msgstr "Artikel bearbeiten"
-
-#: lib/Email.php:45
+#: php/lib/Email.php:45
 msgid "New comment by"
 msgstr "Neuer Kommentar von"
 
-#: lib/Email.php:48
+#: php/lib/Email.php:48
 msgid "Verify your subscription to {server}"
 msgstr "Bestätigen Sie, daß sie von {server} benachrichtigt werden wollen"
 
-#: lib/Email.php:52 lib/Email.php:62
+#: php/lib/Email.php:52 php/lib/Email.php:62
 msgid "Hi"
 msgstr "Hallo"
 
-#: lib/Email.php:53
+#: php/lib/Email.php:53
 msgid ""
 "you wanted to be notified via {email} of new comments on {server}. {poster} "
 "has just commented"
@@ -85,26 +91,26 @@ msgstr ""
 "Du wolltest via {email} über neue Kommentare auf {server} benachrichtigt "
 "werden. {poster} hat gerade geschrieben"
 
-#: lib/Email.php:55
+#: php/lib/Email.php:55
 msgid "To unsubscribe from this topic click here"
 msgstr "Um nicht mehr benachrichtigt zu werden klicke hier"
 
-#: lib/Email.php:56
+#: php/lib/Email.php:56
 msgid "To entirely unsubscribe from {server} click here"
 msgstr ""
 "Um von {server} gar keine Benachrichtigungen mehr zu erhalten klicke hier"
 
-#: lib/Email.php:57 lib/Email.php:70
+#: php/lib/Email.php:57 php/lib/Email.php:70
 msgid "Best regards"
 msgstr "Mit besten Grüßen"
 
-#: lib/Email.php:63
+#: php/lib/Email.php:63
 msgid "you wanted to be notified via {email} of new comments on {link_topic}."
 msgstr ""
 "Sie wollten via {email} über neue Kommentare zu {link_topic} benachrichtigt "
 "werden."
 
-#: lib/Email.php:64
+#: php/lib/Email.php:64
 msgid ""
 "To verify your wish, to receive notifications to this topic, please click "
 "here"
@@ -112,7 +118,7 @@ msgstr ""
 "Wenn Sie wirklich Benachrichtigungen zu diesem Thema empfangen wollen "
 "klicken Sie bitte hier"
 
-#: lib/Email.php:66
+#: php/lib/Email.php:66
 msgid ""
 "If you don't want to receive notifications, or you haven't subscribed "
 "yourself, click here"
@@ -120,194 +126,197 @@ msgstr ""
 "Falls Sie keine Benachrichtigungen erhalten wollen, oder sich nicht selbst "
 "eingetragen haben klicken Sie hier"
 
-#: lib/Email.php:68
+#: php/lib/Email.php:68
 msgid ""
 "To entirely unsubscribe from {server} (never receive any notifications from "
 "{server} again) click here"
 msgstr ""
 "Um von {server} gar keine Benachrichtigungen mehr zu erhalten klicke hier"
 
-#: lib/Filters.php:8 lib/Filters.php:10
+#: php/lib/Filters.php:8 php/lib/Filters.php:10
 msgid "all"
 msgstr "alle"
 
-#: lib/functions.php:34
+#: php/lib/functions.php:34
 msgid "Processing needed"
 msgstr "Verarbeitung brauchte"
 
-#: lib/functions.php:88
+#: php/lib/functions.php:88
 msgid "no"
 msgstr "kein"
 
-#: lib/functions.php:89
+#: php/lib/functions.php:89
 msgid "one"
 msgstr "ein"
 
-#: lib/functions.php:90
+#: php/lib/functions.php:90
 msgid "two"
 msgstr "zwei"
 
-#: lib/functions.php:91
+#: php/lib/functions.php:91
 msgid "three"
 msgstr "drei"
 
-#: lib/functions.php:92
+#: php/lib/functions.php:92
 msgid "four"
 msgstr "vier"
 
-#: lib/functions.php:93
+#: php/lib/functions.php:93
 msgid "five"
 msgstr "fünf"
 
-#: lib/functions.php:94
+#: php/lib/functions.php:94
 msgid "six"
 msgstr "sechs"
 
-#: lib/functions.php:95
+#: php/lib/functions.php:95
 msgid "seven"
 msgstr "sieben"
 
-#: lib/functions.php:96
+#: php/lib/functions.php:96
 msgid "eight"
 msgstr "acht"
 
-#: lib/functions.php:97
+#: php/lib/functions.php:97
 msgid "nine"
 msgstr "neun"
 
-#: lib/functions.php:98
+#: php/lib/functions.php:98
 msgid "ten"
 msgstr "zehn"
 
-#: lib/functions.php:98
+#: php/lib/functions.php:98
 msgid "eleven"
 msgstr "elf"
 
-#: lib/functions.php:98
+#: php/lib/functions.php:98
 msgid "twelve"
 msgstr "zwölf"
 
-#: lib/prepareComment.php:40 templates/view.postform.php:45
+#: php/lib/prepareComment.php:40 php/templates/view.postform.php:45
 msgid "Anonymous"
 msgstr "Anonym"
 
-#: lib/unsubscribe.php:42
+#: php/lib/unsubscribe.php:42
 msgid ""
 "You'll receive no further notifications for new comments on this entire blog."
 msgstr ""
 "Sie werden nun keine Benachrichtigungen mehr zu neuen Kommentaren in diesem "
 "gesamten Blog bekommen."
 
-#: lib/unsubscribe.php:47
+#: php/lib/unsubscribe.php:47
 msgid "You'll receive no further notifications for new comments on this topic."
 msgstr ""
 "Sie werden nun keine Benachrichtigungen mehr zu neuen Kommentaren in diesem "
 "Thema bekommen."
 
-#: lib/unsubscribe.php:52
+#: php/lib/unsubscribe.php:52
 msgid "Your request could not be handled."
 msgstr "Ihre Anfrage konnte nicht bearbeitet werden."
 
-#: lib/verifyEmail.php:41
+#: php/lib/verifyEmail.php:41
 msgid "You'll now receive notifications for new comments."
 msgstr "Sie werden nun zu neuen Kommentaren benachrichtigt."
 
-#: templates/filterlist.php:7
+#: php/templates/filterlist.php:7
 msgid "by"
 msgstr "von"
 
-#: templates/view.blogpost.php:36 templates/view.overview.php:4
+#: php/templates/view.blogpost.php:36 php/templates/view.overview.php:4
 msgid "last update"
 msgstr "zuletzt aktualisiert"
 
-#: templates/view.blogpost.php:49 templates/view.overview.php:17
+#: php/templates/view.blogpost.php:49 php/templates/view.overview.php:17
 msgid "no comments"
 msgstr "Keine Kommentare"
 
-#: templates/view.comment.php:19 templates/view.comments-section.php:9
+#: php/templates/view.comment.php:19 php/templates/view.comments-section.php:9
 msgid "show off-topic comments"
 msgstr "zeige themenfremde Beiträge"
 
-#: templates/view.comments-section.php:10
+#: php/templates/view.comments-section.php:10
 msgid "hide off-topic comments"
 msgstr "verstecke themenfremde Beiträge"
 
-#: templates/view.postform.php:44
+#: php/templates/view.postform.php:44
 msgid "name"
 msgstr "Name"
 
-#: templates/view.postform.php:44 templates/view.postform.php:50
-#: templates/view.postform.php:52
+#: php/templates/view.postform.php:44 php/templates/view.postform.php:50
+#: php/templates/view.postform.php:52
 msgid "optional"
 msgstr "optional"
 
-#: templates/view.postform.php:47
+#: php/templates/view.postform.php:47
 msgid "leave empty"
 msgstr "leer lassen"
 
-#: templates/view.postform.php:50
+#: php/templates/view.postform.php:50
 msgid "notify"
 msgstr "Benachrichtigen"
 
-#: templates/view.postform.php:50
+#: php/templates/view.postform.php:50
 msgid "to be notified of new comments"
 msgstr "um zu neuen Kommentaren benachrichtigt zu werden"
 
-#: templates/view.postform.php:52
+#: php/templates/view.postform.php:52
 msgid "Website"
 msgstr "Website"
 
-#: templates/view.postform.php:55
+#: php/templates/view.postform.php:55
 msgid "Your comment"
 msgstr "Ihr Kommentar"
 
-#: templates/view.postform.php:57
+#: php/templates/view.postform.php:57
 msgid "Notes for formatting"
 msgstr "Hinweise zur Formatierung"
 
-#: templates/view.postform.php:60
+#: php/templates/view.postform.php:60
 msgid "Allowed Tags"
 msgstr "Erlaubte Tags"
 
-#: templates/view.postform.php:63 templates/view.postform.php:64
+#: php/templates/view.postform.php:63 php/templates/view.postform.php:64
 msgid "bold text"
 msgstr "fetter Text"
 
-#: templates/view.postform.php:67 templates/view.postform.php:68
+#: php/templates/view.postform.php:67 php/templates/view.postform.php:68
 msgid "underlined text"
 msgstr "unterstrichener Text"
 
-#: templates/view.postform.php:71 templates/view.postform.php:72
+#: php/templates/view.postform.php:71 php/templates/view.postform.php:72
 msgid "stroke text"
 msgstr "durchgestrichener Text"
 
-#: templates/view.postform.php:75 templates/view.postform.php:76
+#: php/templates/view.postform.php:75 php/templates/view.postform.php:76
 msgid "italic text"
 msgstr "kursiver Text"
 
-#: templates/view.postform.php:83 templates/view.postform.php:84
+#: php/templates/view.postform.php:83 php/templates/view.postform.php:84
 msgid "link"
 msgstr "Verweis"
 
-#: templates/view.postform.php:95 templates/view.postform.php:96
+#: php/templates/view.postform.php:95 php/templates/view.postform.php:96
 msgid "quote"
 msgstr "Zitat"
 
-#: templates/view.postform.php:99 templates/view.postform.php:100
+#: php/templates/view.postform.php:99 php/templates/view.postform.php:100
 msgid "off-topic"
 msgstr "themenfremd"
 
-#: templates/view.postform.php:122
+#: php/templates/view.postform.php:122
 msgid "Back"
 msgstr "Zurück"
 
-#: templates/view.postform.php:123
+#: php/templates/view.postform.php:123
 msgid "Preview"
 msgstr "Vorschau"
 
-#: templates/view.postform.php:124
+#: php/templates/view.postform.php:124
 msgid "Send"
 msgstr "Abschicken"
+
+#~ msgid "edit post"
+#~ msgstr "Artikel bearbeiten"
 
 #~ msgid "Hi {name}"
 #~ msgstr "Hallo {name}"

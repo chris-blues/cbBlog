@@ -116,9 +116,9 @@
             <?php echo $insertTags[$tag]["open"]; ?>
           </button>
   <?php } ?>
-          <?php require("templates/view.smileys.php"); ?>
+          <?php require("php/templates/view.smileys.php"); ?>
       </div>
-      <div class="centered">
+      <div class="center">
         <button type="reset"> &lt;&lt;&lt; <?php echo gettext("Back"); ?> </button>
         <button type="button" id="buttonPreview"> <?php echo gettext("Preview"); ?> </button>
         <?php if ($_POST["job"] == "showPreview") { ?><button type="submit" id="buttonSend"> <?php echo gettext("Send"); ?> &gt;&gt;&gt; </button><?php } ?>

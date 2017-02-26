@@ -46,9 +46,8 @@ class QueryBuilder {
 
   public function getTagsOfBlogpost($id) {
     $statement = $this->Database->prepare(
-      "SELECT blog_tags.* FROM blog, blog_tags, blog_tags_relations
+      "SELECT blog_tags.* FROM blog_tags, blog_tags_relations
         WHERE blog_tags_relations.blog = :id
-          AND blog.id = :id
           AND blog_tags.id = blog_tags_relations.tag
      ORDER BY blog_tags_relations.tag ASC ; "
     );

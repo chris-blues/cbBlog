@@ -63,6 +63,19 @@ div.tags {
   margin: 5px 0px 0px;
 }
 
+div#tags {
+  margin: 5px;
+  display: inline;
+}
+
+a.blogpost_taglist.editor {
+  padding: 0px 16px 2px 5px;
+  background-image: url("../../pics/del.png");
+  background-repeat: no-repeat;
+  background-position: right;
+  cursor: pointer;
+}
+
 .comments {
   margin: 10px;
 }
@@ -79,6 +92,9 @@ button.editBlog {
   float: right;
 }
 
+div#navigation {
+  margin: 15px;
+}
 
 a.blogpost_taglist.active {
   background-color: #DDA;
@@ -93,6 +109,10 @@ a.blogpost_taglist.active {
 #adminEditBlogTextareaText {
   width: 98%;
   height: 500px;
+}
+
+form#backForm {
+  display: none;
 }
 
 pre.debugCommentlist {

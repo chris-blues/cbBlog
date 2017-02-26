@@ -7,7 +7,7 @@ date_default_timezone_set('Europe/Berlin');
 // Ugly workaround for old cbBlog databases
 if (!isset($_GET["id"]) and isset($_GET["index"]) and $_GET["index"] != "") { $_GET["id"] = $_GET["index"]; unset($_GET["index"]); }
 
-require_once("lib/functions.php");
+require_once("php/lib/functions.php");
 $link = assembleGetString("string");
 
 
@@ -24,25 +24,25 @@ $debug = true;
 // ###############
 // ##  Configs  ##
 // ###############
-$config["database"] = require_once("config/db.php");
-$config["blog"] = require_once("config/blog.php");
-$config["email"] = require_once("config/email.php");
-$insertTags = require_once("config/bbtags.php");
+$config["database"] = require_once("php/config/db.php");
+$config["blog"] = require_once("php/config/blog.php");
+$config["email"] = require_once("php/config/email.php");
+$insertTags = require_once("php/config/bbtags.php");
 
-if ($config["blog"]["standalone"]) require_once("templates/view.head.php");
+if ($config["blog"]["standalone"]) require_once("php/templates/view.head.php");
 
 
 // ######################
 // ##  Init gettext()  ##
 // ######################
-require_once("lib/initGettext.php");
+require_once("php/lib/initGettext.php");
 
 
 // ###########################
 // ##  Connect to database  ##
 // ###########################
-require_once("lib/db/Connection.php");
-require_once("lib/db/QueryBuilder.php");
+require_once("php/lib/db/Connection.php");
+require_once("php/lib/db/QueryBuilder.php");
 
 $query = new QueryBuilder(
   Connection::make($config["database"])
@@ -52,11 +52,11 @@ $query = new QueryBuilder(
 // ########################
 // ##  Blog dataclasses  ##
 // ########################
-require_once("lib/Blogpost.php");
-require_once("lib/Tags.php");
-require_once("lib/Filters.php");
-require_once("lib/Comment.php");
-require_once("lib/Email.php");
+require_once("php/lib/Blogpost.php");
+require_once("php/lib/Tags.php");
+require_once("php/lib/Filters.php");
+require_once("php/lib/Comment.php");
+require_once("php/lib/Email.php");
 
 
 // ====================[ cleanup $_GET["filter"] ]====================

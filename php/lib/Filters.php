@@ -21,7 +21,7 @@ class Filters {
         $filter[$tagname["id"]] = "<li><a href=\"{$_SERVER["PHP_SELF"]}" . assembleGetString("string", array("filter" => $tagname["tag"])) . "\" class=\"notes tags\">" . $tagname["tag"] . "</a></li>\n";
       }
     }
-  require("templates/filterlist.php");
+  require("php/templates/filterlist.php");
   }
 
 }

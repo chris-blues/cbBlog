@@ -12,8 +12,8 @@ ini_set("log_errors", 1);
 ini_set("error_log", "admin/logs/php-error.log");
 $debug = true;
 
-$config["database"] = require_once("../config/db.php");
-$config["blog"] = require_once("../config/blog.php");
+$config["database"] = require_once("../php/config/db.php");
+$config["blog"] = require_once("../php/config/blog.php");
 require_once("Blogpost0_13.php");
 require_once("Tags.php");
 
