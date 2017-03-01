@@ -7,10 +7,24 @@ if (isset($_GET["id"]) and $_GET["id"] == "") unset($_GET["id"]);
 require_once("php/bootstrap.php");
 ?>
   <body>
+    <div id="localeData"
+         data-reallyDelete="<?php echo gettext("Do you really want to delete this?"); ?>"
+    ></div>
 <?php
 
-
 // ====================[ perform DB operations before showing any content ]====================
+if ($_POST["job"] == "deleteComment") {
+  if ($adminQuery->deleteComment($_POST["id"]) !== true) {
+    $error["query_deleteComment"] = true;
+  }
+}
+if ($_GET["job"] == "deleteBlog") {
+  if ($adminQuery->deleteBlog($_GET["id"]) !== true) {
+    $error["query_deleteBlog"] = true;
+  }
+  $_GET["job"] = "overview";
+  unset($_GET["id"]);
+}
 if ($_GET["job"] == "viewBlog" and $_GET["operation"] == "insertBlog") {
   $newId = $adminQuery->insertBlog($_POST);
   if ($newId === false) { $error["query_insertBlog"] = true; }
@@ -21,6 +35,23 @@ if ($_GET["job"] == "viewBlog" and $_GET["operation"] == "updateBlog") {
 //   if ($adminQuery->updateTags($_GET["id"], $_POST["tags"], $taglist) === false) { $error["query_updateTags"] = true; }
 }
 unset($_GET["operation"]);
+
+
+
+if (isset($error)) { ?>
+      <div id="errors" class="notes remark">
+        <h2><?php echo gettext("The following errors have occured"); ?></h2>
+        <ol>
+        <?php
+          if (isset($error)) {
+            foreach ($error as $key => $value) {
+              echo "<li>$key</li>\n";
+            }
+          }
+        ?>
+        </ol>
+      </div>
+    <?php }
 
 
 if ($_GET["job"] != "addBlog") {

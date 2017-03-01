@@ -10,6 +10,7 @@ $text = parse(nl2br($post, false));
 
 <div id="wrapper">
   <div class="comments shadow" id="<?php echo $row["id"]; ?>" data-text="<?php echo $post; ?>">
+    <button class="buttonDeleteComment" type="button" data-id="<?php echo $row["id"]; ?>"><?php echo gettext("delete comment"); ?></button>
     <h3 class="commentsHead">
       <a href="<?php echo "#" . $row["id"] ?>"><?php echo $counter; ?></a>)
         <?php

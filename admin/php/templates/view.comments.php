@@ -7,7 +7,7 @@ if ($_POST["job"] == "editComment") {
 ?>
 
   <form id="formEditComment" action="index.php<?php echo assembleGetString("string"); ?>" method="post" accept-charset="UTF-8">
-    <input type="hidden" name="job" value="editComment">
+    <input type="hidden" id="commentJob" name="job" value="editComment">
     <input type="hidden" id="commentId" name="id" value="">
     <input type="hidden" id="commentText" name="text" value="">
   </form>

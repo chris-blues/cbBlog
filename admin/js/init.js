@@ -28,6 +28,36 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  var buttonsDeleteBlog = document.getElementsByClassName("deleteBlog");
+  if (buttonsDeleteBlog != null) {
+    for (i=0; i<buttonsDeleteBlog.length; i++) {
+      buttonsDeleteBlog[i].addEventListener("click", function() {
+        var reallyDelete = document.getElementById("localeData").getAttribute("data-reallyDelete");
+        var confirm = window.confirm(reallyDelete);
+        if (confirm === true) {
+          document.getElementById("formJob").value = "deleteBlog";
+          document.getElementById("formBlogId").value = this.getAttribute("data-id");
+          document.getElementById("formEditBlog").submit();
+        }
+      });
+    }
+  }
+
+  var buttonDeleteComment = document.getElementsByClassName("buttonDeleteComment");
+  if (buttonDeleteComment != null) {
+    for (i=0; i<buttonDeleteComment.length; i++) {
+      buttonDeleteComment[i].addEventListener("click", function() {
+        var reallyDelete = document.getElementById("localeData").getAttribute("data-reallyDelete");
+        var confirm = window.confirm(reallyDelete);
+        if (confirm === true) {
+          document.getElementById("commentJob").value = "deleteComment";
+          document.getElementById("commentId").value = this.getAttribute("data-id");
+          document.getElementById("formEditComment").submit();
+        }
+      });
+    }
+  }
+
   var buttonsTags = document.getElementsByClassName("blogpost_taglist");
   if (buttonsTags != null) {
     for (i=0; i<buttonsTags.length; i++) {

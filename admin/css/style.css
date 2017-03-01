@@ -53,6 +53,7 @@ div.overview {
 
 div.overview .button_wrapper {
   float: right;
+  text-align: right;
 }
 
 .blogentryfull {
@@ -100,10 +101,6 @@ span.offtopic {
 
 .commentTextArea {
   width: 100%;
-}
-
-button.editBlog {
-  float: right;
 }
 
 div#navigation {
@@ -155,4 +152,12 @@ pre.debugCommentlist {
   text-decoration: none;
   display:inline;
   float: right;
+}
+
+.buttonDeleteComment {
+  float: right;
+}
+
+div#errors {
+  background-color: #FCC !important;
 }

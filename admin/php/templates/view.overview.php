@@ -39,6 +39,7 @@
             <?php } ?>
           <br>
           <button type="button" class="editBlog" data-id="<?php echo $row["id"]; ?>"><?php echo gettext("edit blogpost"); ?></button>
+          <button type="button" class="deleteBlog" data-id="<?php echo $row["id"]; ?>"><?php echo gettext("delete blogpost"); ?></button>
         </div>
         <div class="blogHeader">
           <?php echo $row["id"]; ?>)

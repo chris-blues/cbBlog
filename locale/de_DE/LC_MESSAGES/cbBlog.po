@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cbBlog\n"
-"POT-Creation-Date: 2017-03-01 16:27+0100\n"
-"PO-Revision-Date: 2017-03-01 16:27+0100\n"
+"POT-Creation-Date: 2017-03-01 20:54+0100\n"
+"PO-Revision-Date: 2017-03-01 20:54+0100\n"
 "Last-Translator: chris_blues <chris@musicchris.de>\n"
 "Language-Team: cbBlog Translations <chris@musicchris.de>\n"
 "Language: de_DE\n"
@@ -15,29 +15,38 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin/index.php:43
-msgid "new blogpost"
-msgstr "Neuer Artikel"
+#: admin/index.php:11
+msgid "Do you really want to delete this?"
+msgstr "Wollen Sie das wirklich löschen?"
 
-#: admin/index.php:46 admin/php/templates/view.overview.php:41
-msgid "edit blogpost"
-msgstr "Artikel bearbeiten"
-
-#: admin/index.php:49
-msgid "view blogpost"
-msgstr "Artikel ansehen"
-
-#: admin/index.php:53 php/templates/view.blogpost.php:13
-msgid "back"
-msgstr "Zurück"
+#: admin/index.php:37 admin/php/templates/foot.php:8
+msgid "The following errors have occured"
+msgstr "Folgende Fehler sind aufgetreten"
 
 #: admin/php/templates/filterlist.php:3
 msgid "Filter"
 msgstr "Filter"
 
-#: admin/php/templates/foot.php:8
-msgid "The following errors have occured"
-msgstr "Folgende Fehler sind aufgetreten"
+#: admin/php/templates/navigation.php:12
+msgid "new blogpost"
+msgstr "Neuer Artikel"
+
+#: admin/php/templates/navigation.php:15
+#: admin/php/templates/view.overview.php:41
+msgid "edit blogpost"
+msgstr "Artikel bearbeiten"
+
+#: admin/php/templates/navigation.php:18
+msgid "view blogpost"
+msgstr "Artikel ansehen"
+
+#: admin/php/templates/navigation.php:22 php/templates/view.blogpost.php:13
+msgid "back"
+msgstr "Zurück"
+
+#: admin/php/templates/view.comment.php:13
+msgid "delete comment"
+msgstr "Kommentar löschen"
 
 #: admin/php/templates/view.comments.php:29
 #: admin/php/templates/view.editblog.php:70
@@ -90,6 +99,10 @@ msgstr "Kommentare"
 #: admin/php/templates/view.overview.php:38
 msgid "show comments"
 msgstr "Zeige Kommentare"
+
+#: admin/php/templates/view.overview.php:42
+msgid "delete blogpost"
+msgstr "Artikel löschen"
 
 #: php/lib/Email.php:45
 msgid "New comment by"

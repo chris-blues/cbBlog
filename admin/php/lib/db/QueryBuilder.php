@@ -52,6 +52,28 @@ class AdminQueryBuilder extends QueryBuilder {
     }
     return $result;
   }
+
+  public function deleteBlog($id) {
+    $statement = $this->Database->prepare("DELETE FROM `blog` WHERE `id` = :id ;");
+    $statement->bindParam(':id', $id);
+    try {
+      $result = $statement->execute();
+    } catch(PDOException $e) {
+      die($e->getMessage());
+    }
+    return $result;
+  }
+
+  public function deleteComment($id) {
+    $statement = $this->Database->prepare("DELETE FROM `blog_comments` WHERE `id` = :id ;");
+    $statement->bindParam(':id', $id);
+    try {
+      $result = $statement->execute();
+    } catch(PDOException $e) {
+      die($e->getMessage());
+    }
+    return $result;
+  }
 }
 
 ?>
