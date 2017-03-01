@@ -60,11 +60,14 @@ echo "<!-- locale: $locale -> " . $localeString . " -->\n";
 // ###########################
 require_once("../php/lib/db/Connection.php");
 require_once("../php/lib/db/QueryBuilder.php");
+require_once("php/lib/db/QueryBuilder.php");
 
 $query = new QueryBuilder(
   Connection::make($config["database"])
 );
-
+$adminQuery = new AdminQueryBuilder(
+  Connection::make($config["database"])
+);
 
 // ########################
 // ##  Blog dataclasses  ##

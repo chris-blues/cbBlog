@@ -103,18 +103,6 @@ class QueryBuilder {
     return $result;
   }
 
-  public function updateComment($id, $comment) {
-    $statement = $this->Database->prepare("UPDATE `blog_comments` SET `comment` = :comment WHERE `id` = :id ;");
-    $statement->bindParam(':comment', $comment);
-    $statement->bindParam(':id', $id);
-    try {
-      $result = $statement->execute();
-    } catch(PDOException $e) {
-      die($e->getMessage());
-    }
-    return $result;
-  }
-
   public function selectSubscribers($affiliation) {
     $statement = $this->Database->prepare("SELECT name, email FROM `blog_comments` WHERE `affiliation`=:affiliation AND `email` > \"\" ;");
     $statement->bindParam(':affiliation', $affiliation);
@@ -178,19 +166,6 @@ class QueryBuilder {
   public function deleteAllSubscriptions($email) {
     $statement = $this->Database->prepare("UPDATE `blog_comments` SET `email`='' WHERE (`email` = :email);");
     $statement->bindParam(':email', $email);
-    try {
-      $result = $statement->execute();
-    } catch(PDOException $e) {
-      die($e->getMessage());
-    }
-    return $result;
-  }
-
-  public function updateBlog($post) {
-    $statement = $this->Database->prepare("UPDATE `blog` SET `head` = :head, `text` = :text WHERE `blog`.`id` = :id;");
-    $statement->bindParam(':head', $post["head"]);
-    $statement->bindParam(':text', $post["text"]);
-    $statement->bindParam(':id', $post["id"]);
     try {
       $result = $statement->execute();
     } catch(PDOException $e) {

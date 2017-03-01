@@ -63,11 +63,6 @@ div.tags {
   margin: 5px 0px 0px;
 }
 
-div#tags {
-  margin: 5px;
-  display: inline;
-}
-
 a.blogpost_taglist.editor {
   padding: 0px 16px 2px 5px;
   background-image: url("../../pics/del.png");
@@ -76,8 +71,11 @@ a.blogpost_taglist.editor {
   cursor: pointer;
 }
 
-div.allTags_wrapper {
+div.allTags_wrapper, div#tags, div.times {
   margin: 10px;
+  border: 1px solid #888;
+  border-radius: 6px;
+  padding: 10px;
 }
 
 a.blogpost_availableTags.editor {

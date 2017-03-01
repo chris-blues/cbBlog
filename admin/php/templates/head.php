@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="../js/styles/androidstudio.css">
     <script src="../js/highlight.pack.js"></script>
     <script type="text/javascript" src="../js/functions.js"></script>
-    <script type="text/javascript" src="js/scripts.js"></script>
+    <script type="text/javascript" src="js/functions.js"></script>
+    <script type="text/javascript" src="js/init.js"></script>
 
     <title><?php echo $_SERVER["SERVER_NAME"]; ?> - admin-area</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">

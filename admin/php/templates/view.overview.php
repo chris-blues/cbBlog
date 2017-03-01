@@ -10,10 +10,11 @@
 
     <form id="formEditBlog" action="index.php" method="get" accept-charset="UTF-8">
       <?php
-        $getString = assembleGetString("array", array("job" => "editBlog"));
+        $getString = assembleGetString("array", array("job" => ""));
         foreach ($getString as $key => $value) { ?>
       <input type="hidden" name="<?php echo $key; ?>" value="<?php echo $value; ?>">
       <?php } ?>
+      <input type="hidden" id="formJob" name="job" value="">
       <input type="hidden" id="formBlogId" name="id" value="">
     </form>
 

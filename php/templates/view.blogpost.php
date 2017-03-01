@@ -33,7 +33,7 @@
       <hr class="clear">
       <div class="notes blogfulldate">
         <?php echo date("d.M.Y H:i", $row['ctime']);
-              if ($row["ctime"] != $row["mtime"]) echo " - " . gettext("last update") . ": " . date("d.M.Y H:i", $row["mtime"]);
+              if ($row["ctime"] != $row["mtime"] and $row["mtime"] != "") echo " - " . gettext("last update") . ": " . date("d.M.Y H:i", $row["mtime"]);
         ?>
       </div>
 

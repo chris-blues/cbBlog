@@ -5,9 +5,14 @@ switch($_GET["job"]) {
   case "addBlog":  $job = "insertBlog"; break;
 }
 
-foreach($row["tags"] as $key => $tag) {
-  $tags[] = $tag->getdata();
+if ($_GET["job"] != "addBlog") {
+  foreach($row["tags"] as $key => $tag) {
+    $tags[] = $tag->getdata();
+  }
 }
+
+if (!isset($row["ctime"]) or $row["ctime"] == "") $row["ctime"] = time();
+if (!isset($row["mtime"]) or $row["mtime"] == "") $row["mtime"] = time();
 
 $tmpTags = $query->selectAllTags();
 foreach ($tmpTags as $key => $value) {
@@ -20,7 +25,7 @@ asort($allTags);
       <p><?php echo gettext("available tags"); ?>:</p>
 <?php
 foreach ($allTags as $id => $tag) { ?>
-      <a class="blogpost_availableTags editor notes" id="<?php echo $tag; ?>"><?php echo $tag; ?></a>
+      <a class="blogpost_availableTags editor notes" id="allTags_<?php echo $tag; ?>" data-id="<?php echo $tag; ?>"><?php echo $tag; ?></a>
 <?php }
 
 ?>
@@ -32,20 +37,24 @@ foreach ($allTags as $id => $tag) { ?>
       <?php if($_GET["job"] == "editBlog") { ?>
       <input type="hidden" name="id" value="<?php echo $_GET["id"]; ?>">
       <?php } ?>
-      <div class="notes">
+
+      <div class="times notes">
         <?php echo gettext("created on") . " <code>" . date("Y-m-d H:i", $row["ctime"]); ?></code>
         <?php echo gettext("modified on") . " <code>" . date("Y-m-d H:i", $row["mtime"]); ?></code>
       </div>
-      Tags:
+
       <div id="tags">
-        <?php foreach ($tags as $key => $tag) { ?>
+        <?php echo gettext("Tags"); ?>:<br>
+
+        <input type="text" name="tags[]" value="" placeholder="<?php echo gettext("new tags"); ?>" id="inputNewTag">
+        <?php if(isset($tags)) { foreach ($tags as $key => $tag) { ?>
         <input class="tagFields" type="hidden" name="tags[]" value="<?php echo $tag["tag"]; ?>">
         <?php } ?>
         <?php foreach ($tags as $key => $tag) { ?>
         <a class="blogpost_taglist editor notes" id="<?php echo $tag["tag"]; ?>">
           <?php echo $tag["tag"]; ?>
         </a>
-        <?php } ?>
+        <?php } } ?>
       </div><br>
 
       <label><?php echo gettext("heading"); ?>:<br>

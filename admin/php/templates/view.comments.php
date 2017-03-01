@@ -1,7 +1,7 @@
 <?php
 
 if ($_POST["job"] == "editComment") {
-  $query->updateComment($_POST["id"], $_POST["text"]);
+  $adminQuery->updateComment($_POST["id"], $_POST["text"]);
 }
 
 ?>
