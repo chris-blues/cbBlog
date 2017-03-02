@@ -8,6 +8,15 @@ class QueryBuilder {
     $this->Database = $Database;
   }
 
+  private function callExecution($statement) {
+    try {
+      $result = $statement->execute();
+    } catch(PDOException $e) {
+      die($e->getMessage());
+    }
+    return $result;
+  }
+
   public function selectAllBlogposts($filter) {
     if (!isset($filter) or $filter == "") {
       $statement = $this->Database->prepare(
@@ -23,11 +32,7 @@ class QueryBuilder {
       );
       $statement->bindParam(':filter', $filter);
     }
-    try {
-      $statement->execute();
-    } catch(PDOException $e) {
-      die($e->getMessage());
-    }
+    $this->callExecution($statement);
     return $statement->fetchAll(PDO::FETCH_CLASS, "Blogpost");
   }
 
@@ -36,11 +41,7 @@ class QueryBuilder {
     $statement->bindParam(':id', $id);
     $statement->execute();
     $statement->setFetchMode(PDO::FETCH_CLASS, "Blogpost");
-    try {
-      $statement->execute();
-    } catch(PDOException $e) {
-      die($e->getMessage());
-    }
+    $this->callExecution($statement);
     return $statement->fetch();
   }
 
@@ -52,33 +53,21 @@ class QueryBuilder {
      ORDER BY blog_tags_relations.tag ASC ; "
     );
     $statement->bindParam(':id', $id);
-    try {
-      $statement->execute();
-    } catch(PDOException $e) {
-      die($e->getMessage());
-    }
+    $this->callExecution($statement);
     return $statement->fetchAll(PDO::FETCH_CLASS, "Tags");
   }
 
 
   public function selectAllTags() {
     $statement = $this->Database->prepare("SELECT * FROM `blog_tags` ORDER BY `tag` ;");
-    try {
-      $statement->execute();
-    } catch(PDOException $e) {
-      die($e->getMessage());
-    }
+    $this->callExecution($statement);
     return $statement->fetchAll(PDO::FETCH_CLASS, "Tags");
   }
 
   public function selectComments($affiliation) {
     $statement = $this->Database->prepare("SELECT * FROM `blog_comments` WHERE `affiliation`=:affiliation ORDER BY `blog_comments`.`time` ASC ;");
     $statement->bindParam(':affiliation', $affiliation);
-    try {
-      $statement->execute();
-    } catch(PDOException $e) {
-      die($e->getMessage());
-    }
+    $this->callExecution($statement);
     return $statement->fetchAll(PDO::FETCH_CLASS, "Comment");
   }
 
@@ -95,22 +84,14 @@ class QueryBuilder {
     $statement->bindParam(':email', $comment["email"]);
     $statement->bindParam(':website', $comment["website"]);
     $statement->bindParam(':comment', $comment["comment"]);
-    try {
-      $result = $statement->execute();
-    } catch(PDOException $e) {
-      die($e->getMessage());
-    }
+    $result = $this->callExecution($statement);
     return $result;
   }
 
   public function selectSubscribers($affiliation) {
     $statement = $this->Database->prepare("SELECT name, email FROM `blog_comments` WHERE `affiliation`=:affiliation AND `email` > \"\" ;");
     $statement->bindParam(':affiliation', $affiliation);
-    try {
-      $statement->execute();
-    } catch(PDOException $e) {
-      die($e->getMessage());
-    }
+    $this->callExecution($statement);
     return $statement->fetchAll(PDO::FETCH_ASSOC);
   }
 
@@ -118,11 +99,7 @@ class QueryBuilder {
     $statement = $this->Database->prepare("SELECT email FROM `blog_comments` WHERE `affiliation`=:affiliation AND `email`=:email ;");
     $statement->bindParam(':affiliation', $affiliation);
     $statement->bindParam(':email', $email);
-    try {
-      $statement->execute();
-    } catch(PDOException $e) {
-      die($e->getMessage());
-    }
+    $this->callExecution($statement);
     return $statement->fetchAll(PDO::FETCH_COLUMN);
   }
 
@@ -130,11 +107,7 @@ class QueryBuilder {
     $statement = $this->Database->prepare("SELECT affiliation, email FROM `blog_comments` WHERE `affiliation`=:affiliation AND `email`=:hash ;");
     $statement->bindParam(':affiliation', $affiliation);
     $statement->bindParam(':hash', $hash);
-    try {
-      $statement->execute();
-    } catch(PDOException $e) {
-      die($e->getMessage());
-    }
+    $this->callExecution($statement);
     return $statement->fetchAll(PDO::FETCH_ASSOC);
   }
 
@@ -143,11 +116,7 @@ class QueryBuilder {
     $statement->bindParam(':affiliation', $affiliation);
     $statement->bindParam(':email', $email);
     $statement->bindParam(':hash', $hash);
-    try {
-      $result = $statement->execute();
-    } catch(PDOException $e) {
-      die($e->getMessage());
-    }
+    $result = $this->callExecution($statement);
     return $result;
   }
 
@@ -155,22 +124,14 @@ class QueryBuilder {
     $statement = $this->Database->prepare("UPDATE `blog_comments` SET `email`='' WHERE (`email` = :email AND `affiliation` = :affiliation);");
     $statement->bindParam(':affiliation', $affiliation);
     $statement->bindParam(':email', $email);
-    try {
-      $result = $statement->execute();
-    } catch(PDOException $e) {
-      die($e->getMessage());
-    }
+    $result = $this->callExecution($statement);
     return $result;
   }
 
   public function deleteAllSubscriptions($email) {
     $statement = $this->Database->prepare("UPDATE `blog_comments` SET `email`='' WHERE (`email` = :email);");
     $statement->bindParam(':email', $email);
-    try {
-      $result = $statement->execute();
-    } catch(PDOException $e) {
-      die($e->getMessage());
-    }
+    $result = $this->callExecution($statement);
     return $result;
   }
 }

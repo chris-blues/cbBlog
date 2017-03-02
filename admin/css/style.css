@@ -114,8 +114,12 @@ div#navigation {
   border-radius: 6px;
 }
 
+div#navigation button {
+  font-size: 1.2em;
+}
+
 div#top_spacer {
-  margin-top: 50px;
+  margin-top: 60px;
 }
 
 a.blogpost_taglist.active {

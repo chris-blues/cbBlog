@@ -51,7 +51,8 @@ class Email {
   public function templateNotification() {
     $template  = gettext("Hi") . " {name},<br><br>";
     $template .= gettext("you wanted to be notified via {email} of new comments on {server}. {poster} has just commented") . ":<br><br>";
-    $template .= "{link_topic}<br><br><br><hr><br><br>{comment}<br><br><br><hr><br><br>";
+    $template .= "<hr><br><br>{comment}<br><br><br><hr><br><br>";
+    $template .= gettext("Click here to see this comment on {server}") . ":<br>{link_topic}<br><br>";
     $template .= gettext("To unsubscribe from this topic click here") . ":<br><br>{link_unsubscribe_topic}<br><br><br>";
     $template .= gettext("To entirely unsubscribe from {server} click here") . ":<br>{link_unsubscribe_site}<br><br><br>";
     $template .= gettext("Best regards") . ",<br>{server}<br><br>";

@@ -1,4 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
+
+  var buttonUp = document.getElementById("buttonUp");
+  if (buttonUp != null) {
+    buttonUp.addEventListener("click", function() {
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+
   var buttonNewBlogpost = document.getElementById("buttonNewBlogpost");
   if (buttonNewBlogpost != null) {
     buttonNewBlogpost.addEventListener("click", function() {
@@ -59,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   var buttonsTags = document.getElementsByClassName("blogpost_taglist");
-  if (buttonsTags != null) {
+  if (buttonsTags != null  && buttonsTags[0] != undefined && buttonsTags[0].classList.length != 1) {
     for (i=0; i<buttonsTags.length; i++) {
       buttonsTags[i].addEventListener("click", function() {
         removeTag(this.id);

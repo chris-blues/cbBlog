@@ -101,8 +101,7 @@ if (count($errors) > 0) {
 
   if ($result === false) {
     echo "prepareComment.php DB query has failed!<br>\n";
-    $errors["query"] = true;
-    dump_array($errors);
+    $error["query_addComment"] = true;
   }
 
 

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cbBlog\n"
-"POT-Creation-Date: 2017-03-01 20:54+0100\n"
-"PO-Revision-Date: 2017-03-01 20:54+0100\n"
+"POT-Creation-Date: 2017-03-01 21:42+0100\n"
+"PO-Revision-Date: 2017-03-01 21:43+0100\n"
 "Last-Translator: chris_blues <chris@musicchris.de>\n"
 "Language-Team: cbBlog Translations <chris@musicchris.de>\n"
 "Language: de_DE\n"
@@ -19,7 +19,7 @@ msgstr ""
 msgid "Do you really want to delete this?"
 msgstr "Wollen Sie das wirklich löschen?"
 
-#: admin/index.php:37 admin/php/templates/foot.php:8
+#: admin/index.php:43 admin/php/templates/foot.php:8
 msgid "The following errors have occured"
 msgstr "Folgende Fehler sind aufgetreten"
 
@@ -112,7 +112,7 @@ msgstr "Neuer Kommentar von"
 msgid "Verify your subscription to {server}"
 msgstr "Bestätigen Sie, daß sie von {server} benachrichtigt werden wollen"
 
-#: php/lib/Email.php:52 php/lib/Email.php:62
+#: php/lib/Email.php:52 php/lib/Email.php:63
 msgid "Hi"
 msgstr "Hallo"
 
@@ -125,25 +125,29 @@ msgstr ""
 "werden. {poster} hat gerade geschrieben"
 
 #: php/lib/Email.php:55
+msgid "Click here to see this comment on {server}"
+msgstr "Hier gehts zum Kommentar auf {server}"
+
+#: php/lib/Email.php:56
 msgid "To unsubscribe from this topic click here"
 msgstr "Um nicht mehr benachrichtigt zu werden klicke hier"
 
-#: php/lib/Email.php:56
+#: php/lib/Email.php:57
 msgid "To entirely unsubscribe from {server} click here"
 msgstr ""
 "Um von {server} gar keine Benachrichtigungen mehr zu erhalten klicke hier"
 
-#: php/lib/Email.php:57 php/lib/Email.php:70
+#: php/lib/Email.php:58 php/lib/Email.php:71
 msgid "Best regards"
 msgstr "Mit besten Grüßen"
 
-#: php/lib/Email.php:63
+#: php/lib/Email.php:64
 msgid "you wanted to be notified via {email} of new comments on {link_topic}."
 msgstr ""
 "Sie wollten via {email} über neue Kommentare zu {link_topic} benachrichtigt "
 "werden."
 
-#: php/lib/Email.php:64
+#: php/lib/Email.php:65
 msgid ""
 "To verify your wish, to receive notifications to this topic, please click "
 "here"
@@ -151,7 +155,7 @@ msgstr ""
 "Wenn Sie wirklich Benachrichtigungen zu diesem Thema empfangen wollen "
 "klicken Sie bitte hier"
 
-#: php/lib/Email.php:66
+#: php/lib/Email.php:67
 msgid ""
 "If you don't want to receive notifications, or you haven't subscribed "
 "yourself, click here"
@@ -159,7 +163,7 @@ msgstr ""
 "Falls Sie keine Benachrichtigungen erhalten wollen, oder sich nicht selbst "
 "eingetragen haben klicken Sie hier"
 
-#: php/lib/Email.php:68
+#: php/lib/Email.php:69
 msgid ""
 "To entirely unsubscribe from {server} (never receive any notifications from "
 "{server} again) click here"

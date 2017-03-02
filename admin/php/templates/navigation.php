@@ -21,4 +21,5 @@ if ($_GET["job"] == "editBlog") { ?>
 if ($_GET["job"] != "overview") { ?>
       <button type="button" id="buttonBack"><?php echo gettext("back"); ?></button>
 <?php } ?>
+      <button type="button" id="buttonUp">🔝</button>
     </div>

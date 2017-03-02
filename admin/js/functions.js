@@ -1,19 +1,11 @@
 var lastId = 0;
 
-function addTag(id) {
-  if (document.getElementById('tags').value.length < 1) {
-    document.getElementById('tags').value = id;
-  }
-  else {
-    document.getElementById('tags').value += ' ' + id;
-  }
-}
-
 function inlineNewTag(newTag) {
   document.getElementById("inputNewTag").value = "";
   tagArray = newTag.split(" ");
-  for (i=0; i<tagArray.length; i++) {
-    addTag(tagArray[i]);
+  for (var i = 0; i < tagArray.length; i++) {
+    var tag = tagArray[i];
+    var result = addTag(tag);
   }
 }
 
@@ -68,7 +60,7 @@ function toggleCommentEditor(id) {
 
 function removeTag(tag) {
   var inputs = document.getElementsByClassName("tagFields");
-  for (i=0; i<inputs.length; i++) {
+  for (var i = 0; i<inputs.length; i++) {
     if (inputs[i].value == tag) {
       inputs[i].remove();
     }
@@ -84,11 +76,12 @@ function addTag(tag) {
 
   var alreadyThere = false;
   var tags = document.getElementsByClassName("tagFields");
-  for (i=0; i<tags.length; i++) {
+  for (var i=0; i<tags.length; i++) {
     if (tags[i].value == tagName) { alreadyThere = true; }
   }
 
   if (alreadyThere != true) {
+
     var newTag = document.createElement("INPUT");
     newTag.type="hidden";
     newTag.className = "tagFields";
@@ -107,6 +100,7 @@ function addTag(tag) {
       document.getElementById(tagName).remove();
     });
   }
+  return(tagName);
 }
 
 
