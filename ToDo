@@ -3,3 +3,5 @@ ToDo:
 
 Refactor:
 * RSS generator
+* different tables for released and unreleased posts
+* news_short
