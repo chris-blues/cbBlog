@@ -67,11 +67,14 @@ class AdminQueryBuilder extends QueryBuilder {
         $tmp = $statement->fetch();
         $tagId = $tmp["LAST_INSERT_ID()"];
       }
+      else {
+        $error["insert_into_blog_tags"][$tagname] = true;
+      }
 
       $statement = $this->Database->prepare("INSERT INTO `blog_tags_relations` (`blog`, `tag`) VALUES (:blog, :tag) ;");
       $statement->bindParam(':blog', $blogId);
       $statement->bindParam(':tag', $tagId);
-      if (!$this->callExecution($statement)) $error["query_addTags"][$tagname] = true;
+      if (!$this->callExecution($statement)) $error["query_insert_blog_tags_relations"][$tagname] = true;
     }
     if (isset($error)) return $error;
     else return true;
@@ -94,18 +97,31 @@ class AdminQueryBuilder extends QueryBuilder {
   }
 
   private function checkoutTags($blogId, $tags) {
-//     echo '<div id="top_spacer"></div>';
-    if(!is_array($tags)) $tags = array();
+    // echo '<div id="top_spacer"></div>';
+
+    if(!is_array($tags)) {
+      $error["checkoutTags"]["tags_isNotArray"] = true;
+      if (isset($tags) and $tags != "") {
+        $error["checkoutTags"]["tags_isNotArray"] = $tags;
+        $tmp = $tags;
+        $tags = array($tmp);
+      } else {
+        $tags = array();
+      }
+    }
 
     // get the tags of this request
     foreach ($tags as $id => $tag) {
       if ($tag == "") {
-        unset($post[$id]);
+        unset($tags[$id]);
         continue;
       }
       $sentTags[$tag] = $this->getTagId($tag);
     }
-    if (!is_array($sentTags)) $sentTags = array();
+    if (!is_array($sentTags)) {
+      $error["checkoutTags"]["sentTags_isNotArray"] = true;
+      $sentTags = array();
+    }
 
     // get all available tags from database
     $tmp = $this->selectAllTags();
@@ -120,17 +136,26 @@ class AdminQueryBuilder extends QueryBuilder {
       $tmp = $value->getdata();
       $oldTags[$tmp["tag"]] = $tmp["id"];
     }
-    if(!is_array($oldTags)) $oldTags = array();
+    if(!is_array($oldTags)) {
+      $error["checkoutTags"]["oldTags_isNotArray"] = true;
+      $oldTags = array();
+    }
 
     // compare the arrays and invoke appropriate action
     // check for removed tags
     $removedTags = array_diff($oldTags, $sentTags);
     if (isset($removedTags) and count($removedTags) > 0) {
-      if (!is_array($removedTags)) $removedTags = array();
+      if (!is_array($removedTags)) {
+        $error["checkoutTags"]["removedTags_isNotArray"] = true;
+        $removedTags = array();
+      }
       $result = $this->removeTags($blogId, $removedTags);
-      if ($result !== true) $error["removeTags"] = $result;
-      if ($this->cleanupOrphanedTags($removedTags) !== true) {
-        $error["cleanupOrphanedTags"] = $error;
+      if ($result !== true) {
+        $error["checkoutTags"]["removeTags"] = $result;
+      }
+      $result = $this->cleanupOrphanedTags($removedTags)
+      if ($result !== true) {
+        $error["checkoutTags"]["cleanupOrphanedTags"] = $error;
       }
     }
 
@@ -138,14 +163,14 @@ class AdminQueryBuilder extends QueryBuilder {
     $newTags = array_diff($sentTags, $oldTags);
     if (isset($newTags) and count($newTags) > 0) {
       $result = $this->addTags($blogId, $newTags);
-      if ($result !== true) $error["addTags"] = $result;
+      if ($result !== true) $error["checkoutTags"]["addTags"] = $result;
     }
 
     // check for entirely new tags
     $newTags = array_diff($sentTags, $allTags);
     if (isset($newTags) and count($newTags) > 0) {
       $result = $this->insertTags($blogId, $newTags);
-      if ($result !== true) $error["insertTags"] = $result;
+      if ($result !== true) $error["checkoutTags"]["insertTags"] = $result;
     }
 
     if (isset($error)) return $error;
@@ -158,10 +183,13 @@ class AdminQueryBuilder extends QueryBuilder {
     $statement->bindParam(':text', $post["text"]);
     $statement->bindParam(':id', $post["id"]);
     $result = $this->callExecution($statement);
-    if (!$this->checkoutTags($post["id"], $post["tags"])) {
-      $error["query_checkoutTags"] = true;
-    }
-    return $result;
+    if ($result !== true) $error["updateBlog"]["query"] = true;
+
+    $result = $this->checkoutTags($post["id"], $post["tags"]);
+    if ($result !== true) $error["updateBlog"]["checkoutTags"] = true;
+
+    if (isset($error)) return $error;
+    else return true;
   }
 
   public function insertBlog($post) {
@@ -175,13 +203,18 @@ class AdminQueryBuilder extends QueryBuilder {
       $statement->execute();
       $statement->setFetchMode(PDO::FETCH_ASSOC);
       $tmp = $statement->fetch();
-      $result = $tmp["LAST_INSERT_ID()"];
+    }
+    else {
+      return $error["insertBlog"]["query"] = true;
     }
 
-    if (!$this->checkoutTags($result, $post["tags"])) {
-      $error["query_checkoutTags"] = true;
+    $result = $this->checkoutTags($result, $post["tags"]);
+    if ($result !== true) {
+      $error["insertBlog"]["checkoutTags"] = $result;
     }
-    return $result;
+
+    if (isset($error)) return $error;
+    else return $tmp["LAST_INSERT_ID()"];
   }
 
   public function deleteBlog($id) {
@@ -199,21 +232,37 @@ class AdminQueryBuilder extends QueryBuilder {
       $tags[$value["tag"]] = $value["id"];
     }
     if (isset($tags) and count($tags) > 0) {
-      $this->removeTags($id, $tags);
-      $this->cleanupOrphanedTags($tags);
+      $result = $this->removeTags($id, $tags);
+      if ($result !== true) {
+        $error["deleteBlog"]["removeTags"] = $result;
+      }
+      $result = $this->cleanupOrphanedTags($tags);
+      if ($result !== true) {
+        $error["deleteBlog"]["cleanupOrphanedTags"] = $result;
+      }
     }
 
     $statement = $this->Database->prepare("DELETE FROM `blog` WHERE `id` = :id ;");
     $statement->bindParam(':id', $id);
     $result = $this->callExecution($statement);
-    return $result;
+    if ($result !== true) {
+      $error["deleteBlog"]["removeBlog"] = true;
+    }
+
+    if (isset($error)) return $error;
+    else return true;
   }
 
   public function deleteComment($id) {
     $statement = $this->Database->prepare("DELETE FROM `blog_comments` WHERE `id` = :id ;");
     $statement->bindParam(':id', $id);
     $result = $this->callExecution($statement);
-    return $result;
+    if ($result !== true) {
+      $error["deleteComment"] = true;
+    }
+
+    if (isset($error)) return $error;
+    else return true;
   }
 }
 

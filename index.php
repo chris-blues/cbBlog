@@ -1,5 +1,7 @@
 <?php
 
+$startTime = microtime(true);
+
 require_once("php/bootstrap.php");
 
 if (isset($_POST["job"])) {

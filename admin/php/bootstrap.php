@@ -22,8 +22,6 @@ $config["database"] = require_once("../php/config/db.php");
 $config["blog"]     = require_once("../php/config/blog.php");
 $insertTags = require_once("../php/config/bbtags.php");
 
-if ($config["blog"]["showProcessingTime"]) $startTime = microtime(true);
-
 require_once('templates/head.php');
 
 

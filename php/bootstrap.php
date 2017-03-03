@@ -1,5 +1,5 @@
 <?php
-$startTime = microtime(true);
+
 // ====================[ some default settings ]====================
 if ($_GET["id"] == "0") unset($_GET["id"]);
 date_default_timezone_set('Europe/Berlin');

@@ -2,6 +2,11 @@ ToDo:
 =====
 
 Refactor:
-* RSS generator
+* bubble and return $error[] recursively
 * different tables for released and unreleased posts
-* news_short
+* config GUI (database settings, admin password etc)
+* backtrack/pingback system
+
+* maybe as plugins?
+  * news_short
+  * RSS generator

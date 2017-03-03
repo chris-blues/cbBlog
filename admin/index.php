@@ -1,5 +1,7 @@
 <?php
 
+$startTime = microtime(true);
+
 // catch possible traps
 if (!isset($_GET["job"]) or $_GET["job"] == "") $_GET["job"] = "overview";
 if (isset($_GET["id"]) and $_GET["id"] == "") unset($_GET["id"]);
@@ -14,25 +16,31 @@ require_once("php/bootstrap.php");
 
 // ====================[ perform DB operations before showing any content ]====================
 if ($_POST["job"] == "deleteComment") {
-  if ($adminQuery->deleteComment($_POST["id"]) !== true) {
-    $error["query_deleteComment"] = true;
+  $result = $adminQuery->deleteComment($_POST["id"]);
+  if ($result !== true) {
+    $error["query_deleteComment"] = $result;
   }
 }
 if ($_GET["job"] == "deleteBlog") {
-  if ($adminQuery->deleteBlog($_GET["id"]) !== true) {
-    $error["query_deleteBlog"] = true;
+  $result = $adminQuery->deleteBlog($_GET["id"]);
+  if ($result !== true) {
+    $error["query_deleteBlog"] = $result;
   }
   $_GET["job"] = "overview";
   unset($_GET["id"]);
 }
 if ($_GET["job"] == "viewBlog" and $_GET["operation"] == "insertBlog") {
   $newId = $adminQuery->insertBlog($_POST);
-  if ($newId === false) { $error["query_insertBlog"] = true; }
-  else { $_GET["id"] = $newId; }
+  if ($newId !== true) {
+    $error["query_insertBlog"] = $newId;
+  }
+  else {
+    $_GET["id"] = $newId;
+  }
 }
 if ($_GET["job"] == "viewBlog" and $_GET["operation"] == "updateBlog") {
-  if ($adminQuery->updateBlog($_POST) === false) { $error["query_updateBlog"] = true; }
-//   if ($adminQuery->updateTags($_GET["id"], $_POST["tags"], $taglist) === false) { $error["query_updateTags"] = true; }
+  $result = $adminQuery->updateBlog($_POST);
+  if ($result !== true) { $error["query_updateBlog"] = $result; }
 }
 unset($_GET["operation"]);
 
