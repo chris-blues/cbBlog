@@ -7,13 +7,7 @@
       <div id="errors" class="notes remark">
         <h2><?php echo gettext("The following errors have occured"); ?></h2>
         <ol>
-        <?php
-          if (isset($error)) {
-            foreach ($error as $key => $value) {
-              echo "<li>$key</li>\n";
-            }
-          }
-        ?>
+          <?php if (isset($error)) displayErrors($error); ?>
         </ol>
       </div>
     <?php } ?>

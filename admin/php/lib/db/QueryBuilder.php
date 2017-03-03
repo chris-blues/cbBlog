@@ -15,7 +15,7 @@ class AdminQueryBuilder extends QueryBuilder {
       $error["callExecution"] = $e->getMessage();
       // die($e->getMessage());
     }
-    if (isset("error")) return $error;
+    if (isset($error)) return $error;
     else return $result;
   }
 
@@ -25,7 +25,7 @@ class AdminQueryBuilder extends QueryBuilder {
     $statement->bindParam(':id', $id);
     if ($result !== true) $error["updateComment"] = true;
 
-    if (isset("error")) return $error;}
+    if (isset($error)) return $error;
     else return true;
   }
 
@@ -36,19 +36,6 @@ class AdminQueryBuilder extends QueryBuilder {
     $statement->setFetchMode(PDO::FETCH_ASSOC);
     $tmp = $statement->fetch();
     return $tmp["id"];
-  }
-
-  private function removeTags($blogId, $tags) {
-    foreach ($tags as $tagname => $tagId) {
-      $statement = $this->Database->prepare("DELETE FROM `blog_tags_relations` WHERE `blog` = :blog AND `tag` = :tag ;");
-      $statement->bindParam(':blog', $blogId);
-      $statement->bindParam(':tag', $tagId);
-      $result = $this->callExecution($statement);
-      if ($result !== true) $error["removeTags"][$tagname] = true;
-
-      if (isset("error")) return $error;
-      else return true;
-    }
   }
 
   private function addTags($blogId, $tags) {
@@ -87,7 +74,25 @@ class AdminQueryBuilder extends QueryBuilder {
     else return true;
   }
 
+  private function removeTags($blogId, $tags) {
+//     echo '<div id="top_spacer"></div>';
+
+    foreach ($tags as $tagname => $tagId) {
+      $statement = $this->Database->prepare("DELETE FROM `blog_tags_relations` WHERE `blog` = :blog AND `tag` = :tag ;");
+      $statement->bindParam(':blog', $blogId);
+      $statement->bindParam(':tag', $tagId);
+      $result = $this->callExecution($statement);
+      if ($result !== true) {
+        $error["removeTags"][$tagname] = $result;
+      }
+    }
+  if (isset($error)) return $error;
+  else return true;
+  }
+
   private function cleanupOrphanedTags($tags) {
+//     echo '<div id="top_spacer"></div>';
+
     foreach ($tags as $tagname => $tagId) {
       $statement = $this->Database->prepare("SELECT * FROM `blog_tags_relations` WHERE `tag` = :tag ;");
       $statement->bindParam(':tag', $tagId);
@@ -96,7 +101,8 @@ class AdminQueryBuilder extends QueryBuilder {
       if (count($result) < 1) {
         $statement = $this->Database->prepare("DELETE FROM `blog_tags` WHERE `tag` = :tag ;");
         $statement->bindParam(':tag', $tagname);
-        if (!$this->callExecution($statement)) $error["cleanupOrphanedTags"] = true;
+        $result = $this->callExecution($statement);
+        if ($result !== true) { $error["cleanupOrphanedTags"] = true; }
       }
     }
     if (isset($error)) return $error;
@@ -104,12 +110,11 @@ class AdminQueryBuilder extends QueryBuilder {
   }
 
   private function checkoutTags($blogId, $tags) {
-    // echo '<div id="top_spacer"></div>';
+//     echo '<div id="top_spacer"></div>';
+//     dump_array($tags);
 
     if(!is_array($tags)) {
-      $error["checkoutTags"]["tags_isNotArray"] = true;
       if (isset($tags) and $tags != "") {
-        $error["checkoutTags"]["tags_isNotArray"] = $tags;
         $tmp = $tags;
         $tags = array($tmp);
       } else {
@@ -119,14 +124,13 @@ class AdminQueryBuilder extends QueryBuilder {
 
     // get the tags of this request
     foreach ($tags as $id => $tag) {
-      if ($tag == "") {
+      if (strlen(trim($tag)) < 1) {
         unset($tags[$id]);
         continue;
       }
       $sentTags[$tag] = $this->getTagId($tag);
     }
     if (!is_array($sentTags)) {
-      $error["checkoutTags"]["sentTags_isNotArray"] = true;
       $sentTags = array();
     }
 
@@ -144,7 +148,6 @@ class AdminQueryBuilder extends QueryBuilder {
       $oldTags[$tmp["tag"]] = $tmp["id"];
     }
     if(!is_array($oldTags)) {
-      $error["checkoutTags"]["oldTags_isNotArray"] = true;
       $oldTags = array();
     }
 
@@ -153,16 +156,15 @@ class AdminQueryBuilder extends QueryBuilder {
     $removedTags = array_diff($oldTags, $sentTags);
     if (isset($removedTags) and count($removedTags) > 0) {
       if (!is_array($removedTags)) {
-        $error["checkoutTags"]["removedTags_isNotArray"] = true;
         $removedTags = array();
       }
       $result = $this->removeTags($blogId, $removedTags);
       if ($result !== true) {
         $error["checkoutTags"]["removeTags"] = $result;
       }
-      $result = $this->cleanupOrphanedTags($removedTags)
+      $result = $this->cleanupOrphanedTags($removedTags);
       if ($result !== true) {
-        $error["checkoutTags"]["cleanupOrphanedTags"] = $error;
+        $error["checkoutTags"]["cleanupOrphanedTags"] = $result;
       }
     }
 
@@ -193,13 +195,16 @@ class AdminQueryBuilder extends QueryBuilder {
     if ($result !== true) $error["updateBlog"]["query"] = true;
 
     $result = $this->checkoutTags($post["id"], $post["tags"]);
-    if ($result !== true) $error["updateBlog"]["checkoutTags"] = true;
+    if ($result !== true) $error["updateBlog"]["checkoutTags"] = $result;
 
     if (isset($error)) return $error;
     else return true;
   }
 
   public function insertBlog($post) {
+//     echo '<div id="top_spacer"></div>';
+//     dump_array($post);
+
     $statement = $this->Database->prepare("INSERT INTO `blog` (ctime, head, text) VALUES (:ctime, :head, :text);");
     $statement->bindParam(':ctime', time());
     $statement->bindParam(':head', $post["head"]);
@@ -215,7 +220,7 @@ class AdminQueryBuilder extends QueryBuilder {
       return $error["insertBlog"]["query"] = true;
     }
 
-    $result = $this->checkoutTags($result, $post["tags"]);
+    $result = $this->checkoutTags($tmp["LAST_INSERT_ID()"], $post["tags"]);
     if ($result !== true) {
       $error["insertBlog"]["checkoutTags"] = $result;
     }

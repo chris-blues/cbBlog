@@ -31,7 +31,7 @@ if ($_GET["job"] == "deleteBlog") {
 }
 if ($_GET["job"] == "viewBlog" and $_GET["operation"] == "insertBlog") {
   $newId = $adminQuery->insertBlog($_POST);
-  if ($newId !== true) {
+  if (!is_numeric($newId)) {
     $error["query_insertBlog"] = $newId;
   }
   else {
@@ -50,13 +50,7 @@ if (isset($error)) { ?>
       <div id="errors" class="notes remark">
         <h2><?php echo gettext("The following errors have occured"); ?></h2>
         <ol>
-        <?php
-          if (isset($error)) {
-            foreach ($error as $key => $value) {
-              echo "<li>$key</li>\n";
-            }
-          }
-        ?>
+          <?php if (isset($error)) displayErrors($error); ?>
         </ol>
       </div>
     <?php }
