@@ -12,17 +12,21 @@ class AdminQueryBuilder extends QueryBuilder {
     try {
       $result = $statement->execute();
     } catch(PDOException $e) {
-      die($e->getMessage());
+      $error["callExecution"] = $e->getMessage();
+      // die($e->getMessage());
     }
-    return $result;
+    if (isset("error")) return $error;
+    else return $result;
   }
 
   public function updateComment($id, $comment) {
     $statement = $this->Database->prepare("UPDATE `blog_comments` SET `comment` = :comment WHERE `id` = :id ;");
     $statement->bindParam(':comment', $comment);
     $statement->bindParam(':id', $id);
-    $result = $this->callExecution($statement);
-    return $result;
+    if ($result !== true) $error["updateComment"] = true;
+
+    if (isset("error")) return $error;}
+    else return true;
   }
 
   private function getTagId($tag) {
@@ -39,7 +43,11 @@ class AdminQueryBuilder extends QueryBuilder {
       $statement = $this->Database->prepare("DELETE FROM `blog_tags_relations` WHERE `blog` = :blog AND `tag` = :tag ;");
       $statement->bindParam(':blog', $blogId);
       $statement->bindParam(':tag', $tagId);
-      if (!$this->callExecution($statement)) $error["query_removeTags"][$tagname] = true;
+      $result = $this->callExecution($statement);
+      if ($result !== true) $error["removeTags"][$tagname] = true;
+
+      if (isset("error")) return $error;
+      else return true;
     }
   }
 
@@ -49,7 +57,8 @@ class AdminQueryBuilder extends QueryBuilder {
       $statement = $this->Database->prepare("INSERT INTO `blog_tags_relations` (`blog`, `tag`) VALUES (:blog, :tag) ;");
       $statement->bindParam(':blog', $blogId);
       $statement->bindParam(':tag', $tagId);
-      if (!$this->callExecution($statement)) $error["query_addTags"][$tagname] = true;
+      $result = $this->callExecution($statement);
+      if ($result !== true) $error["addTags"][$tagname] = true;
     }
     if (isset($error)) return $error;
     else return true;
@@ -67,9 +76,7 @@ class AdminQueryBuilder extends QueryBuilder {
         $tmp = $statement->fetch();
         $tagId = $tmp["LAST_INSERT_ID()"];
       }
-      else {
-        $error["insert_into_blog_tags"][$tagname] = true;
-      }
+      else $error["insert_into_blog_tags"][$tagname] = true;
 
       $statement = $this->Database->prepare("INSERT INTO `blog_tags_relations` (`blog`, `tag`) VALUES (:blog, :tag) ;");
       $statement->bindParam(':blog', $blogId);
