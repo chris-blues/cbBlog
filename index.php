@@ -33,6 +33,16 @@ if ($blogposts) {
     $row["head"] = str_replace('$link', $link, $row["head"]);
     $row["text"] = str_replace('$link', $link, $row["text"]);
     $row["tags"] = $query->getTagsOfBlogpost($row["id"]);
+    foreach ($row["tags"] as $Tag) {
+      $tmp = $Tag->getdata();
+      $tempArray[$tmp["id"]] = $tmp["tag"];
+      unset($tmp);
+    }
+    if (in_array("unreleased", $tempArray)) {
+      unset($blogposts[$id], $tempArray);
+      continue;
+    }
+    unset($tempArray);
 
     $comments = $query->selectComments($row["id"]);
     $row["num_comments"] = count($comments);

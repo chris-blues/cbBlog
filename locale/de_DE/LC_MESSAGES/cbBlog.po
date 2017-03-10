@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cbBlog\n"
-"POT-Creation-Date: 2017-03-02 02:28+0100\n"
-"PO-Revision-Date: 2017-03-02 02:28+0100\n"
+"POT-Creation-Date: 2017-03-09 17:43+0100\n"
+"PO-Revision-Date: 2017-03-09 17:43+0100\n"
 "Last-Translator: chris_blues <chris@musicchris.de>\n"
 "Language-Team: cbBlog Translations <chris@musicchris.de>\n"
 "Language: de_DE\n"
@@ -15,11 +15,11 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin/index.php:11
+#: admin/index.php:16
 msgid "Do you really want to delete this?"
 msgstr "Wollen Sie das wirklich löschen?"
 
-#: admin/index.php:43 admin/php/templates/foot.php:8
+#: admin/index.php:55 admin/php/templates/foot.php:8
 msgid "The following errors have occured"
 msgstr "Folgende Fehler sind aufgetreten"
 
@@ -27,20 +27,28 @@ msgstr "Folgende Fehler sind aufgetreten"
 msgid "Filter"
 msgstr "Filter"
 
-#: admin/php/templates/navigation.php:12
+#: admin/php/templates/navigation.php:14
 msgid "new blogpost"
 msgstr "Neuer Artikel"
 
-#: admin/php/templates/navigation.php:15
-#: admin/php/templates/view.overview.php:41
+#: admin/php/templates/navigation.php:16
+msgid "released"
+msgstr "veröffentlicht"
+
+#: admin/php/templates/navigation.php:17
+msgid "unreleased"
+msgstr "nicht veröffentlicht"
+
+#: admin/php/templates/navigation.php:27
+#: admin/php/templates/view.overview.php:42
 msgid "edit blogpost"
 msgstr "Artikel bearbeiten"
 
-#: admin/php/templates/navigation.php:18
+#: admin/php/templates/navigation.php:30
 msgid "view blogpost"
 msgstr "Artikel ansehen"
 
-#: admin/php/templates/navigation.php:22 php/templates/view.blogpost.php:13
+#: admin/php/templates/navigation.php:34 php/templates/view.blogpost.php:13
 msgid "back"
 msgstr "Zurück"
 
@@ -49,60 +57,133 @@ msgid "delete comment"
 msgstr "Kommentar löschen"
 
 #: admin/php/templates/view.comments.php:29
-#: admin/php/templates/view.editblog.php:70
+#: admin/php/templates/view.editblog.php:71
+#: admin/php/templates/view.settings.php:23
+#: admin/php/templates/view.settings.php:55
 msgid "reset"
 msgstr "Zurücksetzen"
 
 #: admin/php/templates/view.comments.php:30
-#: admin/php/templates/view.editblog.php:71
+#: admin/php/templates/view.editblog.php:72
+#: admin/php/templates/view.settings.php:24
+#: admin/php/templates/view.settings.php:56
 msgid "save"
 msgstr "Speichern"
 
-#: admin/php/templates/view.editblog.php:25
+#: admin/php/templates/view.editblog.php:26
 msgid "available tags"
 msgstr "verfügbare Tags"
 
-#: admin/php/templates/view.editblog.php:42
+#: admin/php/templates/view.editblog.php:43
 msgid "created on"
 msgstr "Erstellt am"
 
-#: admin/php/templates/view.editblog.php:43
+#: admin/php/templates/view.editblog.php:44
 msgid "modified on"
 msgstr "Verändert am"
 
-#: admin/php/templates/view.editblog.php:47
+#: admin/php/templates/view.editblog.php:48
 msgid "Tags"
 msgstr "Tags"
 
-#: admin/php/templates/view.editblog.php:49
+#: admin/php/templates/view.editblog.php:50
 msgid "new tags"
 msgstr "Neue Tags"
 
-#: admin/php/templates/view.editblog.php:60
+#: admin/php/templates/view.editblog.php:61
 msgid "heading"
 msgstr "Überschrift"
 
-#: admin/php/templates/view.editblog.php:63
+#: admin/php/templates/view.editblog.php:64
 msgid "article"
 msgstr "Artikel"
 
-#: admin/php/templates/view.overview.php:33 php/templates/view.blogpost.php:42
+#: admin/php/templates/view.overview.php:34 php/templates/view.blogpost.php:42
 #: php/templates/view.overview.php:13
 msgid "comment"
 msgstr "Kommentar"
 
-#: admin/php/templates/view.overview.php:34 php/templates/view.blogpost.php:43
+#: admin/php/templates/view.overview.php:35 php/templates/view.blogpost.php:43
 #: php/templates/view.comments-section.php:5 php/templates/view.overview.php:14
 msgid "comments"
 msgstr "Kommentare"
 
-#: admin/php/templates/view.overview.php:38
+#: admin/php/templates/view.overview.php:39
 msgid "show comments"
 msgstr "Zeige Kommentare"
 
-#: admin/php/templates/view.overview.php:42
+#: admin/php/templates/view.overview.php:43
 msgid "delete blogpost"
 msgstr "Artikel löschen"
+
+#: admin/php/templates/view.settings.php:2
+msgid "settings"
+msgstr "Einstellungen"
+
+#: admin/php/templates/view.settings.php:5
+msgid "Database settings"
+msgstr "Datenbank Einstellungen"
+
+#: admin/php/templates/view.settings.php:7
+msgid "The PDO driver of your database. ('mysql' should be ok in most cases.)"
+msgstr ""
+"Der PDO-Treiber ihrer Datenbank. ('mysql' sollte in den meisten Fällen ok "
+"sein.)"
+
+#: admin/php/templates/view.settings.php:10
+msgid "The hostname for your database."
+msgstr "Der Hostname ihrer Datenbank."
+
+#: admin/php/templates/view.settings.php:13
+msgid "Your database name."
+msgstr "Der Name ihrer Datenbank."
+
+#: admin/php/templates/view.settings.php:16
+msgid "Your username for the database."
+msgstr "Ihr Benutzername ihrer Datenbank."
+
+#: admin/php/templates/view.settings.php:19
+msgid "Your passwort for your database. (Make sure, that it's along one!)"
+msgstr ""
+"Ihr Passwort ihrer Datenbank. (Stellen Sie sicher, daß es ein langes "
+"Passwort ist!)"
+
+#: admin/php/templates/view.settings.php:30
+msgid "Blog settings"
+msgstr "Blog Einstellungen"
+
+#: admin/php/templates/view.settings.php:33
+msgid ""
+"If you have nothing else installed on your webserver, you propably should "
+"check this. (This activates primarily the delivery of an HTML header.)"
+msgstr ""
+"Wenn sie nichts weiter auf ihrem Webserver installiert haben, dann sollten "
+"sie diese Box wahrscheinlich ankreuzen. (Dies aktiviert hauptsächlich die "
+"Auslieferung eines HTML Headers.)"
+
+#: admin/php/templates/view.settings.php:36
+msgid "If checked, this will show the time needed for processing on each page."
+msgstr ""
+"Ist dieses Feld angekreuzt, so wird unter jeder Seite die Dauer der "
+"Verarbeitung angezeigt."
+
+#: admin/php/templates/view.settings.php:39
+msgid ""
+"You could pass a default language. This will override the visitors settings. "
+"Use the following format: en_GB or de_DE"
+msgstr ""
+"Hier können Sie die Standardsprache festlegen. Dies wird auch die "
+"Einstellungen der Besucher außer Kraft setzen. Benutzen Sie folgendes "
+"Format: en_GB oder de_DE"
+
+#: admin/php/templates/view.settings.php:44
+msgid "These GET variables will be ignored in the generation of the permalink."
+msgstr "Diese GET Variablen werden beim Generieren des Permalinks ignoriert."
+
+#: admin/php/templates/view.settings.php:47
+#: admin/php/templates/view.settings.php:52
+msgid "put new GET variables here"
+msgstr "neue GET Variablen hier hinein"
 
 #: php/lib/Email.php:45
 msgid "New comment by"

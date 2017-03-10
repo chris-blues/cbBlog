@@ -5,8 +5,11 @@ $startTime = microtime(true);
 // catch possible traps
 if (!isset($_GET["job"]) or $_GET["job"] == "") $_GET["job"] = "overview";
 if (isset($_GET["id"]) and $_GET["id"] == "") unset($_GET["id"]);
+if (isset($_GET["category"]) and $_GET["category"] == "") unset($_GET["category"]);
+
 
 require_once("php/bootstrap.php");
+
 ?>
   <body>
     <div id="localeData"
@@ -15,35 +18,36 @@ require_once("php/bootstrap.php");
 <?php
 
 // ====================[ perform DB operations before showing any content ]====================
-if ($_POST["job"] == "deleteComment") {
-  $result = $adminQuery->deleteComment($_POST["id"]);
-  if ($result !== true) {
-    $error["query_deleteComment"] = $result;
+if ($_GET["job"] != "settings") {
+  if ($_POST["job"] == "deleteComment") {
+    $result = $adminQuery->deleteComment($_POST["id"]);
+    if ($result !== true) {
+      $error["query_deleteComment"] = $result;
+    }
   }
-}
-if ($_GET["job"] == "deleteBlog") {
-  $result = $adminQuery->deleteBlog($_GET["id"]);
-  if ($result !== true) {
-    $error["query_deleteBlog"] = $result;
+  if ($_GET["job"] == "deleteBlog") {
+    $result = $adminQuery->deleteBlog($_GET["id"]);
+    if ($result !== true) {
+      $error["query_deleteBlog"] = $result;
+    }
+    $_GET["job"] = "overview";
+    unset($_GET["id"]);
   }
-  $_GET["job"] = "overview";
-  unset($_GET["id"]);
-}
-if ($_GET["job"] == "viewBlog" and $_GET["operation"] == "insertBlog") {
-  $newId = $adminQuery->insertBlog($_POST);
-  if (!is_numeric($newId)) {
-    $error["query_insertBlog"] = $newId;
+  if ($_GET["job"] == "viewBlog" and $_GET["operation"] == "insertBlog") {
+    $newId = $adminQuery->insertBlog($_POST);
+    if (!is_numeric($newId)) {
+      $error["query_insertBlog"] = $newId;
+    }
+    else {
+      $_GET["id"] = $newId;
+    }
   }
-  else {
-    $_GET["id"] = $newId;
+  if ($_GET["job"] == "viewBlog" and $_GET["operation"] == "updateBlog") {
+    $result = $adminQuery->updateBlog($_POST);
+    if ($result !== true) { $error["query_updateBlog"] = $result; }
   }
+  unset($_GET["operation"]);
 }
-if ($_GET["job"] == "viewBlog" and $_GET["operation"] == "updateBlog") {
-  $result = $adminQuery->updateBlog($_POST);
-  if ($result !== true) { $error["query_updateBlog"] = $result; }
-}
-unset($_GET["operation"]);
-
 
 
 if (isset($error)) { ?>
@@ -56,7 +60,7 @@ if (isset($error)) { ?>
     <?php }
 
 
-if ($_GET["job"] != "addBlog") {
+if ($_GET["job"] != "addBlog" and $_GET["job"] != "settings") {
   // ====================[ get blogpost(s) ]====================
   if (isset($_GET["id"]) and $_GET["id"] != "") {
     $blogposts[$_GET["id"]] = $adminQuery->selectBlogpostsById($_GET["id"]);
@@ -67,15 +71,17 @@ if ($_GET["job"] != "addBlog") {
 }
 
 // ====================[ display filterlist ]====================
-$tags = $adminQuery->selectAllTags();
-if ($_GET["job"] == "overview") {
-  Filters::display($tags, "../templates");
+if ($_GET["job"] != "settings") {
+  $tags = $adminQuery->selectAllTags();
+  if ($_GET["job"] == "overview") {
+    Filters::display($tags, "../templates");
+  }
+  foreach ($tags as $key => $Tag) {
+    $tagname = $Tag->getdata();
+    $taglist[$key] = $tagname["tag"];
+  }
+  unset($tags);
 }
-foreach ($tags as $key => $Tag) {
-  $tagname = $Tag->getdata();
-  $taglist[$key] = $tagname["tag"];
-}
-unset($tags);
 
 
 require_once("php/templates/navigation.php");
@@ -100,6 +106,7 @@ switch($_GET["job"]) {
   case "addBlog":      require_once("php/templates/view.editblog.php"); break;
   case "editBlog":     require_once("php/templates/view.editblog.php"); break;
   case "viewBlog":     require_once("php/templates/view.viewblog.php"); break;
+  case "settings":     require_once("php/templates/view.settings.php"); break;
   default:             require_once("php/templates/view.overview.php"); break;
 }
 

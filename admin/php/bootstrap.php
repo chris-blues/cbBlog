@@ -15,11 +15,17 @@ ini_set("error_log", "logs/php-error.log");
 $debug = true;
 
 
+// save settings, before loading them
+if ($_GET["job"] == "settings" and isset($_GET["operation"]) and $_GET["operation"] != "") {
+  require_once("php/lib/" . $_GET["operation"] . ".php");
+}
+
+
 // ###############
 // ##  Configs  ##
 // ###############
-$config["database"] = require_once("../php/config/db.php");
-$config["blog"]     = require_once("../php/config/blog.php");
+$config["database"] = require("../php/config/db.php");
+$config["blog"]     = require("../php/config/blog.php");
 $insertTags = require_once("../php/config/bbtags.php");
 
 require_once('templates/head.php');

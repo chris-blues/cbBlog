@@ -152,6 +152,7 @@ class AdminQueryBuilder extends QueryBuilder {
     }
 
     // compare the arrays and invoke appropriate action
+
     // check for removed tags
     $removedTags = array_diff($oldTags, $sentTags);
     if (isset($removedTags) and count($removedTags) > 0) {

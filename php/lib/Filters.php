@@ -13,7 +13,8 @@ class Filters {
       $tagname = $Tag->getdata();
       $taglist[$key] = $tagname["tag"];
 
-      if (strcmp($tagname["tag"],"") == 0) continue 1;
+      if (strcmp($tagname["tag"], "") == 0) continue;
+      if (strcmp($tagname["tag"], "unreleased") == 0) continue;
 
       if (strcmp($_GET["filter"],$tagname["tag"]) == 0) {
         $filter[$tagname["id"]] = "<li><a class=\"notes italic tags green\">" . $tagname["tag"] . "</a></li>\n";

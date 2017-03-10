@@ -6,11 +6,23 @@
            data-viewLink="<?php echo assembleGetString("string", array("job"=>"viewBlog", "id"=>$_GET["id"])); ?>"
       >
       </div>
+
+      <button type="button" id="buttonSettings">⚙</button>
 <?php
 // ====================[ special buttons ]====================
 if ($_GET["job"] == "overview") { ?>
       <button type="button" id="buttonNewBlogpost"><?php echo gettext("new blogpost"); ?></button>
-<?php }
+<?php
+  $released = gettext("released");
+  $unreleased = gettext("unreleased");
+  switch ($_GET["category"]) {
+    case "released":   $switchCategory = "unreleased"; $state = "released";   break;
+    case "unreleased": $switchCategory = "released";   $state = "unreleased"; break;
+    default:           $switchCategory = "unreleased"; $state = "released";   break;
+  } ?>
+      <button type="button" id="switchCategory" data-state="<?php echo $state; ?>"><?php echo $$switchCategory; ?></button>
+<?php
+}
 if ($_GET["job"] == "viewBlog") { ?>
       <button type="button" id="buttonEditBlogpost"><?php echo gettext("edit blogpost"); ?></button>
 <?php }

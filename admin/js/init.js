@@ -1,5 +1,23 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+  var buttonSettings = document.getElementById("buttonSettings");
+  if (buttonSettings != null) {
+    buttonSettings.addEventListener("click", function() {
+      document.getElementById("formJob").value = "settings";
+      document.getElementById("formEditBlog").submit();
+    });
+  }
+
+  var buttonsEmptyField = document.getElementsByClassName("emptyField");
+  if (buttonsEmptyField != null) {
+    for (i=0; i< buttonsEmptyField.length; i++) {
+      buttonsEmptyField[i].addEventListener("click", function() {
+        var id = this.getAttribute("data-id");
+        document.getElementById(id).value = "";
+      });
+    }
+  }
+
   var buttonUp = document.getElementById("buttonUp");
   if (buttonUp != null) {
     buttonUp.addEventListener("click", function() {
@@ -15,6 +33,21 @@ document.addEventListener('DOMContentLoaded', function () {
   if (buttonNewBlogpost != null) {
     buttonNewBlogpost.addEventListener("click", function() {
       document.getElementById("formJob").value = "addBlog";
+      document.getElementById("formEditBlog").submit();
+    });
+  }
+
+  var buttonSwitchCategory = document.getElementById("switchCategory");
+  if (buttonSwitchCategory != null) {
+    buttonSwitchCategory.addEventListener("click", function () {
+      if (buttonSwitchCategory.getAttribute("data-state") == "released") {
+        var newState = "unreleased";
+      } else {
+        var newState = "released";
+      }
+
+      document.getElementById("formJob").value = "overview";
+      document.getElementById("category").value = newState;
       document.getElementById("formEditBlog").submit();
     });
   }

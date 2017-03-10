@@ -3,7 +3,7 @@
 return [
   "standalone" => true,
   "showProcessingTime" => true,
-  "language" => "",
+  "language" => "de_DE",
   "permalinkIgnore" => [
     "kartid",
     "lang",
@@ -11,8 +11,12 @@ return [
     "filter",
     "index",
     "job",
-    "operation"
+    "operation",
+  ],
+  "options" => [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING
   ]
 ];
 
 ?>
+

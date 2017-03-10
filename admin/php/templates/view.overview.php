@@ -1,7 +1,7 @@
 
-    <form action="index.php" method="get" accept-charset="UTF-8" id="formComments">
+    <form id="formComments" action="index.php" method="get" accept-charset="UTF-8">
     <?php
-      $getString = assembleGetString("array", array("job" => "showComments"));
+      $getString = assembleGetString("array", array("job" => "showComments", "category" => ""));
       foreach ($getString as $key => $value) { ?>
       <input type="hidden" name="<?php echo $key; ?>" value="<?php echo $value; ?>">
       <?php } ?>
@@ -10,12 +10,13 @@
 
     <form id="formEditBlog" action="index.php" method="get" accept-charset="UTF-8">
       <?php
-        $getString = assembleGetString("array", array("job" => ""));
+        $getString = assembleGetString("array", array("job" => "", "category" => ""));
         foreach ($getString as $key => $value) { ?>
       <input type="hidden" name="<?php echo $key; ?>" value="<?php echo $value; ?>">
       <?php } ?>
       <input type="hidden" id="formJob" name="job" value="">
       <input type="hidden" id="formBlogId" name="id" value="">
+      <input type="hidden" id="category" name="category" value="">
     </form>
 
     <div id="wrapper">

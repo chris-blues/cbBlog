@@ -27,7 +27,7 @@ a:hover { color: #666633; text-decoration: none;}
   font-size: 0.8em;
 }
 
-.saved {
+.unreleased {
   background-color: #FFDDDD;
   font-weight: bold;
   padding: 4px;
@@ -164,4 +164,29 @@ pre.debugCommentlist {
 
 div#errors {
   background-color: #FCC !important;
+}
+
+#dbSettings label {
+  width: 100px;
+  position: absolute;
+}
+
+#dbSettings input {
+  margin-left: 100px;
+  width: 250px;
+}
+
+#blogSettings label {
+  width: 200px;
+  position: absolute;
+}
+
+#blogSettings input {
+  margin-left: 200px;
+  width: 250px;
+}
+
+.settings {
+  float: left;
+  margin: 20px;
 }

@@ -19,6 +19,7 @@ foreach ($tmpTags as $key => $value) {
   $tmp = $value->getdata();
   $allTags[$tmp["id"]] = $tmp["tag"];
 }
+if (!in_array("unreleased", $allTags)) $allTags[] = "unreleased";
 asort($allTags);
 ?>
     <div class="allTags_wrapper">
