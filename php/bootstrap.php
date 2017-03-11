@@ -14,11 +14,17 @@ $link = assembleGetString("string");
 // ##########################
 // ##  Debugging settings  ##
 // ##########################
-error_reporting(E_ALL & ~E_NOTICE);
-ini_set("display_errors", 1);
-ini_set("log_errors", 1);
+switch($config["blog"]["debug_level"]) {
+  case "full": error_reporting(E_ALL); break;
+  case "warn": error_reporting(E_ALL & ~E_NOTICE); break;
+  case "none": error_reporting(0); break;
+}
+
+if ($config["blog"]["show_debug"]) ini_set("display_errors", 1);
+  else                             ini_set("display_errors", 0);
+if ($config["blog"]["log_debug"])  ini_set("log_errors", 1);
+  else                             ini_set("log_errors", 0);
 ini_set("error_log", "admin/logs/php-error.log");
-$debug = true;
 
 
 // ###############

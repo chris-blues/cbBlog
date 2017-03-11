@@ -41,6 +41,27 @@
 
             <hr>
 
+          <label for="blogSettings_debug_level" title="<?php echo gettext("How much debug info you want to receive? (You can define how these are output below.)"); ?>">debug_level</label>
+            <select id="blogSettings_debug_level" name="debug_level">
+              <option value="full"<?php if ($config["blog"]["debug_level"] == "full") echo " selected"; ?>>
+                <?php echo gettext("all debug messages"); ?>
+              </option>
+              <option value="warn"<?php if ($config["blog"]["debug_level"] == "warn") echo " selected"; ?>>
+                <?php echo gettext("only warnings"); ?>
+              </option>
+              <option value="none"<?php if ($config["blog"]["debug_level"] == "none") echo " selected"; ?>>
+                <?php echo gettext("no debug messages"); ?>
+              </option>
+            </select><br>
+
+          <label for="blogSettings_show_debug" title="<?php echo gettext("Do you want these debug messages to be shown in the browser? (Might be unwanted to be shown to your visitors.)"); ?>">show_debug</label>
+            <input id="blogSettings_show_debug" type="checkbox" name="show_debug" placeholder="show_debug" value="show_debug"<?php echo $config["blog"]["show_debug"] ? " checked" : ""; ?>><br>
+
+          <label for="blogSettings_log_debug" title="<?php echo gettext("Do you want these debug messages to be logged in \$blog/admin/logs?"); ?>">log_debug</label>
+            <input id="blogSettings_log_debug" type="checkbox" name="log_debug" placeholder="log_debug" value="log_debug"<?php echo $config["blog"]["log_debug"] ? " checked" : ""; ?>><br>
+
+          <hr>
+
           <label title="<?php echo gettext("These GET variables will be ignored in the generation of the permalink."); ?>">permalinkIgnore</label>
         <?php
         foreach ($config["blog"]["permalinkIgnore"] as $key => $value) { ?>

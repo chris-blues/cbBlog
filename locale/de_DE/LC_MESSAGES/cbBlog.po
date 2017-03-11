@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cbBlog\n"
-"POT-Creation-Date: 2017-03-09 17:43+0100\n"
-"PO-Revision-Date: 2017-03-09 17:43+0100\n"
+"POT-Creation-Date: 2017-03-11 01:33+0100\n"
+"PO-Revision-Date: 2017-03-11 01:36+0100\n"
 "Last-Translator: chris_blues <chris@musicchris.de>\n"
 "Language-Team: cbBlog Translations <chris@musicchris.de>\n"
 "Language: de_DE\n"
@@ -59,14 +59,14 @@ msgstr "Kommentar löschen"
 #: admin/php/templates/view.comments.php:29
 #: admin/php/templates/view.editblog.php:71
 #: admin/php/templates/view.settings.php:23
-#: admin/php/templates/view.settings.php:55
+#: admin/php/templates/view.settings.php:76
 msgid "reset"
 msgstr "Zurücksetzen"
 
 #: admin/php/templates/view.comments.php:30
 #: admin/php/templates/view.editblog.php:72
 #: admin/php/templates/view.settings.php:24
-#: admin/php/templates/view.settings.php:56
+#: admin/php/templates/view.settings.php:77
 msgid "save"
 msgstr "Speichern"
 
@@ -177,11 +177,43 @@ msgstr ""
 "Format: en_GB oder de_DE"
 
 #: admin/php/templates/view.settings.php:44
+msgid ""
+"How much debug info you want to receive? (You can define how these are "
+"output below.)"
+msgstr ""
+"Wie viele Debug Infos wollen Sie bekommen? (Sie können weiter unten angeben, "
+"wie diese ausgegeben werden.)"
+
+#: admin/php/templates/view.settings.php:47
+msgid "all debug messages"
+msgstr "Alle Debug Meldungen"
+
+#: admin/php/templates/view.settings.php:50
+msgid "only warnings"
+msgstr "nur Warnungen"
+
+#: admin/php/templates/view.settings.php:53
+msgid "no debug messages"
+msgstr "keine Debug Meldungen"
+
+#: admin/php/templates/view.settings.php:57
+msgid ""
+"Do you want these debug messages to be shown in the browser? (Might be "
+"unwanted to be shown to your visitors.)"
+msgstr ""
+"Wollen Sie diese Debug Meldungen im Browser angezeigt bekommen? (Könnte "
+"unerwünscht sein, daß diese den Besuchern angezeigt werden.)"
+
+#: admin/php/templates/view.settings.php:60
+msgid "Do you want these debug messages to be logged in $blog/admin/logs?"
+msgstr "Wollen Sie diese Debug Meldungen nach $blog/admin/logs archivieren?"
+
+#: admin/php/templates/view.settings.php:65
 msgid "These GET variables will be ignored in the generation of the permalink."
 msgstr "Diese GET Variablen werden beim Generieren des Permalinks ignoriert."
 
-#: admin/php/templates/view.settings.php:47
-#: admin/php/templates/view.settings.php:52
+#: admin/php/templates/view.settings.php:68
+#: admin/php/templates/view.settings.php:73
 msgid "put new GET variables here"
 msgstr "neue GET Variablen hier hinein"
 

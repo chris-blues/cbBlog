@@ -6,6 +6,12 @@ else $_POST["standalone"] = true;
 if (!isset($_POST["showProcessingTime"])) $_POST["showProcessingTime"] = false;
 else $_POST["showProcessingTime"] = true;
 
+if (!isset($_POST["show_debug"])) $_POST["show_debug"] = false;
+else $_POST["show_debug"] = true;
+
+if (!isset($_POST["log_debug"])) $_POST["log_debug"] = false;
+else $_POST["log_debug"] = true;
+
 $oldSettings = require("../php/config/blog.php");
 foreach ($oldSettings as $key => $value) {
   if (!isset($_POST[$key])) $error["saveBlog_{$key}"] = true;
