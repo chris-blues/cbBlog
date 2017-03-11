@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+
+<channel>
+
+<title>Blog musicchris.de</title>
+<description>Ein Blog über Musik, OpenSource, Software und Freiheit</description>
+<link>https://musicchris.de/index.php?page=blog</link>
+
+<language>de-de</language>
+<copyright>chris@musicchris.de (chris_blues)</copyright>
+<webMaster>chris@musicchris.de (chris_blues)</webMaster>
+<generator>cbBlog 0.14</generator>
+<lastBuildDate>Sat, 11 Mar 17 04:46:12 +0100</lastBuildDate>
+
+<atom:link href="https://musicchris.de/rss-feed.xml" rel="self" type="application/rss+xml" />
+
+<item>
+<title>cbBlog v0.13 erschienen! Unter anderem XSS-Lücke behoben.</title>
+<link>https://musicchris.de/index.php?page=blog&amp;id=75</link>
+<guid>https://musicchris.de/index.php?page=blog&amp;id=75</guid>
+<author>chris@musicchris.de (chris_blues)</author>
+<pubDate>Tue, 24 Jan 2017 19:04:44 +0100</pubDate>
+<description><![CDATA[
+<p>Viele tolle Neuerungen  haben sich in den letzten Tagen an der brandneuen <a href="https://github.com/chris-blues/cbBlog/releases/tag/v0.13" target="_blank">Version 0.13</a> ergeben. Die sicherlich wichtigste ist die Beseitigung der Möglichkeit JavaScript in die [url] Tags einzuschleusen. Das ist die kurze Beschreibung von Cross-Site-Scripting (XSS).</p>
+ 😎 
+]]></description>
+<comments>https://musicchris.de/index.php?page=blog&amp;id=75#linkshowcomments</comments>
+</item>
+
+<item>
+<title>Es ist vollbracht! cbBlog v0.12 erschienen!</title>
+<link>https://musicchris.de/index.php?page=blog&amp;id=74</link>
+<guid>https://musicchris.de/index.php?page=blog&amp;id=74</guid>
+<author>chris@musicchris.de (chris_blues)</author>
+<pubDate>Sun, 22 Jan 2017 20:06:22 +0100</pubDate>
+<description><![CDATA[
+<div class="remark">
+<h2>Achtung</h1>
+
+<p><a href="https://blog.julius-cordes.de/" target="_blank">Julius</a> hat eine <a href="https://de.wikipedia.org/wiki/Cross-Site-Scripting" target="_blank">XSS</a>-Schwäche <a href="index.php?page=blog&index=73#1485049984" target="_blank">gefunden</a>! Die Version 0.12 sollte nicht unüberlegt eingesetzt werden!</p>
+
+<p><b>Meine Empfehlung:</b> cbBlog v0.13 ist in Arbeit, und wird vermutlich in den nächsten Tagen erscheinen. <b>Wartet lieber</b> bis dahin, falls ihr tatsächlich überlegen solltet cbBlog einzusetzen.</p>
+</div>
+
+<br>
+<hr>
+<br>
+
+<p>Nach ein paar rasanten Tagen der Hackerei ist die Version 0.12 so stabil, daß ich denke, es ist an der Zeit ein <a href="https://github.com/chris-blues/cbBlog/releases/tag/v0.12" target="_blank">Release</a> zu taggen.</p>
+
+<p class="quote">A simple blog written in php using MySQL for storage.<br>
+(c) chris_blues <a href="https://musicchris.de">https://musicchris.de</a><br>
+<br>
+Write blogposts dirctly in HTML guarantees full control over layout and source code<br>
+built-in comment function<br>
+<br>
+Licensed under GPL3</p>
+
+<p>Erstmal vielen Dank an die <a href="https://musicchris.de/index.php?page=blog&index=73#linkshowcomments" target="_blank">fleißigen Tester</a>, die mir so allerhand Überraschungen bescherten und ungesehene Schwachstellen aufzeigten! Vorneweg <a href="https://tuxproject.de/blog" target="_blank">Tux</a>, der sich nicht nerven ließ. &#128512; Aber auch allen Anderen gebührt mein Dank: <a href="https://www.onli-blogging.de/" target="_blank">Onli</a>, der mir ein paar gute Tips zum Thema <a href="https://secure.php.net/manual/en/pdo.prepared-statements.php" target="_blank">MySQL-injections</a> gab; <a href="https://blog.mdosch.de/" target="_blank">Martin</a> und 0815, dessen Adresse ich leider verbummelt hab...</p>
+
+<p>So, was gibts denn konkret Neues? Ich werd mal versuchen alles aufzulisten.</p>
+
+<a href="/pixlie/upload/cbBlogV0.12.jpg" class="fancy right shadow round pics half-width"><img src="/pixlie/upload/cbBlogV0.12.jpg" alt="beispielhafte Kommentarspalte, die alle BB-Tags verdeutlichen soll"></a>
+
+<h2>erhöhte Sicherheit</h2>
+<ul><li>durch escapen aller verbliebenen MySQL-queries</li>
+<li>die (hoffentlich) letzten Inline-Styles und Inline-JavaScripte entfernt bzw ausgelagert</li></ul>
+
+<h2>bessere Bedienung</h2>
+<ul><li>Benachrichtigungen per mail für neue Kommentare (wie vorher schon <a href="index.php?page=blog&index=73" target="_blank">angekündigt</a>)</li>
+<li>diese Bestätigung wird mittels <a href="https://de.wikipedia.org/wiki/Opt-in#Double-Opt-in.2FClosed-Loop-Opt-in" target="_blank">Double Opt-In</a> registriert (Email-Adresse wird nur als Hash gespeichert, der bei Bestätigung mit der entsprechenden Adresse ausgetauscht wird)</li>
+<li>Ein paar BB-Tags werden unterstützt: [ot], [quote], [b], [i] und [code]</li>
+<li>das Anzeigen bzw Verstecken von offtopic-Inhalten wird besser angezeigt</li>
+<li>etliche kleine und große Fehler wurden behoben</li></ul>
+
+<p>Es gibt auch noch ein paar offene Baustellen; so fehlt noch die Funktionalität, als Admin in den Kommentaren per Mausklick Textpassagen als offtopic zu markieren. Das wäre auch für die Kommentarfunktion interessant!<br>
+Trackback steht auch noch auf dem Programm, sowie threaded Kommentare. Aber das wird dann was für das nächste Release.</p>
+
+<p>Zu finden ist der cbBlog wie immer auf <a href="https://github.com/chris-blues/cbBlog" target="_blank">gitHub</a>.</p>
+]]></description>
+<comments>https://musicchris.de/index.php?page=blog&amp;id=74#linkshowcomments</comments>
+</item>
+
+<item>
+<title>cbBlog mit Emailbenachrichtigung bei Kommentaren</title>
+<link>https://musicchris.de/index.php?page=blog&amp;id=73</link>
+<guid>https://musicchris.de/index.php?page=blog&amp;id=73</guid>
+<author>chris@musicchris.de (chris_blues)</author>
+<pubDate>Thu, 19 Jan 2017 03:15:45 +0100</pubDate>
+<description><![CDATA[
+<p>Nach langer Pause tut sich mal wieder was am Blog. Und zwar kann man jetzt mit einer Emailadresse kommentieren. Die wird nicht weiter angezeigt, bewirkt aber, daß man sich benachrichtigen lassen kann, wenns neue Kommentare gibt.</p>
+
+<p>Freiwillige sind herzlich zum Testen und Vorschlagen von Verbesserungen eingeladen.</p>
+
+<h3>ToDo</h3>
+
+<p><s>Bislang ist das ein "One-way-opt-in", was bedeutet, sobald man diese Email-Adresse angibt, bekommt man auf folgende Kommentare die Benachrichtigung. Ich beabsichtige dies als "double-opt-in" zu erweitern. Also so, daß man erst eine Bestätigung per email absetzen muß. Das erhöht die Sicherheit auf beiden Seiten. Ich hoffe so, nicht so schnell auf irgendwelchen Spamblacklists zu landen, und möglichst niemanden mit unerwünschter Post zu behelligen. Außerdem kann dann nicht mehr jemand Fremdes irgendeine Emailadresse (ab)bestellen, die er gar nicht besitzt.</s><br>
+[ done ]</p>
+
+<p>Auch möchte ich mal die Kommentare nach Faden sortieren können. So daß man direkt auf einen bestimmten Kommentar antworten kann, und diese Antwort dann auch richtig einsortiert erscheint.</p>
+
+<p>Außerdem plane ich noch ein Trackbacksystem zu implementieren. Das wird aber vermutlich noch etwas dauern. <a href="https://www.onli-blogging.de/1596/Zu-Sind-Trackbacks-und-Pingbacks-out.html#c7150" target="_blank">Einen kleinen Gedankenaustausch</a> gab es bereits dazu...</p>
+
+<p>Download hier: <a href="https://github.com/chris-blues/cbBlog" target="_blank">https://github.com/chris-blues/cbBlog</a></p>
+]]></description>
+<comments>https://musicchris.de/index.php?page=blog&amp;id=73#linkshowcomments</comments>
+</item>
+
+<item>
+<title>Klimawandel und Atommüll</title>
+<link>https://musicchris.de/index.php?page=blog&amp;id=72</link>
+<guid>https://musicchris.de/index.php?page=blog&amp;id=72</guid>
+<author>chris@musicchris.de (chris_blues)</author>
+<pubDate>Sun, 15 Jan 2017 23:35:44 +0100</pubDate>
+<description><![CDATA[
+<p>Hier mal die neusten Zahlen zum Thema Erderwärmung, gewürzt von Harald Lesch: <a href="https://www.youtube.com/watch?v=NpJkGhrEfX4" target="_blank">Der Klimawandel schlägt zu | Harald Lesch</a></p>
+
+<p>Ähnlich aberwitzig: <a href="https://www.youtube.com/watch?v=WXihQMFu6rk" target="_blank">Wohin mit dem Atommüll? | Harald Lesch</a></p>
+
+<p>Auch hübsch, sozusagen als Zugabe: <a href="https://www.youtube.com/watch?v=xS6NuuQ_4vk" target="_blank">Donald Trump wissenschaftlich geprüft | Harald Lesch</a></p>
+]]></description>
+<comments>https://musicchris.de/index.php?page=blog&amp;id=72#linkshowcomments</comments>
+</item>
+
+<item>
+<title>2 neue Platten Ende 2016 erschienen</title>
+<link>https://musicchris.de/index.php?page=blog&amp;id=71</link>
+<guid>https://musicchris.de/index.php?page=blog&amp;id=71</guid>
+<author>chris@musicchris.de (chris_blues)</author>
+<pubDate>Fri, 06 Jan 2017 15:22:37 +0100</pubDate>
+<description><![CDATA[
+<p>2016 war das Jahr der Platten - oder besser gesagt CDs. Vinyl ist nicht geplant, obwohl ich das auch gerne mal machen würde. Aber der Reihe nach!</p>
+
+<a href="https://maennerversteherbluesband.de/index.php?page=shop#realblues" target="_blank" class="right pics"><img src="pics/maennerversteher-realblues.jpg" alt="Cover Real Blues" class="pics shadow round"></a>
+
+<h2>Männerversteher - Real Blues</h2>
+
+<p>Erschien Ende Oktober 2016. Diese Platte ist in mehrerer Hinsicht etwas besonderes.</p>
+
+<p>Die Aufnahmen stammen von 2009. Damals lebte Hubert noch und trommelt auch ein wunderbares Schlagzeug. Das macht diese Platte schon mal zu einem kleinen Gedenkstein für Hubert. Das ist sein letztes Tondokument. Leider konnten wir uns mit dem Erben der Urheberrechte nicht einigen, daher haben wir zwei Lieder von Hubert im letzten Moment wieder entfernt. Sehr schade, die waren echt schön!</p>
+
+<h3>Besetzung</h3>
+<ul><li>Steini: Rufen</li>
+<li>Hubert: Knallpengzeuch</li>
+<li>Marco: Starkstromgitarre</li>
+<li>Icke: Gitarre und Bass (overdubbed)</li>
+<li>Achim: Aufnahme</li>
+<li><a href="mailto:zap@die-genossen.de">Z.A.P.</a>: Mischung und Master</li>
+<li>strohDEsign: Graphikdesign</li>
+<li><a href="https://www.takt.eu/de/" target="_blank">Takt s z.o.o</a>: Pressung</li></ul>
+
+<p>Nach einem Festplattencrash waren dann so gegen 2010 alle Spuren erst mal weg. Als ich später irgendwann einige Daten dieser Festplatte retten konnte war (unbemerkt) auch dieses Projekt dabei. Diese Daten schlummerten dann friedlich in den unendlichen Weiten der Bits und Bytes für viele Jahre, bis sie uns im Sommer 2016 wieder in die Hände fielen. Dabei war das eher ein Zufall! Eigentlich hatte ich nach was ganz anderem gesucht.</p>
+
+<p>Wir exportierten das Projekt und übergaben alles Z.A.P. vom Studio 13. Dieser nahm ein paar Overdubs auf (der Bass wurde komplett erneuert) und mischte dann das Ganze. Ende Oktober belieferte uns dann das Presswerk.</p>
+
+<p>Zum Presswerk bleibt mir nur zu sagen: Dankeschön! Eine eins-A Zusammenarbeit und eine super Qualität, bei wirklich beeindruckenden Preisen.</p>
+
+<ul><li>Insgesamt eine Bluesplatte, wie man es von den Männerverstehern nicht anders erwartet.</li>
+<li>Live eingespielt (außer Bass Overdubs)</li>
+<li>Spielzeit: 31:56</li>
+<li>Verpackung: Jewelcase mit Booklet</li>
+<li>Kostenpunkt: n knapper Zehner</li>
+<li>erhältlich auf der <a href="https://maennerversteherbluesband.de/index.php?page=shop#realblues" target="_blank">Männerversteherseite</a> oder <a href="index.php?page=shop$link#m%C3%A4nnerversteherrealblues">hier</a>.</li></ul>
+
+<p class="clear"><br>
+<hr class="clear">
+<br></p>
+
+<a href="https://ciapata.de/index.php?page=shop#o•pa" target="_blank" class="right pics"><img src="pics/ciapataexpress-opa.jpg" alt="Cover 'O•Pa!" class="pics shadow round"></a>
+
+<h2>Ciapata Express - 'O•Pa!</h2>
+
+<p>Erschien am 24.12.2016.</p>
+
+<p>Wieder mal ein Experiment meinerseits. Nachdem ich nun mehrfach schon an dem Punkt war nie wieder alleine eine Platte einzuspielen, aufnehmen, mischen und mastern - hab ich es doch wieder getan. :o)<br>
+Es macht ja auch immer wieder mal Spaß! Nur, wenn man eher Musiker ist als Techniker dann, raubt das doch unheimlich viel Zeit und Energie. Etwa 3 Monate harte Arbeit stecken in dieser Platte! Jeweils ein Monat fürs Aufnehmen, Mischen und Mastern.</p>
+
+<ul><li>Anne: Akkordeon und Gesang</li>
+<li>Jean: Fidel, Graphikdesign</li>
+<li>Nicolas: Gitarre</li>
+<li>Icke: Bass, Aufnahme, Mischung und Master</li>
+<li><a href="http://akordcd.pl" target="_blank">AKORD</a>: Pressung</li></ul>
+
+<p>Zum Presswerk: auch eine super Zusammenarbeit! Unheimlich schnell und unkompliziert, auch wieder bei unfaßbaren Preisen!</p>
+
+<ul><li>Eine schöne Zigeunermusik mit viel Schwung und Schmiß!</li>
+<li>Live eingespielt, nur Gesänge sind Overdubbed</li>
+<li>Spielzeit: 44:20</li>
+<li>Verpackung: einfache Papptasche</li>
+<li>Kostenpunkt: n Zehner</li>
+<li>erhältlich auf der <a href="https://ciapata.de/index.php?page=shop#o•pa" target="_blank">Ciapata Express-Seite</a> oder <a href="index.php?page=shop#ciapataexpresso%E2%80%A2pa">hier</a>.</li></ul><br>
+
+]]></description>
+<comments>https://musicchris.de/index.php?page=blog&amp;id=71#linkshowcomments</comments>
+</item>
+
+<item>
+<title>Schöne neue Welt</title>
+<link>https://musicchris.de/index.php?page=blog&amp;id=70</link>
+<guid>https://musicchris.de/index.php?page=blog&amp;id=70</guid>
+<author>chris@musicchris.de (chris_blues)</author>
+<pubDate>Fri, 06 Jan 2017 15:29:43 +0100</pubDate>
+<description><![CDATA[
+<div class="right pics"><a href="https://wiki.piratenpartei.de/Ich_habe_nichts_zu_verbergen" target="_blank"><img src="pics/Flyer-LSA-Du-hast-nichts-zu-verbergen-2.png" alt="Flyer der Piratenpartei: So wurde die Privatshphäre abgeschafft" class="pics shadow round" width="400"></a><br>
+<div class="notes centered">Quelle: <a href="https://wiki.piratenpartei.de/Ich_habe_nichts_zu_verbergen" target="_blank">wiki.piratenpartei.de</a></div></div>
+
+<p>Passend zum Urteil des Europäischen Gerichtshofs, daß die <a href="https://musicchris.de/index.php?page=blog&index=30">anlaßlose Datenüberwachung</a> aller Bürger sich <a href="https://marius.bloggt-in-braunschweig.de/2016/12/21/eugh-anlasslose-ueberwachung-unzulaessig/" target="_blank">nicht mit einem demokratischen Staat vereinbaren läßt</a>, erhält der BND zum 1.1.2017 <a href="https://www.heise.de/newsticker/meldung/BND-Lizenz-zur-Netzueberwachung-im-NSA-Stil-ist-in-Kraft-3585348.html" target="_blank">neue weitergehende Rechte und Mittel</a>, alle Bürger lückenlos und grundlos zu überwachen - und das Beste daran ist, der BND darf nun auch diese Daten an Dritte weitergeben, ohne befürchten zu müssen, daß das <a href="https://musicchris.de/index.php?page=blog&index=50">rechtlich bedenklich</a> wäre.</p>
+
+<p>Dazu kann man eigentlich nur noch zur 
+<a href="https://musicchris.de/index.php?page=blog&index=63">lückenlosen</a> 
+<a href="https://musicchris.de/index.php?page=blog&index=13">Verschlüsselung</a> 
+<a href="https://digitalcourage.de/blog/solidaritaet-muss-praktisch-werden" target="_blank">aufrufen</a>! 
+Das ändert zwar nichts an den Ursachen, mildert aber die Symptome.</p>
+
+<p>Bei <a href="https://tuxproject.de/blog/2017/01/seid-terroristen-2/" target="_blank">tuxproject.de</a> finden sich ein paar schöne Links <a href="https://www.heise.de/newsticker/meldung/BND-Lizenz-zur-Netzueberwachung-im-NSA-Stil-ist-in-Kraft-3585348.html" target="_blank">zum Thema</a>. Z.Bsp. daß es in der digitalen Überwachung <a href="https://www.heise.de/newsticker/meldung/33C3-Snowden-Es-ging-nie-um-Terrorismus-3583010.html" target="_blank">nie um Terrorismusbekämpfung ging</a>, sondern um Macht.<br>
+Dieser Artikel von Tux war übrigens auch der Stein des Anstoßes für mein Gekritzel hier.</p>
+
+<p>Ebenfalls im <a href="https://osbn.de" target="_blank">OSBN</a> fand sich heute auch eine Schrift aus der <a href="http://tmowizard.square7.ch/wordpress/2017/01/02/ueberwachung-total-der-bnd-wird-zur-deutschen-nsa/" target="_blank">Augs-Burg</a>. Auch dort wird zur Verschlüsselung aufgerufen. Weiterhin finden sich dort einige gute Anleitungen dazu. Die beziehen sich zwar auf Seamonkey, sind aber weitestgehend auf Firefox und Thunderbird ebenso anwendbar.</p>
+
+<p>Seit Jahrzehnten rufen Datenschützer, Hacker und alle möglichen anderen Sparten für ein Bewußtsein der Tragweite alle möglichen Slogans in die Welt. Leider verhallen diese ungehört, weil der Großteil der Bevölkerung zu faul ist, für die eigenen Grundrechte zu kämpfen. Wie es aussieht wird das wieder so 'ne Nummer á la:
+<div class="quote">Erst wenn der letzte Demonstrant ermordet, der letzte Journalist vergiftet, der letzte Arzt verhaftet ist, werdet Ihr merken, dass man Freiheit nicht kaufen kann.<br>
+<div class="notes">Subtile Änderungen von mir :o)</div></div><br>
+Naja, die meisten glauben ja immer noch, daß der <a href="?page=blog&index=68">Klimawandel</a> eine Lüge wär...</p>
+]]></description>
+<comments>https://musicchris.de/index.php?page=blog&amp;id=70#linkshowcomments</comments>
+</item>
+
+<item>
+<title>EU will Waffenindustrie subventionieren</title>
+<link>https://musicchris.de/index.php?page=blog&amp;id=69</link>
+<guid>https://musicchris.de/index.php?page=blog&amp;id=69</guid>
+<author>chris@musicchris.de (chris_blues)</author>
+<pubDate>Mon, 26 Sep 2016 21:04:17 +0200</pubDate>
+<description><![CDATA[
+<p>Wieder mal ein Newsletter: <a href="https://act.wemove.eu/campaigns/kein-geld-fuer-ruestung" target="_blank">https://act.wemove.eu/campaigns/kein-geld-fuer-ruestung</a></p>
+
+<p>Einfach mal ansehen und bestenfalls unterschreiben!</p>
+]]></description>
+<comments>https://musicchris.de/index.php?page=blog&amp;id=69#linkshowcomments</comments>
+</item>
+
+<item>
+<title>XKCD: Die Entwicklung der Erdtemperatur in den letzten 24000 Jahren</title>
+<link>https://musicchris.de/index.php?page=blog&amp;id=68</link>
+<guid>https://musicchris.de/index.php?page=blog&amp;id=68</guid>
+<author>chris@musicchris.de (chris_blues)</author>
+<pubDate>Wed, 14 Sep 2016 13:19:07 +0200</pubDate>
+<description><![CDATA[
+<p><a href="https://xkcd.com/1732/" target="_blank">Randall Munroe</a> zeigt hier wieder einmal schön, wie sich die Zahlen verhalten, über deren Dimensionen man sich nicht so einfach bewußt wird.</p>
+
+<div class="center">
+  <img src="pics/earth_temperature_timeline.png" title="[After setting your car on fire] Listen, your car's temperature has changed before." alt="Earth Temperature Timeline">
+</div>
+]]></description>
+<comments>https://musicchris.de/index.php?page=blog&amp;id=68#linkshowcomments</comments>
+</item>
+
+<item>
+<title>TTIP-Demo - Aufruf zu bundesweiten Großdemonstrationen am 17.9. in sieben Städten</title>
+<link>https://musicchris.de/index.php?page=blog&amp;id=67</link>
+<guid>https://musicchris.de/index.php?page=blog&amp;id=67</guid>
+<author>chris@musicchris.de (chris_blues)</author>
+<pubDate>Thu, 01 Sep 2016 14:10:54 +0200</pubDate>
+<description><![CDATA[
+<p>Dieser Newsletter kam gerade per Email:</p>
+<hr>
+<div class="quote">
+
+<img class="banner" src="pics/ttipDemo.png">
+
+<h2>BERLIN, FRANKFURT/MAIN, HAMBURG, KÖLN, LEIPZIG, MÜNCHEN, STUTTGART</h2>
+
+<h3>Inhalt des Newsletters:</h3>
+<ul>
+    <li><a href="#stoppen">So stoppen wir CETA und TTIP am 17. September</a></li>
+    <li><a href="#bestellen">Bestellmöglichkeiten für Flugblätter und Plakate</a></li>
+    <li><a href="#bewerben">So können Sie unseren Demonstrationstag online bewerben</a></li>
+    <li><a href="#spenden">Unterstützungsmöglichkeit durch Spenden</a></li>
+    <li><a href="#helfen">So helfen Sie uns an den Orten, an denen demonstriert wird</a></li>
+</ul>
+
+<h3 id="stoppen">Liebe Unterstützer/innen, liebe Interessierte,</h3>
+
+<p>am 17. September geht es erneut die Straße, um in sieben Städten gegen die geplanten Freihandelsabkommen CETA und TTIP und für einen gerechten Welthandel zu demonstrieren - und das aus gutem Grund! Wenn die EU-Handelsminister/innen sich am 22. und 23. September in Bratislava treffen, haben sie vor, den Weg für die Unterzeichnung von CETA und die weiteren Verhandlungen zu TTIP zu ebnen.<br>
+Jetzt ist die Zeit zu handeln! Wir verstärken unseren Protest und tragen ihn in die Breite, um mit einem starken Signal des Widerstands, kurz vor diesem Termin, CETA und TTIP endgültig zu verhindern!</p>
+
+<p>Die Vorbereitungen hierfür haben schon richtig toll Fahrt aufgenommen. Hunderttausende Flugblätter und Plakate sind gedruckt und bereitgestellt, überall in den sieben Städten und angrenzenden Regionen haben sich Vorbereitungskreise an die Arbeit gemacht, um unseren großen Demonstrationstag im Herbst anzugehen.<br>
+Dafür sind wir auch auf Ihre Unterstützung angewiesen! Bis wir am 17. September in sieben Städten mit deutlich mehr als 100.000 Menschen auf die Straße gehen, um CETA und TTIP zu stoppen, steht noch ein großer Kraftakt an. Nur gemeinsam mit vielen Menschen, die unterstützen und aktiv werden, wird unser bundesweiter Demonstrationstag ein riesiger Erfolg - Machen Sie mit!</p>
+
+
+<p><h3 id="bestellen">1) Poster & Flyer bestellen – setzen Sie ein, zwei, viele Ausrufezeichen!</h3>
+Mobilisierungsmaterial mit unserem markanten Ausrufezeichen kann kostenfrei auf der Website der TTIP-Demo bestellt werden. Eine Spende unterstützt uns dabei, noch mehr Flugblätter und Plakate zu drucken. Bestellen Sie jetzt Ihr Info-Paket:<br>
+<a href="http://ttip-demo.de/mitmachen/flyer-plakate" target="_blank">http://ttip-demo.de/mitmachen/flyer-plakate</a></p>
+
+<p><h3 id="bewerben">2) Bewerben Sie unseren Demonstrationstag online – unterschreiben Sie den Demo-Aufruf!</h3>
+Nutzen Sie Ihre Sozialen Netzwerke im Internet, ob Facebook, Twitter oder fast schon klassisch per E-Mail – auf unserer Webseite finden Sie Texte, Grafiken und Webbanner. Vernetzen Sie sich mit uns auf Facebook & Twitter und trommeln Sie kräftig für die Demo mit. Der Aufruf zur Großdemonstration kann online unterschrieben werden – Organisationen, die den Aufruf unterzeichnen möchten, wenden sich bitte per E-Mail an das Demo-Büro. Mitmachen:<br>
+<a href="http://ttip-demo.de/mitmachen/" target="_blank">http://ttip-demo.de/mitmachen/</a></p>
+
+<p><h3 id="spenden">3) Jede Spende stärkt den Protest!</h3>
+Die Organisation von sieben Großdemonstrationen, der Druck von hunderttausenden Flyern und Plakaten sowie Bühnen und Technik kosten viel Geld. Noch haben wir nicht alle anstehenden Aufgaben finanziert. Bitte unterstützen Sie den Protest gegen TTIP & CETA auch mit einer Spende. Online spenden:<br>
+<a href="http://ttip-demo.de/spenden" target="_blank">http://ttip-demo.de/spenden</a></p>
+
+<p><h4>Spendenkonto:</h4><br>
+Empfänger: Naturfreunde Berlin e.V.<br>
+Bank: Bank für Sozialwirtschaft<br>
+IBAN: DE65 1002 0500 0003 2157 01<br>
+BIC: BFSWDE33BER77<br>
+Verwendungszweck: TTIP Demo</p>
+
+
+<p><h3 id="helfen">4) Beteiligen Sie sich in den Regionen!</h3>
+Wissen sie schon, zu welcher Demonstration Sie am 17. September fahren? Wohnen Sie vielleicht sogar in einer der Demonstrationsorte? Hier finden Sie alle Informationen, um sich zu beteiligen:<br>
+<a href="http://ttip-demo.de/bundesweiter-demo-tag" target="_blank">http://ttip-demo.de/bundesweiter-demo-tag</a></p>
+
+<p>Bei Fragen wenden Sie sich bitte an das Demo-Büro.<br>
+Herzlichen Dank für Ihre Unterstützung!</p>
+
+<p>Beste Grüße aus dem Demo-Büro,<br>
+Esther Hanauer, Christian Weßling und Susanne Friedel</p>
+
+<p>***<br>
+TTIP-Demo-Büro<br>
+NaturFreunde Landesverband Berlin e.V.<br>
+Paretzer Straße 7<br>
+10713 Berlin<br>
+<a href="mailto:info@ttip-demo.de">info@ttip-demo.de</a><br>
+<a href="http://www.ttip-demo.de" target="_blank">WWW.TTIP-DEMO.DE</a><br>
+Facebook: <a href="https://www.facebook.com/ttipdemo" target="_blank">https://www.facebook.com/ttipdemo</a><br>
+Twitter: <a href="https://twitter.com/TTIP_Demo" target="_blank">https://twitter.com/TTIP_Demo</a></p>
+</div>
+]]></description>
+<comments>https://musicchris.de/index.php?page=blog&amp;id=67#linkshowcomments</comments>
+</item>
+
+<item>
+<title>Verfassungsbeschwerde gegen CETA</title>
+<link>https://musicchris.de/index.php?page=blog&amp;id=66</link>
+<guid>https://musicchris.de/index.php?page=blog&amp;id=66</guid>
+<author>chris@musicchris.de (chris_blues)</author>
+<pubDate>Tue, 31 May 2016 15:29:31 +0200</pubDate>
+<description><![CDATA[
+<p>Neben TTIP droht auch CETA die Demokratie auszuhebeln. Und im Schatten TTIPs soll in aller Heimlichkeit CETA schonmal in Kraft treten, übergangsweise, bevor irgendein Parlament noch darüber abstimmt. Sonst könnte es ja abgelehnt werden... Und wenn CETA erstmal läuft, sind die Parlamente sowieso nicht mehr wichtig, die kann man denn so richtig schön nach Herzenslust verklagen.</p>
+
+<p>Die Zeit ist knapp, daher heißt es: <b>schnell handeln!</b></p>
+
+<p> Hier kann man sich an der Verfassungsbeschwerde beteiligen - je mehr mitmachen, umso mehr Gewicht bekommt die ganze Aktion.</p>
+
+<p><a href="https://www.ceta-verfassungsbeschwerde.de" target="_blank">https://www.ceta-verfassungsbeschwerde.de</a></p>
+]]></description>
+<comments>https://musicchris.de/index.php?page=blog&amp;id=66#linkshowcomments</comments>
+</item>
+
+<item>
+<title>Mit Architektur Leben retten</title>
+<link>https://musicchris.de/index.php?page=blog&amp;id=65</link>
+<guid>https://musicchris.de/index.php?page=blog&amp;id=65</guid>
+<author>chris@musicchris.de (chris_blues)</author>
+<pubDate>Sun, 29 May 2016 13:12:10 +0200</pubDate>
+<description><![CDATA[
+<p>Noch ein schönes Video von Alexander Lehmann:</p>
+
+<p><a href="https://www.youtube.com/watch?v=2rrt3k6ohfk" target="_blank">https://www.youtube.com/watch?v=2rrt3k6ohfk</a></p>
+]]></description>
+<comments>https://musicchris.de/index.php?page=blog&amp;id=65#linkshowcomments</comments>
+</item>
+
+<item>
+<title>Isn't it a pity</title>
+<link>https://musicchris.de/index.php?page=blog&amp;id=64</link>
+<guid>https://musicchris.de/index.php?page=blog&amp;id=64</guid>
+<author>chris@musicchris.de (chris_blues)</author>
+<pubDate>Thu, 01 Sep 2016 14:06:23 +0200</pubDate>
+<description><![CDATA[
+<p><i>George Harrison</i></p>
+
+<a href="https://www.youtube-nocookie.com/eDrLTW_sesI" target="_blank">YouTube</a>
+
+<p>Isn't it a pity<br>
+Now, isn't it a shame<br>
+How we break each other's hearts<br>
+And cause each other pain<br>
+How we take each other's love<br>
+Without thinking anymore<br>
+Forgetting to give back<br>
+Isn't it a pity</p>
+
+<p>Some things take so long<br>
+But how do I explain<br>
+When not too many people<br>
+Can see we're all the same<br>
+And because of all their tears<br>
+Their eyes can't hope to see<br>
+The beauty that surrounds them<br>
+Isn't it a pity</p>
+]]></description>
+<comments>https://musicchris.de/index.php?page=blog&amp;id=64#linkshowcomments</comments>
+</item>
+
+<item>
+<title>Computersicherheit einfach erklärt</title>
+<link>https://musicchris.de/index.php?page=blog&amp;id=63</link>
+<guid>https://musicchris.de/index.php?page=blog&amp;id=63</guid>
+<author>chris@musicchris.de (chris_blues)</author>
+<pubDate>Mon, 02 May 2016 14:43:24 +0200</pubDate>
+<description><![CDATA[
+<p><a href="https://www.youtube.com/channel/UCASAsRv1B4f7FlaV4BjUGUA" target="_blank">Alexander Lehmann</a> hat sich wieder mal selbst übertroffen und erklärt auf einfache Weise, wie man sich im Internet sicherer bewegen kann.</p>
+
+<p>Hier sind die Videos:</p>
+
+<ol>
+<li><a href="https://www.youtube.com/watch?v=jtFc6B5lmIM" target="_blank">Passwörter einfach erklärt</a></li>
+<li><a href="https://www.youtube.com/watch?v=tW1-CmggG9s" target="_blank">Sicher Surfen einfach erklärt</a></li>
+<li><a href="https://www.youtube.com/watch?v=OpSUmuG3Bp8" target="_blank">Anonym Surfen einfach erklärt</a></li>
+<li><a href="https://www.youtube.com/watch?v=IhoG37uis3k" target="_blank">Daten Verschlüsseln einfach erklärt</a></li>
+<li><a href="https://www.youtube.com/watch?v=4mbryW8fZrA" target="_blank">Sicher Kommunizieren einfach erklärt</a></li>
+</ol>
+
+<p>Gefunden übrigens, über <a href="http://mkuh.de/blog/?p=4000" target="_blank">mkuh</a> beim <a href="https://osbn.de/" target="_blank">OSBN</a>.</p>
+]]></description>
+<comments>https://musicchris.de/index.php?page=blog&amp;id=63#linkshowcomments</comments>
+</item>
+
+<item>
+<title>Gregor Gysi zu (noch halbwegs) aktuellen Themen unserer Politik</title>
+<link>https://musicchris.de/index.php?page=blog&amp;id=62</link>
+<guid>https://musicchris.de/index.php?page=blog&amp;id=62</guid>
+<author>chris@musicchris.de (chris_blues)</author>
+<pubDate>Sat, 30 Apr 2016 03:12:22 +0200</pubDate>
+<description><![CDATA[
+<p>Ich bin gerade über dieses Video vom 16.08.2015 gestolpert. Ein Interview mit Gregor Gysi zu Themen wie Griechenland und der Grexit, abstrakter Fremdenhass, die politische Zukunft Europas und mehr. In meinen Augen äußerst interessant.</p>
+<p>Und hier geht's lang: <a href="https://www.youtube.com/watch?v=RxthhQU-Ggg" target="_blank">youtube</a></p>
+
+<hr>
+
+<p>Und hier gibts noch die oben erwähnte Bundestagsrede Gysis; und ich muß sagen, die Gesichter der Betreffenden sprechen Bände...</p>
+
+<p>Hier also die Bundestagsrede: <a href="https://www.youtube.com/watch?v=aMNGEf377Sk" target="_blank">youtube</a></p>
+
+<hr>
+
+<p>Und um die Stimmung ein wenig aufzuheitern, hier noch ein netter Cartoon von <a href="https://www.youtube.com/user/alexanderlehmann" target="_blank">Alexander Lehmann</a>: <a href="https://www.youtube.com/watch?v=V1eZ8Ilgbfs" target="_blank">youtube</a></p>
+]]></description>
+<comments>https://musicchris.de/index.php?page=blog&amp;id=62#linkshowcomments</comments>
+</item>
+
+<item>
+<title>Thunderbird 45 und der Google-Calendar</title>
+<link>https://musicchris.de/index.php?page=blog&amp;id=61</link>
+<guid>https://musicchris.de/index.php?page=blog&amp;id=61</guid>
+<author>chris@musicchris.de (chris_blues)</author>
+<pubDate>Mon, 25 Apr 2016 15:45:04 +0200</pubDate>
+<description><![CDATA[
+<p>Neulich gabs überraschenderweise das Update auf Thunderbird 45. Soweit, so gut. Leider waren nach dem Update meine Kalender futsch. Und zwar hauptsächlich die Kalender, welche bei Google gehostet werden.</p>
+
+<p>Die Lösung des Problems fand ich im <a href="https://www.thunderbird-mail.de/thread/73468-google-kalender-l%C3%A4sst-sich-nicht-mehr-in-thunderbird-einbinden/?postID=403297#post403297" target="_blank">deutschen Thunderbird-Forum</a>. Um es kurz zu umreißen, man muß die Kalender alle löschen und neu anlegen:</p>
+
+<ul><li>Addon &quot;Provider für Google Kalender&quot; deinstallieren</li>
+<li>Thunderbird schließen</li>
+<li>im Thunderbird Profil im Unterordner calendar-data alle Dateien löschen</li>
+<li>Thunderbird wieder starten</li></ul>
+
+<p>An dieser Stelle waren die Kalender wieder da, allerdings immer noch ohne Inhalt. Nun konnte ich zumindest die Kalender alle abbestellen. Danach wieder TB schließen, calendar-data löschen und weiter gehts mit:</p>
+
+<ul><li>Thunderbird wieder starten</li>
+<li>Provider für Google Kalender 2.7 wieder installieren (auch wenn das als inkompatibel mit TB45 markiert ist)</li>
+<li>die Kalender <a href="https://musicchris.de/index.php?page=blog&index=48" target="_blank">neu anlegen</a></li></ul>
+
+<p>Danach liest sich TB die Kalender alle wieder ein und alles spielt wieder. Zumindest wars bei mir so.</p>
+
+<p>Ich hoffe, das erspart dem einen oder anderen die Zeit, die ich dafür gebraucht habe...</p>
+
+]]></description>
+<comments>https://musicchris.de/index.php?page=blog&amp;id=61#linkshowcomments</comments>
+</item>
+
+<item>
+<title>Wichtige Fragestellungen für die Zukunft</title>
+<link>https://musicchris.de/index.php?page=blog&amp;id=60</link>
+<guid>https://musicchris.de/index.php?page=blog&amp;id=60</guid>
+<author>chris@musicchris.de (chris_blues)</author>
+<pubDate>Wed, 27 Apr 2016 03:42:09 +0200</pubDate>
+<description><![CDATA[
+<p>Gestern bin ich über dieses Video gestolpert: <a href="https://www.youtube.com/watch?v=HHFLsBdklh0" target="_blank">Harald Lesch: Die Welt in 100 Jahren</a> (youtube)</p>
+
+<p>Es handelt sich hier um eine Interviewreihe, in der Wissenschaftler befragt werden, wie der Titel schon vermuten läßt, wie sie sich die Welt in 100 Jahren vorstellen.</p>
+
+<p>Ohne vorneweg zuviel zu verraten will ich nur anmerken; in diesem etwa halbstündigen Interview spricht Herr Lesch über Fragen, die sich die Menschheit unbedingt mal stellen sollte und über Probleme, die zum Teil schon länger bestehen und immer noch nicht angegangen wurden. Auch wenn er die eigentliche Frage, nämlich wie er sich die Welt in 100 Jahren vorstellt, nicht so richtig beantwortet, finde ich da viele gute Gedanken. Prädikat: sehenswert!</p>
+
+<p>In meinen Augen, steckt in seinen Worten sehr viel Wahrheit - jeder Mensch sollte sich diese Fragen mal stellen und darüber nachdenken, wieviel man selbst auch zu der Entwicklung beiträgt.</p>
+
+<p>Auch sehr sehenswert, die <a href="https://www.youtube.com/watch?v=7dw9wGqPwRg" target="_blank">Antworten des Herrn Gaßner</a> (youtube). Da gehts erstmal hauptsächlich um Technik und Technologien, gespickt mit tollen Sätzen zwischendurch. Der in diesem Zusammenhang interessante Teil fängt bei 26:00 an.</p>
+
+<p>Wär doch schön, wenn sich die Menschheit mal auf die wichtigen Fragen konzentrieren würde!</p>
+]]></description>
+<comments>https://musicchris.de/index.php?page=blog&amp;id=60#linkshowcomments</comments>
+</item>
+
+</channel>
+
+</rss>

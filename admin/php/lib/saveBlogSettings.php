@@ -14,7 +14,7 @@ else $_POST["log_debug"] = true;
 
 $oldSettings = require("../php/config/blog.php");
 foreach ($oldSettings as $key => $value) {
-  if (!isset($_POST[$key])) $error["saveBlog_{$key}"] = true;
+  if (!isset($_POST[$key])) $error["saveBlog_{$key}"] = "$key could not be found in old config!";
 }
 
 if (!isset($error)) {
@@ -25,9 +25,9 @@ if (!isset($error)) {
   fwrite($handle, "return [\n");
 
   foreach ($_POST as $key => $value) {
-    if ($key == "permalinkIgnore") {
-      fwrite($handle, "  \"permalinkIgnore\" => [\n");
-      foreach ($_POST["permalinkIgnore"] as $value2) {
+    if ($key == "permalinkIgnore" or $key = "RSSinfo") {
+      fwrite($handle, "  \"$key\" => [\n");
+      foreach ($_POST["$key"] as $value2) {
         if ($value2 == "") continue;
         fwrite($handle, "    \"{$value2}\",\n");
       }

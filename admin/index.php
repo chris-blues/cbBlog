@@ -30,6 +30,7 @@ if ($_GET["job"] != "settings") {
     if ($result !== true) {
       $error["query_deleteBlog"] = $result;
     }
+    $RSSupdateNeeded = true;
     $_GET["job"] = "overview";
     unset($_GET["id"]);
   }
@@ -40,11 +41,13 @@ if ($_GET["job"] != "settings") {
     }
     else {
       $_GET["id"] = $newId;
+      $RSSupdateNeeded = true;
     }
   }
   if ($_GET["job"] == "viewBlog" and $_GET["operation"] == "updateBlog") {
     $result = $adminQuery->updateBlog($_POST);
     if ($result !== true) { $error["query_updateBlog"] = $result; }
+    else $RSSupdateNeeded = true;
   }
   unset($_GET["operation"]);
 }
@@ -61,6 +64,7 @@ if (isset($error)) { ?>
 
 
 if ($_GET["job"] != "addBlog" and $_GET["job"] != "settings") {
+
   // ====================[ get blogpost(s) ]====================
   if (isset($_GET["id"]) and $_GET["id"] != "") {
     $blogposts[$_GET["id"]] = $adminQuery->selectBlogpostsById($_GET["id"]);
@@ -69,6 +73,10 @@ if ($_GET["job"] != "addBlog" and $_GET["job"] != "settings") {
     $blogposts = $adminQuery->selectAllBlogposts($filter);
   }
 }
+
+// ====================[ update RSS ]====================
+if ($RSSupdateNeeded) require_once("php/lib/generate-RSS.php");
+
 
 // ====================[ display filterlist ]====================
 if ($_GET["job"] != "settings") {

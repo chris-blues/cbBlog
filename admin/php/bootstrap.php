@@ -1,5 +1,7 @@
 <?php
 
+$version = trim(file_get_contents("../VERSION"));
+
 require_once("../php/lib/functions.php");
 $link = assembleGetString("string");
 require_once("lib/functions.php");

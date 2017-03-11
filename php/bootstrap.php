@@ -1,5 +1,7 @@
 <?php
 
+$version = trim(file_get_contents("../VERSION"));
+
 // ====================[ some default settings ]====================
 if ($_GET["id"] == "0") unset($_GET["id"]);
 date_default_timezone_set('Europe/Berlin');
@@ -11,22 +13,6 @@ require_once("php/lib/functions.php");
 $link = assembleGetString("string");
 
 
-// ##########################
-// ##  Debugging settings  ##
-// ##########################
-switch($config["blog"]["debug_level"]) {
-  case "full": error_reporting(E_ALL); break;
-  case "warn": error_reporting(E_ALL & ~E_NOTICE); break;
-  case "none": error_reporting(0); break;
-}
-
-if ($config["blog"]["show_debug"]) ini_set("display_errors", 1);
-  else                             ini_set("display_errors", 0);
-if ($config["blog"]["log_debug"])  ini_set("log_errors", 1);
-  else                             ini_set("log_errors", 0);
-ini_set("error_log", "admin/logs/php-error.log");
-
-
 // ###############
 // ##  Configs  ##
 // ###############
@@ -36,6 +22,27 @@ $config["email"] = require_once("php/config/email.php");
 $insertTags = require_once("php/config/bbtags.php");
 
 if ($config["blog"]["standalone"]) require_once("php/templates/view.head.php");
+
+
+// ##########################
+// ##  Debugging settings  ##
+// ##########################
+switch($config["blog"]["debug_level"]) {
+  case "full": error_reporting(E_ALL); break;
+  case "warn": error_reporting(E_ALL & ~E_NOTICE); break;
+  case "none": error_reporting(0); break;
+}
+
+if ($config["blog"]["show_debug"]) {
+  ini_set("display_errors", 1);
+  if ($config["blog"]["debug_level"] != "none") {
+    $debug = true;
+  }
+}
+else ini_set("display_errors", 0);
+if ($config["blog"]["log_debug"])  ini_set("log_errors", 1);
+  else                             ini_set("log_errors", 0);
+ini_set("error_log", "admin/logs/php-error.log");
 
 
 // ######################

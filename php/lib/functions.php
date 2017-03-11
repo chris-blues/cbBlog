@@ -15,7 +15,7 @@ function dump_array($var) {
     echo "<pre>";
     print_r($var);
     echo "</pre>\n";
-  }
+  } else echo "\$debug is false!<br>\n";
 }
 
 function prettyTime($proctime) {
@@ -161,11 +161,13 @@ function bb_parse($string) {
 }
 
 function showErrors($error) {
-  echo "<pre>";
-  foreach ($error as $key => $value) {
-    echo "<b>$key</b>: $value\n";
+  if (count($error) > 0) {
+    echo "<pre>";
+    foreach ($error as $key => $value) {
+      echo "<b>$key</b>: $value\n";
+    }
+    echo "</pre>\n";
   }
-  echo "</pre>\n";
 }
 
 function logMailError($name, $email, $index, $hash, $mailbody) {
