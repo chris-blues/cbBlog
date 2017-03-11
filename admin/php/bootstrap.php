@@ -1,6 +1,6 @@
 <?php
 
-$version = trim(file_get_contents("../VERSION"));
+$GLOBALS["version"] = trim(file_get_contents("../VERSION"));
 
 require_once("../php/lib/functions.php");
 $link = assembleGetString("string");

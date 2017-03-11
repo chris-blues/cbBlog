@@ -1,11 +1,14 @@
     <div id="settings_wrapper">
-      <h1><?php echo gettext("settings"); ?></h1>
+      <h1 class="center"><?php echo gettext("settings"); ?></h1>
 
 
 
       <div class="shadow settings" id="blogSettings">
         <h2><?php echo gettext("Blog settings"); ?></h2>
+
         <form id="settings" action="index.php?job=settings&amp;operation=saveBlogSettings" method ="post" accept-charset="UTF-8">
+
+          <h3><?php echo gettext("general appearance"); ?></h3>
 
           <label for="blogSettings_standalone" title="<?php echo gettext("If you have nothing else installed on your webserver, you propably should check this. (This activates primarily the delivery of an HTML header.)"); ?>">standalone</label>
             <input id="blogSettings_standalone" type="checkbox" name="standalone" value="standalone" placeholder="standalone"<?php echo $config["blog"]["standalone"] ? " checked" : ""; ?>><br>
@@ -18,13 +21,15 @@
 
             <hr>
 
+            <h3><?php echo gettext("PHP debugging"); ?></h3>
+
           <label for="blogSettings_debug_level" title="<?php echo gettext("How much debug info you want to receive? (You can define how these are output below.)"); ?>">debug_level</label>
             <select id="blogSettings_debug_level" name="debug_level">
               <option value="full"<?php if ($config["blog"]["debug_level"] == "full") echo " selected"; ?>>
                 <?php echo gettext("all debug messages"); ?>
               </option>
               <option value="warn"<?php if ($config["blog"]["debug_level"] == "warn") echo " selected"; ?>>
-                <?php echo gettext("only warnings"); ?>
+                <?php echo gettext("only errors and warnings"); ?>
               </option>
               <option value="none"<?php if ($config["blog"]["debug_level"] == "none") echo " selected"; ?>>
                 <?php echo gettext("no debug messages"); ?>
@@ -39,6 +44,8 @@
 
           <hr>
 
+          <h3><?php echo gettext("Permalink"); ?></h3>
+
           <label title="<?php echo gettext("These GET variables will be ignored in the generation of the permalink."); ?>">permalinkIgnore</label>
         <?php
         foreach ($config["blog"]["permalinkIgnore"] as $key => $value) { ?>
@@ -51,12 +58,15 @@
 
           <hr>
 
+          <h3><?php echo gettext("RSS feeds"); ?></h3>
         <?php
-        foreach ($config["blog"]["RSSinfo"] as $key => $value) { ?>
-          <label for="<?php echo $key; ?>"><?php echo $key; ?></label>
-            <input class="blogSettings_permalinkIgnore" id="<?php echo $key; ?>" type="text" name="RSSinfo[]" value="<?php echo $value; ?>">
+        foreach ($config["blog"]["feeds"] as $key => $feed) {
+          foreach ($feed as $key2 => $value2) {
+        ?>
+          <label for="<?php echo $key2; ?>"><?php echo $key2; ?></label>
+            <input class="blogSettings_permalinkIgnore" id="<?php echo $key2; ?>" type="text" name="feeds[<?php echo $key; ?>][<?php echo $key2; ?>]" value="<?php echo $value2; ?>">
             <br>
-        <?php } ?>
+        <?php } } ?>
 
           <div class="center">
             <button type="reset"><?php echo gettext("reset"); ?></button>

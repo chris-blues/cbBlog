@@ -25,11 +25,22 @@ if (!isset($error)) {
   fwrite($handle, "return [\n");
 
   foreach ($_POST as $key => $value) {
-    if ($key == "permalinkIgnore" or $key = "RSSinfo") {
+    if ($key == "permalinkIgnore") {
       fwrite($handle, "  \"$key\" => [\n");
       foreach ($_POST["$key"] as $value2) {
         if ($value2 == "") continue;
         fwrite($handle, "    \"{$value2}\",\n");
+      }
+      fwrite($handle, "  ],\n");
+    }
+    elseif ($key == "feeds") {
+      fwrite($handle, "  \"$key\" => [\n");
+      foreach ($value as $key2 => $value2) {
+        fwrite($handle, "    \"$key2\" => [\n");
+        foreach ($value2 as $key3 => $value3) {
+          fwrite($handle, "      \"$key3\" => \"{$value3}\",\n");
+        }
+        fwrite($handle, "    ],\n");
       }
       fwrite($handle, "  ],\n");
     }

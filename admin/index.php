@@ -75,7 +75,18 @@ if ($_GET["job"] != "addBlog" and $_GET["job"] != "settings") {
 }
 
 // ====================[ update RSS ]====================
-if ($RSSupdateNeeded) require_once("php/lib/generate-RSS.php");
+if ($RSSupdateNeeded) {
+
+  require_once("php/lib/RSS.php");
+
+  foreach ($config["blog"]["feeds"] as $key => $feed) {
+
+    $Feed[$key] = new RSS ($feed);
+    $Feed[$key]->writeRSS("rss-feed-" . $feed);
+
+  }
+
+}
 
 
 // ====================[ display filterlist ]====================

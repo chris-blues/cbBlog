@@ -11,6 +11,9 @@ function dump_var($var) {
 
 function dump_array($var) {
   global $debug;
+
+  $debug = true;
+
   if ($debug) {
     echo "<pre>";
     print_r($var);

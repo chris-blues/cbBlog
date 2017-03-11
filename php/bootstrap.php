@@ -1,6 +1,6 @@
 <?php
 
-$version = trim(file_get_contents("../VERSION"));
+$version = trim(file_get_contents("VERSION"));
 
 // ====================[ some default settings ]====================
 if ($_GET["id"] == "0") unset($_GET["id"]);
