@@ -17,6 +17,7 @@ require_once("php/bootstrap.php");
     ></div>
 <?php
 
+
 // ====================[ perform DB operations before showing any content ]====================
 if ($_GET["job"] != "settings") {
   if ($_POST["job"] == "deleteComment") {
@@ -53,6 +54,7 @@ if ($_GET["job"] != "settings") {
 }
 
 
+
 if (isset($error)) { ?>
       <div id="errors" class="notes remark">
         <h2><?php echo gettext("The following errors have occured"); ?></h2>
@@ -65,6 +67,7 @@ if (isset($error)) { ?>
 
 if ($_GET["job"] != "addBlog" and $_GET["job"] != "settings") {
 
+
   // ====================[ get blogpost(s) ]====================
   if (isset($_GET["id"]) and $_GET["id"] != "") {
     $blogposts[$_GET["id"]] = $adminQuery->selectBlogpostsById($_GET["id"]);
@@ -74,6 +77,7 @@ if ($_GET["job"] != "addBlog" and $_GET["job"] != "settings") {
   }
 }
 
+
 // ====================[ update RSS ]====================
 if ($RSSupdateNeeded) {
 
@@ -81,8 +85,14 @@ if ($RSSupdateNeeded) {
 
   foreach ($config["blog"]["feeds"] as $key => $feed) {
 
-    $Feed[$key] = new RSS ($feed);
-    $Feed[$key]->writeRSS("rss-feed-" . $feed);
+    $Feed[$key] = new RSS ($adminQuery, $feed);
+    if (is_array($Feed[$key])) showErrors($Feed[$key]);
+
+    if ($feed["tag"] == "") $filename = "rss-feed.xml";
+    else $filename = "rss-feed-" . $feed["tag"] . ".xml";
+
+    $result = $Feed[$key]->writeRSS($filename);
+    if ($result !== true) showErrors($result);
 
   }
 

@@ -2,6 +2,9 @@
 
 function dump_var($var) {
   global $debug;
+
+  $debug = true;
+
   if ($debug) {
     echo "<pre>";
     var_dump($var);
