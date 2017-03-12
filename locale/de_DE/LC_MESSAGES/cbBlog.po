@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cbBlog\n"
-"POT-Creation-Date: 2017-03-12 20:30+0100\n"
-"PO-Revision-Date: 2017-03-12 20:30+0100\n"
+"POT-Creation-Date: 2017-03-12 23:20+0100\n"
+"PO-Revision-Date: 2017-03-12 23:20+0100\n"
 "Last-Translator: chris_blues <chris@musicchris.de>\n"
 "Language-Team: cbBlog Translations <chris@musicchris.de>\n"
 "Language: de_DE\n"
@@ -40,7 +40,7 @@ msgid "unreleased"
 msgstr "nicht veröffentlicht"
 
 #: admin/php/templates/navigation.php:27
-#: admin/php/templates/view.overview.php:42
+#: admin/php/templates/view.overview.php:55
 msgid "edit blogpost"
 msgstr "Artikel bearbeiten"
 
@@ -60,7 +60,7 @@ msgstr "Kommentar löschen"
 #: admin/php/templates/view.editblog.php:71
 #: admin/php/templates/view.settings.php:64
 #: admin/php/templates/view.settings.php:94
-#: admin/php/templates/view.settings.php:139
+#: admin/php/templates/view.settings.php:147
 msgid "reset"
 msgstr "Zurücksetzen"
 
@@ -68,7 +68,7 @@ msgstr "Zurücksetzen"
 #: admin/php/templates/view.editblog.php:72
 #: admin/php/templates/view.settings.php:65
 #: admin/php/templates/view.settings.php:95
-#: admin/php/templates/view.settings.php:140
+#: admin/php/templates/view.settings.php:148
 msgid "save"
 msgstr "Speichern"
 
@@ -100,22 +100,22 @@ msgstr "Überschrift"
 msgid "article"
 msgstr "Artikel"
 
-#: admin/php/templates/view.overview.php:34 news_short.php:46
+#: admin/php/templates/view.overview.php:47 news_short.php:46
 #: php/templates/view.blogpost.php:42 php/templates/view.overview.php:13
 msgid "comment"
 msgstr "Kommentar"
 
-#: admin/php/templates/view.overview.php:35 news_short.php:47
+#: admin/php/templates/view.overview.php:48 news_short.php:47
 #: php/templates/view.blogpost.php:43 php/templates/view.comments-section.php:5
 #: php/templates/view.overview.php:14
 msgid "comments"
 msgstr "Kommentare"
 
-#: admin/php/templates/view.overview.php:39
+#: admin/php/templates/view.overview.php:52
 msgid "show comments"
 msgstr "Zeige Kommentare"
 
-#: admin/php/templates/view.overview.php:43
+#: admin/php/templates/view.overview.php:56
 msgid "delete blogpost"
 msgstr "Artikel löschen"
 
@@ -232,15 +232,58 @@ msgstr ""
 "Ihr Passwort ihrer Datenbank. (Stellen Sie sicher, daß es ein langes "
 "Passwort ist!)"
 
+#: admin/php/templates/view.settings.php:102
+msgid ""
+"The name of this feed. Note, a new feed, with the same name as another will "
+"overwrite that older feed."
+msgstr ""
+"Der Name dieses Feeds. Anmerkung: Ein neuer Feed mit dem selben Namen wie "
+"ein existierender Feed, wird diesen überschreiben."
+
 #: admin/php/templates/view.settings.php:103
+msgid "This feed's title. This is the overall heading of this feed."
+msgstr ""
+"Der Titel des Feeds. Dies ist die übergeordnete Überschrift dieses Feeds."
+
+#: admin/php/templates/view.settings.php:104
+msgid "The author's name. If you have several authors, then leave this free."
+msgstr ""
+"Der Name des Authors. Falls es mehrere Authoren gibt, dann dieses Feld leer "
+"lassen."
+
+#: admin/php/templates/view.settings.php:105
+msgid "The overall description of this feed."
+msgstr "Die allgemeine Beschreibung dieses Feeds."
+
+#: admin/php/templates/view.settings.php:106
+msgid ""
+"If you have single language, then put it in here! Format: en-gb, de-de etc..."
+msgstr ""
+"Wenn sie in nur einer Sprache schreiben, dann geben sie die Sprache hier an! "
+"Format: en-gb, de-de usw..."
+
+#: admin/php/templates/view.settings.php:107
+msgid ""
+"The address of your blog. Leave out the domain-part. Only use the directory, "
+"file and possible GET parameters. e.g. blog/index.php?page=blog"
+msgstr ""
+"Die Adresse des Blogs. Ohne den Domainnamen. Nur das Verzeichnis, der "
+"Dateiname und möglicherweise nötige GET parameter. Z.Bsp.: blog/index.php?"
+"page=blog"
+
+#: admin/php/templates/view.settings.php:108
+msgid "This feed will be filled with blogposts with this tag."
+msgstr "Dieser Feed wird aus Blogposts mit diesem Tag befüllt."
+
+#: admin/php/templates/view.settings.php:111
 msgid "RSS feeds"
 msgstr "RSS Feeds"
 
-#: admin/php/templates/view.settings.php:109
+#: admin/php/templates/view.settings.php:117
 msgid "delete this feed"
 msgstr "diesen Feed löschen"
 
-#: admin/php/templates/view.settings.php:141
+#: admin/php/templates/view.settings.php:149
 msgid "new feed"
 msgstr "Neuer Feed"
 

@@ -98,7 +98,15 @@
       </div>
 
 
-
+<?php
+$name = gettext("The name of this feed. Note, a new feed, with the same name as another will overwrite that older feed.");
+$title = gettext("This feed's title. This is the overall heading of this feed.");
+$author = gettext("The author's name. If you have several authors, then leave this free.");
+$description = gettext("The overall description of this feed.");
+$language = gettext("If you have single language, then put it in here! Format: en-gb, de-de etc...");
+$blogCall = gettext("The address of your blog. Leave out the domain-part. Only use the directory, file and possible GET parameters. e.g. blog/index.php?page=blog");
+$tag = gettext("This feed will be filled with blogposts with this tag.");
+?>
       <div class="shadow settings" id="feedSettings">
         <h2><?php echo gettext("RSS feeds"); ?></h2>
         <form id="settings_feeds" action="index.php?job=settings&amp;operation=saveFeedSettings" method ="post" accept-charset="UTF-8">
@@ -111,7 +119,7 @@
 
           <?php foreach ($feed as $key2 => $value2) { ?>
 
-          <label for="<?php echo $key2; ?>"><?php echo $key2; ?></label>
+          <label for="<?php echo $key2; ?>" title="<?php echo $$key2; ?>"><?php echo $key2; ?></label>
             <input class="blogSettings_permalinkIgnore" id="<?php echo $key2 . "_" . $key; ?>" type="text" name="feeds[<?php echo $key; ?>][<?php echo $key2; ?>]" value="<?php echo $value2; ?>">
             <br>
           <?php } ?>

@@ -50,7 +50,7 @@ class RSS {
 
     if ($count > 0) {
 
-      $counter = 0;
+      $counter = 1;
       $maxPosts = 15;
 
       foreach ($this->posts as $key => $Post) {

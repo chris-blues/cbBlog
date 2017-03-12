@@ -90,7 +90,7 @@ if ($RSSupdateNeeded) {
 
   require_once("php/lib/RSS.php");
 
-  foreach ($config["blog"]["feeds"] as $key => $feed) {
+  foreach ($config["feeds"] as $key => $feed) {
 
     $Feed[$key] = new RSS ($adminQuery, $feed);
     if (is_array($Feed[$key])) displayErrors($Feed[$key]);
