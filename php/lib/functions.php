@@ -170,19 +170,19 @@ function bb_parse($string) {
 function showErrors($error) {
   if (count($error) > 0) {
     echo "<pre>";
-    outputErrors($error);
+    outputErrors($error, 1);
     echo "</pre>\n";
   }
 }
 
-function outputErrors($error, $depth = 1) {
+function outputErrors($error, $depth) {
   $indentWidth = 2 * $depth;
-  $indentation = strpad($indentation, $indentWidth);
+  $indentation = str_pad("", $indentWidth);
   if (count($error) > 0) {
     foreach ($error as $key => $value) {
       if (is_array($value)) {
         $depth++;
-        showErrors($value);
+        outputErrors($value, $depth);
         $depth--;
       }
       else echo "$indentation<b>$key</b>: $value\n";

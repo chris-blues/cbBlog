@@ -39,12 +39,12 @@ if ($valid) {
   switch($_GET["scope"]) {
     case "0": {
       if ($query->deleteAllSubscriptions($email)) {
-        echo gettext("You'll receive no further notifications for new comments on this entire blog.");
+        echo gettext("You'll receive no further notifications for new comments on this entire blog.") . "<br>\n";
       }
     }
     default: {
       if ($query->deleteThisSubscription($affiliation, $email)) {
-        echo gettext("You'll receive no further notifications for new comments on this topic.");
+        echo gettext("You'll receive no further notifications for new comments on this topic.") . "<br>\n";
       }
     }
   }

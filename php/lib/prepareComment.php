@@ -5,7 +5,7 @@
 $comment["id"] = "";
 
 if (strlen($_POST["email"]) > 0) {
-  $errors["SPAM"] = true;
+  $error["prepareComment"]["SPAM"] = true;
 }
 
 
@@ -13,14 +13,14 @@ if (strlen($_POST["email"]) > 0) {
 
 $tmp = trim($_POST["affiliation"]);
 if (filter_var($tmp, FILTER_VALIDATE_INT, $options = array("min_range" => 0)) === false) {
-  $errors["affiliation"] = true;
+  $error["prepareComment"]["affiliation"] = true;
 } else { $comment["affiliation"] = $tmp; }
 
 
 
 $tmp = trim($_POST["answerTo"]);
 if (filter_var($tmp, FILTER_VALIDATE_INT, $options = array("min_range" => 0)) === false) {
-  $errors["answerTo"] = true;
+  $error["prepareComment"]["answerTo"] = true;
 } else { $comment["answerTo"] = $tmp; }
 
 
@@ -31,7 +31,7 @@ if (filter_var($tmp, FILTER_VALIDATE_INT,
                $options = array("min_range" => $time - 3600,
                                 "max_range" => $time + 3600)
   ) === false) {
-  $errors["time"] = true;
+  $error["prepareComment"]["time"] = true;
 } else { $comment["time"] = $tmp; }
 
 
@@ -49,7 +49,7 @@ if (!filter_var($tmp, FILTER_VALIDATE_EMAIL) and strlen($tmp) < 0) {
   if (filter_var($aMatch[3], FILTER_VALIDATE_EMAIL)) {
     $comment["email"] = $aMatch[3];
   } else {
-    $errors["email"] = true;
+    $error["prepareComment"]["email"] = true;
   }
 } else { $comment["email"] = $tmp; }
 // Lets check if this email is already verified, if not put hash into DB!
@@ -68,7 +68,7 @@ if (!filter_var($tmp, FILTER_VALIDATE_URL) and strlen($tmp) < 0) {
     $tmp = "http://" . $tmp;
     if (!filter_var($tmp, FILTER_VALIDATE_URL)) {
       echo "<code>$tmp</code> still does not validate! Giving up!<br>\n";
-      $errors["website"] = true;
+      $error["prepareComment"]["website"] = true;
     } else {
       echo "<code>$tmp</code> validates! [ OK ]<br>\n";
       $comment["website"] = trim($_POST["website"]);
@@ -80,12 +80,12 @@ else { $comment["website"] = $tmp; }
 
 
 $tmp = trim($_POST["text"]);
-if (strlen($tmp) < 1) { $errors["comment"] = true; }
+if (strlen($tmp) < 1) { $error["prepareComment"]["comment"] = true; }
 else { $comment["comment"] = $tmp; }
 
 
 // ====================[ finally output the response! ]====================
-if (count($errors) > 0) {
+if (count($error["prepareComment"]) > 0) {
 
   echo "Errors:\n";
 
