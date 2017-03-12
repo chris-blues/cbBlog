@@ -73,7 +73,14 @@ if ($_GET["job"] != "addBlog" and $_GET["job"] != "settings") {
     $blogposts[$_GET["id"]] = $adminQuery->selectBlogpostsById($_GET["id"]);
   }
   else {
-    $blogposts = $adminQuery->selectAllBlogposts($filter);
+    if (!isset($_GET["category"]) or $_GET["category"] == "" or $_GET["category"] == "released") {
+      $category = "unreleased";
+      $blogposts = $adminQuery->selectAllBlogposts($filter);
+    }
+    else {
+      $category = "released";
+      $blogposts = $adminQuery->selectAllUnreleasedBlogposts($filter);
+    }
   }
 }
 

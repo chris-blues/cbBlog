@@ -129,6 +129,12 @@ a.blogpost_taglist.active {
   box-shadow: 0px 0px 5px 1px #AA4;
 }
 
+a.blogpost_taglist.unreleased {
+  background-color: #DAA;
+  font-weight: bold;
+  box-shadow: 0px 0px 5px 1px #333;
+}
+
 #adminEditBlogTextareaHead {
   width: 98%;
 }

@@ -19,6 +19,31 @@ class AdminQueryBuilder extends QueryBuilder {
     else return $result;
   }
 
+  public function selectAllUnreleasedBlogposts($filter) {
+    if (!isset($filter) or $filter == "") {
+      $statement = $this->Database->prepare(
+        "SELECT blog.* FROM blog, blog_tags, blog_tags_relations
+         WHERE blog_tags.tag = 'unreleased'
+           AND blog.id = blog_tags_relations.blog
+           AND blog_tags_relations.tag = blog_tags.id
+         ORDER BY blog.ctime DESC ; "
+      );
+    } else {
+      $statement = $this->Database->prepare(
+        "SELECT blog.*, COUNT(blog_tags_relations.blog) AS count
+          FROM blog, blog_tags, blog_tags_relations
+         WHERE blog_tags.tag IN ('unreleased', 'opensource')
+           AND blog.id = blog_tags_relations.blog
+           AND blog_tags_relations.tag = blog_tags.id
+      GROUP BY blog_tags_relations.blog
+        HAVING count = 2"
+      );
+      $statement->bindParam(':filter', $filter);
+    }
+    $this->callExecution($statement);
+    return $statement->fetchAll(PDO::FETCH_CLASS, "Blogpost");
+  }
+
   public function updateComment($id, $comment) {
     $statement = $this->Database->prepare("UPDATE `blog_comments` SET `comment` = :comment WHERE `id` = :id ;");
     $statement->bindParam(':comment', $comment);

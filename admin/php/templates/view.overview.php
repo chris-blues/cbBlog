@@ -22,9 +22,22 @@
     <div id="wrapper">
   <?php
     foreach($blogposts as $key => $Post) {
+
       $row = $Post->getdata();
       $comments = $query->selectComments($row["id"]);
       $row["num_comments"] = count($comments);
+
+      $tags = $query->getTagsOfBlogpost($row["id"]);
+      foreach ($tags as $key => $value) {
+        $tmp = $value->getdata();
+        $temp[$tmp["id"]] = $tmp["tag"];
+      }
+      if (in_array($category, $temp)) {
+        unset($blogposts[$key], $temp);
+        continue;
+      }
+      unset($temp);
+
       ?>
 
       <div class="shadow overview" data-id="<?php echo $row["id"]; ?>">
@@ -54,7 +67,7 @@
               foreach ($tags as $key => $value) {
               $tag = $value->getdata();
             ?>
-            <a class="blogpost_taglist shadow notes<?php if ($_GET["filter"] == $tag["tag"]) echo " active"; ?>"
+            <a class="blogpost_taglist shadow notes<?php if ($_GET["filter"] == $tag["tag"]) echo " active"; if ($tag["tag"] == "unreleased") echo " unreleased"; ?>"
                href="<?php echo $_SERVER["PHP_SELF"] . assembleGetString("string", array("filter" => $tag["tag"])); ?>">
               <?php echo $tag["tag"]; ?>
             </a>
