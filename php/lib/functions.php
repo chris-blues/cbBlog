@@ -69,6 +69,7 @@ function assembleGetString($method = "", $newVars = array()) {
         $counter++;
       }
     }
+    else $GETString = "";
   }
 
   return $GETString;
@@ -169,10 +170,23 @@ function bb_parse($string) {
 function showErrors($error) {
   if (count($error) > 0) {
     echo "<pre>";
-    foreach ($error as $key => $value) {
-      echo "<b>$key</b>: $value\n";
-    }
+    outputErrors($error);
     echo "</pre>\n";
+  }
+}
+
+function outputErrors($error, $depth = 1) {
+  $indentWidth = 2 * $depth;
+  $indentation = strpad($indentation, $indentWidth);
+  if (count($error) > 0) {
+    foreach ($error as $key => $value) {
+      if (is_array($value)) {
+        $depth++;
+        showErrors($value);
+        $depth--;
+      }
+      else echo "$indentation<b>$key</b>: $value\n";
+    }
   }
 }
 

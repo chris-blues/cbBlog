@@ -34,6 +34,7 @@ if ($_GET["job"] == "settings" and isset($_GET["operation"]) and $_GET["operatio
 // ###############
 $config["database"] = require("../php/config/db.php");
 $config["blog"]     = require("../php/config/blog.php");
+$config["feeds"]    = require("../php/config/feeds.php");
 $insertTags = require_once("../php/config/bbtags.php");
 
 require_once('templates/head.php');

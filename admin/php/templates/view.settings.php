@@ -6,7 +6,9 @@
       <div class="shadow settings" id="blogSettings">
         <h2><?php echo gettext("Blog settings"); ?></h2>
 
-        <form id="settings" action="index.php?job=settings&amp;operation=saveBlogSettings" method ="post" accept-charset="UTF-8">
+        <hr>
+
+        <form id="settings_blog" action="index.php?job=settings&amp;operation=saveBlogSettings" method ="post" accept-charset="UTF-8">
 
           <h3><?php echo gettext("general appearance"); ?></h3>
 
@@ -58,16 +60,6 @@
 
           <hr>
 
-          <h3><?php echo gettext("RSS feeds"); ?></h3>
-        <?php
-        foreach ($config["blog"]["feeds"] as $key => $feed) {
-          foreach ($feed as $key2 => $value2) {
-        ?>
-          <label for="<?php echo $key2; ?>"><?php echo $key2; ?></label>
-            <input class="blogSettings_permalinkIgnore" id="<?php echo $key2; ?>" type="text" name="feeds[<?php echo $key; ?>][<?php echo $key2; ?>]" value="<?php echo $value2; ?>">
-            <br>
-        <?php } } ?>
-
           <div class="center">
             <button type="reset"><?php echo gettext("reset"); ?></button>
             <button type="submit"><?php echo gettext("save"); ?></button>
@@ -79,7 +71,8 @@
 
       <div class="shadow settings" id="dbSettings">
         <h2><?php echo gettext("Database settings"); ?></h2>
-        <form id="settings" action="index.php?job=settings&amp;operation=saveDBSettings" method ="post" accept-charset="UTF-8">
+        <hr>
+        <form id="settings_db" action="index.php?job=settings&amp;operation=saveDBSettings" method ="post" accept-charset="UTF-8">
           <label for="dbSettings_driver" title="<?php echo gettext("The PDO driver of your database. ('mysql' should be ok in most cases.)"); ?>">driver</label>
             <input id="dbSettings_driver" type="text" name="driver" placeholder="driver" value="<?php echo $config["database"]["driver"]; ?>"><br>
 
@@ -95,6 +88,8 @@
           <label for="dbSettings_pass" title="<?php echo gettext("Your passwort for your database. (Make sure, that it's along one!)"); ?>">pass</label>
             <input id="dbSettings_pass" type="password" name="pass" placeholder="pass" value="<?php echo $config["database"]["pass"]; ?>"><br>
 
+          <hr>
+
           <div class="center">
             <button type="reset"><?php echo gettext("reset"); ?></button>
             <button type="submit"><?php echo gettext("save"); ?></button>
@@ -102,6 +97,51 @@
         </form>
       </div>
 
+
+
+      <div class="shadow settings" id="feedSettings">
+        <h2><?php echo gettext("RSS feeds"); ?></h2>
+        <form id="settings_feeds" action="index.php?job=settings&amp;operation=saveFeedSettings" method ="post" accept-charset="UTF-8">
+          <hr>
+
+          <?php foreach ($config["feeds"] as $key => $feed) { ?>
+
+          <button type="button" class="buttonDeleteFeed" data-id="<?php echo $key; ?>"><?php echo gettext("delete this feed"); ?></button>
+          <h3><?php echo $key; ?></h3>
+
+          <?php foreach ($feed as $key2 => $value2) { ?>
+
+          <label for="<?php echo $key2; ?>"><?php echo $key2; ?></label>
+            <input class="blogSettings_permalinkIgnore" id="<?php echo $key2 . "_" . $key; ?>" type="text" name="feeds[<?php echo $key; ?>][<?php echo $key2; ?>]" value="<?php echo $value2; ?>">
+            <br>
+          <?php } ?>
+          <hr>
+          <?php } ?>
+
+          <?php
+          if ($_GET["new"] == "feed") {
+            $newFeed = array("name" => "", "title" => "", "author" => "", "description" => "", "language" => "", "blogCall" => "", "tag" => "");
+          ?>
+
+          <div id="newFeed"></div>
+
+          <?php foreach ($newFeed as $key => $value) { ?>
+
+          <label for="new<?php echo $key; ?>"><?php echo $key; ?></label>
+            <input class="blogSettings_permalinkIgnore" id="new<?php echo $key; ?>" type="text" name="feeds[newFeed][<?php echo $key; ?>]" value="">
+            <br>
+
+          <?php } ?>
+          <hr>
+          <?php } ?>
+
+          <div class="center">
+            <button type="reset"><?php echo gettext("reset"); ?></button>
+            <button type="submit"><?php echo gettext("save"); ?></button>
+            <button type="button" id="buttonNewFeed"><?php echo gettext("new feed"); ?></button>
+          </div>
+        </form>
+      </div>
 
     </div>
     <div class="clear"></div>

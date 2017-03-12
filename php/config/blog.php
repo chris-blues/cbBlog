@@ -13,16 +13,6 @@ return [
     "job",
     "operation",
   ],
-  "feeds" => [
-    "all" => [
-      "title" => "Blog musicchris.de",
-      "author" => "chris@musicchris.de (chris_blues)",
-      "description" => "All topics",
-      "language" => "de-de",
-      "blogCall" => "index.php?page=blog",
-      "tag" => "",
-    ],
-  ],
 ];
 
 ?>

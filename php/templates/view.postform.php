@@ -25,7 +25,7 @@
         ?>
       </h3>
       <p class="notes inline"><?php echo date("d.M.Y H:i", $time); ?></p>
-      <p class="otswitch inline"><?php echo $switchOTon; ?></p>
+      <p class="otswitch inline"><?php if (isset($switchOTon)) echo $switchOTon; ?></p>
       <div class="clear"></div>
       <div class="commentText"><?php echo parse(nl2br($post, false)); ?></div>
     </div>
@@ -105,7 +105,7 @@
           </tr>
         </table>
       </div>
-      <textarea name="text" id="post_text"><?php echo $post; ?></textarea>
+      <textarea name="text" id="post_text"><?php if (isset($post)) echo $post; ?></textarea>
 
       <div class="button_wrapper">
         <?php
@@ -121,7 +121,9 @@
       <div class="center">
         <button type="reset"> &lt;&lt;&lt; <?php echo gettext("Back"); ?> </button>
         <button type="button" id="buttonPreview"> <?php echo gettext("Preview"); ?> </button>
-        <?php if ($_POST["job"] == "showPreview") { ?><button type="submit" id="buttonSend"> <?php echo gettext("Send"); ?> &gt;&gt;&gt; </button><?php } ?>
+        <?php if (isset($_POST["job"]) and $_POST["job"] == "showPreview") { ?>
+        <button type="submit" id="buttonSend"> <?php echo gettext("Send"); ?> &gt;&gt;&gt; </button>
+        <?php } ?>
       </div>
     </form>
   </div>

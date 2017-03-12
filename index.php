@@ -26,7 +26,7 @@ if (!isset($_GET["id"]) or $_GET["id"] == "" or $_GET["id"] == "0") {
   echo "<div id=\"wrapper\">\n";
 }
 
-// ====================[ display ]====================
+// ====================[ display blogposts ]====================
 if ($blogposts) {
   foreach ($blogposts as $id => $Post) {
     $row = $Post->getdata();

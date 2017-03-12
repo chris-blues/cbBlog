@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cbBlog\n"
-"POT-Creation-Date: 2017-03-11 16:31+0100\n"
-"PO-Revision-Date: 2017-03-11 16:36+0100\n"
+"POT-Creation-Date: 2017-03-12 20:30+0100\n"
+"PO-Revision-Date: 2017-03-12 20:30+0100\n"
 "Last-Translator: chris_blues <chris@musicchris.de>\n"
 "Language-Team: cbBlog Translations <chris@musicchris.de>\n"
 "Language: de_DE\n"
@@ -19,7 +19,7 @@ msgstr ""
 msgid "Do you really want to delete this?"
 msgstr "Wollen Sie das wirklich löschen?"
 
-#: admin/index.php:58 admin/php/templates/foot.php:8
+#: admin/index.php:60 admin/php/templates/foot.php:8
 msgid "The following errors have occured"
 msgstr "Folgende Fehler sind aufgetreten"
 
@@ -58,15 +58,17 @@ msgstr "Kommentar löschen"
 
 #: admin/php/templates/view.comments.php:29
 #: admin/php/templates/view.editblog.php:71
-#: admin/php/templates/view.settings.php:72
-#: admin/php/templates/view.settings.php:99
+#: admin/php/templates/view.settings.php:64
+#: admin/php/templates/view.settings.php:94
+#: admin/php/templates/view.settings.php:139
 msgid "reset"
 msgstr "Zurücksetzen"
 
 #: admin/php/templates/view.comments.php:30
 #: admin/php/templates/view.editblog.php:72
-#: admin/php/templates/view.settings.php:73
-#: admin/php/templates/view.settings.php:100
+#: admin/php/templates/view.settings.php:65
+#: admin/php/templates/view.settings.php:95
+#: admin/php/templates/view.settings.php:140
 msgid "save"
 msgstr "Speichern"
 
@@ -125,11 +127,11 @@ msgstr "Einstellungen"
 msgid "Blog settings"
 msgstr "Blog Einstellungen"
 
-#: admin/php/templates/view.settings.php:11
+#: admin/php/templates/view.settings.php:13
 msgid "general appearance"
 msgstr "Gesamterscheinung"
 
-#: admin/php/templates/view.settings.php:13
+#: admin/php/templates/view.settings.php:15
 msgid ""
 "If you have nothing else installed on your webserver, you propably should "
 "check this. (This activates primarily the delivery of an HTML header.)"
@@ -138,13 +140,13 @@ msgstr ""
 "sie diese Box wahrscheinlich ankreuzen. (Dies aktiviert hauptsächlich die "
 "Auslieferung eines HTML Headers.)"
 
-#: admin/php/templates/view.settings.php:16
+#: admin/php/templates/view.settings.php:18
 msgid "If checked, this will show the time needed for processing on each page."
 msgstr ""
 "Ist dieses Feld angekreuzt, so wird unter jeder Seite die Dauer der "
 "Verarbeitung angezeigt."
 
-#: admin/php/templates/view.settings.php:19
+#: admin/php/templates/view.settings.php:21
 msgid ""
 "You could pass a default language. This will override the visitors settings. "
 "Use the following format: en_GB or de_DE"
@@ -153,11 +155,11 @@ msgstr ""
 "Einstellungen der Besucher außer Kraft setzen. Benutzen Sie folgendes "
 "Format: en_GB oder de_DE"
 
-#: admin/php/templates/view.settings.php:24
+#: admin/php/templates/view.settings.php:26
 msgid "PHP debugging"
 msgstr "PHP debugging"
 
-#: admin/php/templates/view.settings.php:26
+#: admin/php/templates/view.settings.php:28
 msgid ""
 "How much debug info you want to receive? (You can define how these are "
 "output below.)"
@@ -165,19 +167,19 @@ msgstr ""
 "Wie viele Debug Infos wollen Sie bekommen? (Sie können weiter unten angeben, "
 "wie diese ausgegeben werden.)"
 
-#: admin/php/templates/view.settings.php:29
+#: admin/php/templates/view.settings.php:31
 msgid "all debug messages"
 msgstr "Alle Debug Meldungen"
 
-#: admin/php/templates/view.settings.php:32
+#: admin/php/templates/view.settings.php:34
 msgid "only errors and warnings"
 msgstr "nur Fehler und Warnungen"
 
-#: admin/php/templates/view.settings.php:35
+#: admin/php/templates/view.settings.php:37
 msgid "no debug messages"
 msgstr "keine Debug Meldungen"
 
-#: admin/php/templates/view.settings.php:39
+#: admin/php/templates/view.settings.php:41
 msgid ""
 "Do you want these debug messages to be shown in the browser? (Might be "
 "unwanted to be shown to your visitors.)"
@@ -185,54 +187,62 @@ msgstr ""
 "Wollen Sie diese Debug Meldungen im Browser angezeigt bekommen? (Könnte "
 "unerwünscht sein, daß diese den Besuchern angezeigt werden.)"
 
-#: admin/php/templates/view.settings.php:42
+#: admin/php/templates/view.settings.php:44
 msgid "Do you want these debug messages to be logged in $blog/admin/logs?"
 msgstr "Wollen Sie diese Debug Meldungen nach $blog/admin/logs archivieren?"
 
-#: admin/php/templates/view.settings.php:47
+#: admin/php/templates/view.settings.php:49
 msgid "Permalink"
 msgstr "Permalink"
 
-#: admin/php/templates/view.settings.php:49
+#: admin/php/templates/view.settings.php:51
 msgid "These GET variables will be ignored in the generation of the permalink."
 msgstr "Diese GET Variablen werden beim Generieren des Permalinks ignoriert."
 
-#: admin/php/templates/view.settings.php:52
-#: admin/php/templates/view.settings.php:57
+#: admin/php/templates/view.settings.php:54
+#: admin/php/templates/view.settings.php:59
 msgid "put new GET variables here"
 msgstr "neue GET Variablen hier hinein"
 
-#: admin/php/templates/view.settings.php:61
-msgid "RSS feeds"
-msgstr "RSS Feeds"
-
-#: admin/php/templates/view.settings.php:81
+#: admin/php/templates/view.settings.php:73
 msgid "Database settings"
 msgstr "Datenbank Einstellungen"
 
-#: admin/php/templates/view.settings.php:83
+#: admin/php/templates/view.settings.php:76
 msgid "The PDO driver of your database. ('mysql' should be ok in most cases.)"
 msgstr ""
 "Der PDO-Treiber ihrer Datenbank. ('mysql' sollte in den meisten Fällen ok "
 "sein.)"
 
-#: admin/php/templates/view.settings.php:86
+#: admin/php/templates/view.settings.php:79
 msgid "The hostname for your database."
 msgstr "Der Hostname ihrer Datenbank."
 
-#: admin/php/templates/view.settings.php:89
+#: admin/php/templates/view.settings.php:82
 msgid "Your database name."
 msgstr "Der Name ihrer Datenbank."
 
-#: admin/php/templates/view.settings.php:92
+#: admin/php/templates/view.settings.php:85
 msgid "Your username for the database."
 msgstr "Ihr Benutzername ihrer Datenbank."
 
-#: admin/php/templates/view.settings.php:95
+#: admin/php/templates/view.settings.php:88
 msgid "Your passwort for your database. (Make sure, that it's along one!)"
 msgstr ""
 "Ihr Passwort ihrer Datenbank. (Stellen Sie sicher, daß es ein langes "
 "Passwort ist!)"
+
+#: admin/php/templates/view.settings.php:103
+msgid "RSS feeds"
+msgstr "RSS Feeds"
+
+#: admin/php/templates/view.settings.php:109
+msgid "delete this feed"
+msgstr "diesen Feed löschen"
+
+#: admin/php/templates/view.settings.php:141
+msgid "new feed"
+msgstr "Neuer Feed"
 
 #: news_short.php:50 php/templates/view.blogpost.php:49
 #: php/templates/view.overview.php:17
@@ -309,59 +319,59 @@ msgstr ""
 msgid "all"
 msgstr "alle"
 
-#: php/lib/functions.php:37
+#: php/lib/functions.php:40
 msgid "Processing needed"
 msgstr "Verarbeitung brauchte"
 
-#: php/lib/functions.php:91
+#: php/lib/functions.php:95
 msgid "no"
 msgstr "kein"
 
-#: php/lib/functions.php:92
+#: php/lib/functions.php:96
 msgid "one"
 msgstr "ein"
 
-#: php/lib/functions.php:93
+#: php/lib/functions.php:97
 msgid "two"
 msgstr "zwei"
 
-#: php/lib/functions.php:94
+#: php/lib/functions.php:98
 msgid "three"
 msgstr "drei"
 
-#: php/lib/functions.php:95
+#: php/lib/functions.php:99
 msgid "four"
 msgstr "vier"
 
-#: php/lib/functions.php:96
+#: php/lib/functions.php:100
 msgid "five"
 msgstr "fünf"
 
-#: php/lib/functions.php:97
+#: php/lib/functions.php:101
 msgid "six"
 msgstr "sechs"
 
-#: php/lib/functions.php:98
+#: php/lib/functions.php:102
 msgid "seven"
 msgstr "sieben"
 
-#: php/lib/functions.php:99
+#: php/lib/functions.php:103
 msgid "eight"
 msgstr "acht"
 
-#: php/lib/functions.php:100
+#: php/lib/functions.php:104
 msgid "nine"
 msgstr "neun"
 
-#: php/lib/functions.php:101
+#: php/lib/functions.php:105
 msgid "ten"
 msgstr "zehn"
 
-#: php/lib/functions.php:101
+#: php/lib/functions.php:105
 msgid "eleven"
 msgstr "elf"
 
-#: php/lib/functions.php:101
+#: php/lib/functions.php:105
 msgid "twelve"
 msgstr "zwölf"
 
@@ -479,7 +489,7 @@ msgstr "Zurück"
 msgid "Preview"
 msgstr "Vorschau"
 
-#: php/templates/view.postform.php:124
+#: php/templates/view.postform.php:125
 msgid "Send"
 msgstr "Abschicken"
 

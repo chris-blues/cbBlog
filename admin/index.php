@@ -86,13 +86,13 @@ if ($RSSupdateNeeded) {
   foreach ($config["blog"]["feeds"] as $key => $feed) {
 
     $Feed[$key] = new RSS ($adminQuery, $feed);
-    if (is_array($Feed[$key])) showErrors($Feed[$key]);
+    if (is_array($Feed[$key])) displayErrors($Feed[$key]);
 
     if ($feed["tag"] == "") $filename = "rss-feed.xml";
     else $filename = "rss-feed-" . $feed["tag"] . ".xml";
 
     $result = $Feed[$key]->writeRSS($filename);
-    if ($result !== true) showErrors($result);
+    if ($result !== true) displayErrors($result);
 
   }
 

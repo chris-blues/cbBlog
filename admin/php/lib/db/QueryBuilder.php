@@ -93,11 +93,18 @@ class AdminQueryBuilder extends QueryBuilder {
   private function cleanupOrphanedTags($tags) {
 //     echo '<div id="top_spacer"></div>';
 
+//     echo "cleanupOrphanedTags($tags)";
+//     dump_array($tags);
+
     foreach ($tags as $tagname => $tagId) {
       $statement = $this->Database->prepare("SELECT * FROM `blog_tags_relations` WHERE `tag` = :tag ;");
       $statement->bindParam(':tag', $tagId);
       $this->callExecution($statement);
       $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+//       echo "\$result:";
+//       dump_array($result);
+
       if (count($result) < 1) {
         $statement = $this->Database->prepare("DELETE FROM `blog_tags` WHERE `tag` = :tag ;");
         $statement->bindParam(':tag', $tagname);
@@ -105,6 +112,7 @@ class AdminQueryBuilder extends QueryBuilder {
         if ($result !== true) { $error["cleanupOrphanedTags"] = true; }
       }
     }
+//     showErrors($error);
     if (isset($error)) return $error;
     else return true;
   }

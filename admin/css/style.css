@@ -112,6 +112,7 @@ div#navigation {
   padding: 6px;
   box-shadow: 0px 0px 5px 1px #000 inset;
   border-radius: 6px;
+  z-index: 1000;
 }
 
 div#navigation button {
@@ -186,7 +187,21 @@ div#errors {
   width: 400px;
 }
 
+#feedSettings label {
+width: 200px;
+position: absolute;
+}
+
+#feedSettings input, #feedSettings select {
+margin-left: 100px;
+width: 250px;
+}
+
 .settings {
   float: left;
   margin: 20px;
+}
+
+.buttonDeleteFeed {
+  float: right;
 }

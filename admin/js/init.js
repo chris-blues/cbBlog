@@ -3,9 +3,26 @@ document.addEventListener('DOMContentLoaded', function () {
   var buttonSettings = document.getElementById("buttonSettings");
   if (buttonSettings != null) {
     buttonSettings.addEventListener("click", function() {
-      document.getElementById("formJob").value = "settings";
-      document.getElementById("formEditBlog").submit();
+      window.location.href = "?job=settings";
     });
+  }
+
+  var buttonNewFeed = document.getElementById("buttonNewFeed");
+  if (buttonNewFeed != null) {
+    buttonNewFeed.addEventListener("click", function() {
+      window.location.href = "?job=settings&new=feed#newFeed";
+    });
+  }
+
+  var buttonDeleteFeed = document.getElementsByClassName("buttonDeleteFeed");
+  if (buttonDeleteFeed != null) {
+    for (i=0; i<buttonDeleteFeed.length; i++) {
+      buttonDeleteFeed[i].addEventListener("click", function() {
+        var id = this.getAttribute("data-id");
+        document.getElementById("name_" + id).value = "";
+        document.getElementById("settings_feeds").submit();
+      });
+    }
   }
 
   var buttonsEmptyField = document.getElementsByClassName("emptyField");
