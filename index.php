@@ -2,6 +2,7 @@
 
 $startTime = microtime(true);
 
+$GLOBALS["displayMode"] = "full";
 require_once("php/bootstrap.php");
 
 if (isset($_POST["job"])) {

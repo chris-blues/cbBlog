@@ -1,7 +1,7 @@
 # cbBlog v0.14-dev
 This is the bleedin edge developer version. This is to be considered in the experimental stage. For productive use, get the latest [release](https://github.com/chris-blues/cbBlog/releases)!
 
-## At the moment I'm refactoring the code. Expect the branch next to be completely non-functional, well very experimental.
+## I'm getting close to a release. The software is running stable and I'm currently testing for borderline cases. Feel free to help testing! :o)
 ## Again: if you want a functional version, use the latest [release](https://github.com/chris-blues/cbBlog/releases)!
 
 ### Description

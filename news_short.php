@@ -1,8 +1,13 @@
 <?php
 
+$GLOBALS["displayMode"] = "short";
 require_once("php/bootstrap.php");
 
-if ($blogposts) { ?>
+if (isset($blogposts)) {
+  if (count($blogposts) < 1) {
+    echo gettext("We were not able to find anything. Either there's nothing posted yet, of there's a problem with the database connection.");
+    exit;
+  } ?>
 
   <ul class="blog">
 

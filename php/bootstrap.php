@@ -21,7 +21,7 @@ $config["blog"] = require_once("php/config/blog.php");
 $config["email"] = require_once("php/config/email.php");
 $insertTags = require_once("php/config/bbtags.php");
 
-if ($config["blog"]["standalone"]) require_once("php/templates/view.head.php");
+if ($config["blog"]["standalone"] and $GLOBALS["displayMode"] != "short") require_once("php/templates/view.head.php");
 
 
 // ##########################
