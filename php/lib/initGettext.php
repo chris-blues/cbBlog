@@ -9,25 +9,25 @@ if ($config["blog"]["language"] != "") $locale = $config["blog"]["language"]; //
 else {
   if (isset($_GET["lang"])) $locale = $_GET["lang"];                          // if we have some user-setting from the URI then use this
   else {
-    $locale = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);                 // if still nothing, try browser preference
-    switch ($locale) {
+    $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);                   // if still nothing, try browser preference
+    switch ($lang) {
       case "de": $locale = "de_DE"; break;
-      default:   $locale = "en_GB"; break;
+      case "en": $locale = "en_GB"; break;
     }
   }
 }
-if (!isset($locale) or $locale == "") $locale = "en_GB";                      // if all fails, use "en_GB"! (actually use inline gettext strings)
+if (!isset($locale) or $locale == "") $locale = "de_DE";                      // if all fails, use "en_GB"! (actually use inline gettext strings)
 
-$directory = "locale";
+if (!isset($path)) $path = "";
+$directory = $path . "locale";
 $textdomain = "cbBlog";
 $locale .= ".utf8";
 
-$localeString = setlocale(LC_MESSAGES, $locale);
+$localeString = setlocale(LC_MESSAGES, $locale) . " ";
 bindtextdomain($textdomain, $directory);
 textdomain($textdomain);
-$localeString .= " ";
 $localeString .= bind_textdomain_codeset($textdomain, 'UTF-8');
 
-echo "<!-- locale: " . $localeString . " -->\n";
+echo "<!-- locale: $locale -> " . $localeString . " -->\n";
 
 ?>

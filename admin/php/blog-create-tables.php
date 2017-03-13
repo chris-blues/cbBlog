@@ -19,36 +19,38 @@ else
 
 $query["create_blog"] = "CREATE TABLE IF NOT EXISTS `blog` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `ctime` int(11) NOT NULL COMMENT 'creation time',
-  `mtime` int(11) NOT NULL COMMENT 'last modified time',
-  `head` text COLLATE utf8mb4_general_ci NOT NULL,
-  `text` longtext COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci AUTO_INCREMENT=1 ;";
+  `ctime` int(11) NOT NULL,
+  `mtime` int(11) NOT NULL,
+  `head` text NOT NULL,
+  `text` longtext NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;";
 
 $query["create_blog_tags"] = "CREATE TABLE IF NOT EXISTS `blog_tags` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `tag` text COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci AUTO_INCREMENT=1;";
+  `tag` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `tag` (`tag`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;";
 
 $query["create_blog_tags_relations"] = "CREATE TABLE IF NOT EXISTS `blog_tags_relations` (
   `blog` int(11) NOT NULL,
   `tag` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Which tag belongs to which blogpost';";
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;";
 
 $query["create_blog_comments"] = "CREATE TABLE IF NOT EXISTS `blog_comments` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID for each comment - Auto-Indexed',
-  `affiliation` int(11) NOT NULL COMMENT 'index of affiliated blog-entry',
-  `answerTo` int(11) NOT NULL COMMENT 'Which comment this refers to',
-  `time` int(11) NOT NULL COMMENT 'time of post',
-  `name` text COLLATE utf8mb4_general_ci NOT NULL COMMENT 'poster\'s name',
-  `email` text COLLATE utf8mb4_general_ci NOT NULL COMMENT 'poster\'s email for notifications',
-  `website` text COLLATE utf8mb4_general_ci NOT NULL COMMENT 'poster\'s website',
-  `comment` mediumtext COLLATE utf8mb4_general_ci NOT NULL COMMENT 'poster\'s post',
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `affiliation` int(11) NOT NULL,
+  `answerTo` int(11) NOT NULL,
+  `time` int(11) NOT NULL,
+  `name` text NOT NULL,
+  `email` text NOT NULL,
+  `website` text NOT NULL,
+  `comment` mediumtext NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='comments for blog entries' AUTO_INCREMENT=1 ;";
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;";
 
 
 $tables = array("blog" => "", "blog_comments" => "", "blog_tags" => "", "blog_tags_relations" => "");

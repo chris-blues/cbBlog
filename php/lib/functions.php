@@ -181,11 +181,12 @@ function outputErrors($error, $depth) {
   if (count($error) > 0) {
     foreach ($error as $key => $value) {
       if (is_array($value)) {
+        echo "{$indentation}<b>{$key}</b>\n";
         $depth++;
         outputErrors($value, $depth);
         $depth--;
       }
-      else echo "$indentation<b>$key</b>: $value\n";
+      else echo "{$indentation}<b>{$key}</b>: $value\n";
     }
   }
 }

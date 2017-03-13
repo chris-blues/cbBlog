@@ -69,7 +69,7 @@
 
 
 
-      <div class="shadow settings" id="dbSettings">
+      <div class="shadow settings<?php if ($GLOBALS["DBdisconnected"]) echo " important"; ?>" id="dbSettings">
         <h2><?php echo gettext("Database settings"); ?></h2>
         <hr>
         <form id="settings_db" action="index.php?job=settings&amp;operation=saveDBSettings" method ="post" accept-charset="UTF-8">
@@ -104,7 +104,7 @@ $title = gettext("This feed's title. This is the overall heading of this feed.")
 $author = gettext("The author's name. If you have several authors, then leave this free.");
 $description = gettext("The overall description of this feed.");
 $language = gettext("If you have single language, then put it in here! Format: en-gb, de-de etc...");
-$blogCall = gettext("The address of your blog. Leave out the domain-part. Only use the directory, file and possible GET parameters. e.g. blog/index.php?page=blog");
+$blogCall = gettext("The address of your blog. Leave out the domain-part. Only use the file and possible GET parameters. e.g. index.php?page=blog");
 $tag = gettext("This feed will be filled with blogposts with this tag.");
 ?>
       <div class="shadow settings" id="feedSettings">

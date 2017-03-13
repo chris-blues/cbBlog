@@ -4,7 +4,7 @@ return [
   "standalone" => true,
   "showProcessingTime" => true,
   "language" => "",
-  "debug_level" => "warn",
+  "debug_level" => "none",
   "show_debug" => true,
   "log_debug" => true,
   "permalinkIgnore" => [

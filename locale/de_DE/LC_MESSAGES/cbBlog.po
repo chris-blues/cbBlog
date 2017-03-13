@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cbBlog\n"
-"POT-Creation-Date: 2017-03-12 23:20+0100\n"
-"PO-Revision-Date: 2017-03-12 23:20+0100\n"
+"POT-Creation-Date: 2017-03-13 04:17+0100\n"
+"PO-Revision-Date: 2017-03-13 04:17+0100\n"
 "Last-Translator: chris_blues <chris@musicchris.de>\n"
 "Language-Team: cbBlog Translations <chris@musicchris.de>\n"
 "Language: de_DE\n"
@@ -15,11 +15,11 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin/index.php:16
+#: admin/index.php:23
 msgid "Do you really want to delete this?"
 msgstr "Wollen Sie das wirklich löschen?"
 
-#: admin/index.php:60 admin/php/templates/foot.php:8
+#: admin/index.php:71 admin/php/templates/foot.php:8 index.php:69
 msgid "The following errors have occured"
 msgstr "Folgende Fehler sind aufgetreten"
 
@@ -264,12 +264,11 @@ msgstr ""
 
 #: admin/php/templates/view.settings.php:107
 msgid ""
-"The address of your blog. Leave out the domain-part. Only use the directory, "
-"file and possible GET parameters. e.g. blog/index.php?page=blog"
+"The address of your blog. Leave out the domain-part. Only use the file and "
+"possible GET parameters. e.g. index.php?page=blog"
 msgstr ""
-"Die Adresse des Blogs. Ohne den Domainnamen. Nur das Verzeichnis, der "
-"Dateiname und möglicherweise nötige GET parameter. Z.Bsp.: blog/index.php?"
-"page=blog"
+"Die Adresse des Blogs. Ohne den Domainnamen. Nur der Dateiname und "
+"möglicherweise nötige GET parameter. Z.Bsp.: index.php?page=blog"
 
 #: admin/php/templates/view.settings.php:108
 msgid "This feed will be filled with blogposts with this tag."
@@ -287,10 +286,26 @@ msgstr "diesen Feed löschen"
 msgid "new feed"
 msgstr "Neuer Feed"
 
+#: index.php:34
+msgid ""
+"We were not able to find anything. Either there's nothing posted yet, of "
+"there's a problem with the database connection."
+msgstr ""
+"Wir konnten nichts finden. Entweder wurde noch nichts gepostet, oder es gibt "
+"ein Problem mit der Datanbankverbindung."
+
+#: index.php:67
+msgid "Whoops! Something isn't right..."
+msgstr "Hoppla! Hier stimmt irgendetwas nicht..."
+
 #: news_short.php:50 php/templates/view.blogpost.php:49
 #: php/templates/view.overview.php:17
 msgid "no comments"
 msgstr "Keine Kommentare"
+
+#: php/bootstrap.php:91
+msgid "Not connected. Possibly wrong credentials."
+msgstr "Nicht verbunden. Möglicherweise falsche Zugangsdaten."
 
 #: php/lib/Email.php:45
 msgid "New comment by"
@@ -535,6 +550,9 @@ msgstr "Vorschau"
 #: php/templates/view.postform.php:125
 msgid "Send"
 msgstr "Abschicken"
+
+#~ msgid "There's nothing there to see..."
+#~ msgstr "Es ist nichts da zum anzeigen..."
 
 #~ msgid "edit post"
 #~ msgstr "Artikel bearbeiten"

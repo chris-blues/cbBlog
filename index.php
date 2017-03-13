@@ -14,20 +14,26 @@ if (isset($_GET["job"])) {
   }
 }
 
-
-// ====================[ print taglist ]====================
-if (!isset($_GET["id"]) or $_GET["id"] == "" or $_GET["id"] == "0") {
-  $tags = $query->selectAllTags();
-  Filters::display($tags);
-  foreach ($tags as $key => $Tag) {
-    $tagname = $Tag->getdata();
-    $taglist[$key] = $tagname["tag"];
+if (!$GLOBALS["DBdisconnected"]) {
+  // ====================[ print taglist ]====================
+  if (!isset($_GET["id"]) or $_GET["id"] == "" or $_GET["id"] == "0") {
+    $tags = $query->selectAllTags();
+    Filters::display($tags);
+    foreach ($tags as $key => $Tag) {
+      $tagname = $Tag->getdata();
+      $taglist[$key] = $tagname["tag"];
+    }
+    echo "<div id=\"wrapper\">\n";
   }
-  echo "<div id=\"wrapper\">\n";
 }
 
+
 // ====================[ display blogposts ]====================
-if ($blogposts) {
+if (isset($blogposts)) {
+  if (count($blogposts) < 1) {
+    $error["Database"]["no_content_found"] = gettext("We were not able to find anything. Either there's nothing posted yet, of there's a problem with the database connection.");
+  }
+
   foreach ($blogposts as $id => $Post) {
     $row = $Post->getdata();
     $row["head"] = str_replace('$link', $link, $row["head"]);
@@ -55,8 +61,18 @@ if ($blogposts) {
     }
   }
 }
-else {
-  echo "ERROR! No data retrieved.";
+
+if (isset($error)) { ?>
+      <div class="remark">
+        <h1><?php echo gettext("Whoops! Something isn't right..."); ?></h1>
+        <div id="errors" class="commentText">
+          <p><?php echo gettext("The following errors have occured"); ?></p>
+          <ol>
+            <?php if (isset($error)) showErrors($error); ?>
+          </ol>
+        </div>
+      </div>
+    <?php
 }
 
 // ====================[ display comments ]====================

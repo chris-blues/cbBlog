@@ -64,19 +64,33 @@ class AdminQueryBuilder extends QueryBuilder {
   }
 
   private function addTags($blogId, $tags) {
+
+//     echo "addTags({$blogId}, {$tags})<br>\n";
+//     dump_array($tags);
+
     foreach ($tags as $tagname => $tagId) {
       if ($tagId == NULL) continue;
+      echo "Adding $tagname ($tagId) ...";
+
       $statement = $this->Database->prepare("INSERT INTO `blog_tags_relations` (`blog`, `tag`) VALUES (:blog, :tag) ;");
       $statement->bindParam(':blog', $blogId);
       $statement->bindParam(':tag', $tagId);
       $result = $this->callExecution($statement);
-      if ($result !== true) $error["addTags"][$tagname] = true;
+      if ($result !== true) {
+        echo "FAILED!<br>\n";
+        $error["addTags"][$tagname] = true;
+      }
+      else echo "✔<br>\n";
     }
     if (isset($error)) return $error;
     else return true;
   }
 
-  private function insertTags ($blogId, $tags) {
+  private function insertTags($blogId, $tags) {
+
+//     echo "insertTags({$blogId}, {$tags})<br>\n";
+//     dump_array($tags);
+
     foreach ($tags as $tagname => $tagId) {
       $statement = $this->Database->prepare("INSERT INTO `blog_tags` (`tag`) VALUES (:tag) ;");
       $statement->bindParam(':tag', $tagname);
@@ -144,6 +158,7 @@ class AdminQueryBuilder extends QueryBuilder {
 
   private function checkoutTags($blogId, $tags) {
 //     echo '<div id="top_spacer"></div>';
+//     echo "<br>\ncheckoutTags($blogId, $tags);<br>\n";
 //     dump_array($tags);
 
     if(!is_array($tags)) {
@@ -166,6 +181,8 @@ class AdminQueryBuilder extends QueryBuilder {
     if (!is_array($sentTags)) {
       $sentTags = array();
     }
+//     echo "\$sentTags:\n";
+//     dump_array($sentTags);
 
     // get all available tags from database
     $tmp = $this->selectAllTags();
@@ -173,6 +190,11 @@ class AdminQueryBuilder extends QueryBuilder {
       $temp = $value->getdata();
       $allTags[$temp["tag"]] = $temp["id"];
     }
+    if (!is_array($allTags)) {
+      $allTags = array();
+    }
+//     echo "All available Tags:\n";
+//     dump_array($allTags);
 
     // get the tags of this post that are already in the database
     $readTags = $this->getTagsOfBlogpost($blogId);
@@ -183,15 +205,21 @@ class AdminQueryBuilder extends QueryBuilder {
     if(!is_array($oldTags)) {
       $oldTags = array();
     }
+//     echo "\$oldTags:\n";
+//     dump_array($oldTags);
 
     // compare the arrays and invoke appropriate action
 
     // check for removed tags
+//     echo "check for removed tags:<br>\n";
+
     $removedTags = array_diff($oldTags, $sentTags);
     if (isset($removedTags) and count($removedTags) > 0) {
       if (!is_array($removedTags)) {
         $removedTags = array();
       }
+//       dump_array($removedTags);
+
       $result = $this->removeTags($blogId, $removedTags);
       if ($result !== true) {
         $error["checkoutTags"]["removeTags"] = $result;
@@ -202,18 +230,24 @@ class AdminQueryBuilder extends QueryBuilder {
       }
     }
 
-    // check for added tags
-    $newTags = array_diff($sentTags, $oldTags);
-    if (isset($newTags) and count($newTags) > 0) {
-      $result = $this->addTags($blogId, $newTags);
-      if ($result !== true) $error["checkoutTags"]["addTags"] = $result;
-    }
-
     // check for entirely new tags
+//     echo "check for entirely new tags<br>\n";
     $newTags = array_diff($sentTags, $allTags);
+//     dump_array($newTags);
+
     if (isset($newTags) and count($newTags) > 0) {
       $result = $this->insertTags($blogId, $newTags);
       if ($result !== true) $error["checkoutTags"]["insertTags"] = $result;
+    }
+
+    // check for added tags
+//     echo "check for added tags<br>\n";
+    $newTags = array_diff($sentTags, $oldTags);
+//     dump_array($newTags);
+
+    if (isset($newTags) and count($newTags) > 0) {
+      $result = $this->addTags($blogId, $newTags);
+      if ($result !== true) $error["checkoutTags"]["addTags"] = $result;
     }
 
     if (isset($error)) return $error;
@@ -309,6 +343,83 @@ class AdminQueryBuilder extends QueryBuilder {
 
     if (isset($error)) return $error;
     else return true;
+  }
+
+  public function createTables() {
+
+    $query["create_blog"] = "CREATE TABLE IF NOT EXISTS `blog` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ctime` int(11) NOT NULL,
+  `mtime` int(11) NOT NULL,
+  `head` text NOT NULL,
+  `text` longtext NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;";
+
+    $query["create_blog_tags"] = "CREATE TABLE IF NOT EXISTS `blog_tags` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tag` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `tag` (`tag`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;";
+
+    $query["create_blog_tags_relations"] = "CREATE TABLE IF NOT EXISTS `blog_tags_relations` (
+  `blog` int(11) NOT NULL,
+  `tag` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;";
+
+    $query["create_blog_comments"] = "CREATE TABLE IF NOT EXISTS `blog_comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `affiliation` int(11) NOT NULL,
+  `answerTo` int(11) NOT NULL,
+  `time` int(11) NOT NULL,
+  `name` text NOT NULL,
+  `email` text NOT NULL,
+  `website` text NOT NULL,
+  `comment` mediumtext NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;";
+
+    $tables = array("blog" => "", "blog_comments" => "", "blog_tags" => "", "blog_tags_relations" => "");
+
+    foreach ($tables as $key => $value) {
+      $statement = $this->Database->prepare("SHOW TABLES LIKE :table ;");
+      $statement->bindParam(':table', $key);
+      $result = $this->callExecution($statement);
+
+      if ($result !== true) {
+        $error["createTables"]["checkForTables"] = $result;
+      }
+
+      $data = $statement->fetchAll();
+//       dump_var($data);
+
+      if (count($data) > 0) {
+//         echo "Table {$key} exists. Nothing to do.<br>\n";
+        continue;
+      }
+      else {
+        $tables[$key] = "does not exist";
+        echo "Database table <b>$key</b> " . $tables[$key] . ". Creating... ";
+
+        $statement = $this->Database->prepare($query["create_$key"]);
+        $result = $this->callExecution($statement);
+        if ($result !== true) {
+          echo "FAILED!<br>\n";
+          $error["createTables"]["create_{$key}"] = $result;
+        }
+        else {
+          echo "✔<br>\n";
+        }
+      }
+    $counter++;
+    }
+
+      if (isset($error)) return $error;
+      else return true;
+
   }
 }
 

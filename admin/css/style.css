@@ -169,7 +169,7 @@ pre.debugCommentlist {
   float: right;
 }
 
-div#errors {
+div#errors, div.important {
   background-color: #FCC !important;
 }
 

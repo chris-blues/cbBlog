@@ -57,9 +57,12 @@ require_once("php/lib/initGettext.php");
 require_once("php/lib/db/Connection.php");
 require_once("php/lib/db/QueryBuilder.php");
 
-$query = new QueryBuilder(
-  Connection::make($config["database"])
-);
+$connect = Connection::make($config["database"]);
+if (is_object($connect)) {
+  $query = new QueryBuilder($connect);
+  $GLOBALS["DBdisconnected"] = false;
+}
+else $GLOBALS["DBdisconnected"] = true;
 
 
 // ########################
@@ -77,11 +80,14 @@ if (!isset($_GET["filter"]) or $_GET["filter"] == "") $filter = "";
 else $filter = $_GET["filter"];
 
 // ====================[ select query ]====================
-if (isset($_GET["id"]) and $_GET["id"] != "") {
-  $blogposts[$_GET["id"]] = $query->selectBlogpostsById($_GET["id"]);
+if (!$GLOBALS["DBdisconnected"]) {
+  if (isset($_GET["id"]) and $_GET["id"] != "") {
+    $blogposts[$_GET["id"]] = $query->selectBlogpostsById($_GET["id"]);
+  }
+  else {
+    $blogposts = $query->selectAllBlogposts($filter);
+  }
 }
-else {
-  $blogposts = $query->selectAllBlogposts($filter);
-}
+else $error["Database"]["connection_error"] = gettext("Not connected. Possibly wrong credentials.");
 
 ?>

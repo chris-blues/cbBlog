@@ -10,8 +10,15 @@ if (isset($_GET["category"]) and $_GET["category"] == "") unset($_GET["category"
 
 require_once("php/bootstrap.php");
 
+if ($GLOBALS["DBdisconnected"]) {
+  // take the shortcut to the settings view and die.
+  require_once("php/templates/view.settings.php");
+  require_once("php/templates/foot.php");
+  die;
+}
+
 ?>
-  <body>
+
     <div id="localeData"
          data-reallyDelete="<?php echo gettext("Do you really want to delete this?"); ?>"
     ></div>
@@ -19,6 +26,10 @@ require_once("php/bootstrap.php");
 
 
 // ====================[ perform DB operations before showing any content ]====================
+
+$result = $adminQuery->createTables();
+if ($result !== true) $error["createTables"] = $result;
+
 if ($_GET["job"] != "settings") {
   if ($_POST["job"] == "deleteComment") {
     $result = $adminQuery->deleteComment($_POST["id"]);
@@ -146,6 +157,6 @@ switch($_GET["job"]) {
   default:             require_once("php/templates/view.overview.php"); break;
 }
 
-require("php/templates/foot.php");
+require_once("php/templates/foot.php");
 
 ?>

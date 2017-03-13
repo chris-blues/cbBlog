@@ -2,9 +2,6 @@ ToDo:
 =====
 
 Refactor:
-* bubble and return $error[] recursively
-* different tables for released and unreleased posts
-* config GUI (database settings, admin password etc)
 * backtrack/pingback system
 
 * maybe as plugins?
