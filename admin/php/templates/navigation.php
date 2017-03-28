@@ -15,6 +15,8 @@ if ($_GET["job"] == "overview") { ?>
 <?php
   $released = gettext("released");
   $unreleased = gettext("unreleased");
+
+  if (!isset($_GET["category"])) $_GET["category"] = "released";
   switch ($_GET["category"]) {
     case "released":   $switchCategory = "unreleased"; $state = "released";   break;
     case "unreleased": $switchCategory = "released";   $state = "unreleased"; break;

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cbBlog\n"
-"POT-Creation-Date: 2017-03-13 04:17+0100\n"
-"PO-Revision-Date: 2017-03-13 04:17+0100\n"
+"POT-Creation-Date: 2017-03-13 04:43+0100\n"
+"PO-Revision-Date: 2017-03-13 04:43+0100\n"
 "Last-Translator: chris_blues <chris@musicchris.de>\n"
 "Language-Team: cbBlog Translations <chris@musicchris.de>\n"
 "Language: de_DE\n"
@@ -19,7 +19,7 @@ msgstr ""
 msgid "Do you really want to delete this?"
 msgstr "Wollen Sie das wirklich löschen?"
 
-#: admin/index.php:71 admin/php/templates/foot.php:8 index.php:69
+#: admin/index.php:71 admin/php/templates/foot.php:8 index.php:70
 msgid "The following errors have occured"
 msgstr "Folgende Fehler sind aufgetreten"
 
@@ -100,12 +100,12 @@ msgstr "Überschrift"
 msgid "article"
 msgstr "Artikel"
 
-#: admin/php/templates/view.overview.php:47 news_short.php:46
+#: admin/php/templates/view.overview.php:47 news_short.php:51
 #: php/templates/view.blogpost.php:42 php/templates/view.overview.php:13
 msgid "comment"
 msgstr "Kommentar"
 
-#: admin/php/templates/view.overview.php:48 news_short.php:47
+#: admin/php/templates/view.overview.php:48 news_short.php:52
 #: php/templates/view.blogpost.php:43 php/templates/view.comments-section.php:5
 #: php/templates/view.overview.php:14
 msgid "comments"
@@ -286,7 +286,7 @@ msgstr "diesen Feed löschen"
 msgid "new feed"
 msgstr "Neuer Feed"
 
-#: index.php:34
+#: index.php:35 news_short.php:8
 msgid ""
 "We were not able to find anything. Either there's nothing posted yet, of "
 "there's a problem with the database connection."
@@ -294,11 +294,11 @@ msgstr ""
 "Wir konnten nichts finden. Entweder wurde noch nichts gepostet, oder es gibt "
 "ein Problem mit der Datanbankverbindung."
 
-#: index.php:67
+#: index.php:68
 msgid "Whoops! Something isn't right..."
 msgstr "Hoppla! Hier stimmt irgendetwas nicht..."
 
-#: news_short.php:50 php/templates/view.blogpost.php:49
+#: news_short.php:55 php/templates/view.blogpost.php:49
 #: php/templates/view.overview.php:17
 msgid "no comments"
 msgstr "Keine Kommentare"

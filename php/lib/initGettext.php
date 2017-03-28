@@ -1,6 +1,6 @@
 <?php
 
-$locales = scandir("locale");
+$locales = scandir($path . "locale");
 foreach ($locales as $key => $language) {
   if ($language == "." or $language == ".." or !is_dir($language)) unset($locales[$key]);
 }

@@ -6,6 +6,14 @@ require_once("../php/lib/functions.php");
 $link = assembleGetString("string");
 require_once("lib/functions.php");
 
+// ###############
+// ##  Configs  ##
+// ###############
+$config["database"] = require("../php/config/db.php");
+$config["blog"]     = require("../php/config/blog.php");
+$config["feeds"]    = require("../php/config/feeds.php");
+$insertTags = require_once("../php/config/bbtags.php");
+
 
 // ##########################
 // ##  Debugging settings  ##
@@ -27,15 +35,6 @@ ini_set("error_log", "logs/php-error.log");
 if ($_GET["job"] == "settings" and isset($_GET["operation"]) and $_GET["operation"] != "") {
   require_once("php/lib/" . $_GET["operation"] . ".php");
 }
-
-
-// ###############
-// ##  Configs  ##
-// ###############
-$config["database"] = require("../php/config/db.php");
-$config["blog"]     = require("../php/config/blog.php");
-$config["feeds"]    = require("../php/config/feeds.php");
-$insertTags = require_once("../php/config/bbtags.php");
 
 require_once('templates/head.php');
 ?>

@@ -23,7 +23,7 @@
     <meta name="page-topic" content="<?php echo $_SERVER["SERVER_NAME"]; ?> - admin-area">
     <meta name="description" content="<?php echo $_SERVER["SERVER_NAME"]; ?> - admin-area">
 
-    <?php if ($reload == true) { ?>
+    <?php if (isset($reload) and $reload == true) { ?>
     <meta http-equiv="refresh" content="0;<?php echo $target; ?>">
     <?php } ?>
 

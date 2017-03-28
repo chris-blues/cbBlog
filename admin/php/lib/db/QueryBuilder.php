@@ -13,8 +13,9 @@ class AdminQueryBuilder extends QueryBuilder {
       $result = $statement->execute();
     } catch(PDOException $e) {
       $error["callExecution"] = $e->getMessage();
-      // die($e->getMessage());
+      die($e->getMessage());
     }
+//     dump_var($error);
     if (isset($error)) return $error;
     else return $result;
   }
@@ -391,36 +392,121 @@ class AdminQueryBuilder extends QueryBuilder {
 
       if ($result !== true) {
         $error["createTables"]["checkForTables"] = $result;
+        echo "<p class=\"remark\">Error! CheckForTables failed:<pre>" . $result . "</pre></p>";
       }
 
       $data = $statement->fetchAll();
 //       dump_var($data);
 
       if (count($data) > 0) {
-//         echo "Table {$key} exists. Nothing to do.<br>\n";
+        $tablename = $data[0][0];
+//         echo "Table {$key} (returned: " . $tablename . ") exists. Nothing to do.<br>\n";
+
+        if ( strcmp($tablename, str_replace("-", "_", $tablename) ) != 0 ) {
+          echo "<p class=\"center\">Database update needed! We have &lt; 0.13 format!</p>\n";
+          $GLOBALS["DatabaseUpdateNeeded"] = 0.13;
+        }
         continue;
       }
       else {
         $tables[$key] = "does not exist";
-        echo "Database table <b>$key</b> " . $tables[$key] . ". Creating... ";
+        echo "<p class=\"center\">Database table <b>$key</b> " . $tables[$key] . ". Creating... ";
 
         $statement = $this->Database->prepare($query["create_$key"]);
         $result = $this->callExecution($statement);
         if ($result !== true) {
-          echo "FAILED!<br>\n";
+          echo "FAILED!</p>\n";
           $error["createTables"]["create_{$key}"] = $result;
         }
         else {
-          echo "✔<br>\n";
+          echo "✔</p>\n";
         }
       }
-    $counter++;
+//     $counter++;
     }
 
-      if (isset($error)) return $error;
-      else return true;
+    if (isset($error)) return $error;
+    else return true;
 
   }
+
+  public function renameTable($old, $new) {
+    $statement = $this->Database->prepare("RENAME TABLE `$old` TO `$new` ;");
+    $result = $this->callExecution($statement);
+    if ($result !== true) {
+      $error["renameTable"][$old] = true;
+    }
+
+    if (isset($error)) return $error;
+    else return true;
+  }
+
+  public function selectOldBlogposts() {
+    $statement = $this->Database->prepare("SELECT * FROM blog;");
+    $result = $this->callExecution($statement);
+    if ($result) return $statement->fetchAll(PDO::FETCH_CLASS, "Blogpost0_13");
+    else return false;
+  }
+
+  public function selectOldTags() {
+    $statement = $this->Database->prepare("SELECT * FROM `blog-tags`;");
+    $result = $this->callExecution($statement);
+    if ($result) return $statement->fetchAll(PDO::FETCH_CLASS, "Tags");
+    else return false;
+  }
+
+  public function insertOldTags($query) {
+    $statement = $this->Database->prepare($query);
+    $result = $this->callExecution($statement);
+    if ($result !== true) {
+      $error["insertOldTags"] = true;
+    }
+
+    if (isset($error)) return $error;
+    else return true;
+  }
+
+  public function dropTags() {
+    $statement = $this->Database->prepare("ALTER TABLE `blog` DROP `tags`");
+    $result = $this->callExecution($statement);
+    if ($result !== true) {
+      $error["dropTags"] = true;
+    }
+
+    $statement = $this->Database->prepare("ALTER TABLE `blog` DROP `sorttime`");
+    $result = $this->callExecution($statement);
+    if ($result !== true) {
+      $error["dropSorttime"] = true;
+    }
+
+    if (isset($error)) return $error;
+    else return true;
+  }
+
+  public function renameIndex() {
+    $statement = $this->Database->prepare("ALTER TABLE `blog` CHANGE `index` `id` INT( 11 ) NOT NULL AUTO_INCREMENT; ");
+    $result = $this->callExecution($statement);
+    if ($result !== true) {
+      $error["renameIndex"] = true;
+    }
+
+    $statement = $this->Database->prepare("ALTER TABLE `blog` CHANGE `ctime` `mtime` INT( 11 );");
+    $result = $this->callExecution($statement);
+    if ($result !== true) {
+      $error["renameCtime"] = true;
+    }
+
+    $statement = $this->Database->prepare("ALTER TABLE `blog` CHANGE `time` `ctime` INT( 11 );");
+    $result = $this->callExecution($statement);
+    if ($result !== true) {
+      $error["renameTime"] = true;
+    }
+
+    if (isset($error)) return $error;
+    else return true;
+  }
 }
+
+// echo "<p class=\"center\">admin/QueryBuilder.php</p>";
 
 ?>

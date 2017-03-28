@@ -12,6 +12,7 @@ class QueryBuilder {
     try {
       $result = $statement->execute();
     } catch(PDOException $e) {
+//       $error["Database"]["callPDOexecution"] = gettext("The PDO call returned an error");
       die($e->getMessage());
     }
     return $result;
@@ -135,5 +136,7 @@ class QueryBuilder {
     return $result;
   }
 }
+
+// echo "<p class=\"center\">QueryBuilder.php</p>";
 
 ?>

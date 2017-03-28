@@ -10,7 +10,7 @@ if (isset($_GET["category"]) and $_GET["category"] == "") unset($_GET["category"
 
 require_once("php/bootstrap.php");
 
-if ($GLOBALS["DBdisconnected"]) {
+if (isset($GLOBALS["DBdisconnected"]) and $GLOBALS["DBdisconnected"] === true) {
   // take the shortcut to the settings view and die.
   require_once("php/templates/view.settings.php");
   require_once("php/templates/foot.php");
@@ -28,10 +28,18 @@ if ($GLOBALS["DBdisconnected"]) {
 // ====================[ perform DB operations before showing any content ]====================
 
 $result = $adminQuery->createTables();
-if ($result !== true) $error["createTables"] = $result;
+if ($result !== true) {
+  $error["createTables"] = $result;
+}
+
+if (isset($GLOBALS["DatabaseUpdateNeeded"]) and $GLOBALS["DatabaseUpdateNeeded"] < 0.14) {
+  echo "<p class=\"remark\">Calling Database Upgrade (0.13 -&gt; 0.14)<br>\n";
+  require_once("php/lib/upgrade0.13-0.14.php");
+  echo "</p>\n";
+}
 
 if ($_GET["job"] != "settings") {
-  if ($_POST["job"] == "deleteComment") {
+  if (isset($_POST["job"]) and $_POST["job"] == "deleteComment") {
     $result = $adminQuery->deleteComment($_POST["id"]);
     if ($result !== true) {
       $error["query_deleteComment"] = $result;
@@ -97,7 +105,7 @@ if ($_GET["job"] != "addBlog" and $_GET["job"] != "settings") {
 
 
 // ====================[ update RSS ]====================
-if ($RSSupdateNeeded) {
+if (isset($RSSupdateNeeded) and $RSSupdateNeeded === true) {
 
   require_once("php/lib/RSS.php");
 
@@ -155,6 +163,21 @@ switch($_GET["job"]) {
   case "viewBlog":     require_once("php/templates/view.viewblog.php"); break;
   case "settings":     require_once("php/templates/view.settings.php"); break;
   default:             require_once("php/templates/view.overview.php"); break;
+}
+
+// ====================[ display errors ]====================
+
+if (isset($error)) { ?>
+      <div class="remark">
+        <h1><?php echo gettext("Whoops! Something isn't right..."); ?></h1>
+        <div id="errors" class="commentText">
+          <p><?php echo gettext("The following errors have occured"); ?></p>
+          <ol>
+            <?php if (isset($error)) showErrors($error); ?>
+          </ol>
+        </div>
+      </div>
+    <?php
 }
 
 require_once("php/templates/foot.php");

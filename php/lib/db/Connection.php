@@ -18,4 +18,6 @@ class Connection { // returns database object
   }
 }
 
+// echo "<p class=\"center\">Connection.php</p>";
+
 ?>
