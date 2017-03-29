@@ -1,6 +1,6 @@
 <?php
 
-$locales = scandir($path . "locale");
+$locales = scandir($locale_path . "/locale");
 foreach ($locales as $key => $language) {
   if ($language == "." or $language == ".." or !is_dir($language)) unset($locales[$key]);
 }
@@ -18,8 +18,11 @@ else {
 }
 if (!isset($locale) or $locale == "") $locale = "de_DE";                      // if all fails, use "en_GB"! (actually use inline gettext strings)
 
-if (!isset($path)) $path = "";
-$directory = $path . "locale";
+if ($locale == "de") $locale = "de_DE";
+if ($locale == "en") $locale = "en_GB";
+
+if (!isset($locale_path)) $locale_path = "";
+$directory = $locale_path . "/locale";
 $textdomain = "cbBlog";
 $locale .= ".utf8";
 

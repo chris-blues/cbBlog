@@ -1,19 +1,20 @@
 <?php
 
-$path = realpath(dirname(__FILE__));
+$GLOBALS["path"] = realpath(dirname(__FILE__));
+$locale_path = "";
 
 $startTime = microtime(true);
 
 $GLOBALS["displayMode"] = "full";
-require_once($path . "//php/bootstrap.php");
+require_once($GLOBALS["path"] . "/php/bootstrap.php");
 
 if (isset($_POST["job"])) {
-  if ($_POST["job"] == "addComment") require_once($path . "//php/lib/prepareComment.php");
+  if ($_POST["job"] == "addComment") require_once($GLOBALS["path"] . "/php/lib/prepareComment.php");
 }
 if (isset($_GET["job"])) {
   switch($_GET["job"]) {
-    case "verify": require_once($path . "//php/lib/verifyEmail.php"); break;
-    case "unsubscribe": require_once($path . "//php/lib/unsubscribe.php"); break;
+    case "verify": require_once($GLOBALS["path"] . "/php/lib/verifyEmail.php"); break;
+    case "unsubscribe": require_once($GLOBALS["path"] . "/php/lib/unsubscribe.php"); break;
   }
 }
 
@@ -58,9 +59,9 @@ if (isset($blogposts)) {
 
     if (isset($_GET["id"]) and $_GET["id"] != "") {
       $row["comments"] = $comments;
-      require($path . "/php/templates/view.blogpost.php");
+      require($GLOBALS["path"] . "/php/templates/view.blogpost.php");
     } else {
-      require($path . "/php/templates/view.overview.php");
+      require($GLOBALS["path"] . "/php/templates/view.overview.php");
     }
   }
 }
@@ -80,10 +81,10 @@ if (isset($error)) { ?>
 
 // ====================[ display comments ]====================
 if (isset($_GET["id"]) and $_GET["id"] != "") {
-  require_once($path . "//php/templates/view.comments-section.php");
+  require_once($GLOBALS["path"] . "/php/templates/view.comments-section.php");
 }
 ?>
 
 </div>
 
-<?php require_once($path . "//php/templates/view.foot.php"); ?>
+<?php require_once($GLOBALS["path"] . "/php/templates/view.foot.php"); ?>

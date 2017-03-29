@@ -1,7 +1,9 @@
 <?php
 
 $GLOBALS["displayMode"] = "short";
-require_once($path . "//php/bootstrap.php");
+$GLOBALS["path"] = realpath(dirname(__FILE__));
+$locale_path = $GLOBALS["path"];
+require_once($GLOBALS["path"] . "/php/bootstrap.php");
 
 if (isset($blogposts)) {
   if (count($blogposts) < 1) {
@@ -44,18 +46,16 @@ if (isset($blogposts)) {
           ?>
 
           <p class="notes">
-            (<a href="index.php<?php echo assembleGetString("string", array("id"=>$row["id"])); ?>#linkshowcomments">
+
             <?php
-              if ($row["num_comments"] > 0) {
+              if ($row["num_comments"] > 0) { ?>
+                (<a href="index.php<?php echo assembleGetString("string", array("id"=>$row["id"])); ?>#linkshowcomments">
+                <?php
                 echo $total_comments . " ";
                 if ($row["num_comments"] == 1) echo gettext("comment");
-                else echo gettext("comments");
-              }
-              else {
-                echo gettext("no comments");
+                else echo gettext("comments") . "</a>)";
               }
             ?>
-            </a>)
           </p>
 
           <?php

@@ -2,7 +2,7 @@
 
 $startTime = microtime(true);
 
-$path = realpath(dirname(__FILE__));
+$GLOBALS["path"] = realpath(dirname(__FILE__));
 
 // catch possible traps
 if (!isset($_GET["job"]) or $_GET["job"] == "") $_GET["job"] = "overview";
@@ -10,12 +10,12 @@ if (isset($_GET["id"]) and $_GET["id"] == "") unset($_GET["id"]);
 if (isset($_GET["category"]) and $_GET["category"] == "") unset($_GET["category"]);
 
 
-require_once($path . "/php/bootstrap.php");
+require_once($GLOBALS["path"] . "/php/bootstrap.php");
 
 if (isset($GLOBALS["DBdisconnected"]) and $GLOBALS["DBdisconnected"] === true) {
   // take the shortcut to the settings view and die.
-  require_once($path . "/php/templates/view.settings.php");
-  require_once($path . "/php/templates/foot.php");
+  require_once($GLOBALS["path"] . "/php/templates/view.settings.php");
+  require_once($GLOBALS["path"] . "/php/templates/foot.php");
   die;
 }
 
@@ -36,7 +36,7 @@ if ($result !== true) {
 
 if (isset($GLOBALS["DatabaseUpdateNeeded"]) and $GLOBALS["DatabaseUpdateNeeded"] < 0.14) {
   echo "<p class=\"remark\">Calling Database Upgrade (0.13 -&gt; 0.14)<br>\n";
-  require_once($path . "/php/lib/upgrade0.13-0.14.php");
+  require_once($GLOBALS["path"] . "/php/lib/upgrade0.13-0.14.php");
   echo "</p>\n";
 }
 
@@ -109,7 +109,7 @@ if ($_GET["job"] != "addBlog" and $_GET["job"] != "settings") {
 // ====================[ update RSS ]====================
 if (isset($RSSupdateNeeded) and $RSSupdateNeeded === true) {
 
-  require_once($path . "/php/lib/RSS.php");
+  require_once($GLOBALS["path"] . "/php/lib/RSS.php");
 
   foreach ($config["feeds"] as $key => $feed) {
 
@@ -141,7 +141,7 @@ if ($_GET["job"] != "settings") {
 }
 
 
-require_once($path . "/php/templates/navigation.php");
+require_once($GLOBALS["path"] . "/php/templates/navigation.php");
 
 
 
@@ -159,12 +159,12 @@ if ($blogposts) {
 
 // ====================[ very simple routing ]====================
 switch($_GET["job"]) {
-  case "showComments": require_once($path . "/php/templates/view.comments.php"); break;
-  case "addBlog":      require_once($path . "/php/templates/view.editblog.php"); break;
-  case "editBlog":     require_once($path . "/php/templates/view.editblog.php"); break;
-  case "viewBlog":     require_once($path . "/php/templates/view.viewblog.php"); break;
-  case "settings":     require_once($path . "/php/templates/view.settings.php"); break;
-  default:             require_once($path . "/php/templates/view.overview.php"); break;
+  case "showComments": require_once($GLOBALS["path"] . "/php/templates/view.comments.php"); break;
+  case "addBlog":      require_once($GLOBALS["path"] . "/php/templates/view.editblog.php"); break;
+  case "editBlog":     require_once($GLOBALS["path"] . "/php/templates/view.editblog.php"); break;
+  case "viewBlog":     require_once($GLOBALS["path"] . "/php/templates/view.viewblog.php"); break;
+  case "settings":     require_once($GLOBALS["path"] . "/php/templates/view.settings.php"); break;
+  default:             require_once($GLOBALS["path"] . "/php/templates/view.overview.php"); break;
 }
 
 // ====================[ display errors ]====================
@@ -182,6 +182,6 @@ if (isset($error)) { ?>
     <?php
 }
 
-require_once($path . "/php/templates/foot.php");
+require_once($GLOBALS["path"] . "/php/templates/foot.php");
 
 ?>

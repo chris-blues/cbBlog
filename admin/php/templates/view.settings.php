@@ -69,7 +69,7 @@
 
 
 
-      <div class="shadow settings<?php if ($GLOBALS["DBdisconnected"]) echo " important"; ?>" id="dbSettings">
+      <div class="shadow settings<?php if (isset($GLOBALS["DBdisconnected"]) and $GLOBALS["DBdisconnected"]) echo " important"; ?>" id="dbSettings">
         <h2><?php echo gettext("Database settings"); ?></h2>
         <hr>
         <form id="settings_db" action="index.php?job=settings&amp;operation=saveDBSettings" method ="post" accept-charset="UTF-8">

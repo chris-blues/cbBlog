@@ -16,7 +16,7 @@ $counter = 0;
 foreach ($row["comments"] as $Comment) {
   $counter++;
   $row = $Comment->getdata();
-  require("php/templates/view.comment.php");
+  require($GLOBALS["path"] . "/php/templates/view.comment.php");
 }
 
 if (isset($_GET["job"]) and $_GET["job"] == "verify" and $verified === true) { ?>
@@ -26,4 +26,4 @@ if (isset($_GET["job"]) and $_GET["job"] == "verify" and $verified === true) { ?
 <?php
 }
 
-require_once($path . "/php/templates/view.postform.php");
+require_once($GLOBALS["path"] . "/php/templates/view.postform.php");

@@ -65,7 +65,7 @@ foreach ($allTags as $id => $tag) { ?>
         <textarea id="adminEditBlogTextareaText" name="text"><?php echo htmlspecialchars($row["text"], ENT_COMPAT | ENT_HTML5, "UTF-8"); ?></textarea>
       </label>
 
-      <?php $path = "../"; require_once($path . "/../php/templates/view.smileys.php"); ?>
+      <?php $locale_path = "../"; require_once($locale_path . "/../php/templates/view.smileys.php"); ?>
 
       <div class="center">
         <button type="reset"><?php echo gettext("reset"); ?></button>

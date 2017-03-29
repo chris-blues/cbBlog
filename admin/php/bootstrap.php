@@ -1,18 +1,20 @@
 <?php
 
-$GLOBALS["version"] = trim(file_get_contents($path . "/../VERSION"));
-
-require_once($path . "/../php/lib/functions.php");
-$link = assembleGetString("string");
-require_once($path . "/lib/functions.php");
+$GLOBALS["version"] = trim(file_get_contents($GLOBALS["path"] . "/../VERSION"));
 
 // ###############
 // ##  Configs  ##
 // ###############
-$config["database"] = require("../php/config/db.php");
-$config["blog"]     = require("../php/config/blog.php");
-$config["feeds"]    = require("../php/config/feeds.php");
-$insertTags = require_once($path . "/../php/config/bbtags.php");
+$config["database"] = require($GLOBALS["path"] . "/../php/config/db.php");
+$config["blog"]     = require($GLOBALS["path"] . "/../php/config/blog.php");
+$config["feeds"]    = require($GLOBALS["path"] . "/../php/config/feeds.php");
+$insertTags = require_once($GLOBALS["path"] . "/../php/config/bbtags.php");
+
+
+require_once($GLOBALS["path"] . "/../php/lib/functions.php");
+
+$link = assembleGetString("string");
+require_once($GLOBALS["path"] . "/php/lib/functions.php");
 
 
 // ##########################
@@ -33,7 +35,7 @@ ini_set("error_log", "logs/php-error.log");
 
 // save settings, before loading them
 if ($_GET["job"] == "settings" and isset($_GET["operation"]) and $_GET["operation"] != "") {
-  require_once($path . "/php/lib/" . $_GET["operation"] . ".php");
+  require_once($GLOBALS["path"] . "/php/lib/" . $_GET["operation"] . ".php");
 }
 
 require_once('templates/head.php');
@@ -47,16 +49,18 @@ require_once('templates/head.php');
 // ######################
 // ##  Init gettext()  ##
 // ######################
-$path = "../";
-require_once($path . "/../php/lib/initGettext.php");
+$locale_path = $GLOBALS["path"] . "/../";
+require_once($GLOBALS["path"] . "/../php/lib/initGettext.php");
 
 
 // ###########################
 // ##  Connect to database  ##
 // ###########################
-require_once($path . "/../php/lib/db/Connection.php");
-require_once($path . "/../php/lib/db/QueryBuilder.php");
-require_once($path . "/php/lib/db/QueryBuilder.php");
+require_once($GLOBALS["path"] . "/../php/lib/db/Connection.php");
+require_once($GLOBALS["path"] . "/../php/lib/db/QueryBuilder.php");
+require_once($GLOBALS["path"] . "/php/lib/db/QueryBuilder.php");
+
+echo "Connecting to DB<br>\n";
 
 $connect = Connection::make($config["database"]);
 
@@ -72,10 +76,10 @@ if (is_object($connect)) {
 // ########################
 // ##  Blog dataclasses  ##
 // ########################
-require_once($path . "/../php/lib/Blogpost.php");
-require_once($path . "/../php/lib/Tags.php");
-require_once($path . "/../php/lib/Filters.php");
-require_once($path . "/../php/lib/Comment.php");
+require_once($GLOBALS["path"] . "/../php/lib/Blogpost.php");
+require_once($GLOBALS["path"] . "/../php/lib/Tags.php");
+require_once($GLOBALS["path"] . "/../php/lib/Filters.php");
+require_once($GLOBALS["path"] . "/../php/lib/Comment.php");
 
 // ====================[ cleanup/get $_GET["filter"] ]====================
 if (!isset($_GET["filter"]) or $_GET["filter"] == "") $filter = "";

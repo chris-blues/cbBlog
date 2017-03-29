@@ -1,6 +1,6 @@
 <?php
 
-if ($_POST["job"] == "editComment") {
+if (isset($_POST["job"]) and $_POST["job"] == "editComment") {
   $adminQuery->updateComment($_POST["id"], $_POST["text"]);
 }
 
@@ -25,7 +25,7 @@ if ($_POST["job"] == "editComment") {
         <?php echo $insertTags[$tag]["open"]; ?>
         </button>
       <?php } ?>
-      <?php $path = "../"; require("../php/templates/view.smileys.php"); ?><br>
+      <?php require($locale_path . "/php/templates/view.smileys.php"); ?><br>
       <button type="reset" id="buttonReset"><?php echo gettext("reset"); ?></button>
       <button type="button" id="buttonSave"><?php echo gettext("save"); ?></button>
     </div>
@@ -45,7 +45,7 @@ $counter = 0;
 foreach ($comments as $Comment) {
   $counter++;
   $row = $Comment->getdata();
-  require("php/templates/view.comment.php");
+  require($GLOBALS["path"] . "/php/templates/view.comment.php");
 }
 
 ?>

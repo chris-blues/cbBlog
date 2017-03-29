@@ -116,7 +116,7 @@
             <?php echo $insertTags[$tag]["open"]; ?>
           </button>
   <?php } ?>
-          <?php require("php/templates/view.smileys.php"); ?>
+          <?php require($GLOBALS["path"] . "/php/templates/view.smileys.php"); ?>
       </div>
       <div class="center">
         <button type="reset"> &lt;&lt;&lt; <?php echo gettext("Back"); ?> </button>

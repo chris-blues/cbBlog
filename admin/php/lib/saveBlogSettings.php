@@ -12,7 +12,7 @@ else $_POST["show_debug"] = true;
 if (!isset($_POST["log_debug"])) $_POST["log_debug"] = false;
 else $_POST["log_debug"] = true;
 
-$oldSettings = require("../php/config/blog.php");
+$oldSettings = require($GLOBALS["path"] . "/../php/config/blog.php");
 foreach ($oldSettings as $key => $value) {
   if (!isset($_POST[$key])) $error["saveBlog_{$key}"] = "$key could not be found in old config!";
 }
