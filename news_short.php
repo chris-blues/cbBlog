@@ -70,4 +70,3 @@ if (isset($blogposts)) {
 <?php
   }
 ?>
-

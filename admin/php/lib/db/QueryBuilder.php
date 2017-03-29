@@ -496,6 +496,12 @@ class AdminQueryBuilder extends QueryBuilder {
       $error["renameIndex"] = true;
     }
 
+    $statement = $this->Database->prepare("ALTER TABLE `blog-comments` CHANGE `number` `id` INT( 11 ) NOT NULL AUTO_INCREMENT; ");
+    $result = $this->callExecution($statement);
+    if ($result !== true) {
+      $error["renameIndex"] = true;
+    }
+
     $statement = $this->Database->prepare("ALTER TABLE `blog` CHANGE `ctime` `mtime` INT( 11 );");
     $result = $this->callExecution($statement);
     if ($result !== true) {
