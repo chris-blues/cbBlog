@@ -1,7 +1,7 @@
 <?php
 
 $GLOBALS["displayMode"] = "short";
-require_once($path . "/php/bootstrap.php");
+require_once($path . "//php/bootstrap.php");
 
 if (isset($blogposts)) {
   if (count($blogposts) < 1) {
