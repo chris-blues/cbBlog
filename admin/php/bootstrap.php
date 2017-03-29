@@ -60,8 +60,6 @@ require_once($GLOBALS["path"] . "/../php/lib/db/Connection.php");
 require_once($GLOBALS["path"] . "/../php/lib/db/QueryBuilder.php");
 require_once($GLOBALS["path"] . "/php/lib/db/QueryBuilder.php");
 
-echo "Connecting to DB<br>\n";
-
 $connect = Connection::make($config["database"]);
 
 if (is_object($connect)) {
