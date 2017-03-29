@@ -127,7 +127,7 @@ $tag = gettext("This feed will be filled with blogposts with this tag.");
           <?php } ?>
 
           <?php
-          if ($_GET["new"] == "feed") {
+          if (isset($_GET["new"]) and $_GET["new"] == "feed") {
             $newFeed = array("name" => "", "title" => "", "author" => "", "description" => "", "language" => "", "blogCall" => "", "tag" => "");
           ?>
 

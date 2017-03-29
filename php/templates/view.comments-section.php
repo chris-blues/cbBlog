@@ -26,4 +26,4 @@ if (isset($_GET["job"]) and $_GET["job"] == "verify" and $verified === true) { ?
 <?php
 }
 
-require_once("php/templates/view.postform.php");
+require_once($path . "php/templates/view.postform.php");
