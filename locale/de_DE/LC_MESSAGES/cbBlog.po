@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cbBlog\n"
-"POT-Creation-Date: 2017-03-13 04:43+0100\n"
-"PO-Revision-Date: 2017-03-13 04:43+0100\n"
+"POT-Creation-Date: 2017-03-29 15:07+0200\n"
+"PO-Revision-Date: 2017-03-29 15:07+0200\n"
 "Last-Translator: chris_blues <chris@musicchris.de>\n"
 "Language-Team: cbBlog Translations <chris@musicchris.de>\n"
 "Language: de_DE\n"
@@ -19,9 +19,14 @@ msgstr ""
 msgid "Do you really want to delete this?"
 msgstr "Wollen Sie das wirklich löschen?"
 
-#: admin/index.php:71 admin/php/templates/foot.php:8 index.php:70
+#: admin/index.php:79 admin/index.php:174 admin/php/templates/foot.php:8
+#: index.php:70
 msgid "The following errors have occured"
 msgstr "Folgende Fehler sind aufgetreten"
+
+#: admin/index.php:172 index.php:68
+msgid "Whoops! Something isn't right..."
+msgstr "Hoppla! Hier stimmt irgendetwas nicht..."
 
 #: admin/php/templates/filterlist.php:3
 msgid "Filter"
@@ -39,16 +44,16 @@ msgstr "veröffentlicht"
 msgid "unreleased"
 msgstr "nicht veröffentlicht"
 
-#: admin/php/templates/navigation.php:27
+#: admin/php/templates/navigation.php:29
 #: admin/php/templates/view.overview.php:55
 msgid "edit blogpost"
 msgstr "Artikel bearbeiten"
 
-#: admin/php/templates/navigation.php:30
+#: admin/php/templates/navigation.php:32
 msgid "view blogpost"
 msgstr "Artikel ansehen"
 
-#: admin/php/templates/navigation.php:34 php/templates/view.blogpost.php:13
+#: admin/php/templates/navigation.php:36 php/templates/view.blogpost.php:13
 msgid "back"
 msgstr "Zurück"
 
@@ -293,10 +298,6 @@ msgid ""
 msgstr ""
 "Wir konnten nichts finden. Entweder wurde noch nichts gepostet, oder es gibt "
 "ein Problem mit der Datanbankverbindung."
-
-#: index.php:68
-msgid "Whoops! Something isn't right..."
-msgstr "Hoppla! Hier stimmt irgendetwas nicht..."
 
 #: news_short.php:55 php/templates/view.blogpost.php:49
 #: php/templates/view.overview.php:17
