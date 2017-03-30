@@ -144,8 +144,8 @@ class Email {
     if (!mail($this->to, $this->subject, $this->message, $this->header)) {
       $error["mail_admin"] = true;
       logErrors($error);
-      $mailbody = $header . "To: " . $this->to . "\r\nSubject: " . $subject . "\r\n\r\n" . $this->message;
-      logMailError($_POST["name"], $_POST["notificationTo"], $_POST["affiliation"], $address, $mailbody);
+      $mailbody = $this->header . "To: " . $this->to . "\r\nSubject: " . $this->subject . "\r\n\r\n" . $this->message;
+      logMailError($_POST["name"], $_POST["notificationTo"], $_POST["affiliation"], $this->to, $mailbody);
       return $error;
     } else {
       return true;

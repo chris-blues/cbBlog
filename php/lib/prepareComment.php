@@ -85,7 +85,7 @@ else { $comment["comment"] = $tmp; }
 
 
 // ====================[ finally output the response! ]====================
-if (count($error["prepareComment"]) > 0) {
+if (isset($error) and count($error["prepareComment"]) > 0) {
 
   echo "Errors:\n";
 

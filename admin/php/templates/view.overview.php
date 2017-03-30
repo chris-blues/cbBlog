@@ -67,7 +67,7 @@
               foreach ($tags as $key => $value) {
               $tag = $value->getdata();
             ?>
-            <a class="blogpost_taglist shadow notes<?php if ($_GET["filter"] == $tag["tag"]) echo " active"; if ($tag["tag"] == "unreleased") echo " unreleased"; ?>"
+            <a class="blogpost_taglist shadow notes<?php if (isset($_GET["filter"]) and $_GET["filter"] == $tag["tag"]) echo " active"; if ($tag["tag"] == "unreleased") echo " unreleased"; ?>"
                href="<?php echo $_SERVER["PHP_SELF"] . assembleGetString("string", array("filter" => $tag["tag"])); ?>">
               <?php echo $tag["tag"]; ?>
             </a>
