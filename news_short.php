@@ -17,12 +17,15 @@ if (isset($blogposts)) {
   $maxPosts = 8;
 
   $link = $config["blog"]["blog_call"];
-    $tmp = explode("?", $config["blog"]["blog_call"]);
-    $temp = explode("&", $tmp[1]);
-    foreach ($temp as $key => $value) {
-      $tmp = explode("=", $value);
-      $getComponents[$tmp[0]] = $tmp[1];
-    }
+  $tmp = explode("?", $config["blog"]["blog_call"]);
+  $temp = explode("&", $tmp[1]);
+  foreach ($temp as $key => $value) {
+    $tmp = explode("=", $value);
+    $getComponents[$tmp[0]] = $tmp[1];
+  }
+  foreach ($config["blog"]["permalinkIgnore"] as $key => $value) {
+    $getComponents[$key] = "";
+  }
 
   for ($i = 0; $i < $maxPosts; $i++) {
     $row = $blogposts[$i]->getdata();
