@@ -62,7 +62,7 @@ function assembleGetString($method = "", $newVars = array()) {
   if ($method == "array") return $tmpArray;
 
   if ($method == "" or $method == "string") {
-    if (count($tmpArray) > 0) {
+    if (isset($tmpArray) and count($tmpArray) > 0) {
       foreach ($tmpArray as $key => $value) {
         if ($counter == 0) $GETString = "?{$key}={$value}";
         else               $GETString .= "&amp;{$key}={$value}";
