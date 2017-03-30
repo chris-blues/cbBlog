@@ -203,7 +203,7 @@ class AdminQueryBuilder extends QueryBuilder {
       $tmp = $value->getdata();
       $oldTags[$tmp["tag"]] = $tmp["id"];
     }
-    if(!is_array($oldTags)) {
+    if(!isset($oldTags) or !is_array($oldTags)) {
       $oldTags = array();
     }
 //     echo "\$oldTags:\n";
@@ -274,8 +274,10 @@ class AdminQueryBuilder extends QueryBuilder {
 //     echo '<div id="top_spacer"></div>';
 //     dump_array($post);
 
+    $time = time();
+
     $statement = $this->Database->prepare("INSERT INTO `blog` (ctime, head, text) VALUES (:ctime, :head, :text);");
-    $statement->bindParam(':ctime', time());
+    $statement->bindParam(':ctime', $time);
     $statement->bindParam(':head', $post["head"]);
     $statement->bindParam(':text', $post["text"]);
     $result = $this->callExecution($statement);

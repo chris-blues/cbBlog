@@ -52,6 +52,7 @@ class RSS {
 
       $counter = 1;
       $maxPosts = 15;
+      $body = "";
 
       foreach ($this->posts as $key => $Post) {
 
