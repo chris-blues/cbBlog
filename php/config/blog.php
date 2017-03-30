@@ -3,6 +3,7 @@
 return [
   "standalone" => true,
   "showProcessingTime" => true,
+  "blog_call" => "",
   "language" => "",
   "debug_level" => "none",
   "show_debug" => true,

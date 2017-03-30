@@ -23,6 +23,8 @@ $insertTags = require_once($GLOBALS["path"] . "/php/config/bbtags.php");
 
 if ($config["blog"]["standalone"] and $GLOBALS["displayMode"] != "short") require_once($GLOBALS["path"] . "/php/templates/view.head.php");
 
+dump_array($config);
+
 
 // ##########################
 // ##  Debugging settings  ##

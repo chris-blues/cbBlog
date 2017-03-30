@@ -18,6 +18,9 @@
           <label for="blogSettings_showProcessingTime" title="<?php echo gettext("If checked, this will show the time needed for processing on each page."); ?>">showProcessingTime</label>
             <input id="blogSettings_showProcessingTime" type="checkbox" name="showProcessingTime" value="showProcessingTime" placeholder="showProcessingTime"<?php echo $config["blog"]["showProcessingTime"] ? " checked" : ""; ?>><br>
 
+          <label for="blogSettings_blogCall" title="<?php echo gettext("The minimum URI, how the blog is called up."); ?>">blog_call</label>
+            <input id="blogSettings_blogCall" type="text" name="showProcessingTime" value="showProcessingTime" placeholder="index.php?page=blog"<?php echo $config["blog"]["blog_call"]; ?>><br>
+
           <label for="blogSettings_language" title="<?php echo gettext("You could pass a default language. This will override the visitors settings. Use the following format: en_GB or de_DE"); ?>">language</label>
             <input id="blogSettings_language" type="text" name="language" placeholder="language" value="<?php echo $config["blog"]["language"]; ?>"><br>
 
