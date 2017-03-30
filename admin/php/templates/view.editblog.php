@@ -59,10 +59,10 @@ foreach ($allTags as $id => $tag) { ?>
       </div><br>
 
       <label><?php echo gettext("heading"); ?>:<br>
-        <input id="adminEditBlogTextareaHead" type="text" name="head" value="<?php echo $row["head"]; ?>">
+        <input id="adminEditBlogTextareaHead" type="text" name="head" value="<?php if (isset($row["head"])) echo $row["head"]; ?>">
       </label><br>
       <label><?php echo gettext("article"); ?>:<br>
-        <textarea id="adminEditBlogTextareaText" name="text"><?php echo htmlspecialchars($row["text"], ENT_COMPAT | ENT_HTML5, "UTF-8"); ?></textarea>
+        <textarea id="adminEditBlogTextareaText" name="text"><?php if (isset($row["text"])) echo htmlspecialchars($row["text"], ENT_COMPAT | ENT_HTML5, "UTF-8"); ?></textarea>
       </label>
 
       <?php require_once($locale_path . "php/templates/view.smileys.php"); ?>
