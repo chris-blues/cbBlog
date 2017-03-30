@@ -150,7 +150,7 @@ if($_GET["job"] != "showComments") { ?>
 <?php }
 
 
-if ($blogposts) {
+if (isset($blogposts) and $blogposts) {
   foreach ($blogposts as $id => $Post) {
     $row = $Post->getdata();
     $row["tags"] = $adminQuery->getTagsOfBlogpost($row["id"]);
