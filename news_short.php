@@ -49,8 +49,7 @@ if (isset($blogposts)) {
 
             <?php
               if ($row["num_comments"] > 0) { ?>
-                (<a href="index.php<?php echo assembleGetString("string", array("id"=>$row["id"])); ?>#linkshowcomments">
-                <?php echo $total_comments . " ";
+                (<a href="index.php<?php echo assembleGetString("string", array("id"=>$row["id"])); ?>#linkshowcomments"><?php echo $total_comments . " ";
                 if ($row["num_comments"] == 1) echo gettext("comment");
                 else echo gettext("comments") . "</a>)";
               }
