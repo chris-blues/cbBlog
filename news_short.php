@@ -15,6 +15,15 @@ if (isset($blogposts)) {
 
 <?php
   $maxPosts = 8;
+
+  $link = $config["blog"]["blog_call"];
+    $tmp = explode("?", $config["blog"]["blog_call"]);
+    $temp = explode("&", $tmp[1]);
+    foreach ($temp as $key => $value) {
+      $tmp = explode("=", $value);
+      $getComponents[$tmp[0]] = $tmp[1];
+    }
+
   for ($i = 0; $i < $maxPosts; $i++) {
     $row = $blogposts[$i]->getdata();
 
@@ -35,10 +44,13 @@ if (isset($blogposts)) {
     $row["num_comments"] = count($comments);
 
     $head = strip_tags($row["head"]);
+
+    $linkComponents = $getComponents;
+    $linkComponents["id"] = $row["id"];
     ?>
 
     <li>
-      <a href="<?php echo $config["blog"]["blog_call"] . assembleGetString("string", array("id"=>$row["id"])); ?>"><?php echo $head; ?></a>
+      <a href="<?php echo assembleGetString("string", $linkComponents);; ?>"><?php echo $head; ?></a>
       <?php
 
         if (count($row["num_comments"]) > 0) {
