@@ -53,7 +53,7 @@ if (isset($blogposts)) {
     ?>
 
     <li>
-      <a href="<?php echo assembleGetString("string", $linkComponents);; ?>"><?php echo $head; ?></a>
+      <a href="<?php echo assembleGetString("string", $linkComponents); ?>"><?php echo $head; ?></a>
       <?php
 
         if (count($row["num_comments"]) > 0) {
@@ -64,7 +64,7 @@ if (isset($blogposts)) {
 
             <?php
               if ($row["num_comments"] > 0) { ?>
-                (<a href="<?php echo $config["blog"]["blog_call"] . assembleGetString("string", array("id"=>$row["id"])); ?>#linkshowcomments"><?php echo $total_comments . " ";
+                (<a href="<?php echo assembleGetString("string", $linkComponents); ?>#linkshowcomments"><?php echo $total_comments . " ";
                 if ($row["num_comments"] == 1) echo gettext("comment");
                 else echo gettext("comments") . "</a>)";
               }
