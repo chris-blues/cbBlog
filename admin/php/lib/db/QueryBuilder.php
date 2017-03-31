@@ -49,8 +49,8 @@ class AdminQueryBuilder extends QueryBuilder {
     $statement = $this->Database->prepare("UPDATE `blog_comments` SET `comment` = :comment WHERE `id` = :id ;");
     $statement->bindParam(':comment', $comment);
     $statement->bindParam(':id', $id);
+    $result = $this->callExecution($statement);
     if ($result !== true) $error["updateComment"] = true;
-
     if (isset($error)) return $error;
     else return true;
   }
