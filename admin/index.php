@@ -56,7 +56,7 @@ if ($_GET["job"] != "settings") {
     $_GET["job"] = "overview";
     unset($_GET["id"]);
   }
-  if ($_GET["job"] == "viewBlog" and $_GET["operation"] == "insertBlog") {
+  if ($_GET["job"] == "viewBlog" and isset($_GET["operation"]) and $_GET["operation"] == "insertBlog") {
     $newId = $adminQuery->insertBlog($_POST);
     if (!is_numeric($newId)) {
       $error["query_insertBlog"] = $newId;
@@ -66,7 +66,7 @@ if ($_GET["job"] != "settings") {
       $RSSupdateNeeded = true;
     }
   }
-  if ($_GET["job"] == "viewBlog" and $_GET["operation"] == "updateBlog") {
+  if ($_GET["job"] == "viewBlog" and isset($_GET["operation"]) and $_GET["operation"] == "updateBlog") {
     $result = $adminQuery->updateBlog($_POST);
     if ($result !== true) { $error["query_updateBlog"] = $result; }
     else $RSSupdateNeeded = true;
