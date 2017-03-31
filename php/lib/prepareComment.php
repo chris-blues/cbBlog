@@ -52,11 +52,14 @@ if (!filter_var($tmp, FILTER_VALIDATE_EMAIL) and strlen($tmp) < 0) {
     $error["prepareComment"]["email"] = true;
   }
 } else { $comment["email"] = $tmp; }
-// Lets check if this email is already verified, if not put hash into DB!
-$verified = $query->selectThisEmail($comment["affiliation"], $tmp);
-if (count($verified) == 0) {
-  $comment["hash"] = hash('sha256', $_SERVER["SERVER_NAME"] . $comment["email"]);
-  $firstpost = true;
+
+if (isset($comment["email"]) and $comment["email"] != "") {
+  // Lets check if this email is already verified, if not put hash into DB!
+  $verified = $query->selectThisEmail($comment["affiliation"], $tmp);
+  if (count($verified) == 0) {
+    $comment["hash"] = hash('sha256', $_SERVER["SERVER_NAME"] . $comment["email"]);
+    $firstpost = true;
+  }
 }
 
 
