@@ -71,17 +71,17 @@ class AdminQueryBuilder extends QueryBuilder {
 
     foreach ($tags as $tagname => $tagId) {
       if ($tagId == NULL) continue;
-      echo "Adding $tagname ($tagId) ...";
+//       echo "Adding $tagname ($tagId) ...";
 
       $statement = $this->Database->prepare("INSERT INTO `blog_tags_relations` (`blog`, `tag`) VALUES (:blog, :tag) ;");
       $statement->bindParam(':blog', $blogId);
       $statement->bindParam(':tag', $tagId);
       $result = $this->callExecution($statement);
       if ($result !== true) {
-        echo "FAILED!<br>\n";
+//         echo "FAILED!<br>\n";
         $error["addTags"][$tagname] = true;
       }
-      else echo "✔<br>\n";
+//       else echo "✔<br>\n";
     }
     if (isset($error)) return $error;
     else return true;
