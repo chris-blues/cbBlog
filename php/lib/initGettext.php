@@ -9,10 +9,12 @@ if ($config["blog"]["language"] != "") $locale = $config["blog"]["language"]; //
 else {
   if (isset($_GET["lang"])) $locale = $_GET["lang"];                          // if we have some user-setting from the URI then use this
   else {
-    $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);                   // if still nothing, try browser preference
-    switch ($lang) {
-      case "de": $locale = "de_DE"; break;
-      case "en": $locale = "en_GB"; break;
+    if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+      $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);                   // if still nothing, try browser preference
+      switch ($lang) {
+        case "de": $locale = "de_DE"; break;
+        case "en": $locale = "en_GB"; break;
+      }
     }
   }
 }

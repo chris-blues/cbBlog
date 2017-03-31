@@ -24,6 +24,8 @@ $text = parse(nl2br($post, false));
           echo $linkWebsite;
         }
         else echo $row["name"];
+
+        if ($row["email"] != "") echo "<span class=\"notes\">(" . $row["email"] . ")</span>\n";
         ?>
     </h3>
     <p class="notes inline"><?php echo date("d.M.Y H:i",$row["time"]); ?></p>
