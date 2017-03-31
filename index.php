@@ -87,4 +87,4 @@ if (isset($_GET["id"]) and $_GET["id"] != "") {
 
 </div>
 
-<?php if ($config["blog"]["standalone"] and $GLOBALS["displayMode"] != "short") require_once($GLOBALS["path"] . "/php/templates/view.foot.php"); ?>
+<?php if ($config["blog"]["standalone"]) require_once($GLOBALS["path"] . "/php/templates/view.foot.php"); ?>
