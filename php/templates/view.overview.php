@@ -1,23 +1,27 @@
 
   <div class="shadow blogentryoverview">
     <p class="notes blogdate">
-      <?php echo date("d.M.Y H:i",$row['ctime']); ?> - <?php echo gettext("last update"); ?>: <?php echo date("d.M.Y H:i",$row['mtime']); ?>
+      <?php
+        echo date("d.M.Y H:i",$row['ctime']);
+      ?> - <?php
+        if($row['mtime'] != null and $row['mtime'] != "" and $row['mtime'] != 0 and $row['mtime'] != "0") {
+          echo gettext("last update"); ?>: <?php echo date("d.M.Y H:i",$row['mtime']);
+        }
+      ?>
     </p>
 
     <?php $num_comments = convertnumbers($row["num_comments"]); ?>
     <p class="notes commentslink">
-      <a href="<?php echo $_SERVER["PHP_SELF"] . assembleGetString("string", array("id" => $row["id"], "filter" => $filter)); ?>#linkshowcomments">
-        <?php
+      <?php
           if ($row["num_comments"] > 0) {
+      ?>
+            <a href="<?php echo $_SERVER["PHP_SELF"] . assembleGetString("string", array("id" => $row["id"], "filter" => $filter)); ?>#linkshowcomments">
+      <?php
             echo $num_comments . " ";
             if ($row["num_comments"] == 1) echo gettext("comment");
-            else echo gettext("comments");
+            else echo gettext("comments") . "</a>\n";
           }
-          else {
-            echo gettext("no comments");
-          }
-        ?>
-      </a>
+      ?>
     </p>
 
     <?php $head = strip_tags($row["head"]); ?>
