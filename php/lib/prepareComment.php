@@ -106,7 +106,7 @@ if (isset($error) and count($error["prepareComment"]) > 0) {
 
 
 // ====================[ send verification mail ]====================
-if ($firstpost) {
+if (isset($firstpost) and $firstpost) {
   $Verification = new Email("verification", $comment["name"], $comment["email"], $comment["name"], $config["email"]["email"], $comment["time"], $comment["hash"]);
   $Verification->send();
 }
