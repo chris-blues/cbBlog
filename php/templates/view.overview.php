@@ -3,9 +3,8 @@
     <p class="notes blogdate">
       <?php
         echo date("d.M.Y H:i",$row['ctime']);
-      ?> - <?php
         if($row['mtime'] != null and $row['mtime'] != "" and $row['mtime'] != 0 and $row['mtime'] != "0") {
-          echo gettext("last update"); ?>: <?php echo date("d.M.Y H:i",$row['mtime']);
+          echo " - " . gettext("last update"); ?>: <?php echo date("d.M.Y H:i",$row['mtime']);
         }
       ?>
     </p>
