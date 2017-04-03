@@ -3,7 +3,7 @@
 // $version = trim(file_get_contents($GLOBALS["path"] . "/../VERSION"));
 
 // ====================[ some default settings ]====================
-if (isset($_GET["id"]) and ($_GET["id"] == "0" or intval($_GET["id"]) == 0)) unset($_GET["id"]);
+if (isset($_GET["id"]) and ($_GET["id"] == "0" or !is_int($_GET["id"]))) unset($_GET["id"]);
 date_default_timezone_set('Europe/Berlin');
 
 // Ugly workaround for old cbBlog databases
