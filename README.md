@@ -1,8 +1,4 @@
-# cbBlog v0.99-beta
-This is a beta version. This is to be considered in the incomplete stage. For productive use, get the latest [release](https://github.com/chris-blues/cbBlog/releases)!
-
-## I'm getting close to a release. The software is running stable and I'm currently testing for borderline cases. Feel free to help testing! :o)
-## Again: if you want a functional version, use the latest [release](https://github.com/chris-blues/cbBlog/releases)!
+# cbBlog v1.00
 
 ### Description
 
