@@ -1,72 +1,85 @@
-<!-- begin news_short.php -->
 <?php
-include_once("blog/lang.php");
-include_once("blog/functions.php");
 
-date_default_timezone_set('Europe/Berlin');
-require("phpinclude/dbconnect.php");
+$GLOBALS["displayMode"] = "short";
+$GLOBALS["path"] = realpath(dirname(__FILE__));
+$locale_path = $GLOBALS["path"];
+require_once($GLOBALS["path"] . "/php/bootstrap.php");
 
+if (isset($blogposts)) {
+  if (count($blogposts) < 1) {
+    echo gettext("We were not able to find anything. Either there's nothing posted yet, of there's a problem with the database connection.");
+    exit;
+  } ?>
 
-//$debug = "TRUE";
+  <ul class="blog">
 
-/* Connect to database */
-$con=mysqli_connect($hostname, $userdb, $passworddb, $db);
-  if (mysqli_connect_errno())
-    { echo "Failed to connect to MySQL: " . mysqli_connect_error() . "<br>\n"; }
-  else
-    { if ($debug == "TRUE") echo "Successfully connected. " . mysqli_connect_error() . "<br>\n"; }
+<?php
+  $maxPosts = 8;
 
-/* change character set to utf8mb4 */
-if (!mysqli_set_charset($con, "utf8mb4"))
-  { printf("Error loading character set utf8mb4: %s<br>\n", mysqli_error($con)); }
-else
-  { if ($debug == "TRUE") { printf("Current character set: %s<br>\n", mysqli_character_set_name($con)); } }
+  $link = $config["blog"]["blog_call"];
+  $tmp = explode("?", $config["blog"]["blog_call"]);
+  $temp = explode("&", $tmp[1]);
+  foreach ($temp as $key => $value) {
+    $tmp = explode("=", $value);
+    $getComponents[$tmp[0]] = $tmp[1];
+  }
+  foreach ($config["blog"]["permalinkIgnore"] as $key => $value) {
+    $getComponents[$key] = "";
+  }
 
-/* Connect to comments-database */
-$concom=mysqli_connect($hostname, $userdb, $passworddb, $db);
-  if (mysqli_connect_errno())
-    { echo "Failed to connect to MySQL: " . mysqli_connect_error() . "<br>\n"; }
-  else
-    { if ($debug == "TRUE") echo "Successfully connected. " . mysqli_connect_error() . "<br>\n"; }
+  for ($i = 0; $i < $maxPosts; $i++) {
+    $row = $blogposts[$i]->getdata();
 
-if (!mysqli_set_charset($concom, "utf8mb4"))
-  { printf("Error loading character set utf8mb4: %s<br>\n", mysqli_error($concom)); }
-else
-  { if ($debug == "TRUE") { printf("Current character set: %s<br>\n", mysqli_character_set_name($concom)); } }
+    $row["tags"] = $query->getTagsOfBlogpost($row["id"]);
+    foreach ($row["tags"] as $Tag) {
+      $tmp = $Tag->getdata();
+      $tempArray[$tmp["id"]] = $tmp["tag"];
+      unset($tmp);
+    }
+    if (in_array("unreleased", $tempArray)) {
+      unset($blogposts[$i], $tempArray);
+      $maxPosts++;
+      continue;
+    }
+    unset($tempArray);
 
+    $comments = $query->selectComments($row["id"]);
+    $row["num_comments"] = count($comments);
 
+    $head = strip_tags($row["head"]);
 
-$query_blog = "SELECT * FROM `blog` WHERE `tags` LIKE '%news%' AND `tags` NOT LIKE '%saved%' ORDER BY `time` DESC LIMIT 0, 8 ";
-$result = mysqli_query($con, $query_blog);
+    $linkComponents = $getComponents;
+    $linkComponents["id"] = $row["id"];
+    ?>
 
-if ($result)
-  {
-   echo "<ul class=\"blog\">\n";
-   while ($row = $result->fetch_assoc())
-     {
-      $head = strip_tags($row["head"]);
-      echo "<li><a href=\"{$_SERVER["PHP_SELF"]}?page=blog&amp;index={$row["index"]}{$link}\">" . $head . "</a>\n";
-//      echo "<p class=\"notes\">" . date("d.M.Y H:i",$row['time']) . " - last update: " . date("d.M.Y H:i",$row['ctime']) . "</p>";
+    <li>
+      <a href="<?php echo assembleGetString("string", $linkComponents); ?>"><?php echo $head; ?></a>
+      <?php
 
-      $query_comments = "SELECT * FROM `musicchris_de`.`blog-comments` WHERE `affiliation` = {$row["index"]} ORDER BY `time` ASC ";
-      $resultcomments = mysqli_query($concom, $query_comments);
-      $totalRows_comments = mysqli_num_rows($resultcomments);
-      if ($totalRows_comments)
-        {
-         if ($totalRows_comments == "1") $comments = $lang_comment;
-           else $comments = $lang_comments;
-         $total_comments = convertnumbers($totalRows_comments, $lang);
-         echo "<p class=\"notes\">(<a href=\"index.php?page=blog&amp;index={$row["index"]}{$link}#linkshowcomments\">$total_comments $comments</a>)</p>\n";
+        if (count($row["num_comments"]) > 0) {
+          $total_comments = convertnumbers($row["num_comments"]);
+          ?>
+
+          <p class="notes">
+
+            <?php
+              if ($row["num_comments"] > 0) { ?>
+                (<a href="<?php echo assembleGetString("string", $linkComponents); ?>#linkshowcomments"><?php echo $total_comments . " ";
+                if ($row["num_comments"] == 1) echo gettext("comment");
+                else echo gettext("comments") . "</a>)";
+              }
+            ?>
+          </p>
+
+          <?php
         }
-      mysqli_free_result($resultcomments);
-      echo "</li>\n";
-     }
-   echo "</ul>\n";
+
+      ?>
+    </li>
+  <?php } ?>
+
+  </ul>
+
+<?php
   }
-else
-  {
-   echo "ERROR! No data retrieved.";
-  }
-mysqli_free_result($result);
 ?>
-<!-- end news_short.php -->

@@ -1,0 +1,9 @@
+ToDo:
+=====
+
+Refactor:
+* backtrack/pingback system
+
+* maybe as plugins?
+  * news_short
+  * RSS generator

@@ -1,0 +1,562 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: cbBlog\n"
+"POT-Creation-Date: 2017-03-29 15:07+0200\n"
+"PO-Revision-Date: 2017-03-29 15:07+0200\n"
+"Last-Translator: chris_blues <chris@musicchris.de>\n"
+"Language-Team: cbBlog Translations <chris@musicchris.de>\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+"X-Poedit-Basepath: ../../..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: admin/index.php:23
+msgid "Do you really want to delete this?"
+msgstr "Wollen Sie das wirklich löschen?"
+
+#: admin/index.php:79 admin/index.php:174 admin/php/templates/foot.php:8
+#: index.php:70
+msgid "The following errors have occured"
+msgstr "Folgende Fehler sind aufgetreten"
+
+#: admin/index.php:172 index.php:68
+msgid "Whoops! Something isn't right..."
+msgstr "Hoppla! Hier stimmt irgendetwas nicht..."
+
+#: admin/php/templates/filterlist.php:3
+msgid "Filter"
+msgstr "Filter"
+
+#: admin/php/templates/navigation.php:14
+msgid "new blogpost"
+msgstr "Neuer Artikel"
+
+#: admin/php/templates/navigation.php:16
+msgid "released"
+msgstr "veröffentlicht"
+
+#: admin/php/templates/navigation.php:17
+msgid "unreleased"
+msgstr "nicht veröffentlicht"
+
+#: admin/php/templates/navigation.php:29
+#: admin/php/templates/view.overview.php:55
+msgid "edit blogpost"
+msgstr "Artikel bearbeiten"
+
+#: admin/php/templates/navigation.php:32
+msgid "view blogpost"
+msgstr "Artikel ansehen"
+
+#: admin/php/templates/navigation.php:36 php/templates/view.blogpost.php:13
+msgid "back"
+msgstr "Zurück"
+
+#: admin/php/templates/view.comment.php:13
+msgid "delete comment"
+msgstr "Kommentar löschen"
+
+#: admin/php/templates/view.comments.php:29
+#: admin/php/templates/view.editblog.php:71
+#: admin/php/templates/view.settings.php:64
+#: admin/php/templates/view.settings.php:94
+#: admin/php/templates/view.settings.php:147
+msgid "reset"
+msgstr "Zurücksetzen"
+
+#: admin/php/templates/view.comments.php:30
+#: admin/php/templates/view.editblog.php:72
+#: admin/php/templates/view.settings.php:65
+#: admin/php/templates/view.settings.php:95
+#: admin/php/templates/view.settings.php:148
+msgid "save"
+msgstr "Speichern"
+
+#: admin/php/templates/view.editblog.php:26
+msgid "available tags"
+msgstr "verfügbare Tags"
+
+#: admin/php/templates/view.editblog.php:43
+msgid "created on"
+msgstr "Erstellt am"
+
+#: admin/php/templates/view.editblog.php:44
+msgid "modified on"
+msgstr "Verändert am"
+
+#: admin/php/templates/view.editblog.php:48
+msgid "Tags"
+msgstr "Tags"
+
+#: admin/php/templates/view.editblog.php:50
+msgid "new tags"
+msgstr "Neue Tags"
+
+#: admin/php/templates/view.editblog.php:61
+msgid "heading"
+msgstr "Überschrift"
+
+#: admin/php/templates/view.editblog.php:64
+msgid "article"
+msgstr "Artikel"
+
+#: admin/php/templates/view.overview.php:47 news_short.php:51
+#: php/templates/view.blogpost.php:42 php/templates/view.overview.php:13
+msgid "comment"
+msgstr "Kommentar"
+
+#: admin/php/templates/view.overview.php:48 news_short.php:52
+#: php/templates/view.blogpost.php:43 php/templates/view.comments-section.php:5
+#: php/templates/view.overview.php:14
+msgid "comments"
+msgstr "Kommentare"
+
+#: admin/php/templates/view.overview.php:52
+msgid "show comments"
+msgstr "Zeige Kommentare"
+
+#: admin/php/templates/view.overview.php:56
+msgid "delete blogpost"
+msgstr "Artikel löschen"
+
+#: admin/php/templates/view.settings.php:2
+msgid "settings"
+msgstr "Einstellungen"
+
+#: admin/php/templates/view.settings.php:7
+msgid "Blog settings"
+msgstr "Blog Einstellungen"
+
+#: admin/php/templates/view.settings.php:13
+msgid "general appearance"
+msgstr "Gesamterscheinung"
+
+#: admin/php/templates/view.settings.php:15
+msgid ""
+"If you have nothing else installed on your webserver, you propably should "
+"check this. (This activates primarily the delivery of an HTML header.)"
+msgstr ""
+"Wenn sie nichts weiter auf ihrem Webserver installiert haben, dann sollten "
+"sie diese Box wahrscheinlich ankreuzen. (Dies aktiviert hauptsächlich die "
+"Auslieferung eines HTML Headers.)"
+
+#: admin/php/templates/view.settings.php:18
+msgid "If checked, this will show the time needed for processing on each page."
+msgstr ""
+"Ist dieses Feld angekreuzt, so wird unter jeder Seite die Dauer der "
+"Verarbeitung angezeigt."
+
+#: admin/php/templates/view.settings.php:21
+msgid ""
+"You could pass a default language. This will override the visitors settings. "
+"Use the following format: en_GB or de_DE"
+msgstr ""
+"Hier können Sie die Standardsprache festlegen. Dies wird auch die "
+"Einstellungen der Besucher außer Kraft setzen. Benutzen Sie folgendes "
+"Format: en_GB oder de_DE"
+
+#: admin/php/templates/view.settings.php:26
+msgid "PHP debugging"
+msgstr "PHP debugging"
+
+#: admin/php/templates/view.settings.php:28
+msgid ""
+"How much debug info you want to receive? (You can define how these are "
+"output below.)"
+msgstr ""
+"Wie viele Debug Infos wollen Sie bekommen? (Sie können weiter unten angeben, "
+"wie diese ausgegeben werden.)"
+
+#: admin/php/templates/view.settings.php:31
+msgid "all debug messages"
+msgstr "Alle Debug Meldungen"
+
+#: admin/php/templates/view.settings.php:34
+msgid "only errors and warnings"
+msgstr "nur Fehler und Warnungen"
+
+#: admin/php/templates/view.settings.php:37
+msgid "no debug messages"
+msgstr "keine Debug Meldungen"
+
+#: admin/php/templates/view.settings.php:41
+msgid ""
+"Do you want these debug messages to be shown in the browser? (Might be "
+"unwanted to be shown to your visitors.)"
+msgstr ""
+"Wollen Sie diese Debug Meldungen im Browser angezeigt bekommen? (Könnte "
+"unerwünscht sein, daß diese den Besuchern angezeigt werden.)"
+
+#: admin/php/templates/view.settings.php:44
+msgid "Do you want these debug messages to be logged in $blog/admin/logs?"
+msgstr "Wollen Sie diese Debug Meldungen nach $blog/admin/logs archivieren?"
+
+#: admin/php/templates/view.settings.php:49
+msgid "Permalink"
+msgstr "Permalink"
+
+#: admin/php/templates/view.settings.php:51
+msgid "These GET variables will be ignored in the generation of the permalink."
+msgstr "Diese GET Variablen werden beim Generieren des Permalinks ignoriert."
+
+#: admin/php/templates/view.settings.php:54
+#: admin/php/templates/view.settings.php:59
+msgid "put new GET variables here"
+msgstr "neue GET Variablen hier hinein"
+
+#: admin/php/templates/view.settings.php:73
+msgid "Database settings"
+msgstr "Datenbank Einstellungen"
+
+#: admin/php/templates/view.settings.php:76
+msgid "The PDO driver of your database. ('mysql' should be ok in most cases.)"
+msgstr ""
+"Der PDO-Treiber ihrer Datenbank. ('mysql' sollte in den meisten Fällen ok "
+"sein.)"
+
+#: admin/php/templates/view.settings.php:79
+msgid "The hostname for your database."
+msgstr "Der Hostname ihrer Datenbank."
+
+#: admin/php/templates/view.settings.php:82
+msgid "Your database name."
+msgstr "Der Name ihrer Datenbank."
+
+#: admin/php/templates/view.settings.php:85
+msgid "Your username for the database."
+msgstr "Ihr Benutzername ihrer Datenbank."
+
+#: admin/php/templates/view.settings.php:88
+msgid "Your passwort for your database. (Make sure, that it's along one!)"
+msgstr ""
+"Ihr Passwort ihrer Datenbank. (Stellen Sie sicher, daß es ein langes "
+"Passwort ist!)"
+
+#: admin/php/templates/view.settings.php:102
+msgid ""
+"The name of this feed. Note, a new feed, with the same name as another will "
+"overwrite that older feed."
+msgstr ""
+"Der Name dieses Feeds. Anmerkung: Ein neuer Feed mit dem selben Namen wie "
+"ein existierender Feed, wird diesen überschreiben."
+
+#: admin/php/templates/view.settings.php:103
+msgid "This feed's title. This is the overall heading of this feed."
+msgstr ""
+"Der Titel des Feeds. Dies ist die übergeordnete Überschrift dieses Feeds."
+
+#: admin/php/templates/view.settings.php:104
+msgid "The author's name. If you have several authors, then leave this free."
+msgstr ""
+"Der Name des Authors. Falls es mehrere Authoren gibt, dann dieses Feld leer "
+"lassen."
+
+#: admin/php/templates/view.settings.php:105
+msgid "The overall description of this feed."
+msgstr "Die allgemeine Beschreibung dieses Feeds."
+
+#: admin/php/templates/view.settings.php:106
+msgid ""
+"If you have single language, then put it in here! Format: en-gb, de-de etc..."
+msgstr ""
+"Wenn sie in nur einer Sprache schreiben, dann geben sie die Sprache hier an! "
+"Format: en-gb, de-de usw..."
+
+#: admin/php/templates/view.settings.php:107
+msgid ""
+"The address of your blog. Leave out the domain-part. Only use the file and "
+"possible GET parameters. e.g. index.php?page=blog"
+msgstr ""
+"Die Adresse des Blogs. Ohne den Domainnamen. Nur der Dateiname und "
+"möglicherweise nötige GET parameter. Z.Bsp.: index.php?page=blog"
+
+#: admin/php/templates/view.settings.php:108
+msgid "This feed will be filled with blogposts with this tag."
+msgstr "Dieser Feed wird aus Blogposts mit diesem Tag befüllt."
+
+#: admin/php/templates/view.settings.php:111
+msgid "RSS feeds"
+msgstr "RSS Feeds"
+
+#: admin/php/templates/view.settings.php:117
+msgid "delete this feed"
+msgstr "diesen Feed löschen"
+
+#: admin/php/templates/view.settings.php:149
+msgid "new feed"
+msgstr "Neuer Feed"
+
+#: index.php:35 news_short.php:8
+msgid ""
+"We were not able to find anything. Either there's nothing posted yet, of "
+"there's a problem with the database connection."
+msgstr ""
+"Wir konnten nichts finden. Entweder wurde noch nichts gepostet, oder es gibt "
+"ein Problem mit der Datanbankverbindung."
+
+#: news_short.php:55 php/templates/view.blogpost.php:49
+#: php/templates/view.overview.php:17
+msgid "no comments"
+msgstr "Keine Kommentare"
+
+#: php/bootstrap.php:91
+msgid "Not connected. Possibly wrong credentials."
+msgstr "Nicht verbunden. Möglicherweise falsche Zugangsdaten."
+
+#: php/lib/Email.php:45
+msgid "New comment by"
+msgstr "Neuer Kommentar von"
+
+#: php/lib/Email.php:48
+msgid "Verify your subscription to {server}"
+msgstr "Bestätigen Sie, daß sie von {server} benachrichtigt werden wollen"
+
+#: php/lib/Email.php:52 php/lib/Email.php:63
+msgid "Hi"
+msgstr "Hallo"
+
+#: php/lib/Email.php:53
+msgid ""
+"you wanted to be notified via {email} of new comments on {server}. {poster} "
+"has just commented"
+msgstr ""
+"Du wolltest via {email} über neue Kommentare auf {server} benachrichtigt "
+"werden. {poster} hat gerade geschrieben"
+
+#: php/lib/Email.php:55
+msgid "Click here to see this comment on {server}"
+msgstr "Hier gehts zum Kommentar auf {server}"
+
+#: php/lib/Email.php:56
+msgid "To unsubscribe from this topic click here"
+msgstr "Um nicht mehr benachrichtigt zu werden klicke hier"
+
+#: php/lib/Email.php:57
+msgid "To entirely unsubscribe from {server} click here"
+msgstr ""
+"Um von {server} gar keine Benachrichtigungen mehr zu erhalten klicke hier"
+
+#: php/lib/Email.php:58 php/lib/Email.php:71
+msgid "Best regards"
+msgstr "Mit besten Grüßen"
+
+#: php/lib/Email.php:64
+msgid "you wanted to be notified via {email} of new comments on {link_topic}."
+msgstr ""
+"Sie wollten via {email} über neue Kommentare zu {link_topic} benachrichtigt "
+"werden."
+
+#: php/lib/Email.php:65
+msgid ""
+"To verify your wish, to receive notifications to this topic, please click "
+"here"
+msgstr ""
+"Wenn Sie wirklich Benachrichtigungen zu diesem Thema empfangen wollen "
+"klicken Sie bitte hier"
+
+#: php/lib/Email.php:67
+msgid ""
+"If you don't want to receive notifications, or you haven't subscribed "
+"yourself, click here"
+msgstr ""
+"Falls Sie keine Benachrichtigungen erhalten wollen, oder sich nicht selbst "
+"eingetragen haben klicken Sie hier"
+
+#: php/lib/Email.php:69
+msgid ""
+"To entirely unsubscribe from {server} (never receive any notifications from "
+"{server} again) click here"
+msgstr ""
+"Um von {server} gar keine Benachrichtigungen mehr zu erhalten klicke hier"
+
+#: php/lib/Filters.php:8 php/lib/Filters.php:10
+msgid "all"
+msgstr "alle"
+
+#: php/lib/functions.php:40
+msgid "Processing needed"
+msgstr "Verarbeitung brauchte"
+
+#: php/lib/functions.php:95
+msgid "no"
+msgstr "kein"
+
+#: php/lib/functions.php:96
+msgid "one"
+msgstr "ein"
+
+#: php/lib/functions.php:97
+msgid "two"
+msgstr "zwei"
+
+#: php/lib/functions.php:98
+msgid "three"
+msgstr "drei"
+
+#: php/lib/functions.php:99
+msgid "four"
+msgstr "vier"
+
+#: php/lib/functions.php:100
+msgid "five"
+msgstr "fünf"
+
+#: php/lib/functions.php:101
+msgid "six"
+msgstr "sechs"
+
+#: php/lib/functions.php:102
+msgid "seven"
+msgstr "sieben"
+
+#: php/lib/functions.php:103
+msgid "eight"
+msgstr "acht"
+
+#: php/lib/functions.php:104
+msgid "nine"
+msgstr "neun"
+
+#: php/lib/functions.php:105
+msgid "ten"
+msgstr "zehn"
+
+#: php/lib/functions.php:105
+msgid "eleven"
+msgstr "elf"
+
+#: php/lib/functions.php:105
+msgid "twelve"
+msgstr "zwölf"
+
+#: php/lib/prepareComment.php:40 php/templates/view.postform.php:45
+msgid "Anonymous"
+msgstr "Anonym"
+
+#: php/lib/unsubscribe.php:42
+msgid ""
+"You'll receive no further notifications for new comments on this entire blog."
+msgstr ""
+"Sie werden nun keine Benachrichtigungen mehr zu neuen Kommentaren in diesem "
+"gesamten Blog bekommen."
+
+#: php/lib/unsubscribe.php:47
+msgid "You'll receive no further notifications for new comments on this topic."
+msgstr ""
+"Sie werden nun keine Benachrichtigungen mehr zu neuen Kommentaren in diesem "
+"Thema bekommen."
+
+#: php/lib/unsubscribe.php:52
+msgid "Your request could not be handled."
+msgstr "Ihre Anfrage konnte nicht bearbeitet werden."
+
+#: php/lib/verifyEmail.php:41
+msgid "You'll now receive notifications for new comments."
+msgstr "Sie werden nun zu neuen Kommentaren benachrichtigt."
+
+#: php/templates/filterlist.php:7
+msgid "by"
+msgstr "von"
+
+#: php/templates/view.blogpost.php:36 php/templates/view.overview.php:4
+msgid "last update"
+msgstr "zuletzt aktualisiert"
+
+#: php/templates/view.comment.php:28 php/templates/view.comments-section.php:9
+msgid "show off-topic comments"
+msgstr "zeige themenfremde Beiträge"
+
+#: php/templates/view.comments-section.php:10
+msgid "hide off-topic comments"
+msgstr "verstecke themenfremde Beiträge"
+
+#: php/templates/view.postform.php:44
+msgid "name"
+msgstr "Name"
+
+#: php/templates/view.postform.php:44 php/templates/view.postform.php:50
+#: php/templates/view.postform.php:52
+msgid "optional"
+msgstr "optional"
+
+#: php/templates/view.postform.php:47
+msgid "leave empty"
+msgstr "leer lassen"
+
+#: php/templates/view.postform.php:50
+msgid "notify"
+msgstr "Benachrichtigen"
+
+#: php/templates/view.postform.php:50
+msgid "to be notified of new comments"
+msgstr "um zu neuen Kommentaren benachrichtigt zu werden"
+
+#: php/templates/view.postform.php:52
+msgid "Website"
+msgstr "Website"
+
+#: php/templates/view.postform.php:55
+msgid "Your comment"
+msgstr "Ihr Kommentar"
+
+#: php/templates/view.postform.php:57
+msgid "Notes for formatting"
+msgstr "Hinweise zur Formatierung"
+
+#: php/templates/view.postform.php:60
+msgid "Allowed Tags"
+msgstr "Erlaubte Tags"
+
+#: php/templates/view.postform.php:63 php/templates/view.postform.php:64
+msgid "bold text"
+msgstr "fetter Text"
+
+#: php/templates/view.postform.php:67 php/templates/view.postform.php:68
+msgid "underlined text"
+msgstr "unterstrichener Text"
+
+#: php/templates/view.postform.php:71 php/templates/view.postform.php:72
+msgid "stroke text"
+msgstr "durchgestrichener Text"
+
+#: php/templates/view.postform.php:75 php/templates/view.postform.php:76
+msgid "italic text"
+msgstr "kursiver Text"
+
+#: php/templates/view.postform.php:83 php/templates/view.postform.php:84
+msgid "link"
+msgstr "Verweis"
+
+#: php/templates/view.postform.php:95 php/templates/view.postform.php:96
+msgid "quote"
+msgstr "Zitat"
+
+#: php/templates/view.postform.php:99 php/templates/view.postform.php:100
+msgid "off-topic"
+msgstr "themenfremd"
+
+#: php/templates/view.postform.php:122
+msgid "Back"
+msgstr "Zurück"
+
+#: php/templates/view.postform.php:123
+msgid "Preview"
+msgstr "Vorschau"
+
+#: php/templates/view.postform.php:125
+msgid "Send"
+msgstr "Abschicken"
+
+#~ msgid "There's nothing there to see..."
+#~ msgstr "Es ist nichts da zum anzeigen..."
+
+#~ msgid "edit post"
+#~ msgstr "Artikel bearbeiten"
+
+#~ msgid "Hi {name}"
+#~ msgstr "Hallo {name}"

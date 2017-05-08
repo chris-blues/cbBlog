@@ -1,0 +1,213 @@
+@charset "utf-8";
+@font-face { font-family: 'OpenSans'; src: url('/fonts/open_sans/opensans-regular.ttf') format('truetype');}
+@font-face { font-family: 'OpenSans-Bold'; src: url('/fonts/open_sans/opensans-bold.ttf') format('truetype');}
+@font-face { font-family: 'OpenSans-Italic'; src: url('/fonts/open_sans/opensans-italic.ttf') format('truetype');}
+@font-face { font-family: 'OpenSans-BoldItalic'; src: url('/fonts/open_sans/opensans-bolditalic.ttf') format('truetype');}
+@font-face { font-family: 'OpenSans-Semibold'; src: url('/fonts/open_sans/opensans-semibold.ttf') format('truetype');}
+@font-face { font-family: 'OpenSans-SemiboldItalic'; src: url('/fonts/open_sans/opensans-semibolditalic.ttf') format('truetype');}
+@font-face { font-family: 'OpenSans-Cond'; src: url('/fonts/open_sans/opensans-condlight.ttf') format('truetype');}
+a:link { color: #332211; text-decoration: underline;}
+a:visited { color: #332211; text-decoration: underline;}
+a:hover { color: #666633; text-decoration: none;}
+
+.shadow {
+  padding: 10px 30px;
+  background-color: #FFF;
+  border-radius: 6px;
+  box-shadow: 0px 0px 5px 1px #777;
+}
+
+#adminEditBlog #adminShowBlog {
+  margin: 0px;
+  width: 100% !important;
+  max-width: 100%;
+}
+
+.smallFont, .notes {
+  font-size: 0.8em;
+}
+
+.unreleased {
+  background-color: #FFDDDD;
+  font-weight: bold;
+  padding: 4px;
+  border-radius: 6px;
+  box-shadow: 0px 0px 5px 1px #BBB;
+}
+
+.left {
+  float: left;
+}
+
+.inline {
+  display: inline;
+}
+
+.clear {
+  clear: both;
+}
+
+div.overview {
+  border-radius: 6px 6px 0px 0px;
+}
+
+div.overview .button_wrapper {
+  float: right;
+  text-align: right;
+}
+
+.blogentryfull {
+  margin: 0px;
+}
+
+div.tags {
+  margin: 5px 0px 0px;
+}
+
+a.blogpost_taglist.editor {
+  padding: 0px 16px 2px 5px;
+  background-image: url("../../pics/del.png");
+  background-repeat: no-repeat;
+  background-position: right;
+  cursor: pointer;
+}
+
+div.allTags_wrapper, div#tags, div.times {
+  margin: 10px;
+  border: 1px solid #888;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+a.blogpost_availableTags.editor {
+  margin: 0px;
+  padding: 0px 16px 2px 5px;
+  background-color: #F6F6F6;
+  background-image: url("../../pics/add.png");
+  background-repeat: no-repeat;
+  background-position: right;
+  border: 1px solid #CCC;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.comments {
+  margin: 10px;
+}
+
+span.offtopic {
+  display: inline;
+}
+
+.commentTextArea {
+  width: 100%;
+}
+
+div#navigation {
+  margin: 0px 0px 15px 0px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #DDA;
+  padding: 6px;
+  box-shadow: 0px 0px 5px 1px #000 inset;
+  border-radius: 6px;
+  z-index: 1000;
+}
+
+div#navigation button {
+  font-size: 1.2em;
+}
+
+div#top_spacer {
+  margin-top: 60px;
+}
+
+a.blogpost_taglist.active {
+  background-color: #DDA;
+  font-weight: bold;
+  box-shadow: 0px 0px 5px 1px #AA4;
+}
+
+a.blogpost_taglist.unreleased {
+  background-color: #DAA;
+  font-weight: bold;
+  box-shadow: 0px 0px 5px 1px #333;
+}
+
+#adminEditBlogTextareaHead {
+  width: 98%;
+}
+
+#adminEditBlogTextareaText {
+  width: 98%;
+  height: 500px;
+}
+
+form#backForm {
+  display: none;
+}
+
+pre.debugCommentlist {
+  font-size: 0.8em;
+  margin: 0px 20px;
+  padding: 0px;
+}
+
+.commentTextarea {
+  width: 100%;
+  height: 150px;
+}
+
+.deleteComment {
+  text-decoration: none;
+  display:inline;
+  float: right;
+}
+
+.buttonDeleteComment {
+  float: right;
+}
+
+div#errors, div.important {
+  background-color: #FCC !important;
+}
+
+#dbSettings label {
+  width: 100px;
+  position: absolute;
+}
+
+#dbSettings input, #dbSettings select {
+  margin-left: 100px;
+  width: 250px;
+}
+
+#blogSettings label {
+  width: 200px;
+  position: absolute;
+}
+
+#blogSettings input, #blogSettings select {
+  margin-left: 200px;
+  width: 400px;
+}
+
+#feedSettings label {
+width: 200px;
+position: absolute;
+}
+
+#feedSettings input, #feedSettings select {
+margin-left: 100px;
+width: 250px;
+}
+
+.settings {
+  float: left;
+  margin: 20px;
+}
+
+.buttonDeleteFeed {
+  float: right;
+}
