@@ -24,6 +24,9 @@
           <label for="blogSettings_language" title="<?php echo gettext("You could pass a default language. This will override the visitors settings. Use the following format: en_GB or de_DE"); ?>">language</label>
             <input id="blogSettings_language" type="text" name="language" placeholder="language" value="<?php echo $config["blog"]["language"]; ?>"><br>
 
+          <label for="blogSettings_path" title="<?php echo gettext("The relative path to cbBlog."); ?>">path</label>
+            <input id="blogSettings_language" type="text" name="path" placeholder="path" value="<?php echo $config["blog"]["path"]; ?>"><br>
+
             <hr>
 
             <h3><?php echo gettext("PHP debugging"); ?></h3>

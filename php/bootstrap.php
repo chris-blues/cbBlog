@@ -21,6 +21,8 @@ $config["blog"] = require_once($GLOBALS["path"] . "/php/config/blog.php");
 $config["email"] = require_once($GLOBALS["path"] . "/php/config/email.php");
 $insertTags = require_once($GLOBALS["path"] . "/php/config/bbtags.php");
 
+$GLOBALS["relativePath"] = $config["blog"]["path"];
+
 if ($config["blog"]["standalone"] and $GLOBALS["displayMode"] != "short") require_once($GLOBALS["path"] . "/php/templates/view.head.php");
 
 

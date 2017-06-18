@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cbBlog\n"
-"POT-Creation-Date: 2017-03-29 15:07+0200\n"
-"PO-Revision-Date: 2017-03-29 15:07+0200\n"
+"POT-Creation-Date: 2017-06-18 19:18+0200\n"
+"PO-Revision-Date: 2017-06-18 19:18+0200\n"
 "Last-Translator: chris_blues <chris@musicchris.de>\n"
 "Language-Team: cbBlog Translations <chris@musicchris.de>\n"
 "Language: de_DE\n"
@@ -15,16 +15,16 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: admin/index.php:23
+#: admin/index.php:25
 msgid "Do you really want to delete this?"
 msgstr "Wollen Sie das wirklich löschen?"
 
-#: admin/index.php:79 admin/index.php:174 admin/php/templates/foot.php:8
-#: index.php:70
+#: admin/index.php:81 admin/index.php:176 admin/php/templates/foot.php:8
+#: index.php:73
 msgid "The following errors have occured"
 msgstr "Folgende Fehler sind aufgetreten"
 
-#: admin/index.php:172 index.php:68
+#: admin/index.php:174 index.php:71
 msgid "Whoops! Something isn't right..."
 msgstr "Hoppla! Hier stimmt irgendetwas nicht..."
 
@@ -63,17 +63,17 @@ msgstr "Kommentar löschen"
 
 #: admin/php/templates/view.comments.php:29
 #: admin/php/templates/view.editblog.php:71
-#: admin/php/templates/view.settings.php:64
-#: admin/php/templates/view.settings.php:94
-#: admin/php/templates/view.settings.php:147
+#: admin/php/templates/view.settings.php:70
+#: admin/php/templates/view.settings.php:100
+#: admin/php/templates/view.settings.php:153
 msgid "reset"
 msgstr "Zurücksetzen"
 
 #: admin/php/templates/view.comments.php:30
 #: admin/php/templates/view.editblog.php:72
-#: admin/php/templates/view.settings.php:65
-#: admin/php/templates/view.settings.php:95
-#: admin/php/templates/view.settings.php:148
+#: admin/php/templates/view.settings.php:71
+#: admin/php/templates/view.settings.php:101
+#: admin/php/templates/view.settings.php:154
 msgid "save"
 msgstr "Speichern"
 
@@ -105,14 +105,14 @@ msgstr "Überschrift"
 msgid "article"
 msgstr "Artikel"
 
-#: admin/php/templates/view.overview.php:47 news_short.php:51
-#: php/templates/view.blogpost.php:42 php/templates/view.overview.php:13
+#: admin/php/templates/view.overview.php:47 news_short.php:68
+#: php/templates/view.blogpost.php:42 php/templates/view.overview.php:20
 msgid "comment"
 msgstr "Kommentar"
 
-#: admin/php/templates/view.overview.php:48 news_short.php:52
+#: admin/php/templates/view.overview.php:48 news_short.php:69
 #: php/templates/view.blogpost.php:43 php/templates/view.comments-section.php:5
-#: php/templates/view.overview.php:14
+#: php/templates/view.overview.php:21
 msgid "comments"
 msgstr "Kommentare"
 
@@ -152,6 +152,10 @@ msgstr ""
 "Verarbeitung angezeigt."
 
 #: admin/php/templates/view.settings.php:21
+msgid "The minimum URI, how the blog is called up."
+msgstr "Die minimale URI, wie cbBlog aufgerufen wird."
+
+#: admin/php/templates/view.settings.php:24
 msgid ""
 "You could pass a default language. This will override the visitors settings. "
 "Use the following format: en_GB or de_DE"
@@ -160,11 +164,15 @@ msgstr ""
 "Einstellungen der Besucher außer Kraft setzen. Benutzen Sie folgendes "
 "Format: en_GB oder de_DE"
 
-#: admin/php/templates/view.settings.php:26
+#: admin/php/templates/view.settings.php:27
+msgid "The relative path to cbBlog."
+msgstr "Der relative Pfad zu cbBlog."
+
+#: admin/php/templates/view.settings.php:32
 msgid "PHP debugging"
 msgstr "PHP debugging"
 
-#: admin/php/templates/view.settings.php:28
+#: admin/php/templates/view.settings.php:34
 msgid ""
 "How much debug info you want to receive? (You can define how these are "
 "output below.)"
@@ -172,19 +180,19 @@ msgstr ""
 "Wie viele Debug Infos wollen Sie bekommen? (Sie können weiter unten angeben, "
 "wie diese ausgegeben werden.)"
 
-#: admin/php/templates/view.settings.php:31
+#: admin/php/templates/view.settings.php:37
 msgid "all debug messages"
 msgstr "Alle Debug Meldungen"
 
-#: admin/php/templates/view.settings.php:34
+#: admin/php/templates/view.settings.php:40
 msgid "only errors and warnings"
 msgstr "nur Fehler und Warnungen"
 
-#: admin/php/templates/view.settings.php:37
+#: admin/php/templates/view.settings.php:43
 msgid "no debug messages"
 msgstr "keine Debug Meldungen"
 
-#: admin/php/templates/view.settings.php:41
+#: admin/php/templates/view.settings.php:47
 msgid ""
 "Do you want these debug messages to be shown in the browser? (Might be "
 "unwanted to be shown to your visitors.)"
@@ -192,52 +200,52 @@ msgstr ""
 "Wollen Sie diese Debug Meldungen im Browser angezeigt bekommen? (Könnte "
 "unerwünscht sein, daß diese den Besuchern angezeigt werden.)"
 
-#: admin/php/templates/view.settings.php:44
+#: admin/php/templates/view.settings.php:50
 msgid "Do you want these debug messages to be logged in $blog/admin/logs?"
 msgstr "Wollen Sie diese Debug Meldungen nach $blog/admin/logs archivieren?"
 
-#: admin/php/templates/view.settings.php:49
+#: admin/php/templates/view.settings.php:55
 msgid "Permalink"
 msgstr "Permalink"
 
-#: admin/php/templates/view.settings.php:51
+#: admin/php/templates/view.settings.php:57
 msgid "These GET variables will be ignored in the generation of the permalink."
 msgstr "Diese GET Variablen werden beim Generieren des Permalinks ignoriert."
 
-#: admin/php/templates/view.settings.php:54
-#: admin/php/templates/view.settings.php:59
+#: admin/php/templates/view.settings.php:60
+#: admin/php/templates/view.settings.php:65
 msgid "put new GET variables here"
 msgstr "neue GET Variablen hier hinein"
 
-#: admin/php/templates/view.settings.php:73
+#: admin/php/templates/view.settings.php:79
 msgid "Database settings"
 msgstr "Datenbank Einstellungen"
 
-#: admin/php/templates/view.settings.php:76
+#: admin/php/templates/view.settings.php:82
 msgid "The PDO driver of your database. ('mysql' should be ok in most cases.)"
 msgstr ""
 "Der PDO-Treiber ihrer Datenbank. ('mysql' sollte in den meisten Fällen ok "
 "sein.)"
 
-#: admin/php/templates/view.settings.php:79
+#: admin/php/templates/view.settings.php:85
 msgid "The hostname for your database."
 msgstr "Der Hostname ihrer Datenbank."
 
-#: admin/php/templates/view.settings.php:82
+#: admin/php/templates/view.settings.php:88
 msgid "Your database name."
 msgstr "Der Name ihrer Datenbank."
 
-#: admin/php/templates/view.settings.php:85
+#: admin/php/templates/view.settings.php:91
 msgid "Your username for the database."
 msgstr "Ihr Benutzername ihrer Datenbank."
 
-#: admin/php/templates/view.settings.php:88
+#: admin/php/templates/view.settings.php:94
 msgid "Your passwort for your database. (Make sure, that it's along one!)"
 msgstr ""
 "Ihr Passwort ihrer Datenbank. (Stellen Sie sicher, daß es ein langes "
 "Passwort ist!)"
 
-#: admin/php/templates/view.settings.php:102
+#: admin/php/templates/view.settings.php:108
 msgid ""
 "The name of this feed. Note, a new feed, with the same name as another will "
 "overwrite that older feed."
@@ -245,29 +253,29 @@ msgstr ""
 "Der Name dieses Feeds. Anmerkung: Ein neuer Feed mit dem selben Namen wie "
 "ein existierender Feed, wird diesen überschreiben."
 
-#: admin/php/templates/view.settings.php:103
+#: admin/php/templates/view.settings.php:109
 msgid "This feed's title. This is the overall heading of this feed."
 msgstr ""
 "Der Titel des Feeds. Dies ist die übergeordnete Überschrift dieses Feeds."
 
-#: admin/php/templates/view.settings.php:104
+#: admin/php/templates/view.settings.php:110
 msgid "The author's name. If you have several authors, then leave this free."
 msgstr ""
 "Der Name des Authors. Falls es mehrere Authoren gibt, dann dieses Feld leer "
 "lassen."
 
-#: admin/php/templates/view.settings.php:105
+#: admin/php/templates/view.settings.php:111
 msgid "The overall description of this feed."
 msgstr "Die allgemeine Beschreibung dieses Feeds."
 
-#: admin/php/templates/view.settings.php:106
+#: admin/php/templates/view.settings.php:112
 msgid ""
 "If you have single language, then put it in here! Format: en-gb, de-de etc..."
 msgstr ""
 "Wenn sie in nur einer Sprache schreiben, dann geben sie die Sprache hier an! "
 "Format: en-gb, de-de usw..."
 
-#: admin/php/templates/view.settings.php:107
+#: admin/php/templates/view.settings.php:113
 msgid ""
 "The address of your blog. Leave out the domain-part. Only use the file and "
 "possible GET parameters. e.g. index.php?page=blog"
@@ -275,23 +283,23 @@ msgstr ""
 "Die Adresse des Blogs. Ohne den Domainnamen. Nur der Dateiname und "
 "möglicherweise nötige GET parameter. Z.Bsp.: index.php?page=blog"
 
-#: admin/php/templates/view.settings.php:108
+#: admin/php/templates/view.settings.php:114
 msgid "This feed will be filled with blogposts with this tag."
 msgstr "Dieser Feed wird aus Blogposts mit diesem Tag befüllt."
 
-#: admin/php/templates/view.settings.php:111
+#: admin/php/templates/view.settings.php:117
 msgid "RSS feeds"
 msgstr "RSS Feeds"
 
-#: admin/php/templates/view.settings.php:117
+#: admin/php/templates/view.settings.php:123
 msgid "delete this feed"
 msgstr "diesen Feed löschen"
 
-#: admin/php/templates/view.settings.php:149
+#: admin/php/templates/view.settings.php:155
 msgid "new feed"
 msgstr "Neuer Feed"
 
-#: index.php:35 news_short.php:8
+#: index.php:38 news_short.php:10
 msgid ""
 "We were not able to find anything. Either there's nothing posted yet, of "
 "there's a problem with the database connection."
@@ -299,12 +307,7 @@ msgstr ""
 "Wir konnten nichts finden. Entweder wurde noch nichts gepostet, oder es gibt "
 "ein Problem mit der Datanbankverbindung."
 
-#: news_short.php:55 php/templates/view.blogpost.php:49
-#: php/templates/view.overview.php:17
-msgid "no comments"
-msgstr "Keine Kommentare"
-
-#: php/bootstrap.php:91
+#: php/bootstrap.php:94
 msgid "Not connected. Possibly wrong credentials."
 msgstr "Nicht verbunden. Möglicherweise falsche Zugangsdaten."
 
@@ -463,9 +466,13 @@ msgstr "Sie werden nun zu neuen Kommentaren benachrichtigt."
 msgid "by"
 msgstr "von"
 
-#: php/templates/view.blogpost.php:36 php/templates/view.overview.php:4
+#: php/templates/view.blogpost.php:36 php/templates/view.overview.php:7
 msgid "last update"
 msgstr "zuletzt aktualisiert"
+
+#: php/templates/view.blogpost.php:49
+msgid "no comments"
+msgstr "Keine Kommentare"
 
 #: php/templates/view.comment.php:28 php/templates/view.comments-section.php:9
 msgid "show off-topic comments"

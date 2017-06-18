@@ -1,7 +1,7 @@
 <div id="filter" class="shadow">
 
   <div id="feeds" class="right">
-    <a href="rss-feed.xml" class="feeds">
+    <a href="<?php echo $GLOBALS["relativePath"]; ?>/rss-feed.xml" class="feeds">
       <img src="pics/rss.png"
            alt="RSS Feed"
            title="RSS-Feed <?php echo gettext("by") . " " . $_SERVER["HTTP_HOST"]; ?>"
