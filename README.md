@@ -1,4 +1,4 @@
-# cbBlog v1.00
+# cbBlog v1.01
 
 ### Description
 
