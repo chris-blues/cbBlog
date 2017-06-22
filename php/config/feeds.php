@@ -1,7 +1,7 @@
 <?php
 
-return [
-  "all" => [
+return array(
+  "all" => array(
     "name" => "all",
     "title" => "Blog " . $_ENV["HTTP_HOST"],
     "author" => "email@example.org (your name)",
@@ -9,8 +9,8 @@ return [
     "language" => "",
     "blogCall" => "index.php?page=blog",
     "tag" => "",
-  ],
-];
+  ),
+);
 
 ?>
 

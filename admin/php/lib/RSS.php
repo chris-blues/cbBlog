@@ -32,13 +32,17 @@ class RSS {
     $header .= "  <channel>\n\n";
     $header .= "    <title>" . $this->config["title"] . "</title>\n";
     $header .= "    <description>" . $this->config["description"] . "</description>\n";
-    $header .= "    <link>" . $_ENV["HTTP_X_FORWARDED_PROTO"] . "://" . $_ENV["SERVER_NAME"] . "/" .  $this->config["blogCall"] . "</link>\n\n";
+
+    if($_SERVER["HTTPS"] == "on") $tp = "https";
+    else $tp = "http";
+
+    $header .= "    <link>" . $tp . "://" . $_SERVER["SERVER_NAME"] . "/" .  $this->config["blogCall"] . "</link>\n\n";
     $header .= "    <language>" . $this->config["language"] . "</language>\n";
     $header .= "    <copyright>" . $this->config["author"] . "</copyright>\n";
     $header .= "    <generator>cbBlog " . $GLOBALS["version"] . "</generator>\n";
 //     $header .= "    <pubDate>" . date(DATE_RFC822) . "</pubDate>\n";
     $header .= "    <lastBuildDate>" . date(DATE_RFC822) . "</lastBuildDate>\n\n";
-    $header .= "    <atom:link href=\"" . $_ENV["HTTP_X_FORWARDED_PROTO"] . "://" . $_ENV["SERVER_NAME"] . "/rss-feed.xml\" rel=\"self\" type=\"application/rss+xml\" />\n\n";
+    $header .= "    <atom:link href=\"" . $tp . "://" . $_SERVER["SERVER_NAME"] . $this->config["path"] . "/rss-feed.xml\" rel=\"self\" type=\"application/rss+xml\" />\n\n";
 
     return $header;
 
@@ -82,8 +86,13 @@ class RSS {
         $tmp = strip_tags($row["head"]);
         $head = str_replace("&", "&amp;", $tmp);
 
-        $timehr = date("D, d M Y H:i:s O", $row["mtime"]);
-        $link = $_ENV["HTTP_X_FORWARDED_PROTO"] . "://" . $_ENV["SERVER_NAME"] . "/" .  $this->config["blogCall"] . "&amp;id=" . $row["id"];
+        if ($row["mtime"] == NULL) $timehr = date("D, d M Y H:i:s O", $row["ctime"]);
+        else $timehr = date("D, d M Y H:i:s O", $row["mtime"]);
+
+        if($_SERVER["HTTPS"] == "on") $tp = "https";
+        else $tp = "http";
+
+        $link = $tp . "://" . $_SERVER["SERVER_NAME"] . "/" .  $this->config["blogCall"] . "&amp;id=" . $row["id"];
 
         $body .= "    <item>\n";
         $body .= "      <title>" . $head . "</title>\n";

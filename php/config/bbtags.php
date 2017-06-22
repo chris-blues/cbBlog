@@ -1,46 +1,46 @@
 <?php
 
-return [
-  "b" => [
+return array(
+  "b" => array(
     "open" => "[b]",
     "close" => "[/b]"
-  ],
-  "u" => [
+  ),
+  "u" => array(
     "open" => "[u]",
     "close" => "[/u]"
-  ],
-  "s" => [
+  ),
+  "s" => array(
     "open" => "[s]",
     "close" => "[/s]"
-  ],
-  "i" => [
+  ),
+  "i" => array(
     "open" => "[i]",
     "close" => "[/i]"
-  ],
-  "url" => [
+  ),
+  "url" => array(
     "open" => "[url]",
     "close" => "[/url]"
-  ],
-  "code" => [
+  ),
+  "code" => array(
     "open" => "[code]",
     "close" => "[/code]"
-  ],
-  "tt" => [
+  ),
+  "tt" => array(
     "open" => "[tt]",
     "close" => "[/tt]"
-  ],
-  "quote" => [
+  ),
+  "quote" => array(
     "open" => "[quote]",
     "close" => "[/quote]"
-  ],
-  "ot" => [
+  ),
+  "ot" => array(
     "open" => "[ot]",
     "close" => "[/ot]"
-  ],
-  "done" => [
+  ),
+  "done" => array(
     "open" => "[done]",
     "close" => ""
-  ]
-];
+  )
+);
 
 ?>

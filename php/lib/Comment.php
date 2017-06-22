@@ -11,7 +11,7 @@ class Comment {
   protected $comment;
 
   public function getdata() {
-    return [
+    return array(
       "id"    => $this->id,
       "affiliation" => $this->affiliation,
       "answerTo" => $this->answerTo,
@@ -20,7 +20,7 @@ class Comment {
       "email" => $this->email,
       "website" => $this->website,
       "comment"  => $this->comment
-      ];
+      );
   }
 
   public function addComment($comment) {

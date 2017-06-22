@@ -1,15 +1,15 @@
 <?php
 
-return [
+return array(
   "driver" => "mysql",
   "host" => "",
   "name" => "",
   "user" => "",
   "pass" => "",
-  "options" => [
+  "options" => array(
     PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT
-  ]
-];
+  )
+);
 
 ?>
 

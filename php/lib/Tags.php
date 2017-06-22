@@ -5,10 +5,10 @@ class Tags {
   protected $tag;
 
    public function getdata() {
-     return [
+     return array(
        "id"    => $this->id,
        "tag"  => $this->tag
-       ];
+       );
   }
 }
 

@@ -8,13 +8,13 @@ class Blogpost {
   protected $text;
 
    public function getdata() {
-     return [
+     return array(
        "id"    => $this->id,
        "ctime" => $this->ctime,
        "mtime" => $this->mtime,
        "head"  => $this->head,
        "text"  => $this->text
-       ];
+       );
   }
 }
 

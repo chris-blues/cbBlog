@@ -1,6 +1,6 @@
 <?php
 
-return [
+return array(
   "standalone" => true,
   "showProcessingTime" => true,
   "blog_call" => "",
@@ -9,13 +9,13 @@ return [
   "debug_level" => "none",
   "show_debug" => true,
   "log_debug" => true,
-  "permalinkIgnore" => [
+  "permalinkIgnore" => array(
     "filter",
     "index",
     "job",
     "operation",
-  ],
-];
+  ),
+);
 
 ?>
 

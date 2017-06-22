@@ -45,7 +45,7 @@ class Email {
     return gettext("New comment by") . " " . $this->poster;
   }
   public function assembleVerificationSubject($poster) {
-    return str_replace("{server}", $_SERVER["HTTP_HOST"], gettext("Verify your subscription to {server}"));
+    return str_replace("{server}", $_SERVER["SERVER_NAME"], gettext("Verify your subscription to {server}"));
   }
 
   public function templateNotification() {
@@ -79,18 +79,23 @@ class Email {
       case "verification": $template = $this->templateVerification(); break;
     }
     $hash = hash('sha256', $_SERVER["SERVER_NAME"] . $this->to);
+
+    if($_SERVER["HTTPS"] == "on") $tp = "https";
+    else $tp = "http";
+
     $link_unsubscribe_topic = htmlspecialchars_decode(
-      $_SERVER["HTTP_X_FORWARDED_PROTO"] . "://" .
-      $_SERVER["HTTP_HOST"] .
+      $tp . "://" .
+      $_SERVER["SERVER_NAME"] .
       $_SERVER["PHP_SELF"] .
       "?" . assemblePermaLink($config["blog"]["permalinkIgnore"]) .
       "&email=" . $this->to .
       "&job=unsubscribe&scope=" . $_POST["affiliation"] .
       "&hash=$hash"
     );
+
     $link_unsubscribe_site = htmlspecialchars_decode(
-      $_SERVER["HTTP_X_FORWARDED_PROTO"] . "://" .
-      $_SERVER["HTTP_HOST"] .
+      $tp . "://" .
+      $_SERVER["SERVER_NAME"] .
       $_SERVER["PHP_SELF"] .
       "?" . assemblePermaLink($config["blog"]["permalinkIgnore"]) .
       "&email=" . $this->to .
@@ -119,16 +124,16 @@ class Email {
       $_SERVER["SERVER_NAME"],
       $this->poster,
       htmlspecialchars_decode(
-        $_SERVER["HTTP_X_FORWARDED_PROTO"] . "://" .
-        $_SERVER["HTTP_HOST"] .
+        $tp . "://" .
+        $_SERVER["SERVER_NAME"] .
         $_SERVER["PHP_SELF"] .
         "?" . assemblePermaLink($config["blog"]["permalinkIgnore"]) .
         "#" . $this->anchor
       ),
       $this->comment,
       htmlspecialchars_decode(
-        $_SERVER["HTTP_X_FORWARDED_PROTO"] . "://" .
-        $_SERVER["HTTP_HOST"] .
+        $tp . "://" .
+        $_SERVER["SERVER_NAME"] .
         $_SERVER["PHP_SELF"] .
         "?" . assemblePermaLink($config["blog"]["permalinkIgnore"]) .
         "&job=verify&scope={$_POST["affiliation"]}&email=" . $this->to . "&hash=" . $this->comment .
