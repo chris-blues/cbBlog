@@ -74,6 +74,7 @@ a.feeds {
 
 .banner {
   width: 100%;
+  padding: 0px !important;
 }
 
 .max900 {

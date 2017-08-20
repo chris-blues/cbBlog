@@ -256,9 +256,13 @@ class AdminQueryBuilder extends QueryBuilder {
   }
 
   public function updateBlog($post) {
-    $statement = $this->Database->prepare("UPDATE `blog` SET `head` = :head, `text` = :text WHERE `blog`.`id` = :id;");
+
+    $mtime = time();
+
+    $statement = $this->Database->prepare("UPDATE `blog` SET `head` = :head, `text` = :text, `mtime` = :mtime WHERE `blog`.`id` = :id;");
     $statement->bindParam(':head', $post["head"]);
     $statement->bindParam(':text', $post["text"]);
+    $statement->bindParam(':mtime', $mtime);
     $statement->bindParam(':id', $post["id"]);
     $result = $this->callExecution($statement);
     if ($result !== true) $error["updateBlog"]["query"] = true;
@@ -274,10 +278,10 @@ class AdminQueryBuilder extends QueryBuilder {
 //     echo '<div id="top_spacer"></div>';
 //     dump_array($post);
 
-    $time = time();
+    $ctime = time();
 
     $statement = $this->Database->prepare("INSERT INTO `blog` (ctime, head, text) VALUES (:ctime, :head, :text);");
-    $statement->bindParam(':ctime', $time);
+    $statement->bindParam(':ctime', $ctime);
     $statement->bindParam(':head', $post["head"]);
     $statement->bindParam(':text', $post["text"]);
     $result = $this->callExecution($statement);

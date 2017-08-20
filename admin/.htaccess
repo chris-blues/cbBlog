@@ -1,5 +1,6 @@
 AuthName "Login to Admin-Area"
 AuthType Basic
-AuthUserFile /customers/e/7/c/musicchris.de/httpd.www/admin/htpasswd/.htpasswd
-AuthGroupFile /dev/null
+AuthUserFile /var/www/security/htpasswd/musicchris.de/.htpasswd
+#AuthGroupFile /dev/null
 require valid-user
+Header add "disablevcache" "true"
