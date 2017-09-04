@@ -24,7 +24,7 @@ function dump_array($var) {
   } else echo "\$debug is false!<br>\n";
 }
 
-function prettyTime($proctime) {
+function cbBlog_prettyTime($proctime) {
   $proctime = $proctime * 1000;
   return ($proctime);
 }
@@ -34,7 +34,7 @@ function procTime($startTime, $endTime) {
   $timeUnits = array("s", "ms", "µs");
   $t = 0;
   while ($proctime < 1) {
-    $proctime = prettyTime($proctime);
+    $proctime = cbBlog_prettyTime($proctime);
     $t++;
   }
   return gettext("Processing needed") . " " . round($proctime, 3) . " " . $timeUnits[$t];
