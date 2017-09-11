@@ -14,9 +14,9 @@ if (isset($blogposts)) {
   <ul class="blog">
 
 <?php
-  $maxPosts = 8;
+  $maxPosts = 10;
 
-  $link = $config["blog"]["blog_call"];
+  $cbBlog_link = $config["blog"]["blog_call"];
   $tmp = explode("?", $config["blog"]["blog_call"]);
   $temp = explode("&", $tmp[1]);
   foreach ($temp as $key => $value) {
@@ -48,12 +48,12 @@ if (isset($blogposts)) {
 
     $head = strip_tags($row["head"]);
 
-    $linkComponents = $getComponents;
-    $linkComponents["id"] = $row["id"];
+    $cbBlog_linkComponents = $getComponents;
+    $cbBlog_linkComponents["id"] = $row["id"];
     ?>
 
     <li>
-      <a href="<?php echo assembleGetString("string", $linkComponents); ?>"><?php echo $head; ?></a>
+      <a href="<?php echo assembleGetString("string", $cbBlog_linkComponents); ?>"><?php echo $head; ?></a>
       <?php
 
         if (count($row["num_comments"]) > 0) {
@@ -64,7 +64,7 @@ if (isset($blogposts)) {
 
             <?php
               if ($row["num_comments"] > 0) { ?>
-                (<a href="<?php echo assembleGetString("string", $linkComponents); ?>#linkshowcomments"><?php echo $total_comments . " ";
+                (<a href="<?php echo assembleGetString("string", $cbBlog_linkComponents); ?>#linkshowcomments"><?php echo $total_comments . " ";
                 if ($row["num_comments"] == 1) echo gettext("comment");
                 else echo gettext("comments") . "</a>)";
               }

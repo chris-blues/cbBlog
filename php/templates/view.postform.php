@@ -48,9 +48,9 @@
         <input type="email" name="email" id="post_email">
       </p>
       <?php echo gettext("notify"); ?>: <span class="notes">(<?php echo gettext("optional") . ", " . gettext("to be notified of new comments"); ?>)</span><br>
-      <input type="email" name="notificationTo" id="post_notificationTo" value="<?php echo $previewNotificationTo; ?>" placeholder="you@inter.net"><br>
+      <input type="email" name="notificationTo" id="post_notificationTo" value="<?php echo $previewNotificationTo; ?>" placeholder="you@example.com"><br>
       <?php echo gettext("Website"); ?>: <span class="notes">(<?php echo gettext("optional"); ?>)</span><br>
-      <input type="url" name="website" id="post_website" value="<?php echo $previewWebsite; ?>" placeholder="https://www.example.tld"><br>
+      <input type="url" name="website" id="post_website" value="<?php echo $previewWebsite; ?>" placeholder="https://www.example.com"><br>
 
       <?php echo gettext("Your comment"); ?>
       <button type="button" class="notes" id="switchTagHelp">

@@ -1,12 +1,12 @@
 @charset "utf-8";
 
 body {
-  background-color: #E3E9EF;
+/*   background-color: #E3E9EF; */
 }
 
-a:link { color: #332211; text-decoration: underline; }
+/*a:link { color: #332211; text-decoration: underline; }
 a:visited { color: #112233; text-decoration: underline; }
-a:hover { color: #666633; text-decoration: none; }
+a:hover { color: #666633; text-decoration: none; }*/
 
 [target=_blank] {
   margin-right: 5px;
@@ -74,7 +74,6 @@ a.feeds {
 
 .banner {
   width: 100%;
-  padding: 0px !important;
 }
 
 .max900 {
@@ -155,7 +154,7 @@ a.blogpost_taglist {
   margin: 5px;
   padding: 0px 5px 2px;
   border-radius: 6px;
-  background-color: #F6F6F6;
+/*   background-color: #F6F6F6; */
   border: 1px solid #CCC;
 }
 
@@ -170,7 +169,7 @@ ul#tags {
   padding: 10px;
   margin: 0px 0px 10px 10px;
   text-align: center;
-  background-color: #FFF;
+/*   background-color: #FFF; */
 }
 
 #wrapper {
@@ -189,7 +188,7 @@ a.tags {
 
 .blogentryoverview {
   margin-bottom: 15px;
-  background-color: #FFF;
+/*   background-color: #FFF; */
 }
 
 .blogentryoverview:hover {
@@ -217,7 +216,7 @@ a.tags {
 
 .blogentryfull {
   margin-bottom: 15px;
-  background-color: #FFF;
+/*   background-color: #FFF; */
 }
 
 .postform {
@@ -230,7 +229,7 @@ a.tags {
 
 .commentText {
   border-radius: 6px;
-  background-color: rgba(250,250,250,0.9);
+/*   background-color: rgba(250,250,250,0.9); */
   box-shadow: 0px 0px 5px 1px #EEE inset;
   padding: 10px;
   margin-top: 10px;
@@ -241,12 +240,12 @@ blockquote {
 }
 
 .remark {
-  background-color: #D5D1DE;
+  background-color: #9d8fbc;
   background-image: url("/blog/pics/remark.png");
 }
 
 .opinion {
-  background-color: #D1DED2;
+  background-color: #7E9880;
   background-image: url("/blog/pics/opinion.png");
 }
 
@@ -298,12 +297,12 @@ blockquote {
  /* max-width: 500px; */
   margin-left: auto;
   margin-right: auto;
-  background-color: #FFF;
+/*   background-color: #FFF; */
 }
 
 .quote, .quote.comments {
   border: 1px solid black;
-  background-color: #DDDDAA;
+  background-color: #8A8A7C;
   background-image: url("/blog/pics/quote.png");
   min-height: 70px;
 }
