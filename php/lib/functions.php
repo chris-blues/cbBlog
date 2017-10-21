@@ -40,7 +40,7 @@ function procTime($startTime, $endTime) {
   return gettext("Processing needed") . " " . round($proctime, 3) . " " . $timeUnits[$t];
 }
 
-// accepted $methos is either "array" or "string". An emtpy string defaults to "string"
+// accepted $method is either "array" or "string". An emtpy string defaults to "string"
 function assembleGetString($method = "", $newVars = array()) {
   if (isset($_GET)) {
     $counter = 0;
@@ -182,9 +182,7 @@ function outputErrors($error, $depth) {
     foreach ($error as $key => $value) {
       if (is_array($value)) {
         echo "{$indentation}<b>{$key}</b>\n";
-        $depth++;
-        outputErrors($value, $depth);
-        $depth--;
+        outputErrors($value, $depth + 1);
       }
       else echo "{$indentation}<b>{$key}</b>: $value\n";
     }
