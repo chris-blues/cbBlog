@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cbBlog\n"
-"POT-Creation-Date: 2017-06-18 19:18+0200\n"
-"PO-Revision-Date: 2017-06-18 19:18+0200\n"
+"POT-Creation-Date: 2018-05-27 12:55+0200\n"
+"PO-Revision-Date: 2018-05-27 12:55+0200\n"
 "Last-Translator: chris_blues <chris@musicchris.de>\n"
 "Language-Team: cbBlog Translations <chris@musicchris.de>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 2.0.7\n"
 "X-Poedit-Basepath: ../../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -106,12 +106,12 @@ msgid "article"
 msgstr "Artikel"
 
 #: admin/php/templates/view.overview.php:47 news_short.php:68
-#: php/templates/view.blogpost.php:42 php/templates/view.overview.php:20
+#: php/templates/view.blogpost.php:48 php/templates/view.overview.php:20
 msgid "comment"
 msgstr "Kommentar"
 
 #: admin/php/templates/view.overview.php:48 news_short.php:69
-#: php/templates/view.blogpost.php:43 php/templates/view.comments-section.php:5
+#: php/templates/view.blogpost.php:49 php/templates/view.comments-section.php:5
 #: php/templates/view.overview.php:21
 msgid "comments"
 msgstr "Kommentare"
@@ -437,7 +437,7 @@ msgstr "elf"
 msgid "twelve"
 msgstr "zwölf"
 
-#: php/lib/prepareComment.php:40 php/templates/view.postform.php:45
+#: php/lib/prepareComment.php:40 php/templates/view.postform.php:48
 msgid "Anonymous"
 msgstr "Anonym"
 
@@ -466,11 +466,11 @@ msgstr "Sie werden nun zu neuen Kommentaren benachrichtigt."
 msgid "by"
 msgstr "von"
 
-#: php/templates/view.blogpost.php:36 php/templates/view.overview.php:7
+#: php/templates/view.blogpost.php:42 php/templates/view.overview.php:7
 msgid "last update"
 msgstr "zuletzt aktualisiert"
 
-#: php/templates/view.blogpost.php:49
+#: php/templates/view.blogpost.php:55
 msgid "no comments"
 msgstr "Keine Kommentare"
 
@@ -482,82 +482,179 @@ msgstr "zeige themenfremde Beiträge"
 msgid "hide off-topic comments"
 msgstr "verstecke themenfremde Beiträge"
 
-#: php/templates/view.postform.php:44
-msgid "name"
-msgstr "Name"
+#: php/templates/view.postform.php:16
+msgid "post a comment"
+msgstr "Kommentar verfassen"
 
-#: php/templates/view.postform.php:44 php/templates/view.postform.php:50
-#: php/templates/view.postform.php:52
-msgid "optional"
-msgstr "optional"
-
-#: php/templates/view.postform.php:47
-msgid "leave empty"
-msgstr "leer lassen"
-
-#: php/templates/view.postform.php:50
-msgid "notify"
-msgstr "Benachrichtigen"
-
-#: php/templates/view.postform.php:50
-msgid "to be notified of new comments"
-msgstr "um zu neuen Kommentaren benachrichtigt zu werden"
-
-#: php/templates/view.postform.php:52
-msgid "Website"
-msgstr "Website"
-
-#: php/templates/view.postform.php:55
-msgid "Your comment"
-msgstr "Ihr Kommentar"
-
-#: php/templates/view.postform.php:57
-msgid "Notes for formatting"
-msgstr "Hinweise zur Formatierung"
-
-#: php/templates/view.postform.php:60
-msgid "Allowed Tags"
-msgstr "Erlaubte Tags"
-
-#: php/templates/view.postform.php:63 php/templates/view.postform.php:64
-msgid "bold text"
-msgstr "fetter Text"
-
-#: php/templates/view.postform.php:67 php/templates/view.postform.php:68
-msgid "underlined text"
-msgstr "unterstrichener Text"
-
-#: php/templates/view.postform.php:71 php/templates/view.postform.php:72
-msgid "stroke text"
-msgstr "durchgestrichener Text"
-
-#: php/templates/view.postform.php:75 php/templates/view.postform.php:76
-msgid "italic text"
-msgstr "kursiver Text"
-
-#: php/templates/view.postform.php:83 php/templates/view.postform.php:84
-msgid "link"
-msgstr "Verweis"
-
-#: php/templates/view.postform.php:95 php/templates/view.postform.php:96
-msgid "quote"
-msgstr "Zitat"
-
-#: php/templates/view.postform.php:99 php/templates/view.postform.php:100
-msgid "off-topic"
-msgstr "themenfremd"
-
-#: php/templates/view.postform.php:122
-msgid "Back"
-msgstr "Zurück"
-
-#: php/templates/view.postform.php:123
+#: php/templates/view.postform.php:23 php/templates/view.postform.php:127
 msgid "Preview"
 msgstr "Vorschau"
 
+#: php/templates/view.postform.php:47
+msgid "name"
+msgstr "Name"
+
+#: php/templates/view.postform.php:47 php/templates/view.postform.php:53
+#: php/templates/view.postform.php:55
+msgid "optional"
+msgstr "optional"
+
+#: php/templates/view.postform.php:50
+msgid "leave empty"
+msgstr "leer lassen"
+
+#: php/templates/view.postform.php:53
+msgid "notify"
+msgstr "Benachrichtigen"
+
+#: php/templates/view.postform.php:53
+msgid "to be notified of new comments"
+msgstr "um zu neuen Kommentaren benachrichtigt zu werden"
+
+#: php/templates/view.postform.php:55
+msgid "Website"
+msgstr "Website"
+
+#: php/templates/view.postform.php:58
+msgid "Your comment"
+msgstr "Ihr Kommentar"
+
+#: php/templates/view.postform.php:58
+msgid "required"
+msgstr "erforderlich"
+
+#: php/templates/view.postform.php:60
+msgid "Notes for formatting"
+msgstr "Hinweise zur Formatierung"
+
+#: php/templates/view.postform.php:63
+msgid "Allowed Tags"
+msgstr "Erlaubte Tags"
+
+#: php/templates/view.postform.php:66 php/templates/view.postform.php:67
+msgid "bold text"
+msgstr "fetter Text"
+
+#: php/templates/view.postform.php:70 php/templates/view.postform.php:71
+msgid "underlined text"
+msgstr "unterstrichener Text"
+
+#: php/templates/view.postform.php:74 php/templates/view.postform.php:75
+msgid "stroke text"
+msgstr "durchgestrichener Text"
+
+#: php/templates/view.postform.php:78 php/templates/view.postform.php:79
+msgid "italic text"
+msgstr "kursiver Text"
+
+#: php/templates/view.postform.php:86 php/templates/view.postform.php:87
+msgid "link"
+msgstr "Verweis"
+
+#: php/templates/view.postform.php:98 php/templates/view.postform.php:99
+msgid "quote"
+msgstr "Zitat"
+
+#: php/templates/view.postform.php:102 php/templates/view.postform.php:103
+msgid "off-topic"
+msgstr "themenfremd"
+
 #: php/templates/view.postform.php:125
+msgid "Reset"
+msgstr "Zurücksetzen"
+
+#: php/templates/view.postform.php:126
+msgid "Clear form"
+msgstr "Formular leeren"
+
+#: php/templates/view.postform.php:129
 msgid "Send"
 msgstr "Abschicken"
+
+#: php/templates/view.privacy-declaration.php:3
+msgid "privacy declaration"
+msgstr "Datenschutzerklärung"
+
+#: php/templates/view.privacy-declaration.php:6
+msgid ""
+"Your IP-address, useragent-string etc are not stored by this blog-software. "
+"Still, it is possible that the hoster of this website may store data like "
+"this. But that is beyond the scope of this blog-software. Check out this "
+"website's privacy declaration to find out more about that!"
+msgstr ""
+"Ihre IP-Adresse, Browserinformation (useragent-string) etc werden von dieser "
+"Blogsoftware nicht gespeichert. Trotzdem könnte es sein, daß der Betreiber "
+"dieser Webseite solche Daten von Ihnen speichert. Das ist allerdings "
+"außerhalb der Reichweite dieser Blogsoftware. Bitte sehen Sie sich die "
+"Datenschutzerklärung der Webseite an um mehr darüber zu erfahren!"
+
+#: php/templates/view.privacy-declaration.php:12
+msgid ""
+"This blog-software generally doesn't store any information about you. Only "
+"if you post a comment, some data will have to be stored. You don't have to "
+"input any personal information here. Except for the comment itself, all "
+"fields are optional!<br>\n"
+"          If you don't want to tells us your name, that's fine. It will be "
+"shown as 'anonymous'.<br>\n"
+"          If you want to receive notifications on following comments, "
+"naturally you'll have to give us your email address. It will be stored and "
+"not be shared with anybody. If you don't want to be notified, just leave the "
+"notifications field empty.<br>\n"
+"          If you want your name to be linked to your website, you'll have to "
+"give us your site's address. Otherwise leave this field empty."
+msgstr ""
+"Diese Blogsoftware speichert generell keine Daten von Ihnen. Nur falls Sie "
+"einen Kommentar hinterlassen, müssen ein paar Daten gespeichert werden. Sie "
+"brauchen hier keine persönlichen Daten angeben. Abgesehen vom Kommentar "
+"selbst sind alle anderen Angaben freiwillig!<br>\n"
+"          Es ist vollkommen in Ordnung falls Sie ihren Namen nicht angeben "
+"wollen, ihr Kommentar wird dann als 'anonym' angezeigt werden.<br>\n"
+"          Falls Sie Benachrichtigungen erhalten wollen, wenn hier neue "
+"Kommentare erscheinen, dann brauchen wir dazu natürlich Ihre Emailadresse. "
+"Diese wird sicher gespeichert und nicht weitergegeben. Falls Sie nicht "
+"benachrichtigt werden wollen, lassen Sie das Feld Benachrichtigungen einfach "
+"leer.<br>\n"
+"          Falls Sie Ihre Webseite mit Ihrem Namen verknüpfen wollen, "
+"brauchen wir natürlich Ihre Webadresse. Ansonsten kann auch dieses Feld leer "
+"bleiben."
+
+#: php/templates/view.privacy-declaration.php:21
+msgid "This data will be stored in case you decide to post a comment here:"
+msgstr ""
+"Falls Sie einen Kommentar hinterlassen wollen werden folgende Daten "
+"gespeichert werden:"
+
+#: php/templates/view.privacy-declaration.php:25
+msgid "time and date of your post"
+msgstr "Zeit und Datum Ihres Kommentars"
+
+#: php/templates/view.privacy-declaration.php:26
+msgid "your name (if supplied)"
+msgstr "Ihr Name (falls angegeben)"
+
+#: php/templates/view.privacy-declaration.php:27
+msgid "your email (if supplied)"
+msgstr "Ihre Emailadresse (falls angegeben)"
+
+#: php/templates/view.privacy-declaration.php:28
+msgid "your website (if supplied)"
+msgstr "Ihre Webseite (falls angegeben)"
+
+#: php/templates/view.privacy-declaration.php:29
+msgid "your comment"
+msgstr "Ihr Kommentar"
+
+#: php/templates/view.privacy-declaration.php:30
+msgid ""
+"some technical information unrelated to you, like which blogpost this "
+"comment belongs to and a unique id for this comment"
+msgstr ""
+"einige technische Informationen, die mit Ihnen nichts zu tun haben, z.Bsp. "
+"zu welchem Blogartikel Ihr Kommentar gehört und eine eindeutige ID für Ihren "
+"Kommentar"
+
+#~ msgid "Back"
+#~ msgstr "Zurück"
 
 #~ msgid "There's nothing there to see..."
 #~ msgstr "Es ist nichts da zum anzeigen..."

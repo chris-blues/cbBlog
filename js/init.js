@@ -55,11 +55,24 @@ document.addEventListener('DOMContentLoaded', function () {
       saveLocalStorage("website", document.getElementById("post_website").value);
     });
   }
+  if (document.getElementById("buttonClearForm") != null) {
+    document.getElementById("buttonClearForm").addEventListener("click", function() {
+      document.getElementById("post_name").value = '';
+      document.getElementById("post_notificationTo").value = '';
+      document.getElementById("post_website").value = '';
+      document.getElementById("post_text").value = '';
+    });
+  }
   if (document.getElementById("buttonPreview") != null) {
     document.getElementById("buttonPreview").addEventListener("click", function() {
-      document.getElementById("job").value = "showPreview";
-      document.getElementById("postCommentForm").action += "#postCommentForm";
-      this.form.submit();
+      if (document.getElementById("post_text").value.length > 0) {
+        document.getElementById("job").value = "showPreview";
+        document.getElementById("postCommentForm").action += "#commentForm";
+        this.form.submit();
+      } else {
+        document.getElementById("post_text").style.boxShadow = "0px 0px 5px 1px red";
+        document.getElementById("post_text").focus();
+      }
     });
   }
   if (document.getElementById("buttonSend") != null) {

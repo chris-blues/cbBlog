@@ -83,6 +83,8 @@ if (isset($error)) { ?>
 if (isset($_GET["id"]) and $_GET["id"] != "") {
   require_once($GLOBALS["path"] . "/php/templates/view.comments-section.php");
 }
+
+include_once($GLOBALS["path"] . "/php/templates/view.privacy-declaration.php");
 ?>
 
 </div>

@@ -13,11 +13,14 @@
 
   <div class="shadow comments comment postform" name="comment" id="commentForm">
 
+    <h2><?php echo gettext("post a comment"); ?></h2>
+
 <?php
   if (isset($_POST["job"]) and $_POST["job"] == "showPreview") {
     $time = time();
     ?>
     <div class="comments preview" id="preview">
+      <h3><?php echo gettext("Preview"); ?></h3>
       <h3 class="commentsHead inline"><?php echo $counter; ?>)
         <?php
         if ($previewWebsite != "") { ?><a href="<?php echo $previewWebsite; ?>" target="_blank"><?php echo $previewName; ?></a><?php }
@@ -41,18 +44,18 @@
       <input type="hidden" name="post_time" value="" id="post_time">
       <input type="hidden" name="answerTo" value="0" id="post_answerTo">
 
-      <?php echo gettext("name"); ?>: <span class="notes">(<?php echo gettext("optional"); ?>)</span><br>
+      <label for="post_name"><?php echo gettext("name"); ?>: <span class="notes">(<?php echo gettext("optional"); ?>)</span></label><br>
       <input type="text" name="name" id="post_name" value="<?php echo $previewName; ?>" placeholder="<?php echo gettext("Anonymous");?>"><br>
       <p class="notes" id="email">
-        <?php echo gettext("leave empty"); ?>
+        <label for="post_email"><?php echo gettext("leave empty"); ?></label>
         <input type="email" name="email" id="post_email">
       </p>
-      <?php echo gettext("notify"); ?>: <span class="notes">(<?php echo gettext("optional") . ", " . gettext("to be notified of new comments"); ?>)</span><br>
+      <label for="post_notificationTo"><?php echo gettext("notify"); ?>: <span class="notes">(<?php echo gettext("optional") . ", " . gettext("to be notified of new comments"); ?>)</span></label><br>
       <input type="email" name="notificationTo" id="post_notificationTo" value="<?php echo $previewNotificationTo; ?>" placeholder="you@example.com"><br>
-      <?php echo gettext("Website"); ?>: <span class="notes">(<?php echo gettext("optional"); ?>)</span><br>
+      <label for="post_website"><?php echo gettext("Website"); ?>: <span class="notes">(<?php echo gettext("optional"); ?>)</span></label><br>
       <input type="url" name="website" id="post_website" value="<?php echo $previewWebsite; ?>" placeholder="https://www.example.com"><br>
 
-      <?php echo gettext("Your comment"); ?>
+      <label for="post_text"><?php echo gettext("Your comment"); ?> <span class="notes">(<?php echo gettext("required"); ?>)</span></label>
       <button type="button" class="notes" id="switchTagHelp">
         <?php echo gettext("Notes for formatting"); ?>
       </button><br>
@@ -105,7 +108,7 @@
           </tr>
         </table>
       </div>
-      <textarea name="text" id="post_text"><?php if (isset($post)) echo $post; ?></textarea>
+      <textarea name="text" id="post_text" required><?php if (isset($post)) echo $post; ?></textarea>
 
       <div class="button_wrapper">
         <?php
@@ -118,12 +121,14 @@
   <?php } ?>
           <?php require($GLOBALS["path"] . "/php/templates/view.smileys.php"); ?>
       </div>
-      <div class="center">
-        <button type="reset"> &lt;&lt;&lt; <?php echo gettext("Back"); ?> </button>
-        <button type="button" id="buttonPreview"> <?php echo gettext("Preview"); ?> </button>
+      <div class="center big">
+        <button type="reset"> ↩ <?php echo gettext("Reset"); ?> </button>
+        <button type="button" id="buttonClearForm"> ☠ <?php echo gettext("Clear form"); ?></button>
+        <button type="button" id="buttonPreview"> 👁 <?php echo gettext("Preview"); ?> </button>
         <?php if (isset($_POST["job"]) and $_POST["job"] == "showPreview") { ?>
-        <button type="submit" id="buttonSend"> <?php echo gettext("Send"); ?> &gt;&gt;&gt; </button>
+        <button type="submit" id="buttonSend"> 🖅 <?php echo gettext("Send"); ?> &gt;&gt;&gt; </button>
         <?php } ?>
       </div>
     </form>
+
   </div>

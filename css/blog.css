@@ -225,6 +225,7 @@ a.tags {
 
 #post_text {
   height: 20em;
+  padding: 5px 10px;
 }
 
 .commentText {
