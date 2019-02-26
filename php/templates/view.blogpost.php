@@ -63,7 +63,9 @@
         <?php echo $row["text"]; ?>
       </article>
 
+      <br>
       <hr>
+      <br>
 
       <div class="notes center">
         <a rel="license" href="https://creativecommons.org/licenses/by/4.0/" target="_blank">
