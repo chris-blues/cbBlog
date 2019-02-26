@@ -1,7 +1,14 @@
 @charset "utf-8";
 
 body {
-/*   background-color: #E3E9EF; */
+  /*   background-color: #E3E9EF; */
+
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
 }
 
 /*a:link { color: #332211; text-decoration: underline; }

@@ -1,0 +1,16 @@
+#checkipsWrapper {}
+
+#timezoneselect {}
+
+#checkipsTable {
+  float: left;
+  min-width: 350px;
+  width: 45%;
+}
+
+#checkipsText {
+  float: left;
+  min-width: 350px;
+  width: 45%;
+  padding: 20px;
+}
