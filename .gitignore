@@ -1,0 +1,6 @@
+**/php?errors.log
+php/config/blog.php
+php/config/db.php
+php/config/email.php
+php/config/feeds.php
+admin/logs/*
