@@ -52,7 +52,9 @@ function assembleGetString($method = "", $newVars = array()) {
   if (isset($newVars)) {
     foreach ($newVars as $key => $value) {
       if ($value == "") {
-        unset($tmpArray[$key]);
+        if (isset($tmpArray[$key])) {
+            unset($tmpArray[$key]);
+        }
         continue;
       }
       $tmpArray[$key] = $value;
